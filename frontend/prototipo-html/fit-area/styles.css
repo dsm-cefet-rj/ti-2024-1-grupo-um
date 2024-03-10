@@ -1,128 +1,75 @@
 body {
-    font-family: 'Aileron', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: white;
+    background-color: #E1DEE9;
 }
-
-.navbar {
-    background-color: #515151;
-    color: white;
-    height: 60px;
-    position: relative; 
-}
-
-.header {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    
-}
-
-.title {
-    font-size: 25px;
-    margin-bottom: 0;
-    font-family: 'Bebas Neue', sans-serif;
-                                                
-}
-
-.profile-link {
-    color: white;
-    text-decoration: none;
-    font-size: 25px;
-    position: absolute; 
-    top: 0; 
-    right: 0; 
-    margin-top: 20px;
-    margin-right: 20px; 
-}
-.profile-link:hover{
-    color: #3166d1;
-}
-
 .container {
     max-width: 100%;
     padding: 20px;
-    font-family: 'Aileron', sans-serif;
-    position: relative;
+    font-family: "Balsamiq Sans", sans-serif;
 }
-
 .back-button {
-    position: absolute;
-    left: 20px;
-    top: 15px;
+    font-family: "Balsamiq Sans", sans-serif;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #342E37;
 }
-
-.seta {
-    display: inline-block;
-    width: auto;
-    height: auto;
-    font-size: 17px; 
-    color: #3166d1;
-}
-.seta:hover{
-    color: #5d89e2
-}
-
-.area-fit {
+.title {
     text-align: center;
     font-size: 24px;
     margin-bottom: 40px;
-    color: #3166d1;
-    font-style: bold;
+    color: #342E37;
 }
-
 .serie-button {
     display: block;
     width: 60%;
     font-size: 20px;
     padding: 15px;
     margin: 0 auto;
-    margin-bottom: 20px;
-    background-color: #f4f1f1;
-    color: #515151;
+    margin-bottom: 10px;
+    background-color: #5762D5;
+    color: #342E37;
     text-align: center;
     text-decoration: none;
     border: none;
-    border-radius: 15px;
+    border-radius: 5px;
 }
-
-.serie-button:hover {
-    background-color: #dadbdb;
-}
-
 .monte-button {
     display: block;
-    width: 60%;
+    width: 25vw;
     font-size: 16px;
     padding: 10px;
     margin: 0 auto;
-    margin-top: 25px;
-    background-color: #3166d1;
-    border: none;
+    margin-top: 20px;
+    background-color: #C1BAD3;
+    border: 2px solid #5762D5;
     border-radius: 5px;
-    color: white;
+    color: #5762D5;
     text-align: center;
     text-decoration: none;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-.monte-button:hover {
-    background-color: #5d89e2;
-}
-.menu-btn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .menu-btn i {
+.header {
+    font-family: "Balsamiq Sans", sans-serif;
+    text-align: center;
     font-size: 24px;
-    color: white; 
-  }
-  .menu-btn i:hover{
-    color: #3166d1
+    margin-bottom: 20px;
+    background-color: #5762D5;
+    color: #342E37;
+    padding: 15px;
+}
+
+.balsamiq-font {
+    font-family: "Balsamiq Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
   }
