@@ -21,8 +21,7 @@ body {
 .title {
     font-size: 25px;
     margin-bottom: 0;
-   
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Aileron', sans-serif;
 }
 
 .profile-link {
@@ -48,9 +47,10 @@ body {
 }
 
 .back-button {
-    position: absolute;
+    position: relative;
     left: 20px;
     top: 15px;
+    
 }
 
 .seta {

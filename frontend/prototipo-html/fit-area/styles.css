@@ -35,22 +35,27 @@ body {
     right: 0; 
     margin-top: 20px;
     margin-right: 20px; 
+
 }
 .profile-link:hover{
     color: #3166d1;
 }
 
 .container {
-    max-width: 100%;
+    max-width: 500px;
     padding: 20px;
     font-family: 'Aileron', sans-serif;
     position: relative;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
 }
 
 .back-button {
-    position: absolute;
+    position: relative;
     left: 20px;
     top: 15px;
+    
 }
 
 .seta {
