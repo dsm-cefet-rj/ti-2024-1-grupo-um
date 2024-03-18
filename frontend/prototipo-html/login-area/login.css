@@ -22,9 +22,9 @@
 }
 .button-color{
     background-color: #3166D1;
-    color: black;
+    color: white;
 }
 .button-color:hover{
-    background-color: #0b4ac9;
+    background-color: #10a9d8;
     color: white;
 }
