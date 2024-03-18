@@ -110,7 +110,7 @@ body {
 
 .menu-btn i {
     font-size: 24px;
-    color: white; /* Cor do ícone do menu */
+    color: white; 
 }
 
 .menu-btn i:hover {
