@@ -198,6 +198,7 @@ body {
     color: #515151;
     margin-bottom: 50px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .card-title{
@@ -217,3 +218,8 @@ body {
 .card-deck .card-footer {
     pointer-events: none;
 }
+
+.navbar{
+    margin-bottom: 10px;
+}
+
