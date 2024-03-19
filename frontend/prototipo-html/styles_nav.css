@@ -32,7 +32,7 @@
 }
 
 .logo-img{
-    width: 80px;
+    width: 90px;
     
 }
 .navbar-toggler{
@@ -56,7 +56,7 @@
 .navbar-nav .nav-link:focus {
     color: #fff;
 }
-@media (min-width: 991px){
+
     .nav-link::before{
         content:"";
         position: absolute;
@@ -78,7 +78,7 @@
         width: 100%;
         visibility: visible;  
     }
-}
+
 #offcanvasNavbar{
     background-color: #515151;
 }
@@ -100,4 +100,9 @@
     bottom: 0;
     right: 0;
     left: 0;
+}
+.container{
+    width: 100%;
+    background-color: #fff;
+    margin: auto;
 }
