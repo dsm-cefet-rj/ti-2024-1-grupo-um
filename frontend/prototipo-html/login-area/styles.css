@@ -13,7 +13,7 @@ body {
     background-color: white;
     padding: 35px;
     justify-content: center;
-   
+
 }
 .container-logo {
     display: flex;
@@ -29,18 +29,15 @@ body {
     font-family: 'Aileron', sans-serif;
     font-size: 20px;
     flex-direction: column;
-    box-shadow: 2px 2px 5px rgb(34, 33, 33);
-    
+
 }
 .halter-img {
     width: 40px;
-    margin-bottom: -5px;
-    margin-top: -2px;
-    
+
 }
 
 input {
-   
+
     width: 90%;
     display: block;
     margin-top: 5px;
@@ -51,7 +48,7 @@ input {
     border-radius: 10px;
     font-size: 0.9rem;
     padding: 10px;
-    
+
 }
 .form-btn input{
     width: 100%;
@@ -80,13 +77,13 @@ p {
     padding: 10px;
     font-size: 1rem;
     text-align: center;
-    
+
 }
 p a {
     color: #3166d1;
     text-decoration: none;
     margin-top: -20px;
-    
+
 }
 p a:hover{
     color: #5d89e2;

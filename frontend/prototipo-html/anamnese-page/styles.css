@@ -1,0 +1,23 @@
+.navbar-mobile-user-icon {
+    padding-right: 15px;
+}
+.navbar-toggler {
+  border: none;
+}
+.navbar {
+  background-color: #515151;
+  color: white;
+}
+.navbar-brand {
+    color: white !important;
+}
+.nav-link {
+    color: white !important;
+}
+.menu-btn {
+    background-color: transparent;
+    cursor: pointer;
+}
+.menu-btn i {
+    color: white;
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anamnese</title>
+  <!-- Adicione a linha abaixo para carregar o Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Adicione a linha abaixo para carregar os ícones do Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <!-- Título da Navbar -->
+          <a class="navbar-brand" href="#">CEFIT</a>
+          <!-- Ícone do perfil -->
+          <ul class="navbar-nav ml-auto navbar-mobile-user-icon">
+              <li class="nav-item">
+                <a class="nav-link profile-link" href="#"><i class="fas fa-user-circle"></i></a>
+              </li>
+          </ul>
+          <!-- Botão do menu para mobile -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <!-- Ícone do menu para mobile -->
+            <a href="#"# class="menu-btn"><i class="fas fa-bars"></i></a>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Itens da Navbar -->
+            <ul class="navbar-nav mr-auto">
+              <!-- Adicione aqui os links de navegação, se necessário -->
+              <a class="nav-link" href="#">Página Inicial</a>
+              <a class="nav-link" href="#">Link 1</a>
+              <a class="nav-link" href="#">Link 2</a>
+              <a class="nav-link" href="#">Link 3</a>
+              <a class="nav-link" href="#">Link 4</a>
+              <a class="nav-link" href="#">Link 5</a>
+              <a class="nav-link" href="#">Link 6</a>
+              <a class="nav-link" href="#">Link 7</a>
+              <a class="nav-link" href="#">Link 8</a>
+              <a class="nav-link" href="#">Link 9</a>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container mt-4 mb-4">
+        <h2>Faça sua Anamnese</h2>
+        <p>Para responder a anamnese, caso a resposta seja <b>Não</b> não é necessário preencher os campos de texto. Caso contrário, favor preencher o campo de texto.</p>
+        <form>
+
+          <div class="form-group">
+            <label for="weigth">Seu peso</label>
+            <input type="number" class="form-control" id="weigth" placeholder="Digite o nome do treino">
+          </div>
+
+          <div class="form-group">
+            <label for="age">Data de nascimento:</label>
+            <input type="date" class="form-control" id="age">
+          </div>
+
+          <div class="form-group">
+            <label for="motivation">Motivação/Objetivo</label>
+            <textarea type="text" class="form-control" id="motivation" placeholder="Ganhar peso, perder peso, ganhar músculos ..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="activity-freq">Com que frequência faz atividade física?</label>
+            <div class="form-check" id="activity-freq">
+                <input class="form-check-input" type="radio" name="frequency" id="exampleRadios1" value="0">
+                <label class="form-check-label" for="exampleRadios1">
+                    Nada
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="frequency" id="exampleRadios2" value="3">
+                <label class="form-check-label" for="exampleRadios2">
+                    até 3 vezes por semana
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="frequency" id="exampleRadios3" value="4">
+                <label class="form-check-label" for="exampleRadios3">
+                    mais de 4 vezes na semana
+                </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exam">Data do ultimo exame médico ou físico:</label>
+            <input type="date" class="form-control" id="exam">
+          </div>
+
+          <div class="form-group">
+            <label for="medicine">Utiliza algum medicamento contínuo? Se sim, qual e há quanto tempo?</label>
+            <textarea type="text" class="form-control" id="medicine" ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="diet">Faz dieta? Se sim, para qual motivo e há quanto tempo?</label>
+            <textarea type="text" class="form-control" id="diet" ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="observacoes">Observações:</label>
+            <textarea class="form-control" id="observacoes" rows="3" placeholder="(Opcional) Digite observações sobre o treino"></textarea>
+          </div>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    
+        </form>
+    </div>
+    
+
+      <!-- Importe o jQuery e o Popper.js antes do Bootstrap.js para que o dropdown funcione corretamente -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

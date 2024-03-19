@@ -117,27 +117,4 @@ body {
 
 .btn {
     background-color: transparent;
-    color: #3166d1;
-    border-color: #3166d1;
-    border-radius: 15px;
-    transition: 0.3s;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.btn:hover {
-    background-color: #3166d1;
-    color: #fff;
-}
-
-@media (max-width: 576px) {
-    .card {
-        max-width: 80%; 
-        margin: auto;
-        display: flex;
-        
-    }
-    .card-deck {
-        margin-bottom: 15px;
-    }
 }
