@@ -6,8 +6,8 @@
     padding-left: 2px;
     padding-right: 2px;
     margin-top: 20px ;
-    width: 40%;
-    min-width: 50%;
+    width: 10rem;
+    min-width: 20px;
 }
 .cefit-text{
     color: white;
@@ -17,6 +17,7 @@
 .login-container{
     box-shadow: 3px 3px 3px 3px rgb(44, 44, 44);
     margin-top: 100px;
+    min-width: 350px;
 }
 .cadastro-texto{
     margin-left: 15px;

@@ -1,6 +1,14 @@
+/* *{
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+} */
+    
+/* 
 .div-principal{
     margin: auto;
-}
+} */
 .cefit-logo{
     background-color: #3166D1;
     padding-left: 2px;
@@ -15,7 +23,7 @@
 }
 .login-container{
     box-shadow: 3px 3px 3px 3px rgb(44, 44, 44);
-    margin-top: 50px;
+    margin-top: 150px;
     min-width: 400px;
 }
 .cadastro-texto{
