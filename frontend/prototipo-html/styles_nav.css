@@ -1,3 +1,6 @@
+* {
+    font-family: 'Aileron', sans-serif;
+}
 
 .navbar {
     background-color: #515151;
@@ -28,6 +31,7 @@
     height: 60px;
     margin-left: -15px;
     position: relative;
+    margin-top: -5px;
    
 }
 
@@ -47,6 +51,7 @@
     color:#fff;
     font-weight: 500;
     position: relative;
+   
 
 }
 .nav-link:hover {
