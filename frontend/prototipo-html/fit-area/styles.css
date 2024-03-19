@@ -1,75 +1,133 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Aileron', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #E1DEE9;
+    background-color: white;
 }
-.container {
-    max-width: 100%;
-    padding: 20px;
-    font-family: "Balsamiq Sans", sans-serif;
+
+.navbar {
+    background-color: #515151;
+    color: white;
+    height: 60px;
+    position: relative; 
 }
-.back-button {
-    font-family: "Balsamiq Sans", sans-serif;
-    top: 10px;
-    left: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 5px 10px;
-    background-color: transparent;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #342E37;
+
+.header {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    
 }
+
 .title {
+    font-size: 25px;
+    margin-bottom: 0;
+    font-family: 'Bebas Neue', sans-serif;
+                                                
+}
+
+.profile-link {
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    margin-top: 20px;
+    margin-right: 20px; 
+
+}
+.profile-link:hover{
+    color: #3166d1;
+}
+
+.container {
+    max-width: 500px;
+    padding: 20px;
+    font-family: 'Aileron', sans-serif;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.back-button {
+    position: relative;
+    left: 20px;
+    top: 15px;
+    
+}
+
+.seta {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    font-size: 17px; 
+    color: #3166d1;
+}
+.seta:hover{
+    color: #5d89e2
+}
+
+.area-fit {
     text-align: center;
     font-size: 24px;
     margin-bottom: 40px;
-    color: #342E37;
+    color: #3166d1;
+    font-style: bold;
 }
+
 .serie-button {
     display: block;
     width: 60%;
     font-size: 20px;
     padding: 15px;
     margin: 0 auto;
-    margin-bottom: 10px;
-    background-color: #5762D5;
-    color: #342E37;
+    margin-bottom: 20px;
+    background-color: #f4f1f1;
+    color: #515151;
     text-align: center;
     text-decoration: none;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
 }
+
+.serie-button:hover {
+    background-color: #dadbdb;
+}
+
 .monte-button {
     display: block;
-    width: 25vw;
+    width: 60%;
     font-size: 16px;
     padding: 10px;
     margin: 0 auto;
-    margin-top: 20px;
-    background-color: #C1BAD3;
-    border: 2px solid #5762D5;
+    margin-top: 25px;
+    background-color: #3166d1;
+    border: none;
     border-radius: 5px;
-    color: #5762D5;
+    color: white;
     text-align: center;
     text-decoration: none;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
 }
 
-.header {
-    font-family: "Balsamiq Sans", sans-serif;
-    text-align: center;
+.monte-button:hover {
+    background-color: #5d89e2;
+}
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .menu-btn i {
     font-size: 24px;
-    margin-bottom: 20px;
-    background-color: #5762D5;
-    color: #342E37;
-    padding: 15px;
-}
-
-.balsamiq-font {
-    font-family: "Balsamiq Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+    color: white; 
+  }
+  .menu-btn i:hover{
+    color: #3166d1
   }

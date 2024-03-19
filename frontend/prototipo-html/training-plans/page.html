@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plano de treinamento</title>
+  <!-- Adicione a linha abaixo para carregar o Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Adicione a linha abaixo para carregar os ícones do Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <!-- Título da Navbar -->
+    <a class="navbar-brand" href="#">CEFIT</a>
+	<!-- Ícone do perfil -->
+	<ul class="navbar-nav ml-auto navbar-mobile-user-icon">
+        <li class="nav-item">
+          <a class="nav-link profile-link" href="#"><i class="fas fa-user-circle"></i></a>
+        </li>
+    </ul>
+    <!-- Botão do menu para mobile -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<!-- Ícone do menu para mobile -->
+	  <a href="#"# class="menu-btn"><i class="fas fa-bars"></i></a>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Itens da Navbar -->
+      <ul class="navbar-nav mr-auto">
+        <!-- Adicione aqui os links de navegação, se necessário -->
+        <a class="nav-link" href="#">Página Inicial</a>
+        <a class="nav-link" href="#">Link 1</a>
+        <a class="nav-link" href="#">Link 2</a>
+        <a class="nav-link" href="#">Link 3</a>
+        <a class="nav-link" href="#">Link 4</a>
+        <a class="nav-link" href="#">Link 5</a>
+        <a class="nav-link" href="#">Link 6</a>
+        <a class="nav-link" href="#">Link 7</a>
+        <a class="nav-link" href="#">Link 8</a>
+        <a class="nav-link" href="#">Link 9</a>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-4 mb-4">
+	<h2>Adicionar Novo Treino</h2>
+	<form>
+	  <div class="form-group">
+		<label for="nomeTreino">Nome do Treino:</label>
+		<input type="text" class="form-control" id="nomeTreino" placeholder="Digite o nome do treino">
+	  </div>
+	  <div class="form-group">
+		<label for="dataInicio">Data de Início:</label>
+		<input type="date" class="form-control" id="dataInicio">
+	  </div>
+	  <div class="form-group">
+		<label for="dataFim">Data de Fim:</label>
+		<input type="date" class="form-control" id="dataFim">
+	  </div>
+	  <div class="form-group">
+		<label for="observacoes">Observações:</label>
+		<textarea class="form-control" id="observacoes" rows="3" placeholder="Digite observações sobre o treino"></textarea>
+	  </div>
+
+	  <div class="mt-4 mb-4">
+        <span class="d-flex justify-content-between mb-4">
+			<h3>Exercícios</h3>
+			<button class="btn btn-primary">+ Exercício</button>
+		</span>
+        <div class="list-group" style="max-height: 200px; overflow-y: auto;">
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 flex-column">
+                    <h5 class="mb-1">Exercício 1</h5>
+                    <small>Descrição breve do Exercício 1</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 flex-column">
+                    <h5 class="mb-1">Exercício 2</h5>
+                    <small>Descrição breve do Exercício 2</small>
+                </div>
+            </a>
+            <!-- Adicione mais itens conforme necessário -->
+    	</div>
+	</div>
+
+	<button type="submit" class="btn btn-primary">Adicionar</button>
+
+	</form>
+</div>
+
+<!-- Importe o jQuery e o Popper.js antes do Bootstrap.js para que o dropdown funcione corretamente -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

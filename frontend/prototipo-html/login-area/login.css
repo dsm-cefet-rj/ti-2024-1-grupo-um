@@ -1,0 +1,32 @@
+.div-principal{
+    margin: auto;
+}
+.cefit-logo{
+    background-color: #3166D1;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-top: 20px ;
+    width: 10rem;
+    min-width: 20px;
+}
+.cefit-text{
+    color: white;
+    width: 150px;
+    margin:auto;
+}
+.login-container{
+    box-shadow: 3px 3px 3px 3px rgb(44, 44, 44);
+    margin-top: 100px;
+    min-width: 350px;
+}
+.cadastro-texto{
+    margin-left: 15px;
+}
+.button-color{
+    background-color: #3166D1;
+    color: white;
+}
+.button-color:hover{
+    background-color: #10a9d8;
+    color: white;
+}
