@@ -223,3 +223,6 @@ body {
     margin-bottom: 10px;
 }
 
+.card-img-top{
+    pointer-events: none;
+}
