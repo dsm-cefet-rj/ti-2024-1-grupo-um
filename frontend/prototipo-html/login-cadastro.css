@@ -1,14 +1,18 @@
+*{
+    font-family: 'Aileron',sans-serif;
+}
 .div-principal{
     margin: auto;
 }
 .cefit-logo{
     background-color: #3166D1;
-    padding-left: 2px;
-    padding-right: 2px;
-    margin-top: 20px ;
-    width: 10rem;
+    margin-top: 20px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    width: 150px;
     min-width: 20px;
 }
+
 .cefit-text{
     color: white;
     width: 150px;
@@ -18,10 +22,9 @@
     box-shadow: 3px 3px 3px 3px rgb(44, 44, 44);
     margin-top: 100px;
     min-width: 350px;
+    background-color: rgba(255, 255, 255, 0.904);
 }
-.cadastro-texto{
-    margin-left: 15px;
-}
+
 .button-color{
     background-color: #3166D1;
     color: white;
@@ -29,4 +32,7 @@
 .button-color:hover{
     background-color: #10a9d8;
     color: white;
+}
+.input-cefit{
+    border: var(--bs-border-width) solid #636464;
 }
