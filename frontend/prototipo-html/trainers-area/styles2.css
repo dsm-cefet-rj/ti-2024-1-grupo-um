@@ -8,7 +8,7 @@ body {
 .navbar {
     background-color: #515151;
     color: white;
-    height: 60px;
+    height: 70px;
     position: relative; 
 }
 
@@ -51,6 +51,13 @@ body {
     left: 20px;
     top: 15px;
     
+}
+
+.card-img-top{
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
 }
 
 .seta {
@@ -172,13 +179,56 @@ body {
 .button-rating {
     font-size: 17px;
     padding: 2px 2px;
-    background-color: #3166d1;
-    color: white;
+    color: rgb(0, 0, 0);
     border-radius: 10px;
-    height: 20px;
-    width: 15px;
+    height: 30px;
+    width: 20px;
     align-self: center;
     flex: 0;
     text-align: center;
-    margin-left: 17px;
+    margin-left: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+.imagem-estrela{
+    width: 20px;
+    height: 20px;
+}
+
+.card{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    color: #515151;
+    margin-bottom: 50px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.card-title{
+    font-weight: bold;
+}
+
+.card-deck{
+    padding: 50px;
+}
+
+.card-deck :hover{
+    background-color: #eeeeee;
+    box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card-deck .card-body,
+.card-deck .card-footer {
+    pointer-events: none;
+}
+
+.navbar{
+    margin-bottom: 10px;
+}
+
+.card-img-top{
+    pointer-events: none;
 }

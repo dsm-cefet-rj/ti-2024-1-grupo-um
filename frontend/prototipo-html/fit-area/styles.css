@@ -16,14 +16,12 @@ body {
     display: flex;
     justify-content: center; 
     align-items: center; 
-    
 }
 
 .title {
     font-size: 25px;
     margin-bottom: 0;
     font-family: 'Bebas Neue', sans-serif;
-                                                
 }
 
 .profile-link {
@@ -35,19 +33,17 @@ body {
     right: 0; 
     margin-top: 20px;
     margin-right: 20px; 
-
 }
-.profile-link:hover{
+
+.profile-link:hover {
     color: #3166d1;
 }
 
 .container {
-    max-width: 500px;
+    max-width: 800px; /* Aumentei a largura máxima */
     padding: 20px;
     font-family: 'Aileron', sans-serif;
     position: relative;
-    align-items: center;
-    justify-content: center;
     margin: auto;
 }
 
@@ -55,7 +51,6 @@ body {
     position: relative;
     left: 20px;
     top: 15px;
-    
 }
 
 .seta {
@@ -65,47 +60,25 @@ body {
     font-size: 17px; 
     color: #3166d1;
 }
-.seta:hover{
-    color: #5d89e2
+
+.seta:hover {
+    color: #5d89e2;
 }
 
-.area-fit {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 40px;
+.display-4 {
     color: #3166d1;
-    font-style: bold;
-}
-
-.serie-button {
-    display: block;
-    width: 60%;
-    font-size: 20px;
-    padding: 15px;
-    margin: 0 auto;
-    margin-bottom: 20px;
-    background-color: #f4f1f1;
-    color: #515151;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    border-radius: 15px;
-}
-
-.serie-button:hover {
-    background-color: #dadbdb;
 }
 
 .monte-button {
     display: block;
-    width: 60%;
+    width: 50%;
     font-size: 16px;
     padding: 10px;
     margin: 0 auto;
     margin-top: 25px;
     background-color: #3166d1;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     color: white;
     text-align: center;
     text-decoration: none;
@@ -115,19 +88,45 @@ body {
 .monte-button:hover {
     background-color: #5d89e2;
 }
-.menu-btn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background-color: transparent;
+
+.card-header {
+    color: #fff;
+    background-color: #515151;
+    text-align: center;
+}
+
+.card-deck {
+    margin-bottom: 15px;
+}
+
+.card {
+    width: 100%; 
+    max-width: 300px; 
+    height: 100%; 
+    display: inline-block; 
+    vertical-align: top; 
+    transform: transition 0.8s ease-out;
+    border-color: #e4e4e4;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5)!important;
+
+}
+.card:hover {
+    transform: scale(1.07);
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5)!important;
     border: none;
-    cursor: pointer;
-  }
-  
-  .menu-btn i {
-    font-size: 24px;
-    color: white; 
-  }
-  .menu-btn i:hover{
-    color: #3166d1
-  }
+}
+
+.card-body {
+    height: 80%; 
+    display: flex; 
+    flex-direction: column; 
+    text-align: center; 
+}
+
+.btn {
+    background-color: transparent;
+}
+.list-unstyled {
+    font-size: 15px;
+    text-align: center;
+}

@@ -1,7 +1,10 @@
+* {
+    font-family: 'Aileron', sans-serif;
+}
 
 .navbar {
     background-color: #515151;
-    height: 70px;
+    height: 80px;
     margin: 10px;
     padding: 0.5rem;
     border-radius: 16px;
@@ -28,7 +31,18 @@
     height: 60px;
     margin-left: -15px;
     position: relative;
+    margin-top: -5px;
    
+}
+@media screen and (max-width: 767px) {
+    .navbar-brand{
+        background-color: transparent;
+        border-radius: 15px;
+        width: 80px;  
+        height: 60px;
+        text-align: center; 
+       
+    }
 }
 
 .logo-img{
@@ -47,7 +61,7 @@
     color:#fff;
     font-weight: 500;
     position: relative;
-
+    
 }
 .nav-link:hover {
     color: #fff;
@@ -105,4 +119,10 @@
     width: 100%;
     background-color: #fff;
     margin: auto;
+}
+@media screen and (min-width: 768px) {
+    .navbar-nav{
+        margin-left: 80px;
+
+    }
 }

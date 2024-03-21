@@ -1,66 +1,107 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="styles2.css">
-<title>Área FIT</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./../styles_nav.css">
+    <link rel="stylesheet" type="text/css" href="styles2.css">
+    <title>CEFIT</title>
 </head>
+
 <body>
-<nav class="navbar">
-  <div class="header">
-    <h1 class="title">CEFIT</h1>
-    <a href="#" class="profile-link"><i class="fas fa-user-circle"></i></a>
-    <a href="#"# class="menu-btn"><i class="fas fa-bars"></i></a>
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+      
+      <a class="navbar-brand me-auto" href="#"><img src="images/logo.png" alt="logo" class="logo-img"></a>
+    
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img src="logo.png" alt="logo" class="logo-img"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" aria-current="page" href="/frontend/prototipo-html/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="/frontend/prototipo-html/fit-area/fit.html">Área FIT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2 active" href="/frontend/prototipo-html/trainers-area/page2.html">Personais</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="d-flex">
+        <a href="#" class="signin-button">Sign in</a>
+        <a href="#" class="signup-button">Sign up</a>
     </div>
-</nav>
-
-<div class="container">
-    <a href="#" class="back-button">
-        <span class="seta"><i class="fas fa-arrow-left"></i></span>
-    </a>      
-    <h1 class="title-trainer">Personais</h1>
-    <div class="search-bar">
-        <input type="text" placeholder="Buscar personal">
-        <button><i class="fas fa-search"></i></button>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     </div>
-    <div class="button-list">
-        <div class="button-item">
-            <div class= "button-info">
-                <img src="images/user.png" alt="trainer">
-                <div class="button-rating">4</div>
-            </div>
-            <div class="button-text">
-                <h2 class="button-name">Zéquinha</h2>
-                <p class="button-description">Cara quase bom mas dá pro gasto</p>
-            </div>
-        </div>
-        <div class="button-item">
-            <div class= "button-info">
-                <img src="images/user.png" alt="trainer">
-                <div class="button-rating">3</div>
-            </div>
-            <div class="button-text">
-                <h2 class="button-name">Marquin</h2>
-                <p class="button-description">Cara meio bom mas tá precisando melhorar um pouco</p>
-            </div>
-        </div>
-        <div class="button-item">
-            <div class= "button-info">
-                <img src="images/user.png" alt="trainer">
-                <div class="button-rating">5</div>
-            </div>
-            <div class="button-text">
-                <h2 class="button-name">Carlona</h2>
-                <p class="button-description">A mais braba, essa daqui pode confiar e ir na fé</p>
-            </div>
-        </div>
-</div>
+  </nav>
 
+    <div class="container">
+        <a href="#" class="back-button">
+            <span class="seta"><i class="fas fa-arrow-left"></i></span>
+        </a>
+        <h1 class="title-trainer">Personais</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar personal">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="card-deck">
+            <a class="card" href="personal.html">
+              <img class="card-img-top" src="images/user.png" alt="Imagem de capa do card">
+              <div class="card-body">
+                <h5 class="card-title">Zéquinha</h5>
+                <p class="card-text">Cara quase bom mas dá pro gasto</p>
+              </div>
+              <div class="card-footer">
+                <div class="button-rating">
+                  <img class="imagem-estrela" src="images/star.png" alt="imagem estrela">
+                  <img class="imagem-estrela" src="images/star.png" alt="imagem estrela">
+                  <img class="imagem-estrela" src="images/star.png" alt="imagem estrela">
+                </div>
+              </div>
+            </a>
+            <a class="card" href="personal.html">
+              <img class="card-img-top" src="images/user.png" alt="Imagem de capa do card">
+              <div class="card-body">
+                <h5 class="card-title">Marquin</h5>
+                <p class="card-text">Cara meio bom mas tá precisando melhorar um pouco</p>
+              </div>
+              <div class="card-footer">
+                <div class="button-rating">
+                  <img class="imagem-estrela" src="images/star.png" alt="imagem estrela">
+                  <img class="imagem-estrela" src="images/star.png" alt="imagem estrela">
+                  <img class="imagem-estrela" src="images/star.png" alt="imagem estrela">
+                  <img class="imagem-estrela" src="images/star.png" alt="imagem estrela">
+                </div>
+              </div>
+            </a>
+            <a class="card" href="personal.html">
+              <img class="card-img-top" src="images/user.png" alt="Imagem de capa do card">
+              <div class="card-body">
+                <h5 class="card-title">Carlona</h5>
+                <p class="card-text">A mais braba, essa daqui pode confiar e ir na fé</p>
+              </div>
+              <div class="card-footer">
+                <div class="button-rating">
+                  <img class="imagem-estrela" src="images/star.png" alt="imagem estrela">
+                  <img class="imagem-estrela" src="images/star.png" alt="imagem estrela">
+                  <img class="imagem-estrela" src="images/star.png" alt="imagem estrela">
+                </div>
+              </div>
+            </a>
+          </div>
+    </div>
 </body>
 </html>
