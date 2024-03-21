@@ -100,21 +100,33 @@ body {
 }
 
 .card {
-    width: 100%; /* Adicionei largura 100% para os cards */
-    max-width: 300px; /* Ajustei a largura máxima */
-    height: 100%; /* Adicionei altura 100% para os cards */
-    display: inline-block; /* Alterei a exibição para inline-block */
-    vertical-align: top; /* Alinhei os cards ao topo */
+    width: 100%; 
+    max-width: 300px; 
+    height: 100%; 
+    display: inline-block; 
+    vertical-align: top; 
+    transform: transition 0.8s ease-out;
+    border-color: #e4e4e4;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5)!important;
+
+}
+.card:hover {
+    transform: scale(1.07);
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5)!important;
+    border: none;
 }
 
 .card-body {
-    height: 80%; /* Adicionei altura 80% para o corpo do card */
-    display: flex; /* Use flex para alinhar o conteúdo verticalmente */
-    flex-direction: column; /* Alinhe o conteúdo na vertical */
-    justify-content: space-between; /* Distribua o conteúdo uniformemente na vertical */
-    text-align: center; /* Centralize o texto */
+    height: 80%; 
+    display: flex; 
+    flex-direction: column; 
+    text-align: center; 
 }
 
 .btn {
     background-color: transparent;
+}
+.list-unstyled {
+    font-size: 15px;
+    text-align: center;
 }
