@@ -33,6 +33,7 @@ body {
     transition:0.5s;
     cursor:pointer;
     height: 260px;
+    display: block;
   }
  
   .card-subtitle{
