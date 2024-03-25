@@ -45,6 +45,7 @@ body {
     font-family: 'Aileron', sans-serif;
     position: relative;
     margin: auto;
+    
 }
 
 .back-button {
@@ -97,6 +98,7 @@ body {
 
 .card-deck {
     margin-bottom: 15px;
+    padding: 50px;
 }
 
 .card {
