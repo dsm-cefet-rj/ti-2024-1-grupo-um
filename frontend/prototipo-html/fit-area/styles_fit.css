@@ -6,9 +6,6 @@ body {
 }
 
 .navbar {
-  background-color: #515151;
-  color: white;
-  height: 60px;
   position: relative; 
 }
 
@@ -41,7 +38,11 @@ body {
     transition: 1s;
     text-align: center;
     color: #515151;
+    text-decoration: none;
    
+  }
+  .card-link{
+    text-decoration: none;
   }
   .card-title{  
     font-size: 25px;
@@ -49,6 +50,7 @@ body {
     cursor:pointer;
     text-align: center;
     color: #3166d1;
+    text-decoration: none;
   }
   .card-title i{  
     font-size:15px;

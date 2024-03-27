@@ -3,132 +3,39 @@ body {
     margin: 0;
     padding: 0;
     background-color: white;
-}
-
-.navbar {
-    background-color: #515151;
-    color: white;
-    height: 60px;
+  }
+  
+  .navbar {
     position: relative; 
-}
-
-.header {
+  }
+  
+  .header {
     display: flex;
     justify-content: center; 
     align-items: center; 
-}
+  }
 
-.title {
-    font-size: 25px;
-    margin-bottom: 0;
-    font-family: 'Bebas Neue', sans-serif;
-}
-
-.profile-link {
-    color: white;
-    text-decoration: none;
-    font-size: 25px;
-    position: absolute; 
-    top: 0; 
-    right: 0; 
-    margin-top: 20px;
-    margin-right: 20px; 
-}
-
-.profile-link:hover {
-    color: #3166d1;
-}
-
-.container {
-    max-width: 800px; /* Aumentei a largura máxima */
-    padding: 20px;
-    font-family: 'Aileron', sans-serif;
-    position: relative;
-    margin: auto;
-    
-}
-
-.back-button {
-    position: relative;
-    left: 20px;
-    top: 15px;
-}
-
-.seta {
-    display: inline-block;
-    width: auto;
-    height: auto;
-    font-size: 17px; 
-    color: #3166d1;
-}
-
-.seta:hover {
-    color: #5d89e2;
-}
 
 .display-4 {
     color: #3166d1;
 }
-
-.monte-button {
-    display: block;
-    width: 50%;
-    font-size: 16px;
-    padding: 10px;
-    margin: 0 auto;
-    margin-top: 25px;
-    background-color: #3166d1;
-    border: none;
-    border-radius: 15px;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+th{
+  background-color: #3166d1!important;
+  color: #fff!important;
+  text-align: center;
+  font-family: 'Aileron', sans-serif;
+}
+table {
+  border: 1px solid #aabee6!important;
+  margin: auto;
+  box-shadow: 2px 2px 2px #303131;
+  
+}
+td {
+  background-color: #e9effa!important;
+  text-align: center;
 }
 
-.monte-button:hover {
-    background-color: #5d89e2;
-}
-
-.card-header {
-    color: #fff;
-    background-color: #515151;
-    text-align: center;
-}
-
-.card-deck {
-    margin-bottom: 15px;
-    padding: 50px;
-}
-
-.card {
-    width: 100%; 
-    max-width: 300px; 
-    height: 100%; 
-    display: inline-block; 
-    vertical-align: top; 
-    transform: transition 0.8s ease-out;
-    border-color: #e4e4e4;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5)!important;
-
-}
-.card:hover {
-    transform: scale(1.07);
-    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5)!important;
-    border: none;
-}
-
-.card-body {
-    height: 80%; 
-    display: flex; 
-    flex-direction: column; 
-    text-align: center; 
-}
-
-.btn {
-    background-color: transparent;
-}
-.list-unstyled {
-    font-size: 15px;
-    text-align: center;
+.fit-header {
+  margin-bottom: -50px;
 }
