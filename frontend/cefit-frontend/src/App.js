@@ -5,7 +5,7 @@ import Cadastro from './pages/tela cadastro/Cadastro.jsx';
 function App() {
   return (
     <div className="App">
-      <Cadastro/>
+      <Login/>
     </div>
   );
 }

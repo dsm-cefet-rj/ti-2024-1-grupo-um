@@ -1,5 +1,5 @@
-import EmailInput from "./../../components/EmailInput/EmailInput";
-import PasswordInput from "./../../components/PasswordInput/PasswordInput";
+
+import InputComponent from "../../components/InputComponent/InputComponent";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import CefetImage from "./../../components/CefetImage/CefetImage"
 import "./Login.css";
@@ -14,10 +14,8 @@ function Login(){
                 <div className="w-50 rounded-5 p-4 login-container">
                     <CefetImage/>
                     <form className="formulario-login">
-                        <div className="mt-3">
-                            <EmailInput/>
-                        </div>
-                            <PasswordInput/>
+                        <InputComponent classes="mb-3 mt-3" id="InputEmail" text="Email" type="email" placeholder="Insira seu email aqui"/>
+                        <InputComponent classes="mb-3" id="Password" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
                         <div className="esqueceu-senha mt-3">
                             <a href="./../sign-up-area/cadastro.html"> Esqueci minha senha</a>
                         </div>
