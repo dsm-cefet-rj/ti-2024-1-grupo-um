@@ -23,7 +23,7 @@ function Login(){
                         </div>
                         <SubmitButton nomeButton="Entrar"/>
                         <div className="mt-3">
-                            Não possui conta?<a href="./../sign-up-area/cadastro.html"> Cadastre-se agora</a>
+                            Não possui conta?<a href="./../tela-cadastro/Cadastro.jsx"> Cadastre-se agora</a>
                         </div>
                     </form>
                 </div>
