@@ -1,8 +1,26 @@
 *{
     font-family: 'Aileron',sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+html,
+body{
+    height: 100%;
+}
+.bg-image {
+    background-size: 100% 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .div-principal{
-    margin: auto;
+    margin-top: 20%;
+    margin-bottom: 20%;
+    margin-right: auto;
+    margin-bottom: auto;
 }
 
 .cefit-text{
@@ -13,8 +31,10 @@
 
 .login-container{
     box-shadow: 3px 3px 3px 3px rgb(44, 44, 44);
-    margin-top: 100px;
+    margin-bottom: auto;
+    margin-top: auto;
     min-width: 350px;
+    min-height: 300px;
     background-color: rgba(255, 255, 255, 0.904);
 }
 
@@ -28,4 +48,7 @@
 }
 .input-cefit{
     border: var(--bs-border-width) solid #636464;
+}
+.cefit-background-img{
+    background-size: cover;
 }
