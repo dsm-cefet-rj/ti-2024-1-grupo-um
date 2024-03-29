@@ -1,34 +1,30 @@
 import "./InputComponent.css";
 
+//INSTRUÇOES PROPS DO COMPONENTE:
+
+//props.classes -> Carrega todas as classes do bootstrap / css que o input deve ter.
+//props.id -> Define o id tanto da label, quanto to input para associação.
+//props.type -> Define o tipo do input (email, text, date, etc...) do bootstrap.
+//props.text -> texto que vai ser exibido no label.
+//props.placeholder -> texto de placeholder dentro do input.
 function InputComponent(props){
     return (
         <div class={props.classes}>
             <label for={props.id} class="form-label" style={{color:"black"}}>{props.text}</label>
             <input type={props.type} class="form-control bg-light input-cefit" id={props.id} placeholder={props.placeholder}/>
         </div>
-        /* 
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label" style="color: black">Email</label>
-            <input type="email" class="form-control bg-light input-cefit" id="exampleInputEmail1" placeholder="seuemail@gmail.com" aria-describedby="emailHelp">
-        </div>
-        <div class="mb-3">
-            <label for="nameInput" class="form-label" style="color: black">Nome Completo</label>
-            <input class="form-control input-cefit" type="text" placeholder="Seu Nome Completo Aqui" id="nameInput"aria-label="default input example">
-        </div>
-        <div class="mb-3">
-            <label for="CPFInput" class="form-label" style="color: black">CPF</label>
-            <input class="form-control input-cefit" type="text" placeholder="Seu CPF Aqui" id="CPFInput" aria-label="default input example">
-        </div>
-        <div class="form-group mb-3" style="color:black">
-            <label for="age" class="form-label">Data de nascimento:</label>
-            <input type="date" class="form-control input-cefit" id="age">
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label" style="color: black">Senha</label>
-            <input type="password" class="form-control bg-light input-cefit" id="exampleInputPassword1" placeholder="Insira sua senha aqui">
-        </div> */
     );
 }
+
+//exemplos de inputs html + css bootstrap
+{/* <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label" style="color: black">Email</label>
+        <input type="email" class="form-control bg-light input-cefit" id="exampleInputEmail1" placeholder="seuemail@gmail.com" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="nameInput" class="form-label" style="color: black">Nome Completo</label>
+        <input type="text" class="form-control input-cefit"  id="nameInput" placeholder="Seu Nome Completo Aqui" aria-label="default input example">
+    </div> */}
 
 
 export default InputComponent;
