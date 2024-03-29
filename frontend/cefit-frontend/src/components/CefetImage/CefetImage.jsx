@@ -1,4 +1,5 @@
 import cefit from "./logo.png";
+import "./CefetImage.css";
 
 function CefetImage(){
     return(

@@ -4,20 +4,13 @@
 .div-principal{
     margin: auto;
 }
-.cefit-logo{
-    background-color: #3166D1;
-    margin-top: 20px;
-    padding-top: 4px;
-    padding-bottom: 4px;
-    width: 150px;
-    min-width: 20px;
-}
 
 .cefit-text{
     color: white;
     width: 150px;
     margin:auto;
 }
+
 .login-container{
     box-shadow: 3px 3px 3px 3px rgb(44, 44, 44);
     margin-top: 100px;

@@ -2,7 +2,7 @@
 import InputComponent from "../../components/InputComponent/InputComponent";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import CefetImage from "./../../components/CefetImage/CefetImage"
-import "./Login.css";
+import "./../pages.css";
 
 function Login(){
     return(
