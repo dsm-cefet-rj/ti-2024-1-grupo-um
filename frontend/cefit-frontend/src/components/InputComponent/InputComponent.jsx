@@ -9,9 +9,9 @@ import "./InputComponent.css";
 //props.placeholder -> texto de placeholder dentro do input.
 function InputComponent(props){
     return (
-        <div class={props.classes}>
-            <label for={props.id} class="form-label" style={{color:"black"}}>{props.text}</label>
-            <input type={props.type} class="form-control bg-light input-cefit" id={props.id} placeholder={props.placeholder}/>
+        <div className={props.classes}>
+            <label htmlFor={props.id} className="form-label" style={{color:"black"}}>{props.text}</label>
+            <input type={props.type} className="form-control bg-light input-cefit" id={props.id} placeholder={props.placeholder} value={props.value} onChange={props.onChange}/>
         </div>
     );
 }
