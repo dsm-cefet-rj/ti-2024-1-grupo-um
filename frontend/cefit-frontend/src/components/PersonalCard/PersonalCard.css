@@ -1,0 +1,235 @@
+body {
+    font-family: 'Aileron', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.navbar {
+    background-color: #515151;
+    color: white;
+    height: 70px;
+    position: relative; 
+}
+
+.header {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.title {
+    font-size: 25px;
+    margin-bottom: 0;
+    font-family: 'Aileron', sans-serif;
+}
+
+.profile-link {
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    margin-top: 20px;
+    margin-right: 20px; 
+}
+
+.profile-link:hover{
+    color: #3166d1;
+}
+
+.container {
+    max-width: 100%;
+    padding: 20px;
+    font-family: 'Aileron', sans-serif;
+    position: relative;
+}
+
+.back-button {
+    position: relative;
+    left: 20px;
+    top: 15px;
+    
+}
+
+.card-img-top{
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+}
+
+.seta {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    font-size: 17px; 
+    color: #3166d1;
+}
+
+.seta:hover{
+    color: #5d89e2
+}
+
+.trainer-header {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #3166d1;
+    text-align: center;
+}
+
+.search-bar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-bar input[type="text"] {
+    padding: 8px;
+    width: 60%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.search-bar button {
+    padding: 7px 4px;
+    border-color: white;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #5d89e2;
+}
+
+.search-bar button:hover {
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.menu-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-btn i {
+    font-size: 24px;
+    color: white; 
+}
+
+.menu-btn i:hover {
+    color: #3166d1;
+}
+
+.button-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.button-item {
+    width: 500px;
+    margin: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+    display: flex;
+    cursor: pointer;
+}
+
+.button-item:hover{
+    background-color: #eeeeee;
+    box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.5);
+}
+
+.button-info img {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    align-self: flex-start;
+    flex: 0;
+    margin-bottom: 10px;
+}
+
+.button-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    color: #515151
+}
+
+.button-name {
+    font-size: 18px;
+    margin-bottom: 5px;
+    
+}
+
+.button-description {
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+.button-rating {
+    font-size: 17px;
+    padding: 2px 2px;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    height: 30px;
+    width: 20px;
+    align-self: center;
+    flex: 0;
+    text-align: center;
+    margin-left: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+.imagem-estrela{
+    width: 20px;
+    height: 20px;
+}
+
+.card{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    color: #515151;
+    margin-bottom: 50px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.card-title{
+    font-weight: bold;
+}
+
+.card-deck{
+    padding: 50px;
+}
+
+.card-deck :hover{
+    background-color: #eeeeee;
+    box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.5);
+    transform: scale(1.03);
+}
+
+.card-deck .card-body,
+.card-deck .card-footer {
+    pointer-events: none;
+}
+
+.navbar{
+    margin-bottom: 10px;
+}
+
+.card-img-top{
+    pointer-events: none;
+}
