@@ -30,7 +30,7 @@ function Cadastro(){
     }
 
     return(
-        <div className="bg-image cefit-background-img" style={{backgroundImage: `url('https://img.goodfon.com/original/1920x1080/e/97/shtanga-skamya-gym-fitness.jpg')`}}>
+        <div className="bg-image cefit-background-img" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
             {/* <Navbar/> */}
                 <div className="login-container rounded-5 p-3">
                     <CefetImage/>

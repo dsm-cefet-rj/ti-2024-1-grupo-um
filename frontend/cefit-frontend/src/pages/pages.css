@@ -8,14 +8,47 @@ html,
 body{
     height: 100%;
 }
+@media (max-width: 500px){
+    .bg-image {
+        height: 100vh;
+    }
+}
+@media (min-width: 600px ) and (min-width: 600px){
+    .bg-image {
+        height: 100%;
+    }
+}
+@media (min-width: 800px ) and (min-width: 800px){
+    .bg-image {
+        height: 100vh;
+    }
+}
+@media (max-width: 800px ){
+    .bg-image {
+        height: 100vh;
+    }
+}
+@media (max-height: 600px ){
+    .bg-image {
+        height: 900px;
+    }
+}
+@media (min-width: 1366px){
+    .bg-image {
+        height: 100vh;
+    }
+}
+@media (min-width: 1366px) and (min-height: 200px){
+    .bg-image {
+        height: 900px;
+    }
+}
 .bg-image {
     background-size: 100% 100%;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 .div-principal{
     margin-top: 20%;
     margin-bottom: 20%;
@@ -38,6 +71,11 @@ body{
     min-height: 300px;
     background-color: rgba(255, 255, 255, 0.904);
 }
+.formulario-cadastro{
+    display: block;
+    min-width: 300px;
+    min-height: 300px;
+}
 
 .button-color{
     background-color: #3166D1;
@@ -49,7 +87,5 @@ body{
 }
 .input-cefit{
     border: var(--bs-border-width) solid #636464;
-}
-.cefit-background-img{
-    background-size: cover;
+    width: 50%;
 }
