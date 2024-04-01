@@ -11,7 +11,7 @@ function InputComponent(props){
     return (
         <div className={props.classes}>
             <label htmlFor={props.id} className="form-label" style={{color:"black"}}>{props.text}</label>
-            <input type={props.type} className="form-control bg-light input-cefit" id={props.id} placeholder={props.placeholder} value={props.value} onChange={props.onChange}/>
+            <input type={props.type} className="form-control bg-light input-cefit w-100" id={props.id} placeholder={props.placeholder} value={props.value} onChange={props.onChange}/>
         </div>
     );
 }

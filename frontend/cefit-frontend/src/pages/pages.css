@@ -40,7 +40,7 @@ body{
 }
 @media (min-width: 1366px) and (min-height: 200px){
     .bg-image {
-        height: 900px;
+        height: 100vh;
     }
 }
 .bg-image {
