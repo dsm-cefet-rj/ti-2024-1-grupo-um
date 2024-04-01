@@ -4,6 +4,7 @@ import SubmitButton from "../../components/SubmitButton/SubmitButton";
 // import Navbar from "../../components/Navbar/Navbar";
 import { useState } from "react";
 import "./../pages.css";
+import { Link } from "react-router-dom";
 // import { createHash } from "crypto";
 
 function Cadastro(){
@@ -42,7 +43,7 @@ function Cadastro(){
                         <InputComponent classes="" id="Password" text="Senha" type="password" placeholder="Insira sua senha aqui"value={password} onChange={(e) => [setPassword(e.target.value)]}/>
                         <SubmitButton nomeButton="Cadastrar" />
                         <div className="cadastro-texto mt-3">
-                            Possui conta?<a href="./../tela-login/Login.jsx"> Faça o seu Login!</a>
+                            Possui conta?<Link to="/">Faça o seu Login!</Link>
                         </div>
                     </form>
                 </div>
