@@ -4,6 +4,7 @@ import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import CefetImage from "./../../components/CefetImage/CefetImage"
 import { useState } from "react";
 import "./../pages.css";
+import { Link } from "react-router-dom";
 
 function Login(){
     const [nome, setNome] = useState();
@@ -39,7 +40,7 @@ function Login(){
                         </div>
                         <SubmitButton nomeButton="Entrar"/>
                         <div className="mt-3">
-                            Não possui conta?<a href="./../tela-cadastro/Cadastro.jsx"> Cadastre-se agora</a>
+                            Não possui conta?<Link to="/cadastro"> Cadastre-se agora!</Link> 
                         </div>
                     </form>
                 </div>

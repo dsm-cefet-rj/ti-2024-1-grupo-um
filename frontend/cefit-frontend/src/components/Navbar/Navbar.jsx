@@ -1,8 +1,10 @@
 import "./styles_nav.css";
-import logo from "./logo.png"
+import logo from "./logo.png";
+import { Link } from "react-router-dom";
 
 function Navbar(){
     return(
+        <>
         <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container-fluid">
                 {/* logo */}
@@ -28,14 +30,17 @@ function Navbar(){
                     </div>
                 </div>
                 <div class="d-flex">
-                    <a href="./../login-area/login.html" class="signin-button">Sign in</a>
-                    <a href="./../sign-up-area/cadastro.html" class="signup-button">Sign up</a>
+                    <Link to="/" className="signup-button">Sign in</Link>
+                    <Link to="/cadastro" className="signup-button">Sign up</Link>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
         </nav>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        </>
+        
     )
 }
 
