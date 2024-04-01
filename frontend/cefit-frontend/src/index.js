@@ -8,6 +8,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.js';
 import Login from './pages/tela login/Login.jsx';
 import Cadastro from './pages/tela cadastro/Cadastro.jsx';
+import Anamnese from './pages/tela-anamnese/Anamnese.jsx';
+import Personais from './pages/tela-personais/Personais.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,14 @@ const router = createBrowserRouter([
       {
         path: "cadastro",
         element: <Cadastro/>
+      },
+      {
+        path: "personais",
+        element: <Personais/>
+      },
+      {
+        path: "anamnese",
+        element: <Anamnese/>
       }
     ]
   }
