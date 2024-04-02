@@ -20,7 +20,7 @@ body {
       
     }
     
-    #card{
+    #card-fit{
       transition:0.5s;
       cursor:pointer;
       height: 260px;
