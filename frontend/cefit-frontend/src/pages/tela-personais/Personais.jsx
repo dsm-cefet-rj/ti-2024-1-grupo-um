@@ -17,7 +17,7 @@ function Personais(){
             rating: 1
         },
         {
-            nome: "Glauco",
+            nome: "Glauco Amorim",
             descricao: "Treinador de alta performance",
             rating: 5
         },
@@ -30,6 +30,21 @@ function Personais(){
             nome:"Chico",
             descricao:"Aquariano Nato",
             rating: 6
+        },
+        {
+            nome:"Caio",
+            descricao:"Treinador de crossfit",
+            rating: 3
+        },
+        {
+            nome:"Diogo Mendonça",
+            descricao:"Treinador de Boxe",
+            rating: 3
+        },
+        {
+            nome:"Kele Bellorze",
+            descricao:"Treinadora de Artes Marciais",
+            rating: 3
         },
     ]
 

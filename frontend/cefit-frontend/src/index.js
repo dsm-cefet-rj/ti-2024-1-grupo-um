@@ -12,6 +12,7 @@ import Anamnese from './pages/tela-anamnese/Anamnese.jsx';
 import Personais from './pages/tela-personais/Personais.jsx';
 import AreaFIT from './pages/tela area-fit/AreaFIT.jsx';
 import Home from './pages/tela-home/Home.jsx';
+import Personal from './pages/tela-personal/Personal.jsx';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "areaFIT",
         element: <AreaFIT/>
+      },
+      {
+        path: "personal",
+        element: <Personal/>
       }
     ]
   }
