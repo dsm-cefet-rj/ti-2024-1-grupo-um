@@ -17,7 +17,7 @@ function Login(){
         const login = localStorage.getItem(email).split(";");
         if(login[2] === email &&  login[1] === senha){
             alert("autenticado");
-            navigate("personais");
+            navigate("/personais");
         }else{
             alert("invalido");
         }

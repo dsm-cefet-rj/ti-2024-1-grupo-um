@@ -11,7 +11,7 @@ function PersonalCard({ nome, descricao, rating } ){
     return (
         <a className="card" id="card-personal" href="personal.html">
             <img className="card-img-top m-auto" src={user} alt="Imagem de capa do card"/>
-            <div className="card-body">
+            <div className="card-body text-center">
                 <h5 className="card-title">{nome}</h5>
                 <p className="card-text">{descricao}</p>
             </div>

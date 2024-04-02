@@ -23,7 +23,7 @@ function Personais(){
         },
         {
             nome:"Vinicius",
-            descricao:"Terror do kamasutra",
+            descricao:"Treinador",
             rating: 6
         }
     ]

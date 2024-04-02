@@ -11,6 +11,7 @@ import Cadastro from './pages/tela cadastro/Cadastro.jsx';
 import Anamnese from './pages/tela-anamnese/Anamnese.jsx';
 import Personais from './pages/tela-personais/Personais.jsx';
 import AreaFIT from './pages/tela area-fit/AreaFIT.jsx';
+import Home from './pages/tela-home/Home.jsx';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Home/>
+      },
+      {
+        path: "login",
         element: <Login/>
       },
       {

@@ -33,7 +33,7 @@ function Cadastro(){
         const cadastroString = cadastro.nome + ";" + cadastro.senha + ";" + cadastro.email + ";" + cadastro.nascimento + ";" + cadastro.CPF;
         localStorage.setItem(cadastro.email, cadastroString);
         alert("Usuario cadastrado com sucesso!");
-        navigate("/");
+        navigate("login");
     }
 
     return(
@@ -49,7 +49,7 @@ function Cadastro(){
                         <InputComponent classes="" id="Password" text="Senha" type="password" placeholder="Insira sua senha aqui"value={password} onChange={(e) => [setPassword(e.target.value)]}/>
                         <SubmitButton nomeButton="Cadastrar" />
                         <div className="cadastro-texto mt-3">
-                            Possui conta?<Link to="/">Faça o seu Login!</Link>
+                            Possui conta?<Link to="/login">Faça o seu Login!</Link>
                         </div>
                     </form>
                 </div>
