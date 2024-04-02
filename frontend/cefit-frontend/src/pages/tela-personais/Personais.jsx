@@ -12,7 +12,7 @@ function Personais(){
             rating: 4
         },
         {
-            nome: "Arnold",
+            nome: "Arnold Schwarzenegger",
             descricao: "3x Olympia Winner",
             rating: 1
         },
@@ -20,6 +20,11 @@ function Personais(){
             nome: "Glauco",
             descricao: "Treinador de alta performance",
             rating: 5
+        },
+        {
+            nome:"Vinicius",
+            descricao:"Terror do kamasutra",
+            rating: 6
         }
     ]
 
@@ -37,10 +42,11 @@ function Personais(){
                 <input type="text" placeholder="Buscar personal"/>
                 <button><i className="fas fa-search"></i></button>
             </div>
-            <div className="card-deck">
+            <div className="card-deck" id="card-deck-personal">
                 <PersonalCard {...Personais[0]}/>
                 <PersonalCard {...Personais[1]}/>
                 <PersonalCard {...Personais[2]}/>
+                <PersonalCard {...Personais[3]}/>
             </div>
         </div>
         </>

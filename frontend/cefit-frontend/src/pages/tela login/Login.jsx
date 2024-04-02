@@ -4,26 +4,24 @@ import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import CefetImage from "./../../components/CefetImage/CefetImage"
 import { useState } from "react";
 import "./../pages.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 function Login(){
-    const [nome, setNome] = useState();
+    const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
-
-    const vinicius = {
-        nome: "vinicius",
-        senha: "123"
-    }
+    const navigate = useNavigate();
 
     function autentica(e){
         e.preventDefault();
-        console.log(vinicius.nome);
-        console.log(vinicius.senha);
-        if(vinicius.nome === nome && vinicius.senha === senha){
-            console.log("autenticado");
+        const login = localStorage.getItem(email).split(";");
+        if(login[2] === email &&  login[1] === senha){
+            alert("autenticado");
+            navigate("personais");
         }else{
-            console.log("invalido");
+            alert("invalido");
         }
+
     }
 
     return(
@@ -33,7 +31,7 @@ function Login(){
                 <div className="w-50 rounded-5 p-4 login-container">
                     <CefetImage/>
                     <form className="formulario-login" onSubmit={autentica}>
-                        <InputComponent classes="mb-3 mt-3" id="InputEmail" text="Email" type="text" placeholder="Insira seu email aqui" value={nome} onChange={(e)=>[setNome(e.target.value)]}/>
+                        <InputComponent classes="mb-3 mt-3" id="InputEmail" text="Email" type="text" placeholder="Insira seu email aqui" value={email} onChange={(e)=>[setEmail(e.target.value)]}/>
                         <InputComponent classes="mb-3" id="Password" text="Senha" type="password" placeholder="Insira sua senha aqui" value={senha} onChange={(e)=>[setSenha(e.target.value)]}/>
                         <div className="esqueceu-senha mt-3">
                             <a href="./../sign-up-area/cadastro.html"> Esqueci minha senha</a>

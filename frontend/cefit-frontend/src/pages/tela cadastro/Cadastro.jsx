@@ -4,7 +4,7 @@ import SubmitButton from "../../components/SubmitButton/SubmitButton";
 // import Navbar from "../../components/Navbar/Navbar";
 import { useState } from "react";
 import "./../pages.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { createHash } from "crypto";
 
 function Cadastro(){
@@ -15,19 +15,25 @@ function Cadastro(){
     const [ birth, setBirth ] = useState();
     const [ CPF, setCPF ] = useState();
 
+    const cadastro = { 
+        nome: nome,
+        senha: password,
+        email: email,
+        nascimento: birth,
+        CPF: CPF
+    }
 
+    const navigate = useNavigate();
 
     const handleSingUp=(e)=>{
         e.preventDefault();
         if(!password | !nome | !email | !CPF | !birth){
             console.log("alerta");
         }
-        console.log(nome);
-        console.log(password);
-        console.log(email);
-        console.log(CPF);
-        console.log(birth);
+        const cadastroString = cadastro.nome + ";" + cadastro.senha + ";" + cadastro.email + ";" + cadastro.nascimento + ";" + cadastro.CPF;
+        localStorage.setItem(cadastro.email, cadastroString);
         alert("Usuario cadastrado com sucesso!");
+        navigate("/");
     }
 
     return(

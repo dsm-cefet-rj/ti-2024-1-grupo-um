@@ -196,7 +196,7 @@ body {
     height: 20px;
 }
 
-.card{
+#card-personal{
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -205,6 +205,8 @@ body {
     margin-bottom: 50px;
     cursor: pointer;
     text-decoration: none;
+    height: none;
+    width: 260px;
 }
 
 .card-title{

@@ -211,8 +211,18 @@ body {
     font-weight: bold;
 }
 
-.card-deck{
+#card-deck-personal{
     padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 0.1fr)); /* Cria colunas automáticas com um tamanho mínimo de 200px /
+    grid-gap:10px; / Espaçamento entre os itens do grid */
+    justify-items: center;
+    justify-content: center;
+    margin: 2rem 0rem;
+    padding: 1rem 0rem;
+    transition: 0.9s;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .card-deck :hover{
@@ -221,7 +231,7 @@ body {
     transform: scale(1.03);
 }
 
-.card-deck .card-body,
+.card-deck-personal .card-body,
 .card-deck .card-footer {
     pointer-events: none;
 }
