@@ -33,7 +33,7 @@ function Cadastro(){
         const cadastroString = cadastro.nome + ";" + cadastro.senha + ";" + cadastro.email + ";" + cadastro.nascimento + ";" + cadastro.CPF;
         localStorage.setItem(cadastro.email, cadastroString);
         alert("Usuario cadastrado com sucesso!");
-        navigate("login");
+        navigate("/login");
     }
 
     return(

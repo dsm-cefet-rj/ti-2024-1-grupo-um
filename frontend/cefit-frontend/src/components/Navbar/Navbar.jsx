@@ -30,11 +30,11 @@ function Navbar(){
                     </div>
                 </div>
                 <div className="d-flex">
-                    <Link to="/" className="signup-button">Sign in</Link>
+                    <Link to="/login" className="signup-button">Sign in</Link>
                     <Link to="/cadastro" className="signup-button">Sign up</Link>
                 </div>
-                <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
         </nav>

@@ -12,6 +12,10 @@ body {
     position: relative; 
 }
 
+.botao-busca{
+    margin-left: 10px;
+}
+
 .header {
     display: flex;
     justify-content: center; 

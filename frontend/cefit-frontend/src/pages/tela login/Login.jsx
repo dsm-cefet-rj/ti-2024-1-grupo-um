@@ -14,11 +14,16 @@ function Login(){
 
     function autentica(e){
         e.preventDefault();
-        const login = localStorage.getItem(email).split(";");
-        if(login[2] === email &&  login[1] === senha){
-            alert("autenticado");
-            navigate("/personais");
-        }else{
+        try{
+            const login = localStorage.getItem(email).split(";");
+            if(login[2] === email &&  login[1] === senha){
+                alert("autenticado");
+                navigate("/personais");
+            }else{
+                alert("invalido");
+            }
+            
+        }catch(e){
             alert("invalido");
         }
 
