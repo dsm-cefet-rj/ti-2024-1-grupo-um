@@ -1,0 +1,14 @@
+* {
+    font-family: 'Aileron', sans-serif;
+}
+.w-full{
+    background-color: #515151;
+}
+.footer-links{
+    color: aliceblue!important;
+    text-decoration: none!important;
+} 
+.footer-links:hover {
+    color: #fff;
+    text-decoration: underline;
+}
