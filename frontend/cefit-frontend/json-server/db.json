@@ -1,0 +1,16 @@
+{
+    "treino": [
+        {
+            "id": 1,
+            "nome": "Treino1",
+            "descricao": "Primeiro treino",
+            "exercicios": [
+                {
+                    "id": 1,
+                    "nome": "Supino reto",
+                    "reps": 15
+                }
+            ]
+        }
+    ]
+}
