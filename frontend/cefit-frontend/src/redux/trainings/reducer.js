@@ -1,4 +1,9 @@
-const initialState = []
+const initialState = [
+    {
+        name: "Exercício Exemplo",
+        description: "Descrição do exercício exemplo."
+    }
+]
 
 const trainingReducer = (state = initialState, action) => {
     switch(action){
