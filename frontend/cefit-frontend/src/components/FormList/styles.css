@@ -1,0 +1,9 @@
+.cefit-list {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.listTitle {
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
+}
