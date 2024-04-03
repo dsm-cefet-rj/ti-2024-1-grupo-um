@@ -2,6 +2,7 @@ import InputComponent from "../InputComponent/InputComponent";
 import TextAreaInput from "../TextAreaInput/textArea";
 import RadioInput from "../RadioInput/radioInput";
 import SubmitButton from "../SubmitButton/SubmitButton";
+import FormList from "../FormList/formList";
 
 function FormCreator({fields, buttonText}) {
     return(
@@ -14,6 +15,8 @@ function FormCreator({fields, buttonText}) {
                         return <TextAreaInput  classes={"form-group mb-3 " + field.classes} id={field.id} type={field.type} text={field.text} placeholder={field.placeholder} />;
                     case "radio":
                         return <RadioInput classes={"form group mb-3 " + field.classes} id={field.id} text={field.text} options={field.options} name={field.name} />;
+                    case "formList":
+                        return <FormList items={field.items} listTitle={field.listTitle} buttonText={field.buttonText} buttonAction={field.buttonAction}/>
                     default:
                         return <p>{field.component} not available</p>;
                 }
