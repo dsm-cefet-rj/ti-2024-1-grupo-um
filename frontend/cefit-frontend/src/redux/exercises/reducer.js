@@ -5,13 +5,13 @@ const initialState = [
     }
 ]
 
-const trainingReducer = (state = initialState, action) => {
+const exercisesReducer = (state = initialState, action) => {
     switch(action){
-        case "trainings/add":
+        case "exercises/add":
             return [...state, action.payload]
         default:
             return state;
     }
 }
 
-export default trainingReducer;
+export default exercisesReducer;
