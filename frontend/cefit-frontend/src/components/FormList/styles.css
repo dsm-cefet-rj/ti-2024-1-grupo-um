@@ -3,7 +3,25 @@
     overflow-y: auto;
 }
 
-.listTitle {
+.list-title {
     margin-top: auto !important;
     margin-bottom: 0 !important;
+}
+
+.border-custom {
+    border-color: #636464 !important;
+}
+
+@media (max-width: 375px){
+    .list-header {
+        flex-direction: column;
+    }
+
+    .list-title {
+        margin-bottom: 1rem !important;
+    }
+
+    .list-button {
+        width: 6.7rem;
+    }
 }
