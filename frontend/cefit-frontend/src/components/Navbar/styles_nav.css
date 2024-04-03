@@ -1,19 +1,22 @@
 * {
     font-family: 'Aileron', sans-serif;
 }
+
 .nav-item a{
   color:white;
+}
+
+.nav-container {
+  padding: 10px;
 }
 
 .navbar {
     background-color: #3f3f3f;
     height: 80px;
-    margin: 10px;
     padding: 0.5rem;
     border-radius: 16px;
-
-    
 }
+
 .signin-button, .signup-button{
     background-color: #515151;
     color: #fff;
