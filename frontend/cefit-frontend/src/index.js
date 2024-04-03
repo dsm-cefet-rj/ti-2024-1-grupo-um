@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.bundle.js'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux';
@@ -15,6 +16,7 @@ import Personais from './pages/tela-personais/Personais.jsx';
 import AreaFIT from './pages/tela area-fit/AreaFIT.jsx';
 import Home from './pages/tela-home/Home.jsx';
 import Personal from './pages/tela-personal/Personal.jsx';
+import AddTreinos from './pages/tela-add-treinos/Treinos.jsx';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "personal",
         element: <Personal/>
+      },
+      {
+        path: "add-treinos",
+        element: <AddTreinos />
       }
     ]
   }
