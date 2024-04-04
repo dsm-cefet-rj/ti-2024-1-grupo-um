@@ -57,6 +57,7 @@ const router = createBrowserRouter([
         path: "add-treinos",
         element: <AddTreinos />
       },
+
       {
         path: "treino",
         element: <Treino />
