@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = [
+    {
+        name: "Exercício Exemplo",
+        description: "Descrição do exercício exemplo."
+    }
+]
+
 const exercisesSlice = createSlice({
     name: "exercises",
-    initialState: [
-        {
-            name: "Exercício Exemplo",
-            description: "Descrição do exercício exemplo."
-        }
-    ],
+    initialState,
     reducers: {
         add: (state, action) => {
-            // debugger
             state.push(action.payload)
         }
     }
