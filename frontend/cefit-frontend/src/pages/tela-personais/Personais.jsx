@@ -5,50 +5,7 @@ import "./Personais.css";
 
 
 function Personais(){
-
-    const Personais = [
-        {
-            nome: "Luiz",
-            descricao: "Especialista em finalização",
-            rating: 4
-        },
-        {
-            nome: "Arnold Schwarzenegger",
-            descricao: "3x Olympia Winner",
-            rating: 1
-        },
-        {
-            nome: "Glauco Amorim",
-            descricao: "Treinador de alta performance",
-            rating: 5
-        },
-        {
-            nome:"Vinicius",
-            descricao:"Treinador",
-            rating: 6
-        },
-        {
-            nome:"Chico",
-            descricao:"Aquariano Nato",
-            rating: 6
-        },
-        {
-            nome:"Caio",
-            descricao:"Treinador de crossfit",
-            rating: 3
-        },
-        {
-            nome:"Diogo Mendonça",
-            descricao:"Treinador de Boxe",
-            rating: 3
-        },
-        {
-            nome:"Kele Bellorze",
-            descricao:"Treinadora de Artes Marciais",
-            rating: 3
-        },
-    ]
-
+    
     return(
         <>
         <Navbar/>
@@ -78,6 +35,48 @@ function Personais(){
 }
 
 export default Personais
+// const Personais = [
+    //     {
+    //         nome: "Luiz",
+    //         descricao: "Especialista em finalização",
+    //         rating: 4
+    //     },
+    //     {
+    //         nome: "Arnold Schwarzenegger",
+    //         descricao: "3x Olympia Winner",
+    //         rating: 1
+    //     },
+    //     {
+    //         nome: "Glauco Amorim",
+    //         descricao: "Treinador de alta performance",
+    //         rating: 5
+    //     },
+    //     {
+    //         nome:"Vinicius",
+    //         descricao:"Treinador",
+    //         rating: 6
+    //     },
+    //     {
+    //         nome:"Chico",
+    //         descricao:"Aquariano Nato",
+    //         rating: 6
+    //     },
+    //     {
+    //         nome:"Caio",
+    //         descricao:"Treinador de crossfit",
+    //         rating: 3
+    //     },
+    //     {
+    //         nome:"Diogo Mendonça",
+    //         descricao:"Treinador de Boxe",
+    //         rating: 3
+    //     },
+    //     {
+    //         nome:"Kele Bellorze",
+    //         descricao:"Treinadora de Artes Marciais",
+    //         rating: 3
+    //     },
+    // ]
 {/* <a className="card" href="personal.html">
 <img className="card-img-top" src="images/user.png" alt="Imagem de capa do card"/>
 <div className="card-body">

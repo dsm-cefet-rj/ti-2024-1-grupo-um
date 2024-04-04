@@ -2,6 +2,9 @@ import Navbar from "../../components/Navbar/Navbar";
 import "././../tela-personais/Personais.css";
 
 function Personal() {
+
+  const barra = "100";
+
   return (
     <div className="">
       <Navbar/>
@@ -89,7 +92,7 @@ function Personal() {
                 <p className="mb-4">Especialidades</p>
                 <p className="mb-1" style={{ fontSize: ".77rem" }}>Emagrecimento</p>
                 <div className="progress rounded" style={{ height: "5px" }}>
-                  <div className="progress-bar" role="progressbar" style={{ width: "80%" }} aria-valuenow="80"
+                  <div className="progress-bar" role="progressbar" style={{ width: `${barra}%` }} aria-valuenow={barra}
                     aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <p className="mt-4 mb-1" style={{ fontSize: ".77rem" }}>Ganho de massa muscular</p>
