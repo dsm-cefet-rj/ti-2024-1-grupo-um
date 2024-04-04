@@ -11,15 +11,3 @@
         padding-right: 10rem !important;
     }
 }
-
-@media (min-width: 376px){
-    .form-card {
-        height: 100vh;
-    }
-}
-
-@media (max-width: 375px){
-    .form-card {
-        height: 100%;
-    }
-}

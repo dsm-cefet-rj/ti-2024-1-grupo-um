@@ -32,6 +32,53 @@ function AddTreinos() {
         {
             component: "input",
             classes: "",
+            id: "description",
+            type: "text",
+            text: <b>Descrição do Treino:</b>,
+            placeholder: "Digite a descrição do treino",
+        },
+        {
+            component: "radio",
+            classes: "",
+            id: "type",
+            name: "training-type",
+            text: <b>Tipo do Treino:</b>,
+            options: [
+                {
+                    id: "type-option1",
+                    value: "snferiores",
+                    text: "Inferiores",
+                },
+                {
+                    id: "type-option2",
+                    value: "superiores",
+                    text: "Superiores",
+                },
+                {
+                    id: "type-option3",
+                    value: "cardio",
+                    text: "Cardio",
+                },
+                {
+                    id: "type-option4",
+                    value: "natacao",
+                    text: "Natação",
+                },
+                {
+                    id: "type-option5",
+                    value: "crossfit",
+                    text: "Crossfit",
+                },
+                {
+                    id: "type-option6",
+                    value: "outro",
+                    text: "Outro",
+                },
+            ],
+        },
+        {
+            component: "input",
+            classes: "",
             id: "dataInicio",
             type: "date",
             text: <b>Data de Início:</b>,
