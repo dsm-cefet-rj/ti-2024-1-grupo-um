@@ -1,32 +1,39 @@
-
+//import components
 import InputComponent from "../../components/InputComponent/InputComponent";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
-import CefetImage from "./../../components/CefetImage/CefetImage"
+import CefetImage from "../../components/CefetImage/CefetImage";
+
+//import react stuff
 import { useState } from "react";
-import "./../pages.css";
 import { Link, useNavigate } from "react-router-dom";
 
+//css 
+import "./../pages.css";
+
+//redux
+import { useSelector } from "react-redux";
 
 function Login(){
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
     const navigate = useNavigate();
-
+    
+    
+    const user = useSelector(rootReducer => rootReducer.user);
+    let usuarioSistema = user.filter((user) => user.email === email);
+    usuarioSistema = usuarioSistema[0];
     function autentica(e){
-        e.preventDefault();
-        try{
-            const login = localStorage.getItem(email).split(";");
-            if(login[2] === email &&  login[1] === senha){
+
+        if(!usuarioSistema){
+            alert("usuario invalido")
+        }else{
+            if(usuarioSistema.senha === senha){
                 alert("autenticado");
                 navigate("/personais");
-            }else{
-                alert("invalido");
             }
-            
-        }catch(e){
-            alert("invalido");
         }
-
+        e.preventDefault();
+        
     }
 
     return(

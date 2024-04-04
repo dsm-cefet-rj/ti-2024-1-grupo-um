@@ -22,7 +22,7 @@ function Cadastro(){
     const [ descricao, setDescricao ] = useState();
     const [ biografia, setBiografia ] = useState();
 
-    const cadastro = { 
+    const cadastro = {
         nome: nome,
         senha: password,
         descricao: descricao,

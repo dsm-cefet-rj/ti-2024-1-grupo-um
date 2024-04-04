@@ -1,10 +1,20 @@
+
+//components
 import InputComponent from "../../components/InputComponent/InputComponent";
 import CefetImage from "../../components/CefetImage/CefetImage";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
+
+//import react stuff
 import { useState } from "react";
-import "./../pages.css";
 import { Link, useNavigate } from "react-router-dom";
-// import { createHash } from "crypto";
+
+//import css
+import "./../pages.css";
+
+//import redux
+import { useDispatch } from "react-redux";
+import { addUser } from "../../redux/user/slice";
+
 
 function Cadastro(){
 
@@ -22,16 +32,14 @@ function Cadastro(){
         CPF: CPF
     }
 
+
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     const handleSingUp=(e)=>{
         e.preventDefault();
-        if(!password | !nome | !email | !CPF | !birth){
-            console.log("alerta");
-        }
-        const cadastroString = cadastro.nome + ";" + cadastro.senha + ";" + cadastro.email + ";" + cadastro.nascimento + ";" + cadastro.CPF;
-        localStorage.setItem(cadastro.email, cadastroString);
-        alert("Usuario cadastrado com sucesso!");
+        dispatch(addUser(cadastro));
         navigate("/login");
     }
 

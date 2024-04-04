@@ -5,35 +5,37 @@ const initialState = [
             id: 1,
             nome: "Luiz",
             descricao: "Especialista em finalização",
-            rating: [],
-            biografia: ""
+            rating: 4,
+            biografia: "",
+            image: ""
         },
         {
             id: 2,
             nome: "Arnold Schwarzenegger",
             descricao: "3x Olympia Winner",
-            rating: [],
-            biografia: ""
+            rating: 5 ,
+            biografia: "",
+            image: "../images/PersonalImages/arnold.png"
         },
         {
             id: 3,
             nome: "Glauco Amorim",
             descricao: "Treinador de alta performance",
-            rating: [],
+            rating: 3,
             biografia: ""
         },
         {
             id: 4,
             nome:"Vinicius",
             descricao:"Treinador",
-            rating: [],
+            rating: 1,
             biografia: ""
         },
         {
             id: 5,
             nome:"Chico",
             descricao:"Aquariano Nato",
-            rating: [],
+            rating: 2,
             biografia: ""
         },
 ];

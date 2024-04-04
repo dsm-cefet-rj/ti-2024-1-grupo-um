@@ -1,9 +1,29 @@
+//components
+import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+
+//css
 import "././../tela-personais/Personais.css";
+import star from "../../images/star.png";
+
+//redux
+import { useSelector } from "react-redux";
+
 
 function Personal() {
+  const {id} = useParams();
 
+  const personais = useSelector(rootReducer => rootReducer.personais);
+
+  const personalAtual = personais.filter((personal) => personal.id == id)[0];
+
+  // console.log(personalAtual);
   const barra = "100";
+
+  const estrelas = [];
+  for (let i = 0; i < personalAtual.rating; i++) {
+      estrelas.push(<img key={i} className="imagem-estrela" src={star} alt="imagem estrela"/>);
+  }
 
   return (
     <div className="">
@@ -14,13 +34,11 @@ function Personal() {
           </a>
           {/* inicio fulaninho */}
           <div className="card-body text-center m-auto">
-            <img src="images/user.png" alt="avatar"
+            <img src={personalAtual.image} alt="avatar"
               className="rounded-circle img-fluid" style={{ width: "150px" }} />
-            <h5 className="my-3">Fulaninho</h5>
+            <h5 className="my-3">{personalAtual.nome}</h5>
             <div className="margin-bottom-10px mb-4">
-              <img className="imagem-estrela" src="images/star.png" alt="imagem estrela" />
-              <img className="imagem-estrela" src="images/star.png" alt="imagem estrela" />
-              <img className="imagem-estrela" src="images/star.png" alt="imagem estrela" />
+              {estrelas}
             </div>
             <div className="d-flex justify-content-center mb-2">
               <button type="button" className="btn btn-primary">Favoritar</button>
@@ -38,7 +56,7 @@ function Personal() {
                 <p className="mb-0">Nome completo</p>
               </div>
               <div className="col-sm-9">
-                <p className="text-muted mb-0">Fulaninho de Tal da Silva</p>
+                <p className="text-muted mb-0">{personalAtual.nome}</p>
               </div>
             </div>
             <hr />
@@ -77,10 +95,7 @@ function Personal() {
         <div className="card m-auto mb-4" id="card-block-personal">
           <div className="card-body">
             <p className="mb-4" style={{ fontWeight: "bold" }}>Biografia</p>
-            <p className="mb-1" style={{ fontSize: "0.85rem" }}>Meu nome é Fulaninho de Tal. Sou um personal trainer apaixonado por fitness e bem-estar. Nasci e cresci em São Paulo e desde pequeno sempre fui ligado aos esportes.
-              Depois de me formar em Educação Física pela Universidade de São Paulo, mergulhei de cabeça no mundo do treinamento personalizado. Minha abordagem é prática e focada em resultados. Quero ajudar meus clientes a atingirem seus objetivos de forma eficaz.
-              Acredito em equilíbrio. Meu método combina treinamento de força, cardio e nutrição para garantir resultados duradouros. Minha energia contagiante e meu compromisso com o sucesso dos meus clientes são o que me destacam.
-              Fora do trabalho, adoro viver um estilo de vida saudável e estou sempre em busca de desafios para mim e para os outros. Com minha paixão pelo fitness e minha dedicação aos meus clientes, continuo fazendo a diferença aqui em São Paulo e além.</p>
+            <p className="mb-1" style={{ fontSize: "0.85rem" }}>{personalAtual.biografia}</p>
           </div>
         </div>
         {/* fim biografia */}
