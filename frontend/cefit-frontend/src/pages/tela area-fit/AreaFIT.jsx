@@ -3,6 +3,7 @@ import TreinoCard from "../../components/TreinosCard/TreinosCard";
 import FooterComp from "../../components/Footer/Footer";
 
 import "./AreaFIT.css";
+import { Link } from "react-router-dom";
 
 function AreaFIT() {
   const Treinos = [
@@ -54,7 +55,7 @@ function AreaFIT() {
         </div>
     </div>
 
-    <a href="#" className="monte-button">Monte seu treino</a>
+    <Link to={"/add-treinos"} className="monte-button">Monte seu treino</Link>
     <div className="espacamento">
 
       </div>
