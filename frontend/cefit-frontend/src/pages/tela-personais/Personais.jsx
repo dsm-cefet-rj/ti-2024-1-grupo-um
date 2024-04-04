@@ -1,5 +1,6 @@
 import Navbar from "../../components/Navbar/Navbar";
 import PersonalCard from "../../components/PersonalCard/PersonalCard"
+import FooterComp from "../../components/Footer/Footer";
 import "./Personais.css";
 
 
@@ -71,6 +72,7 @@ function Personais(){
                 )}
             </div>
         </div>
+        <FooterComp />
         </>
     )
 }

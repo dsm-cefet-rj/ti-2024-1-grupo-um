@@ -1,6 +1,6 @@
 import Navbar from "../../components/Navbar/Navbar";
 import TreinoCard from "../../components/TreinosCard/TreinosCard";
-//import FooterComp from "../../components/Footer/Footer";
+import FooterComp from "../../components/Footer/Footer";
 
 import "./AreaFIT.css";
 
@@ -40,8 +40,8 @@ function AreaFIT() {
         <h1 className="display-4">Área FIT</h1>
         <p className="lead">Monte seus treinos ideais ou visualize seus treinos montados pelo personal</p>
       </div>
-    <div className="container mt-2">
-        <div className="row justify-content-center">
+    <div className="container mt-2" id="container-card">
+        <div className="row justify-content-center"id="row-card">
           {Treinos.map((treino, index) => (
             <div key={index} className="col mb-3">
               <TreinoCard
@@ -53,8 +53,12 @@ function AreaFIT() {
           ))} 
         </div>
     </div>
+
     <a href="#" className="monte-button">Monte seu treino</a>
-    {/* <FooterComp />*/}
+    <div className="espacamento">
+
+      </div>
+    <FooterComp />
     </>
   );
 }

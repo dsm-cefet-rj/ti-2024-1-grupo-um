@@ -2,13 +2,35 @@
     font-family: 'Aileron', sans-serif;
 }
 .w-full{
-    background-color: #515151;
+    background-color: #474747;
 }
-.footer-links{
-    color: aliceblue!important;
-    text-decoration: none!important;
-} 
-.footer-links:hover {
-    color: #fff;
-    text-decoration: underline;
+.mr-3{
+    width: 80px;
+    margin-top: 10px;
+    justify-content: center;
+}
+.flex{
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    
+
+}
+.flex a{
+    text-decoration: none;
+    display: flex;
+}
+.flex a::after{
+    content: "";
+    width: 0%;
+    position: absolute;
+    height: 2px;
+    background-color: #3166d1;
+    bottom: 0.1;
+    left: 0;
+    transition: 0.5s ease-in-out;
+    margin-top: 21px;
+}
+.flex a:hover::after {
+    width: 50%;
 }

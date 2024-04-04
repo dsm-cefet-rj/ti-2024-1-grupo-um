@@ -6,7 +6,7 @@ function Navbar(){
     return(
         <>
             <div className="nav-container">
-                <nav className="navbar navbar-expand-lg fixed-top">
+                <nav className="navbar navbar-expand-lg fixed-top" id="navbar2">
                     <div className="container-fluid">
                         {/* logo */}
                         <a className="navbar-brand me-auto" href="#"><img src={logo} alt="logo" className="logo-img"/></a>
