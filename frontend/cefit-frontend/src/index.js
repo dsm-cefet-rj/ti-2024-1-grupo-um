@@ -9,11 +9,12 @@ import { Provider } from 'react-redux';
 import store from './redux/store.js';
 
 import App from './App.js';
-import Login from './pages/tela login/Login.jsx';
-import Cadastro from './pages/tela cadastro/Cadastro.jsx';
+import Login from './pages/tela-login/Login.jsx';
+import Cadastro from './pages/tela-cadastro/Cadastro.jsx';
+import CadastroPersonal from './pages/tela-cadastro/CadastroPersonal.jsx';
 import Anamnese from './pages/tela-anamnese/Anamnese.jsx';
 import Personais from './pages/tela-personais/Personais.jsx';
-import AreaFIT from './pages/tela area-fit/AreaFIT.jsx';
+import AreaFIT from './pages/tela-area-fit/AreaFIT.jsx';
 import Home from './pages/tela-home/Home.jsx';
 import Personal from './pages/tela-personal/Personal.jsx';
 import AddTreinos from './pages/tela-add-treinos/Treinos.jsx';
@@ -49,16 +50,12 @@ const router = createBrowserRouter([
         element: <AreaFIT/>
       },
       {
-        path: "personal",
+        path: "personal/:id",
         element: <Personal/>
       },
       {
         path: "add-treinos",
         element: <AddTreinos />
-      },
-      {
-        path: "treino",
-        element: <Treino/>
       }
     ]
   }
