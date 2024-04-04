@@ -1,9 +1,9 @@
-import sup from "./img-superiores.jpg";
-import inf from "./img-inferiores.png";
-import cardio from "./img-cardio.jpg";
-import natacao from "./img-natacao.avif";
-import crossfit from "./img-crossfit.jpg";
-import padrao from "./img-default.avif";
+import sup from "./images/img-superiores.jpg";
+import inf from "./images/img-inferiores.png";
+import cardio from "./images/img-cardio.jpg";
+import natacao from "./images/img-natacao.avif";
+import crossfit from "./images/img-crossfit.jpg";
+import padrao from "./images/img-default.avif";
 import "./TreinoCard.css"
 
 function TreinoCard({title, description, type}){
