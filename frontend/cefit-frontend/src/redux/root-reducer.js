@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import exercisesReducer from "./exercises/reducer";
+import exercisesReducer from "./exercises/slice";
 
-const rootReducer = combineReducers({exercisesReducer})
+const rootReducer = combineReducers({exercises: exercisesReducer})
 
 export default rootReducer;
