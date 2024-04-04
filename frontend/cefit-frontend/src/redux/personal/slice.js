@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import arnoldImage from "./../../images/PersonalImages/arnold.png";
 
 const initialState = [
         {
@@ -15,7 +16,7 @@ const initialState = [
             descricao: "3x Olympia Winner",
             rating: 5 ,
             biografia: "",
-            image: "../images/PersonalImages/arnold.png"
+            image: arnoldImage
         },
         {
             id: 3,

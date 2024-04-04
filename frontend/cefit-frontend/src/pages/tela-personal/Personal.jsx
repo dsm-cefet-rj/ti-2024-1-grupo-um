@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar/Navbar";
 //css
 import "././../tela-personais/Personais.css";
 import star from "../../images/star.png";
+import user from "../../images/user.png";
 
 //redux
 import { useSelector } from "react-redux";
@@ -34,9 +35,20 @@ function Personal() {
           </a>
           {/* inicio fulaninho */}
           <div className="card-body text-center m-auto">
-            <img src={personalAtual.image} alt="avatar"
-              className="rounded-circle img-fluid" style={{ width: "150px" }} />
-            <h5 className="my-3">{personalAtual.nome}</h5>
+            {/* renderizacao condicional se personal tiver imagem */}
+            {personalAtual.image ?
+              <div>
+                <img src={personalAtual.image} alt="avatar"
+                  className="rounded-circle img-fluid" style={{ width: "150px" }} />
+                <h5 className="my-3">{personalAtual.nome}</h5> 
+              </div>
+                : 
+              <div>
+                <img src={user} alt="avatar"
+                className="rounded-circle img-fluid" style={{ width: "150px" }} />
+                <h5 className="my-3">{personalAtual.nome}</h5> 
+              </div>
+            }
             <div className="margin-bottom-10px mb-4">
               {estrelas}
             </div>
