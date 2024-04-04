@@ -1,10 +1,14 @@
 import InputComponent from "../InputComponent/InputComponent";
 import TextAreaInput from "../TextAreaInput/textArea";
 import RadioInput from "../RadioInput/radioInput";
-import SubmitButton from "../SubmitButton/SubmitButton";
 import FormList from "../FormList/formList";
 
-function FormCreator({fields, buttonText}) {
+function FormCreator({fields, buttonText, buttonAction}) {
+    const handleSubmitForm = (event) => {
+        event.preventDefault();
+        buttonAction();
+    }
+
     return(
         <form>
             {fields.map((field) => {
@@ -21,7 +25,9 @@ function FormCreator({fields, buttonText}) {
                         return <p>{field.component} not available</p>;
                 }
             })}
-            <SubmitButton nomeButton={buttonText} />
+            <div className="d-flex justify-content-center">
+                <button className="btn btn-primary" onClick={handleSubmitForm}>{buttonText}</button>
+            </div>
         </form>
     )
 }

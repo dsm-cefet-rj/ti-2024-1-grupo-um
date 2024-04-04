@@ -2,12 +2,17 @@ import "./styles.css"
 import { Link } from "react-router-dom";
 
 function FormList({items, listTitle, buttonText, buttonAction }) {
+    const handleAddItem = (event) => {
+        event.preventDefault();
+        buttonAction();
+    }
+
     return(
         <>
             <div className="my-4">
                 <span className="d-flex justify-content-between mb-4 list-header">
                     <h3 className="list-title">{listTitle}</h3>
-                    <button className="btn btn-primary list-button" onClick={buttonAction}>{buttonText}</button>
+                    <button className="btn btn-primary list-button" onClick={handleAddItem}>{buttonText}</button>
                 </span>
                 <div className="list-group cefit-list">
                     {items.map((item) => {
