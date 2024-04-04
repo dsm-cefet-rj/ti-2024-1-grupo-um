@@ -3,7 +3,8 @@ import FooterComp from "../../components/Footer/Footer";
 import FormCreator from "../../components/FormCreator/formCreator";
 import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
-import { add } from "../../redux/exercises/slice";
+import { addExercise } from "../../redux/exercises/slice";
+import { addTraining } from "../../redux/trainings/slice"
 
 
 function AddTreinos() {
@@ -11,7 +12,7 @@ function AddTreinos() {
 
     const handleAddExercise = () => {
         dispatch(
-            add(
+            addExercise(
                 {
                     name: "Exercício extra",
                     description: "Descrição"
@@ -20,11 +21,17 @@ function AddTreinos() {
         )
     }
 
+    const handleSubmitForm = (info) => {
+        dispatch(
+            addTraining(info)
+        )
+    }
+
     const formFields = [
         {
             component: "input",
             classes: "",
-            id: "nomeTreino",
+            id: "title",
             type: "text",
             text: <b>Nome do Treino:</b>,
             placeholder: "Digite o nome do treino",
@@ -45,32 +52,32 @@ function AddTreinos() {
             text: <b>Tipo do Treino:</b>,
             options: [
                 {
-                    id: "type-option1",
-                    value: "snferiores",
+                    id: "type",
+                    value: "inferiores",
                     text: "Inferiores",
                 },
                 {
-                    id: "type-option2",
+                    id: "type",
                     value: "superiores",
                     text: "Superiores",
                 },
                 {
-                    id: "type-option3",
+                    id: "type",
                     value: "cardio",
                     text: "Cardio",
                 },
                 {
-                    id: "type-option4",
+                    id: "type",
                     value: "natacao",
                     text: "Natação",
                 },
                 {
-                    id: "type-option5",
+                    id: "type",
                     value: "crossfit",
                     text: "Crossfit",
                 },
                 {
-                    id: "type-option6",
+                    id: "type",
                     value: "outro",
                     text: "Outro",
                 },
@@ -115,7 +122,7 @@ function AddTreinos() {
             <div className="container form-card p-5">
                 <div className="container mx-4 cefit-form">
                     <h2>Adicionar Novo Treino</h2>
-                    <FormCreator fields={formFields} buttonText={"Salvar Treino"} buttonAction={() => {}}/>
+                    <FormCreator fields={formFields} buttonText={"Salvar Treino"} buttonAction={handleSubmitForm}/>
                 </div>
             </div>
             <FooterComp />

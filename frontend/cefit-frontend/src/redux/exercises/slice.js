@@ -11,12 +11,12 @@ const exercisesSlice = createSlice({
     name: "exercises",
     initialState,
     reducers: {
-        add: (state, action) => {
+        addExercise: (state, action) => {
             state.push(action.payload)
         }
     }
 })
 
-export const { add } = exercisesSlice.actions;
+export const { addExercise } = exercisesSlice.actions;
 
 export default exercisesSlice.reducer;

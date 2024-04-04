@@ -1,10 +1,11 @@
 import "./styles.css"
 import { Link } from "react-router-dom";
 
-function FormList({items, listTitle, buttonText, buttonAction }) {
+function FormList({items, listTitle, buttonText, buttonAction, getList }) {
     const handleAddItem = (event) => {
         event.preventDefault();
         buttonAction();
+        getList(items);
     }
 
     return(
