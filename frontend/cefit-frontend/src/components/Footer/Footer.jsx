@@ -1,6 +1,6 @@
 
 import { Footer, FooterBrand, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
-import logo from "./logo.png";
+import logo from "../../images/logo.png";
 import "./Footer.css"
 function FooterComp() {
   return (

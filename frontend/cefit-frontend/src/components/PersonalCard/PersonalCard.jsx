@@ -1,6 +1,11 @@
-import star from "./star.png";
-import user from "./user.png";
+// import imagens
+import star  from "../../images/star.png";
+import user  from "../../images/user.png";
+
+// import CSS
 import "./PersonalCard.css";
+
+// react router dom
 import { Link } from "react-router-dom";
 
 function PersonalCard({ nome, descricao, rating }){
