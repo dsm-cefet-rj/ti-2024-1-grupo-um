@@ -1,4 +1,5 @@
 import Navbar from "../../components/Navbar/Navbar";
+import FooterComp from "../../components/Footer/Footer";
 import FormCreator from "../../components/FormCreator/formCreator";
 import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +8,17 @@ import { add } from "../../redux/exercises/slice";
 
 function AddTreinos() {
     const dispatch = useDispatch();
+
+    const handleAddExercise = () => {
+        dispatch(
+            add(
+                {
+                    name: "Exercício extra",
+                    description: "Descrição"
+                }
+            )
+        )
+    }
 
     const formFields = [
         {
@@ -46,17 +58,7 @@ function AddTreinos() {
             items: useSelector(rootReducer => rootReducer.exercises),
             buttonText: "+ Exercício",
             listTitle: "Exercícios",
-            buttonAction: (event) => {
-                event.preventDefault();
-                dispatch(
-                    add(
-                        {
-                            name: "Exercício extra",
-                            description: "Descrição"
-                        }
-                    )
-                )
-            },
+            buttonAction: handleAddExercise,
         }
     ]
 
@@ -66,9 +68,10 @@ function AddTreinos() {
             <div className="container form-card p-5">
                 <div className="container mx-4 cefit-form">
                     <h2>Adicionar Novo Treino</h2>
-                    <FormCreator fields={formFields} buttonText={"Salvar Treino"}/>
+                    <FormCreator fields={formFields} buttonText={"Salvar Treino"} buttonAction={() => {}}/>
                 </div>
             </div>
+            <FooterComp />
         </>
     )
 }
