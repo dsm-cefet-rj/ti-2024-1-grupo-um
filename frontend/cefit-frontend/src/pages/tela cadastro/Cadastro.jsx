@@ -1,7 +1,7 @@
 import InputComponent from "../../components/InputComponent/InputComponent";
 import CefetImage from "../../components/CefetImage/CefetImage";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
-// import Navbar from "../../components/Navbar/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import { useState } from "react";
 import "./../pages.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -38,7 +38,7 @@ function Cadastro(){
 
     return(
         <div className="bg-image cefit-background-img" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
-            {/* <Navbar/> */}
+            <Navbar/>
                 <div className="login-container rounded-5 p-3">
                     <CefetImage/>
                     <form className="formulario-cadastro" onSubmit={handleSingUp}>

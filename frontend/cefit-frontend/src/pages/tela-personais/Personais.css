@@ -202,11 +202,17 @@ body {
 
 .card{
     flex: 1;
+    margin-bottom: 50px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#card-stats{
+    flex: 1;
     display: flex;
     flex-direction: column;
     margin-left: 10px;
     color: #515151;
-    margin-bottom: 50px;
     cursor: pointer;
     text-decoration: none;
 }
