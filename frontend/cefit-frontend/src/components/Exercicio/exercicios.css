@@ -1,0 +1,28 @@
+.exercicio-card{
+    transition:0.5s;
+    cursor:pointer;
+    height: 300px;
+    display: block;
+    width: 90%;
+    margin: auto;
+    background-color: #fff;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 120px;
+    border-radius: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+.exercicio-card:hover{
+    transform: scale(1.05);
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+}
+#exercicio-carga{
+    margin-bottom: -10px;
+
+}
+#exercicio-obs{
+    margin-top: -20px;
+    
+}

@@ -30,7 +30,9 @@ function Treino() {
         <>
         <Navbar />
         <div className="treino">
-            <h1>Exercícios do Treino</h1>
+        <div className="traino-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 className="display-4">Exercícios</h1>
+            </div>
             <div className="exercicios">
             {exercicios.map((exercicio, index) => (
                 <Exercicio
