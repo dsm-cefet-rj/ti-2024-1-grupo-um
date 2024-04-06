@@ -7,23 +7,53 @@ import { Link } from "react-router-dom";
 function Treino() {
     const exercicios = [
         {
+            nome: "Esteira",
+            carga: "10kg",
+            rep: "3x15",
+            obs: "Ajuste do banco: 1",
+            type: "cardio"
+
+        },
+        {
             nome: "Cadeira Extensora",
             carga: "30kg",
-            obs: "Ajuste do banco: 3"
+            rep: "3x15",
+            obs: "Ajuste do banco: 3",
+            type: "musc"
 
         },
         {
             nome: "Cadeira Flexora",
             carga: "30kg",
-            obs: "Ajuste do banco: 3"
+            rep: "3x15",
+            obs: "Ajuste do banco: 3",
+            type: "musc"
 
         },
         {
-            nome: "LegPress",
+            nome: "Leg Press",
             carga: "60kg",
-            obs: "Ajuste do banco: 1"
+            rep: "3x15",
+            obs: "Ajuste do banco: 1",
+            type: "musc"
 
         },
+        {
+            nome: "Stiff Barra",
+            carga: "15kg",
+            rep: "3x15",
+            obs: "Descanso de 1 min",
+            type: "musc"
+
+        },
+        {
+            nome: "Elevação pélvica",
+            carga: "10kg",
+            rep: "3x15",
+            obs: "Ajuste do banco: 1"
+
+        }
+        
     ]
   
     return (
@@ -39,7 +69,9 @@ function Treino() {
                 key={index}
                 nome={exercicio.nome}
                 carga={exercicio.carga}
+                rep={exercicio.rep}
                 obs={exercicio.obs}
+                type={exercicio.type}
                 
                 />
             ))}

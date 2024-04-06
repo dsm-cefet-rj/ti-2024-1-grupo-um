@@ -1,28 +1,96 @@
-.exercicio-card{
-    transition:0.5s;
-    cursor:pointer;
-    height: 300px;
-    display: block;
-    width: 90%;
+.exercicio-card {
+    display: flex;
+    align-items: center; 
     margin: auto;
     background-color: #fff;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    height: 120px;
-    border-radius: 20px;
-    justify-content: center;
-    text-align: center;
-}
-
+    margin-bottom: 10px;
+    width: 90%;
+    border-radius: 15px;
+    height: 100px;
+    transition: 0.5s;
+  }
 .exercicio-card:hover{
-    transform: scale(1.05);
+    transform: scale(1);
     box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
 }
-#exercicio-carga{
-    margin-bottom: -10px;
-
+.exercicio-card::before, .exercicio-card::after{
+    position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: scale3d(0, 0, 1);
+      transition: transform .3s ease-out 0s;
+      background: rgba(255, 255, 255, 0.1);
+      content: '';
+      pointer-events: none;
 }
-#exercicio-obs{
-    margin-top: -20px;
-    
+.exercicio-card::before{
+    transform-origin: left top;
+}
+.exercicio-card::after{
+    transform-origin: right bottom;
+}
+.exercicio-card:hover::before, .exercicio-card:hover::after, .exercicio-card:focus::after{
+    transform: scale3d(1, 1, 1);
+}
+
+.exercicio-info {
+    display: block;
+    flex-direction: column;
+    margin-left: 50px;
+    align-items: center;
+    font-size: 15px;
+  }
+.exercise-image{
+    width: 70px;
+    height: 70px;
+    margin-left: 15px;
+}
+#exercicio-nome{
+    font-size: 23px;
+    display: flex;
+    transition: 1s;
+}
+#exercicio-nome:hover{
+    transform: scale(1);
+    color:#47dad2;
+}
+
+#img-exercicio{
+    align-items: center;
+}
+#exercicio-subtitle{
+    font-size: 14px;
+    display: flex;
+}
+.checkbox {
+    margin-left: auto;
+    margin-right: 17px; 
+    width: 45px;
+    height: 45px;
+    border: none; 
+    background-color: rgb(240, 240, 240);
+    border-radius: 7px;
+    appearance: none; 
+    cursor: pointer;
+    outline: none;
+    display: flex; /* Usa flexbox para alinhar o conteúdo */
+    justify-content: center; /* Alinha o conteúdo horizontalmente no centro */
+    align-items: center; /* Alinha o conteúdo verticalmente no centro */
+    position: relative; /* Adiciona posição relativa para o elemento pai */
+}
+
+.checkbox:checked::after {
+    content: "✔";
+    font-size: 30px;
+    color: #3166d1;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%;
+    height: 100%; 
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
 }

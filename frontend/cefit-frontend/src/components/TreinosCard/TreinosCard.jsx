@@ -26,7 +26,7 @@ function TreinoCard({title, description, type}){
     return (
         <div className="row"> 
             <div className="col md-4"> 
-                <a href="treino.html" className="card-link">
+                <a href="/treino" className="card-link">
                     <div className="card card-block" id="card-fit">
                         <h1 className="card-title mt-3 mb-3">{title}</h1>
                         <Image/>

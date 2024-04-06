@@ -27,11 +27,11 @@ function AreaFIT() {
         description: "Natação",
         type: "natacao"
       },
-      // {
-      //   title: "Treino E",
-      //   description: "Crossfit",
-      //   type: "crossfit"
-      // }
+     {
+       title: "Treino E",
+       description: "Crossfit",
+       type: "crossfit"
+       }
   ];
 
   return (

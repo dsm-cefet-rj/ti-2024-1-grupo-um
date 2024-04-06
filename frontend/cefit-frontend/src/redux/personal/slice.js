@@ -37,7 +37,7 @@ const initialState = [
             nome:"Chico",
             descricao:"Aquariano Nato",
             rating: 2,
-            biografia: ""
+            biografia: "traí a luiza sonza e sou amigo do caze."
         },
 ];
 
