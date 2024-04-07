@@ -53,8 +53,7 @@ function Personal() {
               {estrelas}
             </div>
             <div className="d-flex justify-content-center mb-2">
-              <button type="button" className="btn btn-primary">Favoritar</button>
-              <button type="button" className="btn btn-outline-primary ms-1">Enviar mensagem</button>
+              <button type="button" className="btn btn-primary">Solicitar Consultoria</button>
             </div>
           </div>
         </div>
@@ -77,7 +76,7 @@ function Personal() {
                 <p className="mb-0">Idade</p>
               </div>
               <div className="col-sm-9">
-                <p className="text-muted mb-0">32</p>
+                <p className="text-muted mb-0">{personalAtual.idade}</p>
               </div>
             </div>
             <hr />
@@ -86,8 +85,7 @@ function Personal() {
                 <p className="mb-0">Formação acadêmica</p>
               </div>
               <div className="col-sm-9">
-                <p className="text-muted mb-0">Educação Física - PUC</p>
-                <p className="text-muted mb-0">Nutrição - UFRJ</p>
+                <p className="text-muted mb-0">{personalAtual.formacao}</p>
               </div>
             </div>
             <hr />
@@ -96,7 +94,7 @@ function Personal() {
                 <p className="mb-0">Cidade</p>
               </div>
               <div className="col-sm-9">
-                <p className="text-muted mb-0">Rio de Janeiro, RJ</p>
+                <p className="text-muted mb-0">{personalAtual.cidade}</p>
               </div>
             </div>
           </div>
@@ -113,7 +111,7 @@ function Personal() {
         {/* fim biografia */}
         
         {/* inicio stats fulaninho */}
-        <div className="m-auto mb-4" id="card-block-personal">
+        {/* <div className="m-auto mb-4" id="card-block-personal">
             <div className="card mb-4">
               <div className="card-body">
                 <p className="mb-4">Especialidades</p>
@@ -144,7 +142,7 @@ function Personal() {
                 </div>
               </div>
             </div>
-        </div>
+        </div> */}
         {/* fim desc fulaninho */}
     </div>
   );
