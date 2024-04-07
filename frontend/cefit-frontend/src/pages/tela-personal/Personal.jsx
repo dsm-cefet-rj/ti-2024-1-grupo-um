@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 
 //css
-import "././../tela-personais/Personais.css";
+import "././../tela-personal/Personal.css";
 import star from "../../images/star.png";
 import user from "../../images/user.png";
 
@@ -27,7 +27,7 @@ function Personal() {
   }
 
   return (
-    <div className="">
+    <div className="card-personal">
       <Navbar/>
         <div className="card mt-4 m-auto mb-4" id="card-block-personal">
           <a href="page2.html" className="back-button">
