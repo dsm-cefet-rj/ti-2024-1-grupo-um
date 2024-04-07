@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 
 function Personais(){
     const Personais = useSelector(rootReducer => rootReducer.personais);
-    console.log(Personais)
+    
     return(
         <>
         <Navbar/>

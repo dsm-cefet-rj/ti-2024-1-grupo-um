@@ -1,8 +1,19 @@
 import "./styles_nav.css";
 import logo from "../../images/logo.png";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import rootReducer from "../../redux/root-reducer";
+import { logoutUser } from "../../redux/user/slice";
+
+
 
 function Navbar(){
+    const user =  useSelector(rootReducer => rootReducer.user);
+    const dispatch = useDispatch();
+    const currentUserNavbar  = user[0].currentUser;
+    function Logout(){
+        dispatch(logoutUser());
+    }
     return(
         <>
             <div className="nav-container">
@@ -30,10 +41,21 @@ function Navbar(){
                                 </ul>
                             </div>
                         </div>
-                        <div className="d-flex">
-                            <Link to="/login" className="signup-button">Sign in</Link>
-                            <Link to="/cadastro" className="signup-button">Sign up</Link>
-                        </div>
+                        {
+                                currentUserNavbar ? (
+                                    <div>
+                                        <a>Olá, {currentUserNavbar.nome} </a>
+                                        <button to="/login" className="signup-button" type="button" onClick={Logout}>logout</button>
+                                    </div>
+                                ) : (
+                                    <div className="d-flex">
+                                        <Link to="/login" className="signup-button">Sign in</Link>
+                                        <Link to="/cadastro" className="signup-button">Sign up</Link>
+                                    </div>
+                                )
+                                
+                        }
+                       
                         <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>

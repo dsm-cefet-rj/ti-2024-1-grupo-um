@@ -11,29 +11,30 @@ import { Link, useNavigate } from "react-router-dom";
 import "./../pages.css";
 
 //redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../redux/user/slice";
 
 function Login(){
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    let currentUser = useSelector(rootReducer => rootReducer.user);
     
     
-    const user = useSelector(rootReducer => rootReducer.user);
-    let usuarioSistema = user.filter((user) => user.email === email);
-    usuarioSistema = usuarioSistema[0];
-    function autentica(e){
-
-        if(!usuarioSistema){
-            alert("usuario invalido")
-        }else{
-            if(usuarioSistema.senha === senha){
-                alert("autenticado");
-                navigate("/personais");
-            }
-        }
+    
+    function Autentica(e){
         e.preventDefault();
-        
+        dispatch(loginUser({email, senha})); 
+        currentUser = currentUser[0].currentUser;
+        console.log(currentUser);
+        if(currentUser.senha === senha){
+            alert("autenticado");
+            navigate("/personais");
+        }
+        else{
+            alert("usuario invalido");
+        }
     }
 
     return(
@@ -42,13 +43,16 @@ function Login(){
             <div className="div-principal container d-flex align-items-center justify-content-center m-auto">
                 <div className="w-50 rounded-5 p-4 login-container">
                     <CefetImage/>
-                    <form className="formulario-login" onSubmit={autentica}>
+                    <form className="formulario-login" onSubmit={Autentica}>
                         <InputComponent classes="mb-3 mt-3" id="InputEmail" text="Email" type="text" placeholder="Insira seu email aqui" value={email} onChange={(e)=>[setEmail(e.target.value)]}/>
                         <InputComponent classes="mb-3" id="Password" text="Senha" type="password" placeholder="Insira sua senha aqui" value={senha} onChange={(e)=>[setSenha(e.target.value)]}/>
                         <div className="esqueceu-senha mt-3">
                             <a href="./../sign-up-area/cadastro.html"> Esqueci minha senha</a>
                         </div>
-                        <SubmitButton nomeButton="Entrar"/>
+                        <div className="d-flex w-100 mt-3">
+                            <button type="submit" className="btn btn-primary w-100">Entrar</button>
+                        </div>
+                        {/* <SubmitButton nomeButton="Entrar"/> */}
                         <div className="mt-3">
                             Não possui conta?<Link to="/cadastro"> Cadastre-se agora!</Link> 
                         </div>
