@@ -20,7 +20,7 @@ function Navbar(){
                 <nav className="navbar navbar-expand-lg fixed-top" id="navbar2">
                     <div className="container-fluid">
                         {/* logo */}
-                        <a className="navbar-brand me-auto" href="#"><img src={logo} alt="logo" className="logo-img"/></a>
+                        <a className="navbar-brand me-auto" href="/#"><img src={logo} alt="logo" className="logo-img"/></a>
 
                         <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                             <div className="offcanvas-header">
