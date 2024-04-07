@@ -19,16 +19,17 @@ function Login(){
     const [senha, setSenha] = useState();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    let currentUser = useSelector(rootReducer => rootReducer.user);
+    let user = useSelector(rootReducer => rootReducer.user);
     
     
     
     function Autentica(e){
         e.preventDefault();
         dispatch(loginUser({email, senha})); 
-        currentUser = currentUser[0].currentUser;
-        console.log(currentUser);
-        if(currentUser.senha === senha){
+        console.log(senha);
+        console.log(email);
+        user = user.filter((user) => user.email === email)[0];
+        if(user.senha === senha){
             alert("autenticado");
             navigate("/personais");
         }
