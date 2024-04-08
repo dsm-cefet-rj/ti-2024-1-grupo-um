@@ -26,16 +26,20 @@ function Login(){
     function Autentica(e){
         e.preventDefault();
         dispatch(loginUser({email, senha})); 
-        console.log(senha);
-        console.log(email);
         user = user.filter((user) => user.email === email)[0];
-        if(user.senha === senha){
-            alert("autenticado");
-            navigate("/personais");
-        }
-        else{
+        console.log(user);
+        if(user == undefined){
             alert("usuario invalido");
+        }else{
+            if(user.senha === senha){
+                alert("autenticado");
+                navigate("/personais");
+            }else{
+                alert("usuario invalido");
+            }
         }
+        
+        
     }
 
     return(

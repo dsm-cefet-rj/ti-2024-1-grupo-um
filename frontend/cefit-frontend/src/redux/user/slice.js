@@ -14,9 +14,12 @@ const userSlice = createSlice({
         },
         loginUser: (state, action) => {
             const usuarioSistema = state.filter((user) => user.email === action.payload.email)[0];
-            if(usuarioSistema.senha === action.payload.senha){
-                state[0].currentUser = usuarioSistema;
+            if(usuarioSistema != undefined){
+                if(usuarioSistema.senha === action.payload.senha){
+                    state[0].currentUser = usuarioSistema;
+                }
             }
+            
         },
         logoutUser: (state, action) => {
             state[0].currentUser = null;

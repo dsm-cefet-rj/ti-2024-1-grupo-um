@@ -29,7 +29,7 @@ function Personal() {
   return (
     <div className="card-personal">
       <Navbar/>
-        <div className="card mt-4 m-auto mb-4" id="card-block-personal">
+        <div className="mt-4 m-auto mb-4" id="card-block-personal">
           <a href="page2.html" className="back-button">
             <span className="seta"><i className="fas fa-arrow-left"></i></span>
           </a>
