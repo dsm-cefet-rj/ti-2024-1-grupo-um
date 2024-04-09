@@ -1,24 +1,25 @@
 
 import { Footer, FooterBrand, FooterCopyright, FooterDivider, FooterLink, FooterLinkGroup } from "flowbite-react";
-import logo from "./logo.png";
+import logo from "../../images/logo.png";
 import "./Footer.css"
 function FooterComp() {
   return (
     <Footer container>
       <div className="w-full text-center">
-        <div className="w-full justify-between sm:flex sm:justify-between">
+        <div className="w-full justify-between sm:flex sm:justify-between"id="footer-infos">
           <FooterBrand 
             href="#"
-            src={null}
+            src={logo}
             alt="CEFIT Logo"
-            name="CEFIT"
+            
             className="logo"
+            
           />
           <FooterLinkGroup>
-            <FooterLink  style={{ color: 'white' }} href="#">About</FooterLink>
-            <FooterLink  style={{ color: 'white' }} href="#">Privacy Policy</FooterLink>
-            <FooterLink  style={{ color: 'white' }} href="#">Licensing</FooterLink>
-            <FooterLink  style={{ color: 'white' }} href="#">Contact</FooterLink>
+            <FooterLink  style={{ color: 'white' }} id="footer-link" href="#">About</FooterLink>
+            <FooterLink  style={{ color: 'white' }} id="footer-link" href="#">Privacy Policy</FooterLink>
+            <FooterLink  style={{ color: 'white' }} id="footer-link" href="#">Licensing</FooterLink>
+            <FooterLink  style={{ color: 'white' }} id="footer-link" href="#">Contact</FooterLink>
           </FooterLinkGroup>
         </div>
         <FooterDivider />

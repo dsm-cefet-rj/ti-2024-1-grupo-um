@@ -1,17 +1,23 @@
-import star from "./star.png";
-import user from "./user.png";
-import "./PersonalCard.css"
+// import imagens
+import star  from "../../images/star.png";
+import user  from "../../images/user.png";
 
-function PersonalCard({ nome, descricao, rating } ){
+// import CSS
+import "./PersonalCard.css";
+
+// react router dom
+import { Link } from "react-router-dom";
+
+function PersonalCard({ nome, descricao, rating, id, image = user }){
     const estrelas = [];
     for (let i = 0; i < rating; i++) {
         estrelas.push(<img key={i} className="imagem-estrela" src={star} alt="imagem estrela"/>);
     }
 
     return (
-        <a className="card" id="card-personal" href="personal.html">
-            <img className="card-img-top m-auto" src={user} alt="Imagem de capa do card"/>
-            <div className="card-body">
+        <Link className="card" id="card-personal" to={`/personal/${id}`}>
+            <img className="card-img-top m-auto mt-2" src={image} alt="Imagem de capa do card"/>
+            <div className="card-body text-center">
                 <h5 className="card-title">{nome}</h5>
                 <p className="card-text">{descricao}</p>
             </div>
@@ -20,7 +26,7 @@ function PersonalCard({ nome, descricao, rating } ){
                         {estrelas}
                 </div>
             </div>
-        </a>
+        </Link>
     );
 }
 

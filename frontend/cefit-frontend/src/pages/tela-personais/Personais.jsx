@@ -1,33 +1,18 @@
+//Components
 import Navbar from "../../components/Navbar/Navbar";
 import PersonalCard from "../../components/PersonalCard/PersonalCard"
+import FooterComp from "../../components/Footer/Footer";
+
+//css
 import "./Personais.css";
+
+//redux
+import { useSelector } from "react-redux";
 
 
 function Personais(){
-
-    const Personais = [
-        {
-            nome: "Luiz",
-            descricao: "Especialista em finalização",
-            rating: 4
-        },
-        {
-            nome: "Arnold Schwarzenegger",
-            descricao: "3x Olympia Winner",
-            rating: 1
-        },
-        {
-            nome: "Glauco",
-            descricao: "Treinador de alta performance",
-            rating: 5
-        },
-        {
-            nome:"Vinicius",
-            descricao:"Terror do kamasutra",
-            rating: 6
-        }
-    ]
-
+    const Personais = useSelector(rootReducer => rootReducer.personais);
+    
     return(
         <>
         <Navbar/>
@@ -40,20 +25,65 @@ function Personais(){
             </div>
             <div className="search-bar">
                 <input type="text" placeholder="Buscar personal"/>
-                <button><i className="fas fa-search"></i></button>
+                <button className="btn btn-primary botao-busca"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                </button>
             </div>
             <div className="card-deck" id="card-deck-personal">
-                <PersonalCard {...Personais[0]}/>
-                <PersonalCard {...Personais[1]}/>
-                <PersonalCard {...Personais[2]}/>
-                <PersonalCard {...Personais[3]}/>
+                {Personais.map((personal, index)=>
+                    <PersonalCard {...personal}/>
+                )}
             </div>
         </div>
+        <FooterComp />
         </>
     )
 }
 
 export default Personais
+// const Personais = [
+    //     {
+    //         nome: "Luiz",
+    //         descricao: "Especialista em finalização",
+    //         rating: 4
+    //     },
+    //     {
+    //         nome: "Arnold Schwarzenegger",
+    //         descricao: "3x Olympia Winner",
+    //         rating: 1
+    //     },
+    //     {
+    //         nome: "Glauco Amorim",
+    //         descricao: "Treinador de alta performance",
+    //         rating: 5
+    //     },
+    //     {
+    //         nome:"Vinicius",
+    //         descricao:"Treinador",
+    //         rating: 6
+    //     },
+    //     {
+    //         nome:"Chico",
+    //         descricao:"Aquariano Nato",
+    //         rating: 6
+    //     },
+    //     {
+    //         nome:"Caio",
+    //         descricao:"Treinador de crossfit",
+    //         rating: 3
+    //     },
+    //     {
+    //         nome:"Diogo Mendonça",
+    //         descricao:"Treinador de Boxe",
+    //         rating: 3
+    //     },
+    //     {
+    //         nome:"Kele Bellorze",
+    //         descricao:"Treinadora de Artes Marciais",
+    //         rating: 3
+    //     },
+    // ]
 {/* <a className="card" href="personal.html">
 <img className="card-img-top" src="images/user.png" alt="Imagem de capa do card"/>
 <div className="card-body">

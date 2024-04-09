@@ -1,10 +1,14 @@
-import sup from "./img-superiores.jpg";
-import inf from "./img-inferiores.png";
-import cardio from "./img-cardio.jpg";
-import natacao from "./img-natacao.avif";
-import crossfit from "./img-crossfit.jpg";
-import padrao from "./img-default.avif";
+//import images
+import sup from "./images/img-superiores.jpg";
+import inf from "./images/img-inferiores.png";
+import cardio from "./images/img-cardio.jpg";
+import natacao from "./images/img-natacao.avif";
+import crossfit from "./images/img-crossfit.jpg";
+import padrao from "./images/img-default.avif";
 import "./TreinoCard.css"
+
+//react imports
+import { Link } from "react-router-dom";
 
 function TreinoCard({title, description, type}){
     const Image = () => {
@@ -26,13 +30,13 @@ function TreinoCard({title, description, type}){
     return (
         <div className="row"> 
             <div className="col md-4"> 
-                <a href="treino.html" className="card-link">
-                    <div className="card card-block">
+            <Link to="/treino" className="card-link">
+                    <div className="card card-block" id="card-fit">
                         <h1 className="card-title mt-3 mb-3">{title}</h1>
                         <Image/>
                         <h2 className="card-subtitle mt-3 mb-3">{description}</h2>
                     </div>
-                </a>
+            </Link>
             </div>
         </div>
     );

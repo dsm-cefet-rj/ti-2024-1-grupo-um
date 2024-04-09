@@ -241,15 +241,19 @@ body {
     transform: scale(1.03);
 }
 
-.card-deck-personal .card-body,
-.card-deck .card-footer {
-    pointer-events: none;
-}
-
 .navbar{
     margin-bottom: 10px;
 }
 
 .card-img-top{
     pointer-events: none;
+}
+
+#card-block-personal{
+
+    pointer-events: none;
+}
+
+.btn-primary{
+    pointer-events: auto;
 }

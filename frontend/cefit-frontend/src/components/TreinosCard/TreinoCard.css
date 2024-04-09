@@ -15,20 +15,20 @@ body {
     align-items: center; 
   }
   .treino-image{
-      height:150px;
+      height:170px;
       width:100%;
       
     }
     
-    #card{
-      transition:0.5s;
+    
+   #card-fit{
+    transition:0.5s;
       cursor:pointer;
-      height: 260px;
+      height: 300px;
       display: block;
-      width: 240px;
+      width: 280px;
       margin: auto;
-    }
-   
+   }
     .card-subtitle{
       font-size: 20px;
       transition: 1s;
@@ -39,6 +39,7 @@ body {
     }
     .card-link{
       text-decoration: none;
+      
     }
     .card-title{  
       font-size: 25px;
@@ -46,7 +47,7 @@ body {
       cursor:pointer;
       text-align: center;
       color: #3166d1;
-      text-decoration: none;
+      
     }
     .card-title i{  
       font-size:15px;

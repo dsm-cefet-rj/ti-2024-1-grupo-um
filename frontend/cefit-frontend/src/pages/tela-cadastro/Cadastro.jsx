@@ -1,11 +1,20 @@
+
+//components
 import InputComponent from "../../components/InputComponent/InputComponent";
 import CefetImage from "../../components/CefetImage/CefetImage";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
-// import Navbar from "../../components/Navbar/Navbar";
+
+//import react stuff
 import { useState } from "react";
-import "./../pages.css";
 import { Link, useNavigate } from "react-router-dom";
-// import { createHash } from "crypto";
+
+//import css
+import "./../pages.css";
+
+//import redux
+import { useDispatch } from "react-redux";
+import { addUser } from "../../redux/user/slice";
+
 
 function Cadastro(){
 
@@ -23,22 +32,19 @@ function Cadastro(){
         CPF: CPF
     }
 
+
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
     const handleSingUp=(e)=>{
         e.preventDefault();
-        if(!password | !nome | !email | !CPF | !birth){
-            console.log("alerta");
-        }
-        const cadastroString = cadastro.nome + ";" + cadastro.senha + ";" + cadastro.email + ";" + cadastro.nascimento + ";" + cadastro.CPF;
-        localStorage.setItem(cadastro.email, cadastroString);
-        alert("Usuario cadastrado com sucesso!");
-        navigate("/");
+        dispatch(addUser({...cadastro, treinos:[]}));
+        navigate("/login");
     }
 
     return(
         <div className="bg-image cefit-background-img" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
-            {/* <Navbar/> */}
                 <div className="login-container rounded-5 p-3">
                     <CefetImage/>
                     <form className="formulario-cadastro" onSubmit={handleSingUp}>
@@ -49,7 +55,7 @@ function Cadastro(){
                         <InputComponent classes="" id="Password" text="Senha" type="password" placeholder="Insira sua senha aqui"value={password} onChange={(e) => [setPassword(e.target.value)]}/>
                         <SubmitButton nomeButton="Cadastrar" />
                         <div className="cadastro-texto mt-3">
-                            Possui conta?<Link to="/">Faça o seu Login!</Link>
+                            Possui conta?<Link to="/login">Faça o seu Login!</Link>
                         </div>
                     </form>
                 </div>
