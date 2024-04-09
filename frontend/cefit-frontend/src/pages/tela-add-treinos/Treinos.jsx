@@ -4,12 +4,12 @@ import FormCreator from "../../components/FormCreator/formCreator";
 import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addExercise } from "../../redux/exercises/slice";
-import { addTraining } from "../../redux/trainings/slice"
-
+import { addTraining } from "../../redux/user/slice";
+import { useNavigate } from "react-router-dom";
 
 function AddTreinos() {
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const handleAddExercise = () => {
         dispatch(
             addExercise(
@@ -25,6 +25,7 @@ function AddTreinos() {
         dispatch(
             addTraining(info)
         )
+        navigate("/areaFIT");
     }
 
     const formFields = [

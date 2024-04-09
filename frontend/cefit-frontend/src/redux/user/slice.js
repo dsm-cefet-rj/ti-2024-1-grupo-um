@@ -23,10 +23,13 @@ const userSlice = createSlice({
         },
         logoutUser: (state, action) => {
             state[0].currentUser = null;
+        },
+        addTraining: (state, action) => {
+            state[0].currentUser.treinos.push(action.payload);
         }
     }
 })
 
-export const { addUser, loginUser, logoutUser } = userSlice.actions;
+export const { addUser, loginUser, logoutUser, addTraining } = userSlice.actions;
 
 export default userSlice.reducer;
