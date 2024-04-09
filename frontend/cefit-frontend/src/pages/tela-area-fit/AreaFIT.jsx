@@ -14,10 +14,13 @@ import { useSelector } from "react-redux";
 
 function AreaFIT() {
 
-  const id = useParams();
+  // const id = useParams();
   const user =  useSelector(rootReducer => rootReducer.user);
-  const currentUserNavbar  = user[0].currentUser;
-  const treinosUser = currentUserNavbar.treinos;
+  const currentUser  = user[0].currentUser;
+  let treinosUser;
+  if(currentUser){
+  treinosUser = currentUser.treinos;
+  }
 
   const Treinos = [
     {
@@ -56,7 +59,7 @@ function AreaFIT() {
       </div>
     <div className="container mt-2" id="container-card">
         <div className="row justify-content-center"id="row-card">
-          {id ? (
+          {currentUser ? (
             treinosUser.map((treino, index) => (
               <div key={index} className="col mb-3">
                 <TreinoCard
