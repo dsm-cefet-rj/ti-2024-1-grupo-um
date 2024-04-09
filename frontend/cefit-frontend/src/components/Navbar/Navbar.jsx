@@ -11,6 +11,9 @@ function Navbar(){
     const user =  useSelector(rootReducer => rootReducer.user);
     const dispatch = useDispatch();
     const currentUserNavbar  = user[0].currentUser;
+    if(currentUserNavbar != null){
+        var id = currentUserNavbar.id;
+    }
     function Logout(){
         dispatch(logoutUser());
     }
@@ -32,9 +35,17 @@ function Navbar(){
                                     <li className="nav-item">
                                         <Link className="nav-link mx-lg-2" aria-current="page" to={"/"}>Home</Link>
                                     </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link mx-lg-2" aria-current="page" to={"/areaFIT"}>Área FIT</Link>
-                                    </li>
+                                    {id ?(
+                                        <li className="nav-item">
+                                            <Link className="nav-link mx-lg-2" aria-current="page" to={`/areaFIT/${id}`}>Área FIT</Link>
+                                        </li>
+                                    ):(
+                                        <li className="nav-item">
+                                            <Link className="nav-link mx-lg-2" aria-current="page" to={`/areaFIT`}>Área FIT</Link>
+                                        </li>
+                                    )
+
+                                    }
                                     <li className="nav-item">
                                         <Link className="nav-link mx-lg-2" aria-current="page" to={"/personais"}>Personais</Link>
                                     </li>

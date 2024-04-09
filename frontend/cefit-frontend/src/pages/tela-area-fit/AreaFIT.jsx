@@ -1,11 +1,24 @@
+//componentes
 import Navbar from "../../components/Navbar/Navbar";
 import TreinoCard from "../../components/TreinosCard/TreinosCard";
 import FooterComp from "../../components/Footer/Footer";
 
+//css
 import "./AreaFIT.css";
-import { Link } from "react-router-dom";
+//react
+import { Link, useParams } from "react-router-dom";
+//redux
+import { useSelector } from "react-redux";
+
+
 
 function AreaFIT() {
+
+  const id = useParams();
+  const user =  useSelector(rootReducer => rootReducer.user);
+  const currentUserNavbar  = user[0].currentUser;
+  const treinosUser = currentUserNavbar.treinos;
+
   const Treinos = [
     {
       title: "Treino A",
@@ -43,15 +56,27 @@ function AreaFIT() {
       </div>
     <div className="container mt-2" id="container-card">
         <div className="row justify-content-center"id="row-card">
-          {Treinos.map((treino, index) => (
-            <div key={index} className="col mb-3">
-              <TreinoCard
-                title={treino.title}
-                description={treino.description}
-                type={treino.type}
-              />
-            </div>
-          ))} 
+          {id ? (
+            treinosUser.map((treino, index) => (
+              <div key={index} className="col mb-3">
+                <TreinoCard
+                  title={treino.title}
+                  description={treino.description}
+                  type={treino.type}
+                />
+              </div>)
+              )):(
+                Treinos.map((treino, index) => (
+                  <div key={index} className="col mb-3">
+                    <TreinoCard
+                      title={treino.title}
+                      description={treino.description}
+                      type={treino.type}
+                    />
+                  </div>)
+                  )
+                )  
+          }
         </div>
     </div>
 

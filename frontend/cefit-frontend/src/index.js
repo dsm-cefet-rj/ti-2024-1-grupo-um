@@ -50,6 +50,10 @@ const router = createBrowserRouter([
         element: <AreaFIT/>
       },
       {
+        path: "areaFIT/:id",
+        element: <AreaFIT/>
+      },
+      {
         path: "personal/:id",
         element: <Personal/>
       },

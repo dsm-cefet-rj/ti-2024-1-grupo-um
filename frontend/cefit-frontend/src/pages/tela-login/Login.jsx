@@ -19,19 +19,18 @@ function Login(){
     const [senha, setSenha] = useState();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    let user = useSelector(rootReducer => rootReducer.user);
+    const user = useSelector(rootReducer => rootReducer.user);
     
     
     
     function Autentica(e){
         e.preventDefault();
         dispatch(loginUser({email, senha})); 
-        user = user.filter((user) => user.email === email)[0];
-        console.log(user);
-        if(user == undefined){
+        const userFiltrado = user.filter((user) => user.email === email)[0];
+        if(userFiltrado == undefined){
             alert("usuario invalido");
         }else{
-            if(user.senha === senha){
+            if(userFiltrado.senha === senha){
                 alert("autenticado");
                 navigate("/personais");
             }else{

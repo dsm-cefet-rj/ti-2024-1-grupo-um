@@ -10,7 +10,7 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         addUser: (state, action) => {
-            state.push(action.payload);
+            state.push({...action.payload, id: state.length});
         },
         loginUser: (state, action) => {
             const usuarioSistema = state.filter((user) => user.email === action.payload.email)[0];
