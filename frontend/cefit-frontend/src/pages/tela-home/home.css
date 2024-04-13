@@ -1,0 +1,8 @@
+.my-3 a{
+    text-decoration: none!important;
+    color: #3166d1!important;
+    font-size:35px; 
+}
+.my-3:hover{
+    color:#4d80e7;
+}

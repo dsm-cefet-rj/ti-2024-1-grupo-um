@@ -34,7 +34,7 @@ const constants = {
                 {
                     id: "frequency-option1",
                     value: "0",
-                    text: "Nada",
+                    text: "Nenhuma",
                 },
                 {
                     id: "frequency-option2",

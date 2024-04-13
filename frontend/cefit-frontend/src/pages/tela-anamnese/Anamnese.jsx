@@ -1,6 +1,7 @@
 import Navbar from "../../components/Navbar/Navbar";
 import FormCreator from "../../components/FormCreator/formCreator";
 import constants from "./constants";
+import FooterComp from "../../components/Footer/Footer";
 import './style.css'
 
 function Anamnese(){
@@ -14,6 +15,7 @@ function Anamnese(){
                     <FormCreator fields={constants.formFields} buttonText="Salvar" />
                 </div>
             </div>
+            <FooterComp />
         </>
     )
 }
