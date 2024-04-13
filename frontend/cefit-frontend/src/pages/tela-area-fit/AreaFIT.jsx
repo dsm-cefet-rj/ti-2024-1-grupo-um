@@ -2,13 +2,14 @@
 import Navbar from "../../components/Navbar/Navbar";
 import TreinoCard from "../../components/TreinosCard/TreinosCard";
 import FooterComp from "../../components/Footer/Footer";
-
+import NotLoggedInAreaFIT from "./NotLoggedAF";
 //css
 import "./AreaFIT.css";
 //react
 import { Link, useParams } from "react-router-dom";
 //redux
 import { useSelector } from "react-redux";
+
 
 
 
@@ -20,6 +21,9 @@ function AreaFIT() {
   let treinosUser;
   if(currentUser){
   treinosUser = currentUser.treinos;
+  }
+  if (!currentUser) {
+    return <NotLoggedInAreaFIT />;
   }
 
   const Treinos = [
