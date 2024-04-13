@@ -8,6 +8,7 @@
     border-radius: 15px;
     height: 100px;
     transition: 0.5s;
+    cursor: pointer;
   }
 .exercicio-card:hover{
     transform: scale(1);
