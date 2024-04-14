@@ -3,7 +3,6 @@ import FooterComp from "../../components/Footer/Footer";
 import FormCreator from "../../components/FormCreator/formCreator";
 import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addExercise } from "../../redux/exercises/slice";
 import { addTraining } from "../../redux/user/slice";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
@@ -104,21 +103,18 @@ function AddTreinos() {
     return (
         <>
             <Navbar />
-           
             <div className="container form-card p-5">
                 <div className="container mx-4 cefit-form">
                     <h2>Adicionar Novo Treino</h2>
                     <FormCreator fields={formFields} buttonText={"Salvar Treino"} buttonAction={handleSubmitForm}/>
-                    
-            
                 </div>
                 {showModal && (
-                <Modal
-                    onCloseButtonClick={() => {
-                     setShowModal(false);
-            }}
-                />
-            )}
+                    <Modal
+                        setModal={() => {
+                            setShowModal();
+                        }}
+                    />
+                )}
             </div>
             <FooterComp />
         </>

@@ -3,19 +3,17 @@ import "./modal.css";
 import FormCreator from "../../components/FormCreator/formCreator";
 import { useDispatch, useSelector } from "react-redux";
 import { addExercise } from "../../redux/exercises/slice";
-import { useNavigate } from "react-router-dom";
-
-
 
 function Modal(props) {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+
+    const { setModal } = props;
 
     const handleSubmitForm = (info) => {
         dispatch(
             addExercise(info)
         )
-        navigate("/add-treinos");
+        setModal(false);
     }
     const handleAddExercise = () => {
         dispatch(
@@ -31,7 +29,7 @@ function Modal(props) {
         {
             component: "input",
             classes: "",
-            id: "title",
+            id: "name",
             type: "text",
             text: <b>Nome do Exercício:</b>,
             placeholder: "Digite o nome do exercício",
@@ -39,7 +37,7 @@ function Modal(props) {
         {
             component: "input",
             classes: "",
-            id: "description",
+            id: "series",
             type: "text",
             text: <b>Séries:</b>,
             placeholder: "Digite quantidade de séries",
@@ -47,12 +45,11 @@ function Modal(props) {
         {
             component: "input",
             classes: "",
-            id: "description",
+            id: "reps",
             type: "text",
             text: <b>Repetições:</b>,
             placeholder: "Digite quantidade de repetições",
         },
-    
         {
             component: "textArea",
             classes: "",
@@ -62,14 +59,13 @@ function Modal(props) {
             placeholder: "Exemplo: ajuste do banco, pausa, descanso",
         }
     ]
-    const { onCloseButtonClick } = props;
     return (
         <>
             <div className="modal-overlay">
                 <div className="modal" id="modal">
                     <h2>Adicionar novo exercício</h2>
                     <FormCreator fields={formFields} buttonText={"Salvar Exercício"} buttonAction={handleSubmitForm}/>
-                    <span className="modal-close" id="close-modal" onClick={onCloseButtonClick}>
+                    <span className="modal-close" id="close-modal" onClick={() => {setModal(false)}}>
                     &#10005; {/* HTML code for a multiplication sign */}
                     </span>
                 
