@@ -1,8 +1,37 @@
-.my-3 a{
+.info-title{
+    
+    font-size:35px; 
+    position: relative;
+    display: inline-block;
+}
+.info-title a{
     text-decoration: none!important;
     color: #3166d1!important;
-    font-size:35px; 
 }
-.my-3:hover{
-    color:#4d80e7;
+
+#services{
+    margin-top: -35px;
+
+}
+.section-subheading{
+    font-size: 19px;
+    
+}
+.areafit-icon, .personal-icon{
+    width: 120px;
+    height: 120px;
+}
+.info-title::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background-color: #3166d1;
+    transform: scaleX(0); 
+    transition: transform 0.3s ease;
+}
+.info-title:hover::after{
+    transform: scaleX(1);
 }

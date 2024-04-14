@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import "./home.css";
 import FooterComp from "../../components/Footer/Footer";
+import "./trainer.png";
+import areafit_icon from "./areafit_icon.png";
+import personal_icon from "./trainer.png"
 
 function Home(){
     return(
@@ -44,16 +47,18 @@ function Home(){
         <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="display-4">Serviços</h2>
-                    <h3 class="section-subheading text-muted">Conheça o CEFIT.</h3>
+                    <h2 class="display-4" id = "services">Serviços</h2>
+                    <h3 class="section-subheading text-muted">Conheça o CEFIT</h3>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-6">
-                        <h4 class="my-3"><Link to="/areaFIT"> Área FIT</Link></h4>
+                        <p><img className="areafit-icon" src={areafit_icon} alt="areafit-icon"/></p>
+                        <h4 class="info-title"><Link to="/areaFIT"> Área FIT</Link></h4>
                         <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
                     </div>
                     <div class="col-md-6">
-                        <h4 class="my-3"><Link to="/personais">Personais</Link></h4>
+                        <p><img className="personal-icon" src={personal_icon} alt="personal-icon"/></p>
+                        <h4 class="info-title"><Link to="/personais">Personais</Link></h4>
                         <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
                     </div>
                     
