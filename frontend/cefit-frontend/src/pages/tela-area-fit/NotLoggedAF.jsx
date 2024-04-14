@@ -37,7 +37,7 @@ function NotLoggedInAreaFIT(){
                         <p className="line"></p>
                         <p data-aos="fade-up">Seu local ideal dedicado à saúde e ao condicionamento físico, onde os usuários podem montar seus próprios treinos personalizados de acordo com suas metas e preferências, além de visualizar treinos elaborados por profissionais. Com uma variedade de exercícios e opções de personalização, os usuários têm a liberdade de criar rotinas adaptadas às suas necessidades individuais, promovendo um estilo de vida ativo e saudável.</p>
                         {/* <a data-aos="fade-up" data-aos-delay="200" href="#get-started" className="btn-get-started">Começar</a> */}
-                        <Link data-aos="fade-up" data-aos-delay="200" to={"cadastro"} className="btn-get-started">Começar</Link>
+                        <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Começar</Link>
                         </div>
                     </div>
                 </div>
