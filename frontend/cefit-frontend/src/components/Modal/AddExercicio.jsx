@@ -1,7 +1,7 @@
 
 import "./modal.css";
 import FormCreator from "../../components/FormCreator/formCreator";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addExercise } from "../../redux/exercises/slice";
 
 function Modal(props) {
@@ -14,16 +14,6 @@ function Modal(props) {
             addExercise(info)
         )
         setModal(false);
-    }
-    const handleAddExercise = () => {
-        dispatch(
-            addExercise(
-                {
-                    name: "Exercício extra",
-                    description: "Descrição"
-                }
-            )
-        )
     }
     const formFields = [
         {
