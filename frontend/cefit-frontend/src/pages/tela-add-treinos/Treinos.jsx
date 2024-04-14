@@ -6,20 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { addExercise } from "../../redux/exercises/slice";
 import { addTraining } from "../../redux/user/slice";
 import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import Modal from "../../components/Modal/AddExercicio";
+
 
 function AddTreinos() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const handleAddExercise = () => {
-        dispatch(
-            addExercise(
-                {
-                    name: "Exercício extra",
-                    description: "Descrição"
-                }
-            )
-        )
-    }
+    const [showModal, setShowModal] = useState(false);
+
 
     const handleSubmitForm = (info) => {
         dispatch(
@@ -27,6 +22,10 @@ function AddTreinos() {
         )
         navigate("/areaFIT");
     }
+
+    const openModal = () => {
+        setShowModal(true);
+    };
 
     const formFields = [
         {
@@ -84,22 +83,7 @@ function AddTreinos() {
                 },
             ],
         },
-        {
-            component: "input",
-            classes: "",
-            id: "dataInicio",
-            type: "date",
-            text: <b>Data de Início:</b>,
-            placeholder: "",
-        },
-        {
-            component: "input",
-            classes: "",
-            id: "dataFim",
-            type: "date",
-            text: <b>Data de Fim:</b>,
-            placeholder: "",
-        },
+    
         {
             component: "textArea",
             classes: "",
@@ -113,18 +97,28 @@ function AddTreinos() {
             items: useSelector(rootReducer => rootReducer.exercises),
             buttonText: "+ Exercício",
             listTitle: "Exercícios",
-            buttonAction: handleAddExercise,
+            buttonAction: openModal, // Alterado para abrir o modal
         }
     ]
 
     return (
         <>
             <Navbar />
+           
             <div className="container form-card p-5">
                 <div className="container mx-4 cefit-form">
                     <h2>Adicionar Novo Treino</h2>
                     <FormCreator fields={formFields} buttonText={"Salvar Treino"} buttonAction={handleSubmitForm}/>
+                    
+            
                 </div>
+                {showModal && (
+                <Modal
+                    onCloseButtonClick={() => {
+                     setShowModal(false);
+            }}
+                />
+            )}
             </div>
             <FooterComp />
         </>
