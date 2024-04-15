@@ -16,14 +16,18 @@ function FooterComp() {
             
           />
           <FooterLinkGroup>
-            <FooterLink  style={{ color: 'white' }} id="footer-link" href="#">About</FooterLink>
-            <FooterLink  style={{ color: 'white' }} id="footer-link" href="#">Privacy Policy</FooterLink>
-            <FooterLink  style={{ color: 'white' }} id="footer-link" href="#">Licensing</FooterLink>
-            <FooterLink  style={{ color: 'white' }} id="footer-link" href="#">Contact</FooterLink>
+            <FooterLink  style={{ color: 'white' }} id="footer-link" href="#">Sobre</FooterLink>
+            <FooterLink  style={{ color: 'white' }} id="footer-link" href="https://github.com/dsm-cefet-rj/ti-2024-1-grupo-um">Github</FooterLink>
           </FooterLinkGroup>
         </div>
         <FooterDivider />
-        <FooterCopyright style={{ color: 'white' }} href="#" by =" CEFIT™ " year={2024} />
+        <FooterLinkGroup>
+          <FooterLink  style={{ color: 'white' }} id="footer-link" href="https://github.com/accoelhos">Ana Carolina</FooterLink>
+          <FooterLink  style={{ color: 'white' }} id="footer-link" href="https://github.com/caiosantosdev">Caio Santos</FooterLink>
+          <FooterLink  style={{ color: 'white' }} id="footer-link" href="https://github.com/luizhgdantas">Luiz Dantas</FooterLink>
+          <FooterLink  style={{ color: 'white' }} id="footer-link" href="https://github.com/niviciuzdrm">Vinicius Drumond</FooterLink>
+        </FooterLinkGroup>
+        <FooterCopyright style={{ color: 'white' }} href="#" by ="" year={2024} />
       </div>
     </Footer>
   );
