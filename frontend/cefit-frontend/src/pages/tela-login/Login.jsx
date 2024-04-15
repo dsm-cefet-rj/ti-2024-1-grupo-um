@@ -1,10 +1,9 @@
 //import components
 import InputComponent from "../../components/InputComponent/InputComponent";
-import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import CefetImage from "../../components/CefetImage/CefetImage";
 
 //import react stuff
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 //css 
@@ -12,7 +11,7 @@ import "./../pages.css";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../redux/user/slice";
+import { loginUser, fetchUsers } from "../../redux/user/slice";
 
 function Login(){
     const [email, setEmail] = useState();
@@ -20,8 +19,10 @@ function Login(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector(rootReducer => rootReducer.user);
-    
-    
+
+    useEffect(() => {
+        dispatch(fetchUsers());
+    }, [dispatch]);
     
     function Autentica(e){
         e.preventDefault();
