@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import TreinoCard from "../../components/TreinosCard/TreinosCard";
+import "./AreaFIT.css";
+import imgfit from "./img-fit.png";
+import FooterComp from "../../components/Footer/Footer";
 
 function NotLoggedInAreaFIT(){
     const Treinos = [
@@ -61,8 +64,47 @@ function NotLoggedInAreaFIT(){
                 </a>
             </div>
         </section>
-        
-        <h1 className="display-4">Exemplos</h1>
+         {/*servicos areafit*/}
+         <section class="page-section" id="services">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="display-4" id = "services-fit">Sua vida FIT em um só lugar</h2>
+                    <h3 class="section-subheading text-muted">Conheça a Área FIT</h3>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        
+                        <h3 class="info-title-fit">Monte seus treinos</h3>
+                        <div className="beneficios">
+                            <h5 class="info-title-fit">Empoderamento</h5>
+                            <p class="text-muted">Ao assumir o controle do seu treinamento, você se torna mais autoconfiante e empoderado em relação à sua saúde e condicionamento físico.</p>
+                            <h5 class="info-title-fit">Flexibilidade</h5>
+                            <p class="text-muted">Montar seus próprios treinos oferece flexibilidade para ajustar o programa conforme necessário, levando em consideração compromissos pessoais, mudanças de horário e objetivos em evolução.</p>
+
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <p><img className="areafit-img" src={imgfit} alt="areafit-img"/></p>
+                        <h3 class="info-title-fit">Comece sua jornada FIT agora mesmo!</h3>
+                        <p class="text-muted">Faça o seu cadastro e aproveite a Área FIT</p>
+                        <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Começar</Link>
+                    </div>
+                    <div class="col-md-3">
+                        
+                        <h3 class="info-title-fit">Visualize seus treinos montados pelo personal</h3>
+                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+      
+
+
+
+
+       {/* <h1 className="display-4">Exemplos</h1>
         <div className="container mt-2" id="container-card">
         <div className="row justify-content-center"id="row-card">
           
@@ -78,9 +120,10 @@ function NotLoggedInAreaFIT(){
                 }
           
         </div>
-    </div>
+            </div>*/}
+            <FooterComp />
         </>
-    )
+    );
 }
 
 export default NotLoggedInAreaFIT;
