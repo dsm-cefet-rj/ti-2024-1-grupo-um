@@ -16,9 +16,7 @@ function AddTreinos() {
 
 
     const handleSubmitForm = (info) => {
-        dispatch(
-            addTraining(info)
-        )
+        dispatch(addTraining(info));
         navigate("/areaFIT");
     }
 
