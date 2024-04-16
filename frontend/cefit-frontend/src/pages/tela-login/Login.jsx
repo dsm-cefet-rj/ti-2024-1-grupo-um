@@ -3,43 +3,51 @@ import InputComponent from "../../components/InputComponent/InputComponent";
 import CefetImage from "../../components/CefetImage/CefetImage";
 
 //import react stuff
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
+//import axios
+import axios from "axios";
 
 //css 
 import "./../pages.css";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, fetchUsers } from "../../redux/user/slice";
+import { addLoggedUser } from "../../redux/user/slice";
 
 function Login(){
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user = useSelector(rootReducer => rootReducer.user);
-
-    useEffect(() => {
-        dispatch(fetchUsers());
-    }, [dispatch]);
     
-    function Autentica(e){
+    async function Autentica (e){
         e.preventDefault();
-        dispatch(loginUser({email, senha})); 
-        const userFiltrado = user.filter((user) => user.email === email)[0];
-        if(userFiltrado == undefined){
-            alert("usuario invalido");
-        }else{
-            if(userFiltrado.senha === senha){
+        const response = await axios.get("http://localhost:3004/users");
+        const users = response.data;
+
+        for (let user of users){
+            if(user.email === email && user.senha === senha){
+                dispatch(addLoggedUser(user))
                 alert("autenticado");
                 navigate("/personais");
-            }else{
-                alert("usuario invalido");
+                return;
             }
         }
-        
-        
+        alert("usuario invalido");
+        // dispatch(loginUser({email, senha})); 
+        // const userFiltrado = user.filter((user) => user.email === email)[0];
+        // if(userFiltrado == undefined){
+        //     alert("usuario invalido");
+        // }else{
+        //     if(userFiltrado.senha === senha){
+        //         alert("autenticado");
+        //         navigate("/personais");
+        //     }else{
+        //         alert("usuario invalido");
+        //     }
+        // }
     }
 
     return(

@@ -15,6 +15,9 @@ import "./../pages.css";
 import { useDispatch } from "react-redux";
 import { addUser } from "../../redux/user/slice";
 
+//import gerador de id
+import { v4 as idGen } from "uuid";
+
 
 function Cadastro(){
 
@@ -29,7 +32,8 @@ function Cadastro(){
         senha: password,
         email: email,
         nascimento: birth,
-        CPF: CPF
+        CPF: CPF,
+        id: idGen()
     }
 
 
