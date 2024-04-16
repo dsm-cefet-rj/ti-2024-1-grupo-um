@@ -10,15 +10,12 @@ const exercisesSlice = createSlice({
     initialState,
     reducers: {
         addExercise: exercisesAdapter.addOne,
-        addTreinoId: (state, action) => {
-            const id = action.payload;
-            state = state.map((exercise) => {exercise, id});
-        }
+        
     }
 })
 
 
 
-export const { addExercise, addTreinoId } = exercisesSlice.actions;
+export const { addExercise, addFormId } = exercisesSlice.actions;
 
 export default exercisesSlice.reducer;

@@ -7,11 +7,11 @@ import { addExercise } from "../../redux/exercises/slice";
 function Modal(props) {
     const dispatch = useDispatch();
 
-    const { setModal } = props;
+    const { setModal, idForm } = props;
 
     const handleSubmitForm = (info) => {
         dispatch(
-            addExercise(info)
+            addExercise({info, idForm})
         )
         setModal(false);
     }
