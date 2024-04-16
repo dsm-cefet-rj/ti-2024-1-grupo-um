@@ -11,8 +11,6 @@ import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 
-
-
 function AreaFIT() {
 
   // const id = useParams();
@@ -70,6 +68,7 @@ function AreaFIT() {
                   title={treino.title}
                   description={treino.description}
                   type={treino.type}
+                  //id = {treino.id}
                 />
               </div>)
               )):(
@@ -79,6 +78,7 @@ function AreaFIT() {
                       title={treino.title}
                       description={treino.description}
                       type={treino.type}
+                      
                     />
                   </div>)
                   )

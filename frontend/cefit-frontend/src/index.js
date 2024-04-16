@@ -19,7 +19,7 @@ import Home from './pages/tela-home/Home.jsx';
 import Personal from './pages/tela-personal/Personal.jsx';
 import AddTreinos from './pages/tela-add-treinos/Treinos.jsx';
 import Treino from './pages/tela-treinos/Treinos.jsx';
-import NotLoggedInAreaFIT from './pages/tela-area-fit/NotLoggedAF.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -67,10 +67,7 @@ const router = createBrowserRouter([
         path: "treino",
         element: <Treino />
       },
-      {
-        path: "areaFITdefault",
-        element: <NotLoggedInAreaFIT />
-      }
+      
     ]
   }
 ]);

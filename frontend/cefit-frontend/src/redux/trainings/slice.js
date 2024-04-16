@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const trainingsAdapter = createEntityAdapter();
 
 // mudar o iniciar state para o getInitialState
-const initialState = trainingsAdapter.getEntityAdapter();
+const initialState = trainingsAdapter.getInitialState();
 
 const trainingsSlice = createSlice({
     name: "trainings",
