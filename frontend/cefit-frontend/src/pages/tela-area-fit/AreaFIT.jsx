@@ -6,7 +6,7 @@ import NotLoggedInAreaFIT from "./NotLoggedAF";
 //css
 import "./AreaFIT.css";
 //react
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 //redux
 import { useSelector } from "react-redux";
 

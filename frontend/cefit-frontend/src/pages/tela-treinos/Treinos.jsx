@@ -2,9 +2,12 @@ import Navbar from "../../components/Navbar/Navbar";
 import FooterComp from "../../components/Footer/Footer";
 import Exercicio from "../../components/Exercicio/Exercicios.jsx";
 import "./treinos.css";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 
 function Treino() {
+    const {id} = useParams();
     const exercicios = [
         {
             nome: "Esteira",

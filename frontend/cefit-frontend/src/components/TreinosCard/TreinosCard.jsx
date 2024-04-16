@@ -30,7 +30,8 @@ function TreinoCard({title, description, type, id}){
     return (
         <div className="row"> 
             <div className="col md-4"> 
-            <Link to="/treino" className="card-link">
+            {/** passando o id do treino para o card do treino/ */}
+            <Link to={`/treino/${id}`} className="card-link" >
                     <div className="card card-block" id="card-fit">
                         <h1 className="card-title mt-3 mb-3">{title}</h1>
                         <Image/>

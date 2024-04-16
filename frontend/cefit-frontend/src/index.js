@@ -64,7 +64,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "treino",
+        path: "treino",  //treino/:id
         element: <Treino />
       },
       
