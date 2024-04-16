@@ -1,7 +1,7 @@
 {
   "treino": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "Treino1",
       "descricao": "Primeiro treino",
       "exercicios": [
@@ -15,7 +15,7 @@
   ],
   "personais": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "Luiz",
       "idade": 20,
       "descricao": "Especialista em finalização",
@@ -26,7 +26,7 @@
       "image": "luizImage"
     },
     {
-      "id": 2,
+      "id": "2",
       "nome": "Arnold Schwarzenegger",
       "idade": 76,
       "descricao": "3x Olympia Winner",
@@ -37,7 +37,7 @@
       "image": "arnoldImage"
     },
     {
-      "id": 3,
+      "id": "3",
       "nome": "Glauco Amorim",
       "idade": 45,
       "descricao": "Treinador de alta performance",
@@ -48,7 +48,7 @@
       "image": "glaucoImage"
     },
     {
-      "id": 4,
+      "id": "4",
       "nome": "Vinicius",
       "idade": 20,
       "descricao": "Treinador",
@@ -59,7 +59,7 @@
       "image": "viniImage"
     },
     {
-      "id": 5,
+      "id": "5",
       "nome": "Chico",
       "idade": 25,
       "descricao": "Aquariano Nato",
@@ -85,10 +85,24 @@
     {
       "CPF": "31278940126",
       "email": "caio@1",
-      "id": 1,
+      "id": "1",
       "nascimento": "2024-04-02",
       "nome": "caio",
       "senha": "123",
+      "treinos": []
+    },
+    {
+      "id": "4694",
+      "email": "caio@1",
+      "senha": "123"
+    },
+    {
+      "id": "ef683b02-38ce-4ff1-97da-2105fba94aff",
+      "nome": "Vinicius",
+      "senha": "123123",
+      "email": "vinicius.p.drumond@gmail.com",
+      "nascimento": "2024-04-01",
+      "CPF": "16288772780",
       "treinos": []
     }
   ]
