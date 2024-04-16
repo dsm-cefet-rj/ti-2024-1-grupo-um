@@ -35,7 +35,7 @@ function Modal(props) {
         {
             component: "input",
             classes: "",
-            id: "reps",
+            id: "peso",
             type: "text",
             text: <b>Repetições:</b>,
             placeholder: "Digite quantidade de repetições",
@@ -58,7 +58,6 @@ function Modal(props) {
                     <span className="modal-close" id="close-modal" onClick={() => {setModal(false)}}>
                     &#10005; {/* HTML code for a multiplication sign */}
                     </span>
-                
                 </div>
                 
             </div>

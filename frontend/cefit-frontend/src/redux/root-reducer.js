@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
     exercises: exercisesReducer,
     trainings: trainingsReducer,
     personais: personaisReducer,
-    user: userReducer
+    user: userReducer,
     })
 
 export default rootReducer;

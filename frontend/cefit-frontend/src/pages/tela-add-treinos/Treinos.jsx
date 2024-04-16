@@ -3,7 +3,8 @@ import FooterComp from "../../components/Footer/Footer";
 import FormCreator from "../../components/FormCreator/formCreator";
 import "./styles.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addTraining } from "../../redux/user/slice";
+import { addTraining } from "../../redux/trainings/slice";
+import { addTreinoId } from "../../redux/exercises/slice";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import Modal from "../../components/Modal/AddExercicio";
@@ -14,11 +15,18 @@ function AddTreinos() {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
 
-
+    const Treino = useSelector((rootReducer) => rootReducer.trainings);
+    const id = Treino.id;
     const handleSubmitForm = (info) => {
         dispatch(addTraining(info));
+        dispatch(addTreinoId(id));
         navigate("/areaFIT");
     }
+
+    //dispatch criar treino.
+    //dispatch criar exercicios.
+    //dispatch salvar treino.
+    //dispatch linkar exercicios com id do treino.
 
     const openModal = () => {
         setShowModal(true);
