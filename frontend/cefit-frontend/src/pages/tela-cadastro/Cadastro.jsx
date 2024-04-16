@@ -43,7 +43,7 @@ function Cadastro(){
 
     const handleSingUp=(e)=>{
         e.preventDefault();
-        dispatch(addUser({...cadastro, treinos:[]}));
+        dispatch(addUser({...cadastro}));
         navigate("/login");
     }
 

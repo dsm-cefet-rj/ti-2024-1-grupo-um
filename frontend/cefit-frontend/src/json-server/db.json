@@ -1,4 +1,20 @@
 {
+  "exercicios": [
+    {
+      "id": "ee61",
+      "name": "dasd",
+      "series": "213",
+      "peso": "32",
+      "idForm": "cf0d1b95-d6ee-44ea-9196-5a50c079df7c"
+    },
+    {
+      "id": "2b80",
+      "name": "supino reto",
+      "series": "3x15",
+      "peso": "15kg",
+      "idForm": "e236d076-cf2d-4da8-bec1-0241b66d35e3"
+    }
+  ],
   "treino": [
     {
       "id": "1",
@@ -11,6 +27,20 @@
           "reps": 15
         }
       ]
+    },
+    {
+      "id": "520c75f7-e464-49ff-800e-a39779424d51",
+      "idUser": "1",
+      "title": "dasjkda",
+      "type": "superiores",
+      "infos": {}
+    },
+    {
+      "id": "e236d076-cf2d-4da8-bec1-0241b66d35e3",
+      "idUser": "1",
+      "title": "caio's",
+      "type": "superiores",
+      "infos": {}
     }
   ],
   "personais": [
@@ -103,6 +133,19 @@
       "email": "vinicius.p.drumond@gmail.com",
       "nascimento": "2024-04-01",
       "CPF": "16288772780",
+      "treinos": []
+    },
+    {
+      "id": "4302f00c-35d5-42f7-84a9-0450766db4ca",
+      "nome": "caio",
+      "senha": "123",
+      "email": "caio@1",
+      "treinos": []
+    },
+    {
+      "id": "1d19b573-867e-4b47-a932-7dd03a2c0c4e",
+      "senha": "123",
+      "email": "caio@1",
       "treinos": []
     }
   ]

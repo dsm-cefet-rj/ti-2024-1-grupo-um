@@ -15,6 +15,9 @@ import React, { useState } from 'react';
 //imports redux
 import { useDispatch, useSelector } from "react-redux";
 import { addTraining } from "../../redux/trainings/slice";
+import { addInfo, addTreino } from "../../redux/form-treino/slice";
+import { addExercicio, addExercise, clearExercises } from "../../redux/exercises/slice";
+import rootReducer from "../../redux/root-reducer";
 
 
 function AddTreinos() {
@@ -24,7 +27,8 @@ function AddTreinos() {
 
     // pegando o usuario
     const loggedUser = useSelector(rootReducer => rootReducer.user);
-
+    const exercicios = useSelector(rootReducer => rootReducer.exercises);
+    const form = useSelector(rootReducer => rootReducer.forms);
     // criando o forms com o id do usuario
     // const formId = idGen();
     // dispatch(addForms({idUser: loggedUser.user.id, id: formId, infos: {}}));
@@ -32,11 +36,14 @@ function AddTreinos() {
     const [showModal, setShowModal] = useState(false);
     
     const handleSubmitForm = (info) => {
-        dispatch(addTraining(info));
+        debugger;
+        dispatch(addInfo(info));
+        dispatch(addTreino(form));
+        exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
+        dispatch(clearExercises);
         navigate("/areaFIT");
     }
     
-    const form = useSelector(rootReducer => rootReducer.forms);
 
     // debugger;
 
