@@ -40,7 +40,7 @@ function AddTreinos() {
         dispatch(addInfo(info));
         dispatch(addTreino(form));
         exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
-        dispatch(clearExercises);
+        dispatch(clearExercises());
         navigate("/areaFIT");
     }
     

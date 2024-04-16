@@ -13,6 +13,20 @@
       "series": "3x15",
       "peso": "15kg",
       "idForm": "e236d076-cf2d-4da8-bec1-0241b66d35e3"
+    },
+    {
+      "id": "7c69",
+      "name": "leg press",
+      "series": "3x10 reps",
+      "peso": "60kg",
+      "idForm": "22632910-5af9-4a84-82a3-04733a14a586"
+    },
+    {
+      "id": "5dbf",
+      "name": "leg press",
+      "series": "3x10 reps",
+      "peso": "60kg",
+      "idForm": "22632910-5af9-4a84-82a3-04733a14a586"
     }
   ],
   "treino": [
@@ -40,6 +54,21 @@
       "idUser": "1",
       "title": "caio's",
       "type": "superiores",
+      "infos": {}
+    },
+    {
+      "id": "22632910-5af9-4a84-82a3-04733a14a586",
+      "idUser": "1",
+      "descricao": "",
+      "title": "",
+      "type": "",
+      "infos": {}
+    },
+    {
+      "id": "53bc2aba-8525-4202-bd33-ac932945add5",
+      "idUser": "1",
+      "title": "Treino B",
+      "type": "inferiores",
       "infos": {}
     }
   ],

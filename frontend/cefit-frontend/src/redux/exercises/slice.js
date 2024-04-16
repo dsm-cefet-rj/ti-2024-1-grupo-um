@@ -17,7 +17,7 @@ const exercisesSlice = createSlice({
             state.push(action.payload);
         },
         clearExercises: (state,action) => {
-            state = null;
+            state.map(() => state.pop());
         }
     }
 })
