@@ -10,7 +10,7 @@ import "./TreinoCard.css"
 //react imports
 import { Link } from "react-router-dom";
 
-function TreinoCard({title, description, type}){
+function TreinoCard({title, description, type, id}){
     const Image = () => {
         switch(type){
             case 'superiores':

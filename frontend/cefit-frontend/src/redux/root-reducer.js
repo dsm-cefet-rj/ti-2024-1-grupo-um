@@ -3,12 +3,14 @@ import exercisesReducer from "./exercises/slice";
 import trainingsReducer from "./trainings/slice";
 import personaisReducer from "./personal/slice";
 import userReducer from "./user/slice";
+import formsReducer from "./form-treino/slice";
 
 const rootReducer = combineReducers({
     exercises: exercisesReducer,
     trainings: trainingsReducer,
     personais: personaisReducer,
     user: userReducer,
+    forms: formsReducer
     })
 
 export default rootReducer;

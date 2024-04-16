@@ -8,25 +8,27 @@ import { addTreinoId } from "../../redux/exercises/slice";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import Modal from "../../components/Modal/AddExercicio";
-
+import addForms from "../../redux/form-treino/slice";
 
 function AddTreinos() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState(false);
-
-    const Treino = useSelector((rootReducer) => rootReducer.trainings);
-    const id = Treino.id;
+    
     const handleSubmitForm = (info) => {
         dispatch(addTraining(info));
-        dispatch(addTreinoId(id));
         navigate("/areaFIT");
     }
-
+    // pegando o id do usuario
+    const idUser = useSelector(rootReducer => rootReducer.user).id;
+    // criando o forms com o id do usuario
+    addForms({idUser});
     //dispatch criar treino.
     //dispatch criar exercicios.
     //dispatch salvar treino.
     //dispatch linkar exercicios com id do treino.
+    // pegando o id do form
+    const idForm = useSelector(rootReducer => rootReducer.forms).id;
 
     const openModal = () => {
         setShowModal(true);
@@ -118,7 +120,9 @@ function AddTreinos() {
                     <Modal
                         setModal={() => {
                             setShowModal();
+
                         }}
+                        idForm = {idForm}
                     />
                 )}
             </div>
