@@ -1,21 +1,20 @@
-import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
+import { createSlice } from "@reduxjs/toolkit";
 
-const exercisesAdapter = createEntityAdapter();
-
-const initialState = exercisesAdapter.getInitialState();
+const initialState = [];
 
 const exercisesSlice = createSlice({
     name: "exercises",
     initialState,
     reducers: {
-        addExercise: exercisesAdapter.addOne,
-        
+        addExercise: (state, action) => {
+            // debugger;
+            state.push(action.payload);
+        },
     }
 })
 
 
 
-export const { addExercise, addFormId } = exercisesSlice.actions;
+export const { addExercise } = exercisesSlice.actions;
 
 export default exercisesSlice.reducer;

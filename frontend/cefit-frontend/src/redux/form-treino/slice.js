@@ -1,18 +1,23 @@
-import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
+import { createSlice } from "@reduxjs/toolkit";
 
-const formsAdapter = createEntityAdapter();
-
-const initialState = formsAdapter.getInitialState();
+const initialState = {
+    idUser: "",
+    id: "",
+    infos: {}
+};
 
 const formsSlice = createSlice({
     name: "forms",
     initialState,
     reducers: {
-        addForms: formsAdapter.addOne,
+        addForms: (state, action) => {
+            state.idUser = action.payload.idUser;
+            state.id = action.payload.id;
+            state.infos = action.payload.infos;
+        },
     }
 })
 
-export const { addForms} = formsSlice.actions;
+export const { addForms } = formsSlice.actions;
 
 export default formsSlice.reducer;

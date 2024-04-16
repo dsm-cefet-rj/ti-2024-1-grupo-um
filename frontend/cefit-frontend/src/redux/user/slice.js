@@ -1,14 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = [
-    {
-        currentUser: null,
-    }
-];
+const initialState = {
+    logged: false,
+    user: {}
+};
 
-const fetchUsers = createAsyncThunk('user/fetchUsers', async () => {
-    const response = await axios.get("http://localhost:3004/users");
+const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
+    const response = await axios.post("http://localhost:3004/users", data)
     return response.data;
 })
 
@@ -16,40 +15,24 @@ const userSlice = createSlice({
     name:"user",
     initialState,
     reducers: {
-        addUser: (state, action) => {
-            state.push({...action.payload, id: state.length});
+        addLoggedUser: (state, action) => { 
+            state.logged = true;
+            state.user = action.payload;
         },
-        loginUser: (state, action) => {
-            const usuarioSistema = state.filter((user) => user.email === action.payload.email)[0];
-            if(usuarioSistema != undefined){
-                if(usuarioSistema.senha === action.payload.senha){
-                    state[0].currentUser = usuarioSistema;
-                }
-            }
-            
-        },
-        logoutUser: (state, action) => {
-            state[0].currentUser = null;
+        logoutUser: (state) => {
+            state.logged = false;
+            state.user = {};
         },
         addTraining: (state, action) => {
-            state[0].currentUser.treinos.push(action.payload);
+            if(state.logged){
+                state.user.treinos.push(action.payload);
+            }
         }
     },
-    extraReducers: builder => {
-        builder.addCase(fetchUsers.pending, state => state);
-        builder.addCase(fetchUsers.fulfilled, (state, action) => {
-            action.payload.map((user) => {
-                state.push(user);
-            })
-        })
-        builder.addCase(fetchUsers.rejected, (state, action) => {
-            state.push(action.error.message)
-        })
-    }
 })
 
-export const { addUser, loginUser, logoutUser, addTraining } = userSlice.actions;
+export const { loginUser, logoutUser, addTraining, addLoggedUser } = userSlice.actions;
 
-export { fetchUsers }
+export { addUser }
 
 export default userSlice.reducer;
