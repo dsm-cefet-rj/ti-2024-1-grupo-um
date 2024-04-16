@@ -11,7 +11,7 @@ function Modal(props) {
 
     const handleSubmitForm = (info) => {
         dispatch(
-            addExercise({info, idForm})
+            addExercise({...info, idForm})
         )
         setModal(false);
     }
