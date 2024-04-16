@@ -10,10 +10,10 @@ import { logoutUser } from "../../redux/user/slice";
 function Navbar(){
     const user =  useSelector(rootReducer => rootReducer.user);
     const dispatch = useDispatch();
-    const currentUserNavbar  = user[0].currentUser;
-    if(currentUserNavbar != null && currentUserNavbar != undefined){
-        var id = currentUserNavbar.id;
-    }
+    const currentUserNavbar  = user.logged ? user.user : null;
+    // if(currentUserNavbar != null && currentUserNavbar != undefined){
+    //     var id = currentUserNavbar.id;
+    // }
     function Logout(){
         dispatch(logoutUser());
     }
