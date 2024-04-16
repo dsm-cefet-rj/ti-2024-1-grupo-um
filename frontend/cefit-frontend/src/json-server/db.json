@@ -31,34 +31,15 @@
   ],
   "treino": [
     {
-      "id": "1",
-      "nome": "Treino1",
-      "descricao": "Primeiro treino",
-      "exercicios": [
-        {
-          "id": 1,
-          "nome": "Supino reto",
-          "reps": 15
-        }
-      ]
-    },
-    {
-      "id": "520c75f7-e464-49ff-800e-a39779424d51",
-      "idUser": "1",
-      "title": "dasjkda",
-      "type": "superiores",
-      "infos": {}
-    },
-    {
       "id": "e236d076-cf2d-4da8-bec1-0241b66d35e3",
-      "idUser": "1",
+      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
       "title": "caio's",
       "type": "superiores",
       "infos": {}
     },
     {
       "id": "22632910-5af9-4a84-82a3-04733a14a586",
-      "idUser": "1",
+      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
       "descricao": "",
       "title": "",
       "type": "",
@@ -66,7 +47,7 @@
     },
     {
       "id": "53bc2aba-8525-4202-bd33-ac932945add5",
-      "idUser": "1",
+      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
       "title": "Treino B",
       "type": "inferiores",
       "infos": {}
@@ -142,20 +123,6 @@
   ],
   "users": [
     {
-      "CPF": "31278940126",
-      "email": "caio@1",
-      "id": "1",
-      "nascimento": "2024-04-02",
-      "nome": "caio",
-      "senha": "123",
-      "treinos": []
-    },
-    {
-      "id": "4694",
-      "email": "caio@1",
-      "senha": "123"
-    },
-    {
       "id": "ef683b02-38ce-4ff1-97da-2105fba94aff",
       "nome": "Vinicius",
       "senha": "123123",
@@ -167,12 +134,6 @@
     {
       "id": "4302f00c-35d5-42f7-84a9-0450766db4ca",
       "nome": "caio",
-      "senha": "123",
-      "email": "caio@1",
-      "treinos": []
-    },
-    {
-      "id": "1d19b573-867e-4b47-a932-7dd03a2c0c4e",
       "senha": "123",
       "email": "caio@1",
       "treinos": []
