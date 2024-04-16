@@ -8,19 +8,20 @@ import "./AreaFIT.css";
 //react
 import { Link } from "react-router-dom";
 //redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addForms } from "../../redux/form-treino/slice";
+//id gen
+import { v4 as idGen } from "uuid";
 
 
 function AreaFIT() {
-
-  // const id = useParams();
-  const user =  useSelector(rootReducer => rootReducer.user);
-  const currentUser  = user[0].currentUser;
+  const dispatch = useDispatch();
+  const currentUser =  useSelector(rootReducer => rootReducer.user);
   let treinosUser;
-  if(currentUser){
-  treinosUser = currentUser.treinos;
+  if(currentUser.logged){
+    treinosUser = currentUser.user.treinos;
   }
-  if (!currentUser) {
+  if (!currentUser.logged) {
     return <NotLoggedInAreaFIT />;
   }
 
@@ -87,7 +88,9 @@ function AreaFIT() {
         </div>
     </div>
 
-    <Link to={"/add-treinos"} className="monte-button">Monte seu treino</Link>
+    <Link to={"/add-treinos"} >
+      <button className="monte-button" onClick={() => {dispatch(addForms({idUser: currentUser.user.id, id: idGen(), infos: {}}))}}>Monte seu treino</button>
+    </Link>
     <div className="espacamento">
 
       </div>
