@@ -134,7 +134,7 @@ function AddTreinos() {
             {!loggedUser ? navigate("/areaFIT") : <></>}
             <div className="container form-card p-5">
                 <div className="container mx-4 cefit-form">
-                    <h2>Adicionar Novo Treino</h2>
+                    <h2 id="titulo-form">Adicionar Novo Treino</h2>
                     <FormCreator fields={formFields} buttonText={"Salvar Treino"} buttonAction={handleSubmitForm} />
                 </div>
                 {showModal && (

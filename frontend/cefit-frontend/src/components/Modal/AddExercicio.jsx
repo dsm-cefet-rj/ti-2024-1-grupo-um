@@ -53,7 +53,7 @@ function Modal(props) {
         <>
             <div className="modal-overlay">
                 <div className="modal" id="modal">
-                    <h2>Adicionar novo exercício</h2>
+                    <h2 id="titulo-form">Adicionar novo exercício</h2>
                     <FormCreator fields={formFields} buttonText={"Salvar Exercício"} buttonAction={handleSubmitForm}/>
                     <span className="modal-close" id="close-modal" onClick={() => {setModal(false)}}>
                     &#10005; {/* HTML code for a multiplication sign */}
