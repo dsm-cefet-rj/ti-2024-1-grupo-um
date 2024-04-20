@@ -1,13 +1,28 @@
-import Navbar from "../../components/Navbar/Navbar";
-import FooterComp from "../../components/Footer/Footer";
+import Navbar from "../../components/Navbar/Navbar.jsx";
+import FooterComp from "../../components/Footer/Footer.jsx";
 import Exercicio from "../../components/Exercicio/Exercicios.jsx";
+
+
 import "./treinos.css";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import axios from "axios";
+import { useState } from "react";
 
 function Treino() {
+    const [Exercises, setExercises] = useState([]);
+    const currentUser =  useSelector(rootReducer => rootReducer.user);
     const {id} = useParams();
+    if(id){
+        async function getExercises() {
+            const response = await axios.get("http://localhost:3004/exercicios");
+            const exercisesArray = response.data.filter((exercicio) => exercicio.idForm == id);
+            //futuramente trocar idForm por idTreino
+            setExercises([...exercisesArray]);
+        }
+        getExercises();
+        console.log(Exercises);
+    }
     const exercicios = [
         {
             nome: "Esteira",
@@ -67,17 +82,30 @@ function Treino() {
             <h1 className="display-4">Exercícios</h1>
             </div>
             <div className="exercicios">
-            {exercicios.map((exercicio, index) => (
-                <Exercicio
-                key={index}
-                nome={exercicio.nome}
-                carga={exercicio.carga}
-                rep={exercicio.rep}
-                obs={exercicio.obs}
-                type={exercicio.type}
-                
-                />
-            ))}
+            {id?(
+                Exercises.map((exercicio, index) => (
+                    <Exercicio
+                    key={index}
+                    nome={exercicio.name}
+                    carga={exercicio.peso}
+                    rep={exercicio.series}
+                    obs={exercicio.obs}
+                    type={exercicio.type}
+                    />
+                ))
+            ):(
+                exercicios.map((exercicio, index) => (
+                    <Exercicio
+                    key={index}
+                    nome={exercicio.nome}
+                    carga={exercicio.carga}
+                    rep={exercicio.rep}
+                    obs={exercicio.obs}
+                    type={exercicio.type}
+                    
+                    />
+                ))
+            )}
             </div>
         </div>
         <FooterComp />

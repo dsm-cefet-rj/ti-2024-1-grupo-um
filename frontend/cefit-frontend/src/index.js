@@ -18,7 +18,7 @@ import AreaFIT from './pages/tela-area-fit/AreaFIT.jsx';
 import Home from './pages/tela-home/Home.jsx';
 import Personal from './pages/tela-personal/Personal.jsx';
 import AddTreinos from './pages/tela-add-treinos/Treinos.jsx';
-import Treino from './pages/tela-treinos/Treinos.jsx';
+import Treino from './pages/tela-treino/Treino.jsx';
 
 
 const router = createBrowserRouter([
@@ -62,9 +62,8 @@ const router = createBrowserRouter([
         path: "add-treinos",
         element: <AddTreinos />
       },
-
       {
-        path: "treino",  //treino/:id
+        path: "treino/:id",  //treino/:id
         element: <Treino />
       },
       

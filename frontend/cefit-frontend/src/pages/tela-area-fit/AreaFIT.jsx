@@ -27,7 +27,6 @@ function AreaFIT() {
     return <NotLoggedInAreaFIT />;
   }
 
-  console.log(treinosDoUsuario);
   const Treinos = [
     {
       title: "Treino A",
@@ -66,12 +65,13 @@ function AreaFIT() {
     <div className="container mt-2" id="container-card">
         <div className="row justify-content-center"id="row-card">
         {currentUser ? (
-            treinos.map((treino, index) => (
+            Treinos.map((treino, index) => (
               <div key={index} className="col mb-3">
                 <TreinoCard
                   title={treino.title}
                   description={treino.description}
                   type={treino.type}
+                  id={treino.id}
                   //id = {treino.id}
                 />
               </div>)
@@ -82,7 +82,6 @@ function AreaFIT() {
                       title={treino.title}
                       description={treino.description}
                       type={treino.type}
-                      
                     />
                   </div>)
                   )
