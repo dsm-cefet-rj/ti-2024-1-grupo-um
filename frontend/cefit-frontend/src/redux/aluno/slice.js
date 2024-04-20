@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+
+
 const pagamentoSlice = createSlice({
   name: 'pagamento',
   initialState: [],
   reducers: {
-    adicionarPagamento: (state, action) => {
+    addAluno: (state, action) => {
       state.push(action.payload);
     }
   }

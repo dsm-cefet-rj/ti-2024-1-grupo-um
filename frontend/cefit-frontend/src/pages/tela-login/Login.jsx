@@ -15,6 +15,7 @@ import "./../pages.css";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { addLoggedUser } from "../../redux/user/slice";
+import { getPersonais } from "../../redux/personal/slice";
 
 function Login(){
     const [email, setEmail] = useState();
@@ -29,8 +30,10 @@ function Login(){
 
         for (let user of users){
             if(user.email === email && user.senha === senha){
-                dispatch(addLoggedUser(user))
+                dispatch(addLoggedUser(user));
+                dispatch(getPersonais());
                 alert("autenticado");
+
                 navigate("/personais");
                 return;
             }

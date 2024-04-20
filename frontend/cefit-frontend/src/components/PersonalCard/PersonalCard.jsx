@@ -13,10 +13,10 @@ function PersonalCard({ nome, descricao, rating, id, image = user }){
     for (let i = 0; i < rating; i++) {
         estrelas.push(<img key={i} className="imagem-estrela" src={star} alt="imagem estrela"/>);
     }
-
     return (
         <Link className="card" id="card-personal" to={`/personal/${id}`}>
-            <img className="card-img-top m-auto mt-2" src={image} alt="Imagem de capa do card"/>
+            {image ? (<img className="card-img-top m-auto mt-2" src={require(`../../images/PersonalImages/${image}.png`).default} alt="Imagem de capa do card"/>)
+            :(<img className="card-img-top m-auto mt-2" src={user} alt="Imagem de capa do card"/>)}
             <div className="card-body text-center">
                 <h5 className="card-title">{nome}</h5>
                 <p className="card-text">{descricao}</p>
