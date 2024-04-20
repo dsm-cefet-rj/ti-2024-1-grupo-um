@@ -68,7 +68,7 @@ const router = createBrowserRouter([
         element: <Treino />
       },
       {
-        path: "pagamento",
+        path: "pagamento/:id",
         element: <Pagamento/>
       },
     ]

@@ -56,7 +56,7 @@ function Personal() {
               {estrelas}
             </div>
             <div className="d-flex justify-content-center mb-2">
-              <Link data-aos="fade-up" data-aos-delay="200" to="/pagamento" className="btn btn-primary">Solicitar consultoria</Link>
+              <Link data-aos="fade-up" data-aos-delay="200" to={`/pagamento/${personalAtual.id}`} className="btn btn-primary">Solicitar consultoria</Link>
             </div>
           </div>
         </div>
@@ -111,42 +111,6 @@ function Personal() {
             <p className="mb-1" style={{ fontSize: "0.85rem" }}>{personalAtual.biografia}</p>
           </div>
         </div>
-        {/* fim biografia */}
-        
-        {/* inicio stats fulaninho */}
-        {/* <div className="m-auto mb-4" id="card-block-personal">
-            <div className="card mb-4">
-              <div className="card-body">
-                <p className="mb-4">Especialidades</p>
-                <p className="mb-1" style={{ fontSize: ".77rem" }}>Emagrecimento</p>
-                <div className="progress rounded" style={{ height: "5px" }}>
-                  <div className="progress-bar" role="progressbar" style={{ width: `${barra}%` }} aria-valuenow={barra}
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p className="mt-4 mb-1" style={{ fontSize: ".77rem" }}>Ganho de massa muscular</p>
-                <div className="progress rounded" style={{ height: "5px" }}>
-                  <div className="progress-bar" role="progressbar" style={{ width: "72%" }} aria-valuenow="72"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p className="mt-4 mb-1" style={{ fontSize: ".77rem" }}>Forma física</p>
-                <div className="progress rounded" style={{ height: "5px" }}>
-                  <div className="progress-bar" role="progressbar" style={{ width: "89%" }} aria-valuenow="89"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p className="mt-4 mb-1" style={{ fontSize: ".77rem" }}>Condicionamento físico</p>
-                <div className="progress rounded" style={{ height: "5px" }}>
-                  <div className="progress-bar" role="progressbar" style={{ width: "55%" }} aria-valuenow="55"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <p className="mt-4 mb-1" style={{ fontSize: ".77rem" }}>Esportes</p>
-                <div className="progress rounded mb-2" style={{ height: "5px" }}>
-                  <div className="progress-bar" role="progressbar" style={{ width: "66%" }} aria-valuenow="66"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-            </div>
-        </div> */}
-        {/* fim desc fulaninho */}
     </div>
   );
 }
