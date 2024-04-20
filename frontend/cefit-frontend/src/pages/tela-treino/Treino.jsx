@@ -4,14 +4,20 @@ import Exercicio from "../../components/Exercicio/Exercicios.jsx";
 
 
 import "./treinos.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+
+import { deleteTreinoByID, deleteTraining } from "../../redux/trainings/slice.js";
 
 function Treino() {
-
+    //id treino
     const {id} = useParams();
+    const dispatch = useDispatch();
     const Exercises = useSelector(rootReducer => rootReducer.exercises)
+
+    const navigate = useNavigate();
 
     const exercicios = [
         {
@@ -63,6 +69,12 @@ function Treino() {
         }
         
     ]
+
+    const handleDeleteTreino = (idTreino) => {
+        dispatch(deleteTreinoByID(id));
+        dispatch(deleteTraining(id));
+        navigate("/areaFIT");
+    }
   
     return (
         <>
@@ -97,6 +109,9 @@ function Treino() {
                 ))
             )}
             </div>
+        </div>
+        <div className="btn-div">
+            <button className="btn-delete" onClick={() =>{handleDeleteTreino(id)}}>Excluir treino</button>
         </div>
         <FooterComp />
         </>

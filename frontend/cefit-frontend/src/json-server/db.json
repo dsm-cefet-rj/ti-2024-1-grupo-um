@@ -1,109 +1,6 @@
 {
-  "exercicios": [
-    {
-      "id": "ee61",
-      "name": "dasd",
-      "series": "213",
-      "peso": "32",
-      "idForm": "cf0d1b95-d6ee-44ea-9196-5a50c079df7c"
-    },
-    {
-      "id": "2b80",
-      "name": "supino reto",
-      "series": "3x15",
-      "peso": "15kg",
-      "idForm": "e236d076-cf2d-4da8-bec1-0241b66d35e3"
-    },
-    {
-      "id": "7c69",
-      "name": "leg press",
-      "series": "3x10 reps",
-      "peso": "60kg",
-      "idForm": "22632910-5af9-4a84-82a3-04733a14a586"
-    },
-    {
-      "id": "5dbf",
-      "name": "leg press",
-      "series": "3x10 reps",
-      "peso": "60kg",
-      "idForm": "22632910-5af9-4a84-82a3-04733a14a586"
-    },
-    {
-      "id": "f0be",
-      "name": "muahaha",
-      "series": "5x10",
-      "peso": "10kg",
-      "idForm": "31a22162-ab43-4847-9997-b5096e02bb53"
-    },
-    {
-      "id": "b3c4",
-      "name": "cadeira extensora",
-      "series": "3",
-      "peso": "5",
-      "observacoes": "bla\n",
-      "idForm": "d48486c3-53e1-4dcd-9b44-aed68da70c47"
-    },
-    {
-      "id": "ba0c",
-      "name": "noem",
-      "series": "fedsf",
-      "peso": "dfs",
-      "observacoes": "fsd",
-      "idForm": "d48486c3-53e1-4dcd-9b44-aed68da70c47"
-    },
-    {
-      "id": "45b9",
-      "idForm": "99d038f8-4333-49f1-bfc8-478df98d85dc"
-    },
-    {
-      "id": "a5ad",
-      "name": "fds",
-      "series": "fdsf",
-      "peso": "sdfsd",
-      "observacoes": "fsdf",
-      "idForm": "9f5548ea-c935-49f2-ad16-5880cef87b92"
-    }
-  ],
-  "treino": [
-    {
-      "id": "e236d076-cf2d-4da8-bec1-0241b66d35e3",
-      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
-      "title": "caio's",
-      "type": "superiores",
-      "infos": {}
-    },
-    {
-      "id": "53bc2aba-8525-4202-bd33-ac932945add5",
-      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
-      "title": "Treino B",
-      "type": "inferiores",
-      "infos": {}
-    },
-    {
-      "id": "d48486c3-53e1-4dcd-9b44-aed68da70c47",
-      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
-      "descricao": "",
-      "title": "",
-      "type": "",
-      "infos": {}
-    },
-    {
-      "id": "99d038f8-4333-49f1-bfc8-478df98d85dc",
-      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
-      "descricao": "",
-      "title": "",
-      "type": "",
-      "infos": {}
-    },
-    {
-      "id": "9f5548ea-c935-49f2-ad16-5880cef87b92",
-      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
-      "descricao": "adasd",
-      "title": "aala",
-      "type": "outro",
-      "observacoes": "fsdf"
-    }
-  ],
+  "exercicios": [],
+  "treino": [],
   "personais": [
     {
       "id": "1",
@@ -199,6 +96,19 @@
       "id": "82083e08-463e-452a-a33b-c6add2da3a6c",
       "senha": "123",
       "email": "teste@teste"
+    },
+    {
+      "id": "a673677a-dcee-4856-9b41-aff6283cc051",
+      "nome": "carol",
+      "senha": "1",
+      "email": "1@2"
+    },
+    {
+      "id": "dfa4c0c7-eb5f-4446-829d-8f8c49e6991a",
+      "numero": "",
+      "cvc": "",
+      "expiracao": "",
+      "nome": ""
     }
   ],
   "anamnese": [
@@ -223,8 +133,23 @@
       "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764"
     },
     {
-      "id": "9402",
+      "id": "3318",
+      "weigth": "53",
+      "motivation": "crescer",
+      "activityFreq": "3",
+      "exam": "2024-05-11",
+      "diet": "nn",
+      "observacoes": "nnnn",
       "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764"
+    }
+  ],
+  "aluno": [
+    {
+      "id": "ff3d",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "idPersonal": {
+        "id": "2"
+      }
     }
   ]
 }

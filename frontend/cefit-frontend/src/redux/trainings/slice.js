@@ -12,16 +12,37 @@ const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", as
     } catch(err){
         return [];
     }
- });
+});
+
+const deleteTreinoByID = createAsyncThunk("treino/deleteTreinoByID", async (idTreino) => {
+    try {
+        await axios.delete(`http://localhost:3004/treino/${idTreino}`);
+
+        const exercises = await axios.get(`http://localhost:3004/exercicios?idForm=${idTreino}`);
+
+        for(let exercise of exercises.data){
+            await axios.delete(`http://localhost:3004/exercicios/${exercise.id}`)
+        }
+    } catch(err) {
+        console.log("Não foi possível excluir o treino...");
+    }
+})
 
 const trainingsSlice = createSlice({
     name: "trainings",
     initialState,
     reducers: {
-            //adaptar o treino
         addTraining: (state, action) => {
             state.push(action.payload)
-        } 
+        },
+        deleteTraining: (state, action) => {
+            for (let i = 0; i < state.length; i++) {
+                if (state[i].id === action.payload) {
+                    state.splice(i, 1);
+                    break;
+                }
+            }
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(getTreinosByUserID.fulfilled, (state, action) => {
@@ -36,7 +57,7 @@ const trainingsSlice = createSlice({
     }
 })
 
-export const { addTraining } = trainingsSlice.actions;
+export const { addTraining, deleteTraining } = trainingsSlice.actions;
 
-export { getTreinosByUserID };
+export { getTreinosByUserID, deleteTreinoByID };
 export default trainingsSlice.reducer;
