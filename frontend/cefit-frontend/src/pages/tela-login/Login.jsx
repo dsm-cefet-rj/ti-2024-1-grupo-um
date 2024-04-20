@@ -31,26 +31,15 @@ function Login(){
         for (let user of users){
             if(user.email === email && user.senha === senha){
                 dispatch(addLoggedUser(user));
+                dispatch(getTreinosByUserID(user.id))
                 dispatch(getPersonais());
                 alert("autenticado");
-
                 navigate("/personais");
                 return;
             }
         }
         alert("usuario invalido");
-        // dispatch(loginUser({email, senha})); 
-        // const userFiltrado = user.filter((user) => user.email === email)[0];
-        // if(userFiltrado == undefined){
-        //     alert("usuario invalido");
-        // }else{
-        //     if(userFiltrado.senha === senha){
-        //         alert("autenticado");
-        //         navigate("/personais");
-        //     }else{
-        //         alert("usuario invalido");
-        //     }
-        // }
+       
     }
 
     return(

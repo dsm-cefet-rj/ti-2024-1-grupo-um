@@ -54,6 +54,14 @@
     {
       "id": "45b9",
       "idForm": "99d038f8-4333-49f1-bfc8-478df98d85dc"
+    },
+    {
+      "id": "a5ad",
+      "name": "fds",
+      "series": "fdsf",
+      "peso": "sdfsd",
+      "observacoes": "fsdf",
+      "idForm": "9f5548ea-c935-49f2-ad16-5880cef87b92"
     }
   ],
   "treino": [
@@ -86,6 +94,14 @@
       "title": "",
       "type": "",
       "infos": {}
+    },
+    {
+      "id": "9f5548ea-c935-49f2-ad16-5880cef87b92",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "descricao": "adasd",
+      "title": "aala",
+      "type": "outro",
+      "observacoes": "fsdf"
     }
   ],
   "personais": [
