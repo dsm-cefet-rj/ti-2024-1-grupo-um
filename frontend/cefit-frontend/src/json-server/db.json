@@ -27,6 +27,13 @@
       "series": "3x10 reps",
       "peso": "60kg",
       "idForm": "22632910-5af9-4a84-82a3-04733a14a586"
+    },
+    {
+      "id": "f0be",
+      "name": "muahaha",
+      "series": "5x10",
+      "peso": "10kg",
+      "idForm": "31a22162-ab43-4847-9997-b5096e02bb53"
     }
   ],
   "treino": [
@@ -35,14 +42,6 @@
       "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
       "title": "caio's",
       "type": "superiores",
-      "infos": {}
-    },
-    {
-      "id": "22632910-5af9-4a84-82a3-04733a14a586",
-      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
-      "descricao": "",
-      "title": "",
-      "type": "",
       "infos": {}
     },
     {
