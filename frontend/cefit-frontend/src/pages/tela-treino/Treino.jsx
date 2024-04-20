@@ -7,23 +7,12 @@ import "./treinos.css";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { useState } from "react";
 
 function Treino() {
-    const [Exercises, setExercises] = useState([]);
-    const currentUser =  useSelector(rootReducer => rootReducer.user);
+
     const {id} = useParams();
-    let firstTime = true;
-    if(id && firstTime == true){
-        async function getExercises() {
-            const response = await axios.get("http://localhost:3004/exercicios");
-            const exercisesArray = response.data.filter((exercicio) => exercicio.idForm == id);
-            //futuramente trocar idForm por idTreino
-            setExercises([...exercisesArray]);
-        }
-        getExercises();
-        firstTime = false;
-    }
+    const Exercises = useSelector(rootReducer => rootReducer.exercises)
+
     const exercicios = [
         {
             nome: "Esteira",
