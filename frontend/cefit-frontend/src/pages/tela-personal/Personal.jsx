@@ -1,6 +1,8 @@
 //components
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import Pagamento from "../tela-pagamento/Pagamento";
 
 //css
 import "././../tela-personal/Personal.css";
@@ -53,7 +55,7 @@ function Personal() {
               {estrelas}
             </div>
             <div className="d-flex justify-content-center mb-2">
-              <button type="button" className="btn btn-primary">Solicitar Consultoria</button>
+              <Link data-aos="fade-up" data-aos-delay="200" to="/pagamento" className="btn btn-primary">Solicitar consultoria</Link>
             </div>
           </div>
         </div>
