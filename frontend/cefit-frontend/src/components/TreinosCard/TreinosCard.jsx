@@ -9,8 +9,12 @@ import "./TreinoCard.css"
 
 //react imports
 import { Link } from "react-router-dom";
+import { getExercisesByTreinoID } from "../../redux/exercises/slice";
+import { useDispatch } from "react-redux";
+
 
 function TreinoCard({title, description, type, id}){
+    const dispatch = useDispatch();
     const Image = () => {
         switch(type){
             case 'superiores':
@@ -31,7 +35,7 @@ function TreinoCard({title, description, type, id}){
         <div className="row"> 
             <div className="col md-4"> 
             {/** passando o id do treino para o card do treino/ */}
-            <Link to={`/treino/${id}`} className="card-link" >
+            <Link to={`/treino/${id}`} className="card-link" onClick={() => { dispatch(getExercisesByTreinoID(id)) }}>
                     <div className="card card-block" id="card-fit">
                         <h1 className="card-title mt-3 mb-3">{title}</h1>
                         <Image/>
