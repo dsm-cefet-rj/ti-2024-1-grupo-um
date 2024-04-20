@@ -1,11 +1,16 @@
-import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
+import { createSlice, createEntityAdapter, createAsyncThunk } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
-
+import axios from "axios";
 //criar o entity adapter
 const trainingsAdapter = createEntityAdapter();
 
 // mudar o iniciar state para o getInitialState
 const initialState = trainingsAdapter.getInitialState();
+
+const getTreinos = createAsyncThunk("treino/getTreinosAsync", async(data) => {
+    const response = await axios.get("http://localhost:3004/treino", data);
+    return response.data; 
+ });
 
 const trainingsSlice = createSlice({
     name: "trainings",
@@ -22,6 +27,7 @@ const trainingsSlice = createSlice({
 
 export const { addTraining } = trainingsSlice.actions;
 
+export { getTreinos };
 export default trainingsSlice.reducer;
 
 // addExercise: (state, action) => {

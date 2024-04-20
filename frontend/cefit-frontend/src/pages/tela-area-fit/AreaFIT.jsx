@@ -12,19 +12,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { addForms } from "../../redux/form-treino/slice";
 //id gen
 import { v4 as idGen } from "uuid";
+//axios
+import { getTreinos } from "../../redux/trainings/slice";
+import axios from "axios";
 
 
-function AreaFIT() {
-  const dispatch = useDispatch();
+async function AreaFIT() {
   const currentUser =  useSelector(rootReducer => rootReducer.user);
-  let treinosUser;
-  if(currentUser.logged){
-    treinosUser = currentUser.user.treinos;
-  }
+  const dispatch = useDispatch();
+  // const treinos = getTreinos();
+  
+  // Filtrar os treinos pelo idUser
   if (!currentUser.logged) {
     return <NotLoggedInAreaFIT />;
   }
-
+  const treinos = await axios.get("http://localhost:3004/treino");
+  const treinosDoUsuario = treinos.data.filter(treino => treino.idUser == currentUser.user.id);
+  console.log(treinosDoUsuario);
   const Treinos = [
     {
       title: "Treino A",
@@ -62,8 +66,8 @@ function AreaFIT() {
       </div>
     <div className="container mt-2" id="container-card">
         <div className="row justify-content-center"id="row-card">
-          {currentUser ? (
-            treinosUser.map((treino, index) => (
+        {currentUser ? (
+            Treinos.map((treino, index) => (
               <div key={index} className="col mb-3">
                 <TreinoCard
                   title={treino.title}
