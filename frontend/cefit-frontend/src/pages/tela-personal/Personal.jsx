@@ -1,6 +1,8 @@
 //components
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import Pagamento from "../tela-pagamento/Pagamento";
 
 //css
 import "././../tela-personal/Personal.css";
@@ -15,11 +17,10 @@ function Personal() {
   const {id} = useParams();
 
   const personais = useSelector(rootReducer => rootReducer.personais);
-
   const personalAtual = personais.filter((personal) => personal.id == id)[0];
 
-  // console.log(personalAtual);
-  const barra = "100";
+  console.log(personalAtual);
+
 
   const estrelas = [];
   for (let i = 0; i < personalAtual.rating; i++) {
@@ -37,23 +38,25 @@ function Personal() {
           <div className="card-body text-center m-auto">
             {/* renderizacao condicional se personal tiver imagem */}
             {personalAtual.image ?
-              <div>
-                <img src={personalAtual.image} alt="avatar"
+              (
+                <div>
+                  <img src={require(`../../images/PersonalImages/${personalAtual.image}.png`)} alt="avatar"
+                    className="rounded-circle img-fluid" style={{ width: "150px" }} />
+                  <h5 className="my-3">{personalAtual.nome}</h5> 
+                </div>
+              ):(
+                <div>
+                  <img src={user} alt="caso2"
                   className="rounded-circle img-fluid" style={{ width: "150px" }} />
-                <h5 className="my-3">{personalAtual.nome}</h5> 
-              </div>
-                : 
-              <div>
-                <img src={user} alt="avatar"
-                className="rounded-circle img-fluid" style={{ width: "150px" }} />
-                <h5 className="my-3">{personalAtual.nome}</h5> 
-              </div>
+                  <h5 className="my-3">{personalAtual.nome}</h5> 
+                </div>
+              )
             }
             <div className="margin-bottom-10px mb-4">
               {estrelas}
             </div>
             <div className="d-flex justify-content-center mb-2">
-              <button type="button" className="btn btn-primary">Solicitar Consultoria</button>
+              <Link data-aos="fade-up" data-aos-delay="200" to="/pagamento" className="btn btn-primary">Solicitar consultoria</Link>
             </div>
           </div>
         </div>

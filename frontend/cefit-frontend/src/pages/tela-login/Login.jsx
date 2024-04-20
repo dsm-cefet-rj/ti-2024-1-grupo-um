@@ -1,44 +1,46 @@
 //import components
 import InputComponent from "../../components/InputComponent/InputComponent";
-import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import CefetImage from "../../components/CefetImage/CefetImage";
 
 //import react stuff
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getTreinosByUserID } from "../../redux/trainings/slice";
+
+//import axios
+import axios from "axios";
 
 //css 
 import "./../pages.css";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../redux/user/slice";
+import { addLoggedUser } from "../../redux/user/slice";
+import { getPersonais } from "../../redux/personal/slice";
 
 function Login(){
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user = useSelector(rootReducer => rootReducer.user);
     
-    
-    
-    function Autentica(e){
+    async function Autentica (e){
         e.preventDefault();
-        dispatch(loginUser({email, senha})); 
-        const userFiltrado = user.filter((user) => user.email === email)[0];
-        if(userFiltrado == undefined){
-            alert("usuario invalido");
-        }else{
-            if(userFiltrado.senha === senha){
+        const response = await axios.get("http://localhost:3004/users");
+        const users = response.data;
+
+        for (let user of users){
+            if(user.email === email && user.senha === senha){
+                dispatch(addLoggedUser(user));
+                dispatch(getTreinosByUserID(user.id))
+                dispatch(getPersonais());
                 alert("autenticado");
                 navigate("/personais");
-            }else{
-                alert("usuario invalido");
+                return;
             }
         }
-        
-        
+        alert("usuario invalido");
+       
     }
 
     return(

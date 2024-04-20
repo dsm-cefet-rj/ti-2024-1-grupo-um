@@ -2,6 +2,7 @@ import InputComponent from "../InputComponent/InputComponent";
 import TextAreaInput from "../TextAreaInput/textArea";
 import RadioInput from "../RadioInput/radioInput";
 import FormList from "../FormList/formList";
+import "./styles.css"
 
 import { useState } from "react";
 
@@ -41,7 +42,7 @@ function FormCreator({fields, buttonText, buttonAction}) {
                 }
             })}
             <div className="d-flex justify-content-center">
-                <button className="btn btn-primary" onClick={handleSubmitForm}>{buttonText}</button>
+                <button className="btn-submit" onClick={handleSubmitForm}>{buttonText}</button>
             </div>
         </form>
     )

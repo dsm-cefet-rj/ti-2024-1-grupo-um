@@ -3,7 +3,7 @@
 }
 
 #navbar2 {
-    background-color: #474747;
+    background-color: #272021; /*navbar do personal #00122f*/
     height: 90px;
     margin: 0px;
     padding: 0.5rem;
@@ -11,18 +11,20 @@
     
 }
 .signin-button, .signup-button{
-    background-color: #515151;
+    background-color: #272021;
     color: #fff;
     font-size: 14px;
     padding: 8px 10px;
     border-radius: 20px;
+    border: 1px solid;
+    border-color: #3166d1;
     text-decoration: none;
     transition: 0.3s background-color;
     margin-right: 4px;
    
 }
 .signin-button:hover, .signup-button:hover{
-    background-color: #615f5f;
+    background-color: #3166d1;
 }
 
 .navbar-brand{
@@ -50,6 +52,13 @@
     width: 90px;
     
 }
+.custom-toggler .navbar-toggler-icon {
+  background-image: url('./hamburger.png');
+}
+
+.custom-toggler.navbar-toggler {
+  font-size: 30px;
+} 
 .navbar-toggler{
     border:none;
     font-size: 1.15rem;
@@ -95,7 +104,7 @@
     }
 
 #offcanvasNavbar{
-    background-color: #474747;
+    background-color: #272021;
 }
 #offcanvasNavbarLabel{
     color: #fff;

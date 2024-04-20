@@ -1,10 +1,18 @@
-import Navbar from "../../components/Navbar/Navbar";
-import FooterComp from "../../components/Footer/Footer";
+import Navbar from "../../components/Navbar/Navbar.jsx";
+import FooterComp from "../../components/Footer/Footer.jsx";
 import Exercicio from "../../components/Exercicio/Exercicios.jsx";
+
+
 import "./treinos.css";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 function Treino() {
+
+    const {id} = useParams();
+    const Exercises = useSelector(rootReducer => rootReducer.exercises)
+
     const exercicios = [
         {
             nome: "Esteira",
@@ -64,17 +72,30 @@ function Treino() {
             <h1 className="display-4">Exercícios</h1>
             </div>
             <div className="exercicios">
-            {exercicios.map((exercicio, index) => (
-                <Exercicio
-                key={index}
-                nome={exercicio.nome}
-                carga={exercicio.carga}
-                rep={exercicio.rep}
-                obs={exercicio.obs}
-                type={exercicio.type}
-                
-                />
-            ))}
+            {id?(
+                Exercises.map((exercicio, index) => (
+                    <Exercicio
+                    key={index}
+                    nome={exercicio.name}
+                    carga={exercicio.peso}
+                    rep={exercicio.series}
+                    obs={exercicio.obs}
+                    type={exercicio.type}
+                    />
+                ))
+            ):(
+                exercicios.map((exercicio, index) => (
+                    <Exercicio
+                    key={index}
+                    nome={exercicio.nome}
+                    carga={exercicio.carga}
+                    rep={exercicio.rep}
+                    obs={exercicio.obs}
+                    type={exercicio.type}
+                    
+                    />
+                ))
+            )}
             </div>
         </div>
         <FooterComp />

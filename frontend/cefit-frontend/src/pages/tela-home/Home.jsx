@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import "./home.css";
+import FooterComp from "../../components/Footer/Footer";
+import "./trainer.png";
+import areafit_icon from "./areafit_icon.png";
+import personal_icon from "./trainer.png"
+
 function Home(){
     return(
         <>
@@ -37,6 +43,29 @@ function Home(){
                 </a>
             </div>
         </section>
+        {/*servicos*/}
+        <section className="page-section" id="services">
+            <div className="container">
+                <div className="text-center">
+                    <h2 className="display-4" id = "services">Serviços</h2>
+                    <h3 className="section-subheading text-muted">Conheça o CEFIT</h3>
+                </div>
+                <div className="row text-center">
+                    <div className="col-md-6">
+                        <p><img className="areafit-icon" src={areafit_icon} alt="areafit-icon"/></p>
+                        <h4 className="info-title"><Link to="/areaFIT"> Área FIT</Link></h4>
+                        <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    </div>
+                    <div className="col-md-6">
+                        <p><img className="personal-icon" src={personal_icon} alt="personal-icon"/></p>
+                        <h4 className="info-title"><Link to="/personais">Personais</Link></h4>
+                        <p className="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <FooterComp />
         </>
     )
 }

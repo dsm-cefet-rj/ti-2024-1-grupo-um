@@ -1,16 +1,230 @@
 {
-    "treino": [
-        {
-            "id": 1,
-            "nome": "Treino1",
-            "descricao": "Primeiro treino",
-            "exercicios": [
-                {
-                    "id": 1,
-                    "nome": "Supino reto",
-                    "reps": 15
-                }
-            ]
-        }
-    ]
+  "exercicios": [
+    {
+      "id": "ee61",
+      "name": "dasd",
+      "series": "213",
+      "peso": "32",
+      "idForm": "cf0d1b95-d6ee-44ea-9196-5a50c079df7c"
+    },
+    {
+      "id": "2b80",
+      "name": "supino reto",
+      "series": "3x15",
+      "peso": "15kg",
+      "idForm": "e236d076-cf2d-4da8-bec1-0241b66d35e3"
+    },
+    {
+      "id": "7c69",
+      "name": "leg press",
+      "series": "3x10 reps",
+      "peso": "60kg",
+      "idForm": "22632910-5af9-4a84-82a3-04733a14a586"
+    },
+    {
+      "id": "5dbf",
+      "name": "leg press",
+      "series": "3x10 reps",
+      "peso": "60kg",
+      "idForm": "22632910-5af9-4a84-82a3-04733a14a586"
+    },
+    {
+      "id": "f0be",
+      "name": "muahaha",
+      "series": "5x10",
+      "peso": "10kg",
+      "idForm": "31a22162-ab43-4847-9997-b5096e02bb53"
+    },
+    {
+      "id": "b3c4",
+      "name": "cadeira extensora",
+      "series": "3",
+      "peso": "5",
+      "observacoes": "bla\n",
+      "idForm": "d48486c3-53e1-4dcd-9b44-aed68da70c47"
+    },
+    {
+      "id": "ba0c",
+      "name": "noem",
+      "series": "fedsf",
+      "peso": "dfs",
+      "observacoes": "fsd",
+      "idForm": "d48486c3-53e1-4dcd-9b44-aed68da70c47"
+    },
+    {
+      "id": "45b9",
+      "idForm": "99d038f8-4333-49f1-bfc8-478df98d85dc"
+    },
+    {
+      "id": "a5ad",
+      "name": "fds",
+      "series": "fdsf",
+      "peso": "sdfsd",
+      "observacoes": "fsdf",
+      "idForm": "9f5548ea-c935-49f2-ad16-5880cef87b92"
+    }
+  ],
+  "treino": [
+    {
+      "id": "e236d076-cf2d-4da8-bec1-0241b66d35e3",
+      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
+      "title": "caio's",
+      "type": "superiores",
+      "infos": {}
+    },
+    {
+      "id": "53bc2aba-8525-4202-bd33-ac932945add5",
+      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
+      "title": "Treino B",
+      "type": "inferiores",
+      "infos": {}
+    },
+    {
+      "id": "d48486c3-53e1-4dcd-9b44-aed68da70c47",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "descricao": "",
+      "title": "",
+      "type": "",
+      "infos": {}
+    },
+    {
+      "id": "99d038f8-4333-49f1-bfc8-478df98d85dc",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "descricao": "",
+      "title": "",
+      "type": "",
+      "infos": {}
+    },
+    {
+      "id": "9f5548ea-c935-49f2-ad16-5880cef87b92",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "descricao": "adasd",
+      "title": "aala",
+      "type": "outro",
+      "observacoes": "fsdf"
+    }
+  ],
+  "personais": [
+    {
+      "id": "1",
+      "nome": "Luiz",
+      "idade": 20,
+      "descricao": "Especialista em finalização",
+      "formacao": "UFRJ - Educação Física",
+      "cidade": "Rio de Janeiro, RJ",
+      "rating": 4,
+      "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
+      "image": "luiz"
+    },
+    {
+      "id": "2",
+      "nome": "Arnold Schwarzenegger",
+      "idade": 76,
+      "descricao": "3x Olympia Winner",
+      "formacao": "UFRJ - Educação Física",
+      "cidade": "California, US",
+      "rating": 5,
+      "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
+      "image": "arnold"
+    },
+    {
+      "id": "3",
+      "nome": "Glauco Amorim",
+      "idade": 45,
+      "descricao": "Treinador de alta performance",
+      "formacao": "UFRJ - Educação Física",
+      "cidade": "Niteroi, RJ",
+      "rating": 3,
+      "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
+      "image": "glauco"
+    },
+    {
+      "id": "4",
+      "nome": "Vinicius",
+      "idade": 20,
+      "descricao": "Treinador",
+      "formacao": "UFRJ - Educação Física",
+      "cidade": "Rio de Janeiro, RJ",
+      "rating": 1,
+      "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
+      "image": "vinicius"
+    },
+    {
+      "id": "5",
+      "nome": "Chico",
+      "idade": 25,
+      "descricao": "Aquariano Nato",
+      "formacao": "UFRJ - Educação Física",
+      "cidade": "Rio de Janeiro, RJ",
+      "rating": 2,
+      "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
+      "image": "chicoin"
+    },
+    {
+      "id": "67",
+      "nome": "Caio",
+      "idade": 21,
+      "descricao": "Especialista em passes",
+      "formacao": "CEFET-RJ BCC",
+      "cidade": "Rio de Janeiro, RJ",
+      "rating": 5,
+      "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
+      "image": ""
+    }
+  ],
+  "users": [
+    {
+      "id": "ef683b02-38ce-4ff1-97da-2105fba94aff",
+      "nome": "Vinicius",
+      "senha": "123123",
+      "email": "vinicius.p.drumond@gmail.com",
+      "nascimento": "2024-04-01",
+      "CPF": "16288772780",
+      "treinos": []
+    },
+    {
+      "id": "4302f00c-35d5-42f7-84a9-0450766db4ca",
+      "nome": "caio",
+      "senha": "123",
+      "email": "caio@1",
+      "treinos": []
+    },
+    {
+      "id": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "nome": "ana",
+      "senha": "1",
+      "email": "1@1"
+    },
+    {
+      "id": "82083e08-463e-452a-a33b-c6add2da3a6c",
+      "senha": "123",
+      "email": "teste@teste"
+    }
+  ],
+  "anamnese": [
+    {
+      "id": "ca58",
+      "userId": "ef683b02-38ce-4ff1-97da-2105fba94aff",
+      "weigth": "60",
+      "motivation": "FICAR BIG",
+      "activityFreq": "3",
+      "exam": "2024-04-01",
+      "diet": "NÃO",
+      "observacoes": "aaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "id": "8846",
+      "weigth": "53",
+      "motivation": "nao me matar",
+      "activityFreq": "3",
+      "exam": "2024-04-06",
+      "diet": "nao",
+      "observacoes": "bla",
+      "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764"
+    },
+    {
+      "id": "9402",
+      "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764"
+    }
+  ]
 }

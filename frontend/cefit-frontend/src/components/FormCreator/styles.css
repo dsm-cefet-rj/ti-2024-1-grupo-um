@@ -1,0 +1,16 @@
+.btn-submit{
+    background-color: transparent;
+    color: #3166d1;
+    font-size: 14px;
+    padding: 8px 10px;
+    border-radius: 18px;
+    border: 1px solid;
+    border-color: #3166d1;
+    text-decoration: none;
+    transition: 0.3s background-color;
+    font-size: 17px;
+}
+.btn-submit:hover{
+    background-color: #3166d1;
+    color: #fff;
+}

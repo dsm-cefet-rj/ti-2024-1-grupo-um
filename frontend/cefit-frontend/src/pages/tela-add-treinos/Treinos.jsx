@@ -1,32 +1,62 @@
+//imports components
 import Navbar from "../../components/Navbar/Navbar";
 import FooterComp from "../../components/Footer/Footer";
 import FormCreator from "../../components/FormCreator/formCreator";
+import Modal from "../../components/Modal/AddExercicio";
+import AreaFIT from "../tela-area-fit/AreaFIT";
+
+// import css
 import "./styles.css";
-import { useDispatch, useSelector } from "react-redux";
-import { addExercise } from "../../redux/exercises/slice";
-import { addTraining } from "../../redux/user/slice";
+
+//imports react
 import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+
+//imports redux
+import { useDispatch, useSelector } from "react-redux";
+import { addInfo, addTreino } from "../../redux/form-treino/slice";
+import { addExercicio, clearExercises } from "../../redux/exercises/slice";
+import { addTraining } from "../../redux/trainings/slice";
+
 
 function AddTreinos() {
+    //inicializadores
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const handleAddExercise = () => {
-        dispatch(
-            addExercise(
-                {
-                    name: "Exercício extra",
-                    description: "Descrição"
-                }
-            )
-        )
-    }
+
+    // pegando o usuario
+    const loggedUser = useSelector(rootReducer => rootReducer.user);
+    const exercicios = useSelector(rootReducer => rootReducer.exercises);
+    const form = useSelector(rootReducer => rootReducer.forms);
+    // criando o forms com o id do usuario
+    // const formId = idGen();
+    // dispatch(addForms({idUser: loggedUser.user.id, id: formId, infos: {}}));
+
+    const [showModal, setShowModal] = useState(false);
 
     const handleSubmitForm = (info) => {
-        dispatch(
-            addTraining(info)
-        )
+        dispatch(addInfo(info));
+        const treinoInfo = {
+            idUser: form.idUser,
+            id: form.id,
+            descricao: info.descricao,
+            title: info.title,
+            type: info.type,
+            observacoes: info.observacoes
+        }
+        dispatch(addTreino(treinoInfo));
+        dispatch(addTraining(treinoInfo));
+        exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
+        dispatch(clearExercises());
         navigate("/areaFIT");
     }
+
+
+    // debugger;
+
+    const openModal = () => {
+        setShowModal(true);
+    };
 
     const formFields = [
         {
@@ -40,7 +70,7 @@ function AddTreinos() {
         {
             component: "input",
             classes: "",
-            id: "description",
+            id: "descricao",
             type: "text",
             text: <b>Descrição do Treino:</b>,
             placeholder: "Digite a descrição do treino",
@@ -84,22 +114,7 @@ function AddTreinos() {
                 },
             ],
         },
-        {
-            component: "input",
-            classes: "",
-            id: "dataInicio",
-            type: "date",
-            text: <b>Data de Início:</b>,
-            placeholder: "",
-        },
-        {
-            component: "input",
-            classes: "",
-            id: "dataFim",
-            type: "date",
-            text: <b>Data de Fim:</b>,
-            placeholder: "",
-        },
+
         {
             component: "textArea",
             classes: "",
@@ -113,18 +128,33 @@ function AddTreinos() {
             items: useSelector(rootReducer => rootReducer.exercises),
             buttonText: "+ Exercício",
             listTitle: "Exercícios",
-            buttonAction: handleAddExercise,
+            buttonAction: openModal, // Alterado para abrir o modal
         }
     ]
+
+    //veriricando login do usuario
+    if (!loggedUser.logged) {
+        return <AreaFIT />
+    }
 
     return (
         <>
             <Navbar />
+            {!loggedUser ? navigate("/areaFIT") : <></>}
             <div className="container form-card p-5">
                 <div className="container mx-4 cefit-form">
-                    <h2>Adicionar Novo Treino</h2>
-                    <FormCreator fields={formFields} buttonText={"Salvar Treino"} buttonAction={handleSubmitForm}/>
+                    <h2 id="titulo-form">Adicionar Novo Treino</h2>
+                    <FormCreator fields={formFields} buttonText={"Salvar Treino"} buttonAction={handleSubmitForm} />
                 </div>
+                {showModal && (
+                    <Modal
+                        setModal={() => {
+                            setShowModal();
+
+                        }}
+                        idForm={form.id}
+                    />
+                )}
             </div>
             <FooterComp />
         </>

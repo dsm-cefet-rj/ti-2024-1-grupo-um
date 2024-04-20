@@ -14,6 +14,7 @@ import "./CadastroPersonal.css";
 import "./../pages.css";
 
 // import { createHash } from "crypto";
+import { v4 as idGen } from "uuid";
 
 function Cadastro(){
 
@@ -27,6 +28,7 @@ function Cadastro(){
         senha: password,
         descricao: descricao,
         biografia: biografia,
+        id: idGen()
     }
 
     const navigate = useNavigate();

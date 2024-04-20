@@ -2,7 +2,7 @@
     font-family: 'Aileron', sans-serif;
 }
 .w-full{
-    background-color: #474747;
+    background-color: #272021;
 }
 .mr-3{
     width: 80px;
@@ -14,23 +14,24 @@
     list-style: none;
     justify-content: center;
     
-
 }
 .flex a{
     text-decoration: none;
-    display: flex;
+    position: relative;
+    display: inline-block;
+    
 }
 .flex a::after{
-    content: "";
-    width: 0%;
+    content: '';
     position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
     height: 2px;
     background-color: #3166d1;
-    bottom: 0.1;
-    left: 0;
-    transition: 0.5s ease-in-out;
-    margin-top: 21px;
+    transform: scaleX(0); 
+    transition: transform 0.3s ease;
 }
 .flex a:hover::after {
-    width: 50%;
+    transform: scaleX(1);
 }

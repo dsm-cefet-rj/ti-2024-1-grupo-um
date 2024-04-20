@@ -2,53 +2,33 @@
 import Navbar from "../../components/Navbar/Navbar";
 import TreinoCard from "../../components/TreinosCard/TreinosCard";
 import FooterComp from "../../components/Footer/Footer";
-
+import NotLoggedInAreaFIT from "./NotLoggedAF";
 //css
 import "./AreaFIT.css";
 //react
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 //redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clearExercises } from "../../redux/exercises/slice";
+import { addForms } from "../../redux/form-treino/slice";
+//id gen
+import { v4 as idGen } from "uuid";
+//axios
 
 
 
 function AreaFIT() {
 
-  // const id = useParams();
-  const user =  useSelector(rootReducer => rootReducer.user);
-  const currentUser  = user[0].currentUser;
-  let treinosUser;
-  if(currentUser){
-  treinosUser = currentUser.treinos;
-  }
+  const dispatch = useDispatch();
+  const currentUser =  useSelector(rootReducer => rootReducer.user);
+  const trainings = useSelector(rootReducer => rootReducer.trainings);
+  
+  dispatch(clearExercises());
 
-  const Treinos = [
-    {
-      title: "Treino A",
-      description: "Pernas",
-      type: "inferiores"
-    },
-    {
-      title: "Treino B",
-      description: "Costas",
-      type: "superiores"
-    },
-    {
-      title: "Treino C",
-      description: "Esteira",
-      type: "cardio"
-    },
-    {
-        title: "Treino D",
-        description: "Natação",
-        type: "natacao"
-      },
-     {
-       title: "Treino E",
-       description: "Crossfit",
-       type: "crossfit"
-       }
-  ];
+  // Filtrar os treinos pelo idUser
+  if (!currentUser.logged) {
+    return <NotLoggedInAreaFIT />;
+  }
 
   return (
     <>
@@ -59,31 +39,25 @@ function AreaFIT() {
       </div>
     <div className="container mt-2" id="container-card">
         <div className="row justify-content-center"id="row-card">
-          {currentUser ? (
-            treinosUser.map((treino, index) => (
+        {currentUser.logged && (
+            trainings.map((treino, index) => (
               <div key={index} className="col mb-3">
                 <TreinoCard
                   title={treino.title}
                   description={treino.description}
                   type={treino.type}
+                  id={treino.id}
+          
                 />
               </div>)
-              )):(
-                Treinos.map((treino, index) => (
-                  <div key={index} className="col mb-3">
-                    <TreinoCard
-                      title={treino.title}
-                      description={treino.description}
-                      type={treino.type}
-                    />
-                  </div>)
-                  )
-                )  
+              )) 
           }
         </div>
     </div>
 
-    <Link to={"/add-treinos"} className="monte-button">Monte seu treino</Link>
+    <Link to={"/add-treinos"} >
+      <button className="monte-button" onClick={() => {dispatch(addForms({idUser: currentUser.user.id, id: idGen(), infos: {}}))}}>Monte seu treino</button>
+    </Link>
     <div className="espacamento">
 
       </div>
