@@ -138,5 +138,17 @@
       "email": "caio@1",
       "treinos": []
     }
+  ],
+  "anamnese": [
+    {
+      "id": "ca58",
+      "userId": "ef683b02-38ce-4ff1-97da-2105fba94aff",
+      "weigth": "60",
+      "motivation": "FICAR BIG",
+      "activityFreq": "3",
+      "exam": "2024-04-01",
+      "diet": "NÃO",
+      "observacoes": "aaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
   ]
 }

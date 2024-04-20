@@ -14,10 +14,8 @@ import React, { useState } from 'react';
 
 //imports redux
 import { useDispatch, useSelector } from "react-redux";
-import { addTraining } from "../../redux/trainings/slice";
 import { addInfo, addTreino } from "../../redux/form-treino/slice";
-import { addExercicio, addExercise, clearExercises } from "../../redux/exercises/slice";
-import rootReducer from "../../redux/root-reducer";
+import { addExercicio, clearExercises } from "../../redux/exercises/slice";
 
 
 function AddTreinos() {
@@ -34,7 +32,7 @@ function AddTreinos() {
     // dispatch(addForms({idUser: loggedUser.user.id, id: formId, infos: {}}));
 
     const [showModal, setShowModal] = useState(false);
-    
+
     const handleSubmitForm = (info) => {
         debugger;
         dispatch(addInfo(info));
@@ -43,7 +41,7 @@ function AddTreinos() {
         dispatch(clearExercises());
         navigate("/areaFIT");
     }
-    
+
 
     // debugger;
 
@@ -107,7 +105,7 @@ function AddTreinos() {
                 },
             ],
         },
-    
+
         {
             component: "textArea",
             classes: "",
@@ -126,7 +124,7 @@ function AddTreinos() {
     ]
 
     //veriricando login do usuario
-    if(!loggedUser.logged){
+    if (!loggedUser.logged) {
         return <AreaFIT />
     }
 
@@ -137,7 +135,7 @@ function AddTreinos() {
             <div className="container form-card p-5">
                 <div className="container mx-4 cefit-form">
                     <h2>Adicionar Novo Treino</h2>
-                    <FormCreator fields={formFields} buttonText={"Salvar Treino"} buttonAction={handleSubmitForm}/>
+                    <FormCreator fields={formFields} buttonText={"Salvar Treino"} buttonAction={handleSubmitForm} />
                 </div>
                 {showModal && (
                     <Modal
@@ -145,7 +143,7 @@ function AddTreinos() {
                             setShowModal();
 
                         }}
-                        idForm = {form.id}
+                        idForm={form.id}
                     />
                 )}
             </div>
