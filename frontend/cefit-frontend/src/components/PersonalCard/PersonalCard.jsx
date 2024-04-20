@@ -15,7 +15,7 @@ function PersonalCard({ nome, descricao, rating, id, image = user }){
     }
     return (
         <Link className="card" id="card-personal" to={`/personal/${id}`}>
-            {image ? (<img className="card-img-top m-auto mt-2" src={require(`../../images/PersonalImages/${image}.png`).default} alt="Imagem de capa do card"/>)
+            {image ? (<img className="card-img-top m-auto mt-2" src={require(`../../images/PersonalImages/${image}.png`)} alt="Imagem de capa do card"/>)
             :(<img className="card-img-top m-auto mt-2" src={user} alt="Imagem de capa do card"/>)}
             <div className="card-body text-center">
                 <h5 className="card-title">{nome}</h5>

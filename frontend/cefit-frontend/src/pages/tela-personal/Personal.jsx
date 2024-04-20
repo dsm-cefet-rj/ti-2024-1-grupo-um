@@ -40,7 +40,7 @@ function Personal() {
             {personalAtual.image ?
               (
                 <div>
-                  <img src={require (`../../images/PersonalImages/${personalAtual.image}.png`).default} alt="avatar"
+                  <img src={require(`../../images/PersonalImages/${personalAtual.image}.png`)} alt="avatar"
                     className="rounded-circle img-fluid" style={{ width: "150px" }} />
                   <h5 className="my-3">{personalAtual.nome}</h5> 
                 </div>

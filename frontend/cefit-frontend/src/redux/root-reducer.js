@@ -5,7 +5,7 @@ import personaisReducer from "./personal/slice";
 import userReducer from "./user/slice";
 import formsReducer from "./form-treino/slice";
 import anamneseReducer from "./anamnese/slice";
-import pagamentoReducer from './pagamento/slice';
+import alunoReducer from './aluno/slice';
 
 const rootReducer = combineReducers({
     exercises: exercisesReducer,
@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
     user: userReducer,
     forms: formsReducer,
     anamnese: anamneseReducer,
-    pagamento: pagamentoReducer,
+    aluno: alunoReducer,
 })
 
 export default rootReducer;

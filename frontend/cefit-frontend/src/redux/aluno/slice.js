@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 
-const pagamentoSlice = createSlice({
+const alunoSlice = createSlice({
   name: 'pagamento',
   initialState: [],
   reducers: {
@@ -12,5 +12,5 @@ const pagamentoSlice = createSlice({
   }
 });
 
-export const { adicionarPagamento } = pagamentoSlice.actions;
-export default pagamentoSlice.reducer;
+export const { addAluno } = alunoSlice.actions;
+export default alunoSlice.reducer;
