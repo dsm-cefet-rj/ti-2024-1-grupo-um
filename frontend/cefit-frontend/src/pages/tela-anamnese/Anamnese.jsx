@@ -97,8 +97,8 @@ function Anamnese() {
             <Navbar />
             <div className="form-card p-5">
                 <div className="container cefit-form">
-                    <h2>Faça sua Anamnese</h2>
-                    <p>Para responder a anamnese, caso a resposta seja <b>Não</b> não é necessário preencher os campos de texto. Caso contrário, favor preencher o campo de texto.</p>
+                    <h2 id="titulo-form">Faça sua Anamnese</h2>
+                    <p>Para responder a anamnese, caso a resposta seja <b>Não</b>, não é necessário preencher os campos de texto. Caso contrário, favor preencher o campo de texto.</p>
                     <FormCreator fields={formFields} buttonText="Salvar" buttonAction={handleSubmitForm} />
                 </div>
             </div>

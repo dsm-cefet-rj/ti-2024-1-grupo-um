@@ -34,6 +34,26 @@
       "series": "5x10",
       "peso": "10kg",
       "idForm": "31a22162-ab43-4847-9997-b5096e02bb53"
+    },
+    {
+      "id": "b3c4",
+      "name": "cadeira extensora",
+      "series": "3",
+      "peso": "5",
+      "observacoes": "bla\n",
+      "idForm": "d48486c3-53e1-4dcd-9b44-aed68da70c47"
+    },
+    {
+      "id": "ba0c",
+      "name": "noem",
+      "series": "fedsf",
+      "peso": "dfs",
+      "observacoes": "fsd",
+      "idForm": "d48486c3-53e1-4dcd-9b44-aed68da70c47"
+    },
+    {
+      "id": "45b9",
+      "idForm": "99d038f8-4333-49f1-bfc8-478df98d85dc"
     }
   ],
   "treino": [
@@ -49,6 +69,22 @@
       "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
       "title": "Treino B",
       "type": "inferiores",
+      "infos": {}
+    },
+    {
+      "id": "d48486c3-53e1-4dcd-9b44-aed68da70c47",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "descricao": "",
+      "title": "",
+      "type": "",
+      "infos": {}
+    },
+    {
+      "id": "99d038f8-4333-49f1-bfc8-478df98d85dc",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "descricao": "",
+      "title": "",
+      "type": "",
       "infos": {}
     }
   ],
@@ -136,6 +172,12 @@
       "senha": "123",
       "email": "caio@1",
       "treinos": []
+    },
+    {
+      "id": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "nome": "ana",
+      "senha": "1",
+      "email": "1@1"
     }
   ],
   "anamnese": [
@@ -148,6 +190,20 @@
       "exam": "2024-04-01",
       "diet": "NÃO",
       "observacoes": "aaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "id": "8846",
+      "weigth": "53",
+      "motivation": "nao me matar",
+      "activityFreq": "3",
+      "exam": "2024-04-06",
+      "diet": "nao",
+      "observacoes": "bla",
+      "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764"
+    },
+    {
+      "id": "9402",
+      "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764"
     }
   ]
 }
