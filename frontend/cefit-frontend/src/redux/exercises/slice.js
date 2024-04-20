@@ -13,7 +13,6 @@ const exercisesSlice = createSlice({
     initialState,
     reducers: {
         addExercise: (state, action) => {
-            // debugger;
             state.push(action.payload);
         },
         clearExercises: (state,action) => {
