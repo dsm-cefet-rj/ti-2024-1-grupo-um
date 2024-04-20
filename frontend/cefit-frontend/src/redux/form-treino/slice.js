@@ -7,7 +7,8 @@ const initialState = {
     id: "",
     descricao:"",
     title:"",
-    type:""
+    type:"",
+    observacoes: "",
 }; 
 
 const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
@@ -22,7 +23,6 @@ const formsSlice = createSlice({
         addForms: (state, action) => {
             state.idUser = action.payload.idUser;
             state.id = action.payload.id;
-            state.infos = action.payload.infos;
         },
         addInfo: (state, action) => {
             state.descricao = action.payload.descricao;
