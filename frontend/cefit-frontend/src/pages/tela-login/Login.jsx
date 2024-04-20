@@ -5,6 +5,7 @@ import CefetImage from "../../components/CefetImage/CefetImage";
 //import react stuff
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getTreinosByUserID } from "../../redux/trainings/slice";
 
 //import axios
 import axios from "axios";
