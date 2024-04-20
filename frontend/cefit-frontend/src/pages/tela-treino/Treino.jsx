@@ -13,7 +13,8 @@ function Treino() {
     const [Exercises, setExercises] = useState([]);
     const currentUser =  useSelector(rootReducer => rootReducer.user);
     const {id} = useParams();
-    if(id){
+    let firstTime = 1;
+    if(id && firstTime == 1){
         async function getExercises() {
             const response = await axios.get("http://localhost:3004/exercicios");
             const exercisesArray = response.data.filter((exercicio) => exercicio.idForm == id);
@@ -21,7 +22,7 @@ function Treino() {
             setExercises([...exercisesArray]);
         }
         getExercises();
-        console.log(Exercises);
+        firstTime = 0;
     }
     const exercicios = [
         {
