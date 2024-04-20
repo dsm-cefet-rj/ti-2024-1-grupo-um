@@ -16,6 +16,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { addInfo, addTreino } from "../../redux/form-treino/slice";
 import { addExercicio, clearExercises } from "../../redux/exercises/slice";
+import { addTraining } from "../../redux/trainings/slice";
 
 
 function AddTreinos() {
@@ -34,9 +35,17 @@ function AddTreinos() {
     const [showModal, setShowModal] = useState(false);
 
     const handleSubmitForm = (info) => {
-        debugger;
         dispatch(addInfo(info));
-        dispatch(addTreino(form));
+        const treinoInfo = {
+            idUser: form.idUser,
+            id: form.id,
+            descricao: info.descricao,
+            title: info.title,
+            type: info.type,
+            observacoes: info.observacoes
+        }
+        dispatch(addTreino(treinoInfo));
+        dispatch(addTraining(treinoInfo));
         exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
         dispatch(clearExercises());
         navigate("/areaFIT");
@@ -61,7 +70,7 @@ function AddTreinos() {
         {
             component: "input",
             classes: "",
-            id: "description",
+            id: "descricao",
             type: "text",
             text: <b>Descrição do Treino:</b>,
             placeholder: "Digite a descrição do treino",
