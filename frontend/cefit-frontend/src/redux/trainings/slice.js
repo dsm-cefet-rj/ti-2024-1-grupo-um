@@ -1,15 +1,17 @@
-import { createSlice, createEntityAdapter, createAsyncThunk } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-//criar o entity adapter
-const trainingsAdapter = createEntityAdapter();
 
-// mudar o iniciar state para o getInitialState
-const initialState = trainingsAdapter.getInitialState();
+const initialState = [];
 
-const getTreinos = createAsyncThunk("treino/getTreinosAsync", async(data) => {
-    const response = await axios.get("http://localhost:3004/treino", data);
-    return response.data; 
+
+const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", async(idUser) => {
+    try{
+
+        const response = await axios.get(`http://localhost:3004/treino?idUser=${idUser}`);
+        return response.data; 
+    } catch(err){
+        return [];
+    }
  });
 
 const trainingsSlice = createSlice({
@@ -17,23 +19,24 @@ const trainingsSlice = createSlice({
     initialState,
     reducers: {
             //adaptar o treino
-        addTraining: trainingsAdapter.addOne
-            // const user =  useSelector(rootReducer => rootReducer.user);
-            // const currentUser  = user[0].currentUser;
-            // state.push({...action.payload, userId: currentUser.id});
-        
+        addTraining: (state, action) => {
+            state.push(action.payload)
+        } 
+    },
+    extraReducers: (builder) => {
+        builder.addCase(getTreinosByUserID.fulfilled, (state, action) => {
+            while (state.length > 0) {
+                state.pop()
+            }
+            for (let training of action.payload) {
+                state.push(training)
+            }
+        })
+
     }
 })
 
 export const { addTraining } = trainingsSlice.actions;
 
-export { getTreinos };
+export { getTreinosByUserID };
 export default trainingsSlice.reducer;
-
-// addExercise: (state, action) => {
-//     // Extrair o ID externo do payload da ação
-//     const { id, ...exercise } = action.payload;
-
-//     // Adicionar o exercício com o ID externo (do treino?) utilizando o adapter
-//     exercisesAdapter.addOne(state, { id, ...exercise });
-// }
