@@ -11,11 +11,19 @@ const initialState = {
     observacoes: ""
 }
 
-const addAnmneseAsync = createAsyncThunk('user/addTreinoAsync', async (data) => {
+const addAnmneseAsync = createAsyncThunk('anamnese/addAnamneseAsync', async (data) => {
     const response = await axios.post("http://localhost:3004/anamnese", data);
     return response.data;
 });
 
+<<<<<<< HEAD
+=======
+const getAnamnese = createAsyncThunk('anamnese/getAnamneseAsync', async (userId) => {
+    const response = await axios.get(`http://localhost:3004/anamnese?userId=${userId}`);
+    console.log(response.data);
+    return response.data;
+});
+>>>>>>> 30d3e5eb55cddbadca717a36e5cfea1e88de8b46
 
 const anamneseSlice = createSlice({
     name: "anamnese",
@@ -29,10 +37,20 @@ const anamneseSlice = createSlice({
             state.diet = action.payload.diet;
             state.observacoes = action.payload.observacoes;
         },
+    },
+    extraReducers: builder =>{
+        builder.addCase(getAnamnese.fulfilled, (state, action) => {
+            console.log(action.payload);
+            state.weigth = action.payload[0].weigth;
+            state.motivation = action.payload[0].motivation;
+            state.exam = action.payload[0].exam;
+            state.diet = action.payload[0].diet;
+            state.observacoes = action.payload[0].observacoes;
+        })
     }
 })
 
 export const { addAnmnese } = anamneseSlice.actions;
 
-export { addAnmneseAsync };
+export { addAnmneseAsync, getAnamnese };
 export default anamneseSlice.reducer;

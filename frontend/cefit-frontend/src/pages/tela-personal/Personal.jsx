@@ -10,16 +10,26 @@ import star from "../../images/star.png";
 import user from "../../images/user.png";
 
 //redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getAnamnese } from "../../redux/anamnese/slice";
 
 
 function Personal() {
   const {id} = useParams();
-
+  const dispatch = useDispatch();
+  const currentUser = useSelector(rootReducer => rootReducer.user).user;
+  //pega os personais e faz um filtro pelo personal com id parametro
   const personais = useSelector(rootReducer => rootReducer.personais);
-  const personalAtual = personais.filter((personal) => personal.id == id)[0];
+  const personalAtual = personais.filter((personal) => personal.id === id)[0];
+  //pega a anamnese relacionada ao usuario logado
+  dispatch(getAnamnese(currentUser.id));
 
-  console.log(personalAtual);
+  const anamneses = useSelector(rootReducer => rootReducer.anamnese);
+  console.log(anamneses);
+  let anamneseUser;
+  if(anamneses.length != 0){
+    anamneseUser = anamneses.filter((anamnese) => anamnese.userId === currentUser.id);
+  }
 
 
   const estrelas = [];
@@ -56,7 +66,12 @@ function Personal() {
               {estrelas}
             </div>
             <div className="d-flex justify-content-center mb-2">
-              <Link data-aos="fade-up" data-aos-delay="200" to={`/pagamento/${personalAtual.id}`} className="btn btn-primary">Solicitar consultoria</Link>
+              {anamneseUser?(
+                  <Link data-aos="fade-up" data-aos-delay="200" to={`/pagamento/${personalAtual.id}`} className="btn btn-primary">Solicitar consultoria</Link>
+                ):(
+                  <Link data-aos="fade-up" data-aos-delay="200" to={`/anamnese`} className="btn btn-primary">Solicitar consultoria</Link>
+                )
+              }
             </div>
           </div>
         </div>
