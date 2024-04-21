@@ -63,7 +63,7 @@ function Personal() {
               {estrelas}
             </div>
             <div className="d-flex justify-content-center mb-2">
-              {anamnese?(
+              {anamnese.weigth!=""?(
                   <Link data-aos="fade-up" data-aos-delay="200" to={`/pagamento/${personalAtual.id}`} className="btn btn-primary">Solicitar consultoria</Link>
                 ):(
                   <Link data-aos="fade-up" data-aos-delay="200" to={`/anamnese`} className="btn btn-primary">Solicitar consultoria</Link>

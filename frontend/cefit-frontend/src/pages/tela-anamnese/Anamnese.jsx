@@ -90,7 +90,7 @@ function Anamnese() {
         navigate("/personais")
     }
     const anamnese = useSelector(rootReducer => rootReducer.anamnese);
-    if (anamnese) {
+    if (anamnese.weigth!="") {
         return <VisuAnamnese />
     }
 
