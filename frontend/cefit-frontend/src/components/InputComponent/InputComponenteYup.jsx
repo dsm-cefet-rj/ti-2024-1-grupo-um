@@ -2,7 +2,7 @@ import "./InputComponent.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 function InputComponentYup(props){
-    const renderError = (message) => <p className="help is-danger">{message}</p>;
+    const renderError = (message) => <p className="erro">{message}</p>;
     return (
         <div className={props.classes}>
             <label htmlFor={props.id} className="form-label" style={{color:"black"}}>{props.text}</label>

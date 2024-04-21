@@ -33,7 +33,7 @@ function Cadastro(){
         birth: Yup.date().default(() => new Date()),
         CPF: Yup.string().required()
     });
-    
+
     const initialValues = {
         nome: "",
         email: "",
@@ -60,7 +60,7 @@ function Cadastro(){
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
-                        onSubmit={(values, { resetForm }) => {
+                        onSubmit={(values) => {
                             handleSingUp(values);
                         }}>
                         <Form className="formulario-cadastro">
