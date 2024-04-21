@@ -24,12 +24,9 @@ function Personal() {
   //pega a anamnese relacionada ao usuario logado
   dispatch(getAnamnese(currentUser.id));
 
-  const anamneses = useSelector(rootReducer => rootReducer.anamnese);
-  console.log(anamneses);
-  let anamneseUser;
-  if(anamneses.length != 0){
-    anamneseUser = anamneses.filter((anamnese) => anamnese.userId === currentUser.id);
-  }
+  const anamnese = useSelector(rootReducer => rootReducer.anamnese);
+  console.log(anamnese);
+
 
 
   const estrelas = [];
@@ -66,7 +63,7 @@ function Personal() {
               {estrelas}
             </div>
             <div className="d-flex justify-content-center mb-2">
-              {anamneseUser?(
+              {anamnese?(
                   <Link data-aos="fade-up" data-aos-delay="200" to={`/pagamento/${personalAtual.id}`} className="btn btn-primary">Solicitar consultoria</Link>
                 ):(
                   <Link data-aos="fade-up" data-aos-delay="200" to={`/anamnese`} className="btn btn-primary">Solicitar consultoria</Link>

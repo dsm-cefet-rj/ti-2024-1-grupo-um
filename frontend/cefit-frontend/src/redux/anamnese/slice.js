@@ -16,14 +16,13 @@ const addAnmneseAsync = createAsyncThunk('anamnese/addAnamneseAsync', async (dat
     return response.data;
 });
 
-<<<<<<< HEAD
-=======
+
 const getAnamnese = createAsyncThunk('anamnese/getAnamneseAsync', async (userId) => {
     const response = await axios.get(`http://localhost:3004/anamnese?userId=${userId}`);
     console.log(response.data);
     return response.data;
 });
->>>>>>> 30d3e5eb55cddbadca717a36e5cfea1e88de8b46
+
 
 const anamneseSlice = createSlice({
     name: "anamnese",
@@ -40,12 +39,14 @@ const anamneseSlice = createSlice({
     },
     extraReducers: builder =>{
         builder.addCase(getAnamnese.fulfilled, (state, action) => {
-            console.log(action.payload);
-            state.weigth = action.payload[0].weigth;
-            state.motivation = action.payload[0].motivation;
-            state.exam = action.payload[0].exam;
-            state.diet = action.payload[0].diet;
-            state.observacoes = action.payload[0].observacoes;
+            if(action.payload.length != 0){
+                state.weigth = action.payload.activityFreq;
+                state.weigth = action.payload.weigth;
+                state.motivation = action.payload.motivation;
+                state.exam = action.payload.exam;
+                state.diet = action.payload.diet;
+                state.observacoes = action.payload.observacoes;
+            }
         })
     }
 })

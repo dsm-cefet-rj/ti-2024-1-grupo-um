@@ -89,9 +89,9 @@ function Anamnese() {
         dispatch(addAnmnese(infos))
         navigate("/personais")
     }
-
-    if (!currentUser.logged) {
-        return <Login />
+    const anamnese = useSelector(rootReducer => rootReducer.anamnese);
+    if (anamnese) {
+        return <VisuAnamnese />
     }
 
     // Verificar se a anamnese já está preenchida

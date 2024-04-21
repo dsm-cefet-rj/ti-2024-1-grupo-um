@@ -14,7 +14,7 @@ import { addForms } from "../../redux/form-treino/slice";
 //id gen
 import { v4 as idGen } from "uuid";
 //axios
-
+import { getAnamnese } from "../../redux/anamnese/slice";
 
 
 function AreaFIT() {
@@ -23,8 +23,11 @@ function AreaFIT() {
   const currentUser =  useSelector(rootReducer => rootReducer.user);
   const trainings = useSelector(rootReducer => rootReducer.trainings);
   
-  dispatch(clearExercises());
 
+  dispatch(clearExercises());
+  dispatch(getAnamnese(currentUser.id));
+
+  
   // Filtrar os treinos pelo idUser
   if (!currentUser.logged) {
     return <NotLoggedInAreaFIT />;
