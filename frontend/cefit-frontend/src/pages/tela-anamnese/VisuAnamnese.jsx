@@ -6,13 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { addAnmneseAsync, addAnmnese } from "../../redux/anamnese/slice";
 import Login from "../tela-login/Login"
 import { useNavigate } from "react-router-dom";
-import VisuAnamnese from "./VisuAnamnese";
 
-function Anamnese() {
+function VisuAnamnese() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
 
     const formFields = [
         {
@@ -82,7 +80,7 @@ function Anamnese() {
     ]
 
     const currentUser = useSelector(rootReducer => rootReducer.user);
-   
+
     const handleSubmitForm = (infos) => {
         infos["userId"] = currentUser.user.id;
         dispatch(addAnmneseAsync(infos))
@@ -94,21 +92,14 @@ function Anamnese() {
         return <Login />
     }
 
-    // Verificar se a anamnese já está preenchida
-    const isAnamneseFilled = Object.values(Anamnese).some(value => value !== "");
-
-    if (isAnamneseFilled) {
-        // Se a anamnese estiver preenchida, redirecionar para a página de visualização da anamnese
-        return <VisuAnamnese />;
-    }
     return (
         <>
             <Navbar />
             <div className="form-card p-5">
                 <div className="container cefit-form">
-                    <h2 id="titulo-form">Faça sua Anamnese</h2>
-                    <p>Para responder a anamnese, caso a resposta seja <b>Não</b>, não é necessário preencher os campos de texto. Caso contrário, favor preencher o campo de texto.</p>
-                    <FormCreator fields={formFields} buttonText="Salvar" buttonAction={handleSubmitForm} />
+                    <h2 id="titulo-form">Anamnese</h2>
+                    <p>Para editar sua anamnese, basta reescrever nos campos</p>
+                    <FormCreator fields={formFields} buttonText="Editar" buttonAction={handleSubmitForm} />
                 </div>
             </div>
             <FooterComp />
@@ -116,4 +107,4 @@ function Anamnese() {
     )
 }
 
-export default Anamnese
+export default VisuAnamnese

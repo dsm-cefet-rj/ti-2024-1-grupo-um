@@ -16,6 +16,7 @@ const addAnmneseAsync = createAsyncThunk('user/addTreinoAsync', async (data) => 
     return response.data;
 });
 
+
 const anamneseSlice = createSlice({
     name: "anamnese",
     initialState,
