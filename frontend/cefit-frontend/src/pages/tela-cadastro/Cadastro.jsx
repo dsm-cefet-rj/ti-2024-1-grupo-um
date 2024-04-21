@@ -14,36 +14,42 @@ import "./../pages.css";
 //import redux
 import { useDispatch } from "react-redux";
 import { addUser } from "../../redux/user/slice";
-
+//import yup and formik
+import * as Yup from "yup";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 //import gerador de id
 import { v4 as idGen } from "uuid";
-
+import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
 
 function Cadastro(){
 
-    const [ nome, setNome ] = useState();
-    const [ password, setPassword ] = useState();
-    const [ email, setEmail ] = useState();
-    const [ birth, setBirth ] = useState();
-    const [ CPF, setCPF ] = useState();
-
-    const cadastro = { 
-        nome: nome,
-        senha: password,
-        email: email,
-        nascimento: birth,
-        CPF: CPF,
-        id: idGen()
-    }
-
-
+    const validationSchema = Yup.object({
+        nome: Yup.string().required(),
+        email: Yup.string().email().required(),
+        senha: Yup.string()
+        .required('No password provided.') 
+        .min(8, 'Password is too short - should be 8 chars minimum.')
+        .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+        birth: Yup.date().default(() => new Date()),
+        CPF: Yup.string().required()
+    });
+    
+    const initialValues = {
+        nome: "",
+        email: "",
+        senha:"",
+        birth: "",
+        CPF: ""
+    };
+    
+    
+    
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
 
-    const handleSingUp=(e)=>{
-        e.preventDefault();
-        dispatch(addUser({...cadastro}));
+    const handleSingUp=(values)=>{
+        dispatch(addUser({...values, id:idGen()}));
         navigate("/login");
     }
 
@@ -51,17 +57,24 @@ function Cadastro(){
         <div className="bg-image cefit-background-img" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
                 <div className="login-container rounded-5 p-3">
                     <CefetImage/>
-                    <form className="formulario-cadastro" onSubmit={handleSingUp}>
-                        <InputComponent classes="mt-3" id="nameImput" text="Nome Completo" type="text" placeholder="Seu nome completo aqui" value={nome} onChange={(e) => [setNome(e.target.value)]}/>
-                        <InputComponent classes="" id="InputEmail" text="Email" type="email" placeholder="Insira seu email aqui" value={email} onChange={(e) => [setEmail(e.target.value)]}/>
-                        <InputComponent classes="" id="CPFInput" text="CPF" type="text" placeholder="Seu CPF aqui" value={CPF} onChange={(e) => [setCPF(e.target.value)]}/>
-                        <InputComponent classes="" id="age" text="Data de Nascimento" type="date" placeholder="" value={birth} onChange={(e) => [setBirth(e.target.value)]}/>
-                        <InputComponent classes="" id="Password" text="Senha" type="password" placeholder="Insira sua senha aqui"value={password} onChange={(e) => [setPassword(e.target.value)]}/>
-                        <SubmitButton nomeButton="Cadastrar" />
-                        <div className="cadastro-texto mt-3">
-                            Possui conta?<Link to="/login">Faça o seu Login!</Link>
-                        </div>
-                    </form>
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={(values, { resetForm }) => {
+                            handleSingUp(values);
+                        }}>
+                        <Form className="formulario-cadastro">
+                            <InputComponentYup classes="mt-3" id="nameImput" name="nome"text="Nome Completo" type="text" placeholder="Seu nome completo aqui"/>
+                            <InputComponentYup classes="" id="InputEmail" name="email" text="Email" type="email" placeholder="Insira seu email aqui" />
+                            <InputComponentYup classes="" id="CPFInput" name="CPF" text="CPF" type="text" placeholder="Seu CPF aqui" />
+                            <InputComponentYup classes="" id="age" name="birth" text="Data de Nascimento" type="date" placeholder="" />
+                            <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
+                            <SubmitButton nomeButton="Cadastrar" />
+                            <div className="cadastro-texto mt-3">
+                                Possui conta?<Link to="/login">Faça o seu Login!</Link>
+                            </div>
+                        </Form>
+                    </Formik>
                 </div>
             </div>
     );
