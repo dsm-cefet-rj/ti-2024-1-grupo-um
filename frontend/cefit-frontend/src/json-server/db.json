@@ -1,6 +1,31 @@
 {
-  "exercicios": [],
-  "treino": [],
+  "exercicios": [
+    {
+      "id": "5d21",
+      "name": "Supino maq",
+      "series": "3x12",
+      "peso": "25",
+      "idForm": "f1d0cffb-b9fe-480d-94f1-26d645f7925a"
+    },
+    {
+      "id": "d2cb",
+      "name": "Remada maquina",
+      "series": "3x12",
+      "peso": "27",
+      "observacoes": "bajk",
+      "idForm": "f1d0cffb-b9fe-480d-94f1-26d645f7925a"
+    }
+  ],
+  "treino": [
+    {
+      "id": "f1d0cffb-b9fe-480d-94f1-26d645f7925a",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "descricao": "Braço",
+      "title": "Treino A",
+      "type": "superiores",
+      "observacoes": "Sextas"
+    }
+  ],
   "personais": [
     {
       "id": "1",
@@ -121,27 +146,27 @@
       "nome": "",
       "senha": "321",
       "email": "romario@1"
+    },
+    {
+      "id": "d30824a6-ca95-4992-bebd-9f5fe8a3aa35",
+      "nome": "carolzinha",
+      "senha": "1",
+      "email": "c@rol"
+    },
+    {
+      "id": "48dddb1b-7d1c-447d-880a-cd52ea1f4f30",
+      "nome": "fluminense",
+      "senha": "1",
+      "email": "fl@u"
     }
   ],
   "anamnese": [
     {
-      "id": "ca58",
-      "userId": "ef683b02-38ce-4ff1-97da-2105fba94aff",
-      "weigth": "60",
-      "motivation": "FICAR BIG",
-      "activityFreq": "3",
-      "exam": "2024-04-01",
-      "diet": "NÃO",
-      "observacoes": "aaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    },
-    {
-      "id": "8846",
+      "id": "6860",
       "weigth": "53",
-      "motivation": "nao me matar",
-      "activityFreq": "3",
-      "exam": "2024-04-06",
-      "diet": "nao",
-      "observacoes": "bla",
+      "motivation": "lala",
+      "activityFreq": "4",
+      "diet": "lala",
       "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764"
     }
   ],
@@ -156,6 +181,16 @@
     {
       "id": "ce14",
       "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
+      "idPersonal": "2"
+    },
+    {
+      "id": "597f",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "idPersonal": "2"
+    },
+    {
+      "id": "80a8",
+      "idUser": "d30824a6-ca95-4992-bebd-9f5fe8a3aa35",
       "idPersonal": "2"
     }
   ]

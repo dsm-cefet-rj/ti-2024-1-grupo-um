@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
+
 const initialState = {
     logged: false,
     user: {}
@@ -22,6 +24,7 @@ const userSlice = createSlice({
         logoutUser: (state) => {
             state.logged = false;
             state.user = {};
+            
         },
         addTraining: (state, action) => {
             if(state.logged){

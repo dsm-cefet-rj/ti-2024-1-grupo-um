@@ -2,11 +2,13 @@ import Navbar from "../../components/Navbar/Navbar";
 import FormCreator from "../../components/FormCreator/formCreator";
 import FooterComp from "../../components/Footer/Footer";
 import './style.css'
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAnmneseAsync, addAnmnese } from "../../redux/anamnese/slice";
 import Login from "../tela-login/Login"
 import { useNavigate } from "react-router-dom";
 import VisuAnamnese from "./VisuAnamnese";
+import { getAnamnese } from "../../redux/anamnese/slice";
 
 function Anamnese() {
 
@@ -80,27 +82,38 @@ function Anamnese() {
             placeholder: "(Opcional) Digite observações sobre o treino",
         },
     ]
-
     const currentUser = useSelector(rootReducer => rootReducer.user);
-   
+    const anamnese = useSelector(rootReducer => rootReducer.anamnese);
+    
+    useEffect(() => {
+        if (currentUser.logged) {
+            // Verificar se já existe uma anamnese associada ao ID do usuário
+            dispatch(getAnamnese(currentUser.user.id));
+        }
+    }, [currentUser.logged, currentUser.user.id, dispatch]);
+    
+
     const handleSubmitForm = (infos) => {
         infos["userId"] = currentUser.user.id;
         dispatch(addAnmneseAsync(infos))
         dispatch(addAnmnese(infos))
         navigate("/personais")
     }
-    const anamnese = useSelector(rootReducer => rootReducer.anamnese);
-    console.log(anamnese);
-    if(anamnese.weigth != ""){
-        return <VisuAnamnese />;
+    if (!currentUser.logged) {
+        return <Login />;
     }
-    // Verificar se a anamnese já está preenchida
-    // const isAnamneseFilled = Object.values(Anamnese).some(value => value !== "");
-    // console.log(isAnamneseFilled);
-    // if (isAnamneseFilled) {
-    //     // Se a anamnese estiver preenchida, redirecionar para a página de visualização da anamnese
-    //     return <VisuAnamnese />;
-    // }
+    
+     // Verificar se já existe uma anamnese associada ao ID do usuário
+     if (getAnamnese.activityFreq || anamnese.weigth || anamnese.motivation || anamnese.exam || anamnese.diet || anamnese.observacoes) {
+        // Se pelo menos um dos campos da anamnese estiver preenchido, redirecionar para a página de visualização da anamnese
+        return <VisuAnamnese />;
+     }
+    //const anamnese = useSelector(rootReducer => rootReducer.anamnese);
+    //console.log(anamnese);
+    //if(anamnese){ 
+     //   return <VisuAnamnese />;
+    //}
+    
     return (
         <>
             <Navbar />
