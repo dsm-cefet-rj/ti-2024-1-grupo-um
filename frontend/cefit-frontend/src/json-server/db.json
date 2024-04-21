@@ -143,25 +143,6 @@
       "diet": "nao",
       "observacoes": "bla",
       "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764"
-    },
-    {
-      "id": "3318",
-      "weigth": "53",
-      "motivation": "crescer",
-      "activityFreq": "3",
-      "exam": "2024-05-11",
-      "diet": "nn",
-      "observacoes": "nnnn",
-      "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764"
-    },
-    {
-      "id": "82fa",
-      "weigth": "25",
-      "motivation": "a",
-      "activityFreq": "3",
-      "diet": "a",
-      "observacoes": "a",
-      "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764"
     }
   ],
   "aluno": [

@@ -19,7 +19,6 @@ const addAnmneseAsync = createAsyncThunk('anamnese/addAnamneseAsync', async (dat
 
 const getAnamnese = createAsyncThunk('anamnese/getAnamneseAsync', async (userId) => {
     const response = await axios.get(`http://localhost:3004/anamnese?userId=${userId}`);
-    console.log(response.data);
     return response.data;
 });
 
@@ -36,10 +35,18 @@ const anamneseSlice = createSlice({
             state.diet = action.payload.diet;
             state.observacoes = action.payload.observacoes;
         },
+        clearAnamnese: (state,action)=>{
+            state.activityFreq = "";
+            state.weigth = "";
+            state.motivation = "";
+            state.exam = "";
+            state.diet = "";
+            state.observacoes = "";
+        }
     },
     extraReducers: builder =>{
         builder.addCase(getAnamnese.fulfilled, (state, action) => {
-            if(action.payload.length != 0){
+            if(action.payload.weigth != ""){
                 state.weigth = action.payload.activityFreq;
                 state.weigth = action.payload.weigth;
                 state.motivation = action.payload.motivation;
@@ -51,7 +58,7 @@ const anamneseSlice = createSlice({
     }
 })
 
-export const { addAnmnese } = anamneseSlice.actions;
+export const { addAnmnese, clearAnamnese } = anamneseSlice.actions;
 
 export { addAnmneseAsync, getAnamnese };
 export default anamneseSlice.reducer;

@@ -90,17 +90,17 @@ function Anamnese() {
         navigate("/personais")
     }
     const anamnese = useSelector(rootReducer => rootReducer.anamnese);
-    if (anamnese.weigth!="") {
-        return <VisuAnamnese />
-    }
-
-    // Verificar se a anamnese já está preenchida
-    const isAnamneseFilled = Object.values(Anamnese).some(value => value !== "");
-
-    if (isAnamneseFilled) {
-        // Se a anamnese estiver preenchida, redirecionar para a página de visualização da anamnese
+    console.log(anamnese);
+    if(anamnese.weigth != ""){
         return <VisuAnamnese />;
     }
+    // Verificar se a anamnese já está preenchida
+    // const isAnamneseFilled = Object.values(Anamnese).some(value => value !== "");
+    // console.log(isAnamneseFilled);
+    // if (isAnamneseFilled) {
+    //     // Se a anamnese estiver preenchida, redirecionar para a página de visualização da anamnese
+    //     return <VisuAnamnese />;
+    // }
     return (
         <>
             <Navbar />

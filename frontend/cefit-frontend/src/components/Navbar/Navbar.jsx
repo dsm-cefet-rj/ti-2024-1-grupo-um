@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import rootReducer from "../../redux/root-reducer";
 import { logoutUser } from "../../redux/user/slice";
+import { clearExercises } from "../../redux/exercises/slice";
+import { clearPersonals } from "../../redux/personal/slice";
+import { clearAnamnese } from "../../redux/anamnese/slice";
 
 
 
@@ -16,6 +19,9 @@ function Navbar() {
     // }
     function Logout() {
         dispatch(logoutUser());
+        dispatch(clearExercises());
+        dispatch(clearPersonals());
+        dispatch(clearAnamnese());
     }
     return (
         <>

@@ -17,6 +17,7 @@ import "./../pages.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addLoggedUser } from "../../redux/user/slice";
 import { getPersonais } from "../../redux/personal/slice";
+import { getAnamnese } from "../../redux/anamnese/slice";
 
 function Login(){
     const [email, setEmail] = useState();
@@ -34,6 +35,7 @@ function Login(){
                 dispatch(addLoggedUser(user));
                 dispatch(getTreinosByUserID(user.id))
                 dispatch(getPersonais());
+                dispatch(getAnamnese(user.id));
                 alert("autenticado");
                 navigate("/personais");
                 return;

@@ -20,6 +20,9 @@ const personalSlice = createSlice({
     reducers: {
         addPersonal: (state, action) => {
             state.push(action.payload);
+        },
+        clearPersonals: (state,action) => {
+            state.map(() => state.pop());
         }
     },
     extraReducers: (builder) => {
@@ -31,7 +34,7 @@ const personalSlice = createSlice({
     }
 })
 
-export const { addPersonal } = personalSlice.actions;
+export const { addPersonal, clearPersonals } = personalSlice.actions;
 
 export { getPersonais }
 export default personalSlice.reducer;
