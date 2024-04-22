@@ -1,46 +1,52 @@
-import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { createAluno } from '../../redux/aluno/slice';
+//components
 import InputComponent from '../../components/InputComponent/InputComponent';
 import Navbar from '../../components/Navbar/Navbar';
 import FooterComp from '../../components/Footer/Footer';
+//react
+import React, { useState } from 'react';
+import { useNavigate, useParams, Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+//redux
+import { createAluno } from '../../redux/aluno/slice';
+//images
 import User from '../../images/user.png';
-// Importe outros componentes necessários
+
 
 function Pagamento() {
-  const currentUser = useSelector(rootReducer => rootReducer.user).user;
+  const currentUser = useSelector(rootReducer => rootReducer.user);
   const { id } = useParams();
   const navigate = useNavigate();
-
   const personais = useSelector(rootReducer => rootReducer.personais);
   const personalAtual = personais.filter((personal) => personal.id == id)[0];
   console.log(personalAtual);
-
+  
   const [numero, setNumero] = useState('');
   const [cvc, setCvc] = useState('');
   const [expiracao, setExpiracao] = useState('');
   const [nome, setNome] = useState('');
-
+  
   const pagamento = { 
     numero: numero,
     cvc: cvc,
     expiracao: expiracao,
     nome: nome,
   };
-
+  
   const dispatch = useDispatch();
-
+  
   const handlePayment = (e) => {
     e.preventDefault();
     dispatch(createAluno({
-      idUser: currentUser.id,
+      idUser: currentUser.user.id,
       idPersonal: id
     }));
     alert("pagamento feito com sucesso!");
     navigate("/");
   };
-
+  
+  if(!currentUser.logged){
+    return <Navigate to={"/login"}/>
+  }
   return (
     <div>
       <Navbar/>

@@ -76,7 +76,8 @@
       "cidade": "Rio de Janeiro, RJ",
       "rating": 4,
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
-      "image": "luiz"
+      "image": "luiz",
+      "preco":"39,99"
     },
     {
       "id": "2",
@@ -87,7 +88,8 @@
       "cidade": "California, US",
       "rating": 5,
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
-      "image": "arnold"
+      "image": "arnold",
+      "preco":"39,99"
     },
     {
       "id": "3",
@@ -98,7 +100,8 @@
       "cidade": "Niteroi, RJ",
       "rating": 3,
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
-      "image": "glauco"
+      "image": "glauco",
+      "preco":"39,99"
     },
     {
       "id": "4",
@@ -109,7 +112,8 @@
       "cidade": "Rio de Janeiro, RJ",
       "rating": 1,
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
-      "image": "vinicius"
+      "image": "vinicius",
+      "preco":"39,99"
     },
     {
       "id": "5",
@@ -120,7 +124,8 @@
       "cidade": "Rio de Janeiro, RJ",
       "rating": 2,
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
-      "image": "chicoin"
+      "image": "chicoin",
+      "preco":"39,99"
     },
     {
       "id": "67",
@@ -131,7 +136,8 @@
       "cidade": "Rio de Janeiro, RJ",
       "rating": 5,
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
-      "image": ""
+      "image": "",
+      "preco":"39,99"
     }
   ],
   "users": [
@@ -231,6 +237,16 @@
       "observacoes": "",
       "userId": "c29bb054-7787-4966-be6c-fbced658a251",
       "id": "746f"
+    },
+    {
+      "id": "fed9",
+      "weigth": 69,
+      "motivation": "Hipertrofia muscular",
+      "activityFreq": "até 3 vezes por semana",
+      "date": "",
+      "diet": "Não",
+      "observacoes": "",
+      "userId": "4302f00c-35d5-42f7-84a9-0450766db4ca"
     }
   ],
   "aluno": [

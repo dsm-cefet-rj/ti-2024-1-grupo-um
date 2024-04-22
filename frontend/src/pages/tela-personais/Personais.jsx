@@ -15,7 +15,7 @@ function Personais(){
     const Personais = useSelector(rootReducer => rootReducer.personais);
     if (!currentUser.logged) {
         return <NotLoggedInPersonais />;
-      }
+    }
     return(
         <>
         <Navbar/>

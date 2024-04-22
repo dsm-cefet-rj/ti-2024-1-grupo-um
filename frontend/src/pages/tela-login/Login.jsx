@@ -15,16 +15,22 @@ import "./../pages.css";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { addLoggedUser } from "../../redux/user/slice";
-import { getPersonais } from "../../redux/personal/slice";
-import { getAnamnese } from "../../redux/anamnese/slice";
+import { addLoggedUser, logoutUser } from "../../redux/user/slice";
+import { clearPersonals, getPersonais } from "../../redux/personal/slice";
+import { clearAnamnese, getAnamnese } from "../../redux/anamnese/slice";
+import { clearExercises } from "../../redux/exercises/slice";
 
 function Login(){
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
+    //dispatchs para deslogar totalmente em caso de redirecionamento
+    dispatch(logoutUser());
+    dispatch(clearExercises());
+    dispatch(clearPersonals());
+    dispatch(clearAnamnese());
+
     async function Autentica (e){
         e.preventDefault();
         const response = await axios.get("http://localhost:3004/users");

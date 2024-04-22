@@ -4,7 +4,7 @@ import './style.css'
 import { useDispatch, useSelector } from "react-redux";
 import { updateAnamnese, addAnmnese } from "../../redux/anamnese/slice";
 import Login from "../tela-login/Login"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
 import SelectComponentYup from "../../components/InputComponent/SelectComponentYup";
 
@@ -27,7 +27,7 @@ function VisuAnamnese() {
     }
 
     if (!currentUser.logged) {
-        return <Login />
+        return <Navigate to="/login" />
     }
     const initialValues = {
         weigth: anamnese.weigth,
