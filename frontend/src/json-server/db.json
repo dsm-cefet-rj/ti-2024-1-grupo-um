@@ -16,14 +16,6 @@
       "idForm": "f1d0cffb-b9fe-480d-94f1-26d645f7925a"
     },
     {
-      "id": "e48a",
-      "name": "cadeira extensora",
-      "series": "3x15",
-      "peso": 25,
-      "observacoes": "ajuste do banco 4",
-      "idForm": "80ef2aac-0c68-49c3-be0c-75bd63e847f4"
-    },
-    {
       "id": "d120",
       "name": "supino",
       "series": "3x15",
@@ -64,14 +56,6 @@
       "title": "Treino A",
       "type": "superiores",
       "observacoes": "Sextas"
-    },
-    {
-      "id": "80ef2aac-0c68-49c3-be0c-75bd63e847f4",
-      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
-      "descricao": "Pernas",
-      "title": "Treino teste",
-      "type": "inferiores",
-      "observacoes": ""
     },
     {
       "id": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c",
