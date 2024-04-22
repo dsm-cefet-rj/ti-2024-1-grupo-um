@@ -2,13 +2,12 @@ import Navbar from "../../components/Navbar/Navbar";
 import FormCreator from "../../components/FormCreator/formCreator";
 import FooterComp from "../../components/Footer/Footer";
 import './style.css'
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAnmneseAsync, addAnmnese } from "../../redux/anamnese/slice";
 import Login from "../tela-login/Login"
 import { useNavigate } from "react-router-dom";
 import VisuAnamnese from "./VisuAnamnese";
-import { getAnamnese } from "../../redux/anamnese/slice";
 
 function Anamnese() {
 
@@ -83,15 +82,7 @@ function Anamnese() {
         },
     ]
     const currentUser = useSelector(rootReducer => rootReducer.user);
-    const anamnese = useSelector(rootReducer => rootReducer.anamnese);
-    
-    useEffect(() => {
-        if (currentUser.logged) {
-            // Verificar se já existe uma anamnese associada ao ID do usuário
-            dispatch(getAnamnese(currentUser.user.id));
-        }
-    }, [currentUser.logged, currentUser.user.id, dispatch]);
-    
+    const anamneseUser = useSelector(rootReducer => rootReducer.anamnese);
 
     const handleSubmitForm = (infos) => {
         infos["userId"] = currentUser.user.id;
@@ -103,9 +94,8 @@ function Anamnese() {
         return <Login />;
     }
     
-     // Verificar se já existe uma anamnese associada ao ID do usuário
-     if (getAnamnese.activityFreq || anamnese.weigth || anamnese.motivation || anamnese.exam || anamnese.diet || anamnese.observacoes) {
-        // Se pelo menos um dos campos da anamnese estiver preenchido, redirecionar para a página de visualização da anamnese
+    
+    if (anamneseUser.preenchida)  {      // Se pelo menos um dos campos da anamnese estiver preenchido, redirecionar para a página de visualização da anamnese
         return <VisuAnamnese />;
      }
     //const anamnese = useSelector(rootReducer => rootReducer.anamnese);
