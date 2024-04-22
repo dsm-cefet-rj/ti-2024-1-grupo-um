@@ -95,3 +95,22 @@
     justify-content: center;
     align-items: center; 
 }
+
+.lixeira-image{
+    width: 30px;
+    height: 30px;
+}
+
+.btn-lixeira{
+    border-radius: 7px;
+    border: 1px solid red;
+    background-color: red;
+    margin-right: 15px;
+    width: 45px;
+    height: 45px;
+
+}
+.btn-lixeira:hover{
+    background-color: rgb(248, 100, 100);
+    border-color: transparent;
+}

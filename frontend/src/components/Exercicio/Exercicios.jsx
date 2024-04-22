@@ -2,6 +2,7 @@ import "./exercicios.css";
 import cardio from "./esteira-icon.png";
 import musculacao from "./haltere-icon.png";
 import padr from "./default-icon.png";
+import lixeira from "./lixeira.png";
 
 function Exercicio({ nome, carga, rep, obs, type}) {
   const Img =() => {
@@ -24,10 +25,15 @@ function Exercicio({ nome, carga, rep, obs, type}) {
         </div>
         <div className="exercicio-info">
           <h2 className="card-title" id="exercicio-nome">{nome}</h2>
-          <p className="card-subtitle" id="exercicio-subtitle">{rep} | {carga} </p>
+          <p className="card-subtitle" id="exercicio-subtitle">{rep} | {carga}kg </p>
           <p className="card-subtitle" id="exercicio-subtitle">{obs}</p>
         </div>
         <input type="checkbox" className="checkbox" />
+        <div className="btn-div">
+            <button className="btn-lixeira" >
+              <img className="lixeira-image" src={lixeira} alt="lixeira"/>
+            </button>
+        </div>
       </div>
     );
   }
