@@ -74,9 +74,15 @@ function AddTreinos() {
         observacoes: Yup.string(),
     })
 
-    const formTest = () => {
-        return (
-            <>
+    //veriricando login do usuario
+    if (!loggedUser.logged) {
+        return <AreaFIT />
+    }
+
+    return (
+        <>
+            <Navbar />
+            <div className="container form-card p-5">
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
@@ -100,25 +106,6 @@ function AddTreinos() {
                         </Form>
                     )}
                 </Formik>
-            </>
-        )
-    }
-
-    //veriricando login do usuario
-    if (!loggedUser.logged) {
-        return <AreaFIT />
-    }
-
-    return (
-        <>
-            <Navbar />
-            {!loggedUser ? navigate("/areaFIT") : <></>}
-            <div className="container form-card p-5">
-                {/* <div className="container mx-4 cefit-form">
-                    <h2 id="titulo-form">Adicionar Novo Treino</h2>
-                      <FormCreator fields={formFields} buttonText={"Salvar Treino"} buttonAction={handleSubmitForm} /> 
-                </div> */}
-                {formTest()}
                 {showModal && (
                     <Modal
                         setModal={() => {

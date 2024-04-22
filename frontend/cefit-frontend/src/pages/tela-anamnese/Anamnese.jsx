@@ -8,79 +8,17 @@ import { addAnmneseAsync, addAnmnese } from "../../redux/anamnese/slice";
 import Login from "../tela-login/Login"
 import { useNavigate } from "react-router-dom";
 import VisuAnamnese from "./VisuAnamnese";
+import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
+import SelectComponentYup from "../../components/InputComponent/SelectComponentYup";
+
+import * as Yup from "yup";
+import { Formik, Form } from "formik";
 
 function Anamnese() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
-
-    const formFields = [
-        {
-            component: "input",
-            classes: "",
-            id: "weigth",
-            type: "number",
-            text: <b>Seu peso:</b>,
-            placeholder: "",
-        },
-        {
-            component: "textArea",
-            classes: "",
-            id: "motivation",
-            type: "text",
-            text: <b>Motivação/Objetivo</b>,
-            placeholder: "Ganhar peso, perder peso, ganhar músculos ...",
-        },
-        {
-            component: "radio",
-            classes: "",
-            id: "activityFreq",
-            name: "frequency",
-            text: <b>Com que frequência faz atividade física?</b>,
-            options: [
-                {
-                    id: "activityFreq",
-                    value: "0",
-                    text: "Nenhuma",
-                },
-                {
-                    id: "activityFreq",
-                    value: "3",
-                    text: "até 3 vezes por semana",
-                },
-                {
-                    id: "activityFreq",
-                    value: "4",
-                    text: "mais de 4 vezes na semana",
-                },
-            ],
-        },
-        {
-            component: "input",
-            classes: "",
-            id: "exam",
-            type: "date",
-            text: <b>Data do ultimo exame médico ou físico:</b>,
-            placeholder: "",
-        },
-        {
-            component: "textArea",
-            classes: "",
-            id: "diet",
-            type: "text",
-            text: <b>Faz dieta? Se sim, para qual motivo e há quanto tempo?</b>,
-            placeholder: "",
-        },
-        {
-            component: "textArea",
-            classes: "",
-            id: "observacoes",
-            type: "text",
-            text: <b>Observações:</b>,
-            placeholder: "(Opcional) Digite observações sobre o treino",
-        },
-    ]
     const currentUser = useSelector(rootReducer => rootReducer.user);
     const anamneseUser = useSelector(rootReducer => rootReducer.anamnese);
 
@@ -94,25 +32,64 @@ function Anamnese() {
         return <Login />;
     }
     
-    
-    if (anamneseUser.preenchida)  {      // Se pelo menos um dos campos da anamnese estiver preenchido, redirecionar para a página de visualização da anamnese
+    // se o user possui anamnese
+    if (anamneseUser.preenchida)  {      
         return <VisuAnamnese />;
-     }
-    //const anamnese = useSelector(rootReducer => rootReducer.anamnese);
-    //console.log(anamnese);
-    //if(anamnese){ 
-     //   return <VisuAnamnese />;
-    //}
+    }
+
+    const initialValues = {
+        weigth: "",
+        motivation: "",
+        activityFreq: "",
+        date: "",
+        diet: "",
+        observacoes: "",
+    }
+
+    const freqOptions = ["Nenhuma", "até 3 vezes por semana", "mais de 4 vezes na semana"];
+    const yesOrNot = ["Sim", "Não"];
+    
+    const validationSchema = Yup.object({
+        weigth: Yup.number().required("Peso é obrigatório").max(500, "Peso não deve ser maior que 500"),
+        motivation: Yup.string().required("Motivação é obrigatório"),
+        activityFreq: Yup.string().required("Selecione uma opção").oneOf(freqOptions),
+        date: Yup.date(),
+        diet: Yup.string().required("Responda sim ou não").oneOf(yesOrNot),
+        observacoes: Yup.string(),
+    })
     
     return (
         <>
             <Navbar />
             <div className="form-card p-5">
-                <div className="container cefit-form">
-                    <h2 id="titulo-form">Faça sua Anamnese</h2>
-                    <p>Para responder a anamnese, caso a resposta seja <b>Não</b>, não é necessário preencher os campos de texto. Caso contrário, favor preencher o campo de texto.</p>
-                    <FormCreator fields={formFields} buttonText="Salvar" buttonAction={handleSubmitForm} />
-                </div>
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    onSubmit={(values) => {
+                        handleSubmitForm(values)
+                    }}
+                >
+                    {({ isValid }) => (
+                        <Form>
+                            <div className="container cefit-form">
+                                <h2 id="titulo-form">Faça sua Anamnese</h2>
+                                
+                                <InputComponentYup classes="mt-3" id="weigthInput" name="weigth" text={<b>Seu peso:</b>} type="number" placeholder="Digite o seu peso (em kg)" />
+                                <InputComponentYup classes="mt-3" id="motivationInput" name="motivation" text={<b>Motivação/Objetivo:</b>} type="text" placeholder="Ganhar peso, perder peso, ganhar músculos ..." />
+                                <SelectComponentYup classes="mt-3" id="activityFreqSelect" name="activityFreq" text={<b>Com que frequência faz atividade física?</b>} options={freqOptions} />
+                                <InputComponentYup classes="mt-3" id="dateInput" name="date" text={<b>Data do ultimo exame médico ou físico:</b>} type="date" placeholder="" />
+                                <SelectComponentYup classes="mt-3" id="dietSelect" name="diet" text={<b>Faz dieta?</b>} options={yesOrNot} />
+                                <InputComponentYup classes="mt-3" id="observacoesInput" name="observacoes" text={<b>Observações:</b>} type="text" placeholder="(opcional) Digite observações"  />
+
+                                <div className="mt-3 d-flex justify-content-center">
+                                    <button className="btn-submit" type="submit" disabled={!isValid}>Enviar</button>
+                                </div>
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
+                
+
             </div>
             <FooterComp />
         </>

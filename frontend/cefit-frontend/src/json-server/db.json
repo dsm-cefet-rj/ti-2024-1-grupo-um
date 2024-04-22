@@ -166,21 +166,13 @@
   ],
   "anamnese": [
     {
-      "id": "6bc1",
-      "weigth": "2",
-      "motivation": "2@2",
-      "activityFreq": "3",
-      "diet": "2@2",
-      "observacoes": "2@2",
-      "userId": "b9034cf3-a0e8-4fcf-b2f0-ddac026e63f1"
-    },
-    {
-      "id": "ed1f",
-      "weigth": "11",
-      "motivation": "1",
-      "diet": "1",
-      "observacoes": "1",
-      "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764"
+      "weigth": 20,
+      "motivation": "fdfhdsj",
+      "activityFreq": "mais de 4 vezes na semana",
+      "diet": "Sim",
+      "observacoes": "adasasxfsdfsf22222222222aaaaaaaaaaaaaaaaaaaaaaaaa",
+      "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "id": "5754"
     }
   ],
   "aluno": [
