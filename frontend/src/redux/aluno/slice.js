@@ -6,6 +6,16 @@ const createAluno = createAsyncThunk('aluno/addAlunoAsync', async(data) =>{
   return response.data;
 })
 
+const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(id)=>{
+
+  const alunos = await axios.get(`http://localhost:3004/aluno?idUser=${id}`);
+  debugger;
+  for (let aluno of alunos.data){
+    debugger;
+    await axios.delete(`http://localhost:3004/aluno/${aluno.id}`)
+  }
+});
+
 const alunoSlice = createSlice({
   name: 'pagamento',
   initialState: [],
@@ -18,6 +28,6 @@ const alunoSlice = createSlice({
 
 export const { addAluno } = alunoSlice.actions;
 
-export {createAluno};
+export {createAluno, deleteAlunoByUserId};
 
 export default alunoSlice.reducer;

@@ -21,6 +21,7 @@ import AddTreinos from './pages/tela-add-treinos/Treinos.jsx';
 import Treino from './pages/tela-treino/Treino.jsx';
 import Pagamento from './pages/tela-pagamento/Pagamento.jsx';
 import Error from './pages/tela-error/error.jsx'
+import Perfil from './pages/tela-perfil/Perfil.jsx';
 
 
 const router = createBrowserRouter([
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
         path: "pagamento/:id",
         element: <Pagamento/>
       },
+      {
+        path: "perfil",
+        element: <Perfil/>
+      }
     ]
   }
 ]);

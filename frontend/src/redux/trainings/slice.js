@@ -42,6 +42,11 @@ const trainingsSlice = createSlice({
                     break;
                 }
             }
+        },
+        clearTrainings: (state) => {
+            while(state.length > 0){
+                state.pop()
+            }
         }
     },
     extraReducers: (builder) => {
@@ -57,7 +62,7 @@ const trainingsSlice = createSlice({
     }
 })
 
-export const { addTraining, deleteTraining } = trainingsSlice.actions;
+export const { addTraining, deleteTraining, clearTrainings } = trainingsSlice.actions;
 
 export { getTreinosByUserID, deleteTreinoByID };
 export default trainingsSlice.reducer;

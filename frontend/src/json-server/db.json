@@ -151,11 +151,12 @@
       "treinos": []
     },
     {
-      "id": "4302f00c-35d5-42f7-84a9-0450766db4ca",
-      "nome": "caio",
-      "senha": "123",
+      "nome": "Caio Santos",
       "email": "caio@1",
-      "treinos": []
+      "senha": "12345678c",
+      "birth": "2024-04-19",
+      "CPF": "123768125378",
+      "id": "4302f00c-35d5-42f7-84a9-0450766db4ca"
     },
     {
       "id": "b81f88a8-60e8-42cb-8cf6-e602f6473764",

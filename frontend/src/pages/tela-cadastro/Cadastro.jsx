@@ -24,14 +24,13 @@ import InputComponentYup from "../../components/InputComponent/InputComponenteYu
 function Cadastro(){
 
     const validationSchema = Yup.object({
-        nome: Yup.string().required(),
-        email: Yup.string().email().required(),
+        nome: Yup.string().required("O nome é Obrigatório"),
+        email: Yup.string().email().required("O email é obrigatório."),
         senha: Yup.string()
-        .required('No password provided.') 
-        .min(8, 'Password is too short - should be 8 chars minimum.')
-        .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
-        birth: Yup.date().default(() => new Date()),
-        CPF: Yup.string().required()
+        .required('Senha requerida.') 
+        .min(8, 'Senha deve conter ao menos 8 digitos.'),
+        birth: Yup.date().required("Data de Nascimento obrigatória."),
+        CPF: Yup.string().required("CPF obrigatório.")
     });
 
     const initialValues = {
@@ -63,17 +62,21 @@ function Cadastro(){
                         onSubmit={(values) => {
                             handleSingUp(values);
                         }}>
-                        <Form className="formulario-cadastro">
-                            <InputComponentYup classes="mt-3" id="nameImput" name="nome"text="Nome Completo" type="text" placeholder="Seu nome completo aqui"/>
-                            <InputComponentYup classes="" id="InputEmail" name="email" text="Email" type="email" placeholder="Insira seu email aqui" />
-                            <InputComponentYup classes="" id="CPFInput" name="CPF" text="CPF" type="text" placeholder="Seu CPF aqui" />
-                            <InputComponentYup classes="" id="age" name="birth" text="Data de Nascimento" type="date" placeholder="" />
-                            <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
-                            <SubmitButton nomeButton="Cadastrar" />
-                            <div className="cadastro-texto mt-3">
-                                Possui conta?<Link to="/login">Faça o seu Login!</Link>
-                            </div>
-                        </Form>
+                            {({ isValid }) => (
+                            <Form className="formulario-cadastro">
+                                <InputComponentYup classes="mt-3" id="nameImput" name="nome"text="Nome Completo" type="text" placeholder="Seu nome completo aqui"/>
+                                <InputComponentYup classes="" id="InputEmail" name="email" text="Email" type="email" placeholder="Insira seu email aqui" />
+                                <InputComponentYup classes="" id="CPFInput" name="CPF" text="CPF" type="text" placeholder="Seu CPF aqui" />
+                                <InputComponentYup classes="" id="age" name="birth" text="Data de Nascimento" type="date" placeholder="" />
+                                <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
+                                <div className="mt-3 d-flex justify-content-center">
+                                    <button className="btn-submit" type="submit" disabled={!isValid}>Cadastrar</button>
+                                </div>
+                                <div className="cadastro-texto mt-3">
+                                    Possui conta?<Link to="/login">Faça o seu Login!</Link>
+                                </div>
+                            </Form>
+                        )}
                     </Formik>
                 </div>
             </div>

@@ -29,6 +29,14 @@ const updateAnamnese = createAsyncThunk('anamnese/updateAnamneseAsync', async (p
     await axios.put(`http://localhost:3004/anamnese/${payload.id}`, payload);
 })
 
+const deleteAnamneseByUserId = createAsyncThunk('anamnese/deleteAnamneseAsync', async (userId) => {
+    await axios.delete(`http://localhost:3004/anamnese?userId=${userId}`);
+})
+
+const deleteAnamnese = createAsyncThunk('anamnese/deleteAnamneseAsync', async (anamneseId) => {
+    await axios.delete(`http://localhost:3004/anamnese/${anamneseId}`);
+})
+
 
 const anamneseSlice = createSlice({
     name: "anamnese",
@@ -80,5 +88,5 @@ const anamneseSlice = createSlice({
 
 export const { addAnmnese, clearAnamnese } = anamneseSlice.actions;
 
-export { addAnmneseAsync, getAnamnese, updateAnamnese };
+export { addAnmneseAsync, getAnamnese, updateAnamnese, deleteAnamneseByUserId, deleteAnamnese };
 export default anamneseSlice.reducer;
