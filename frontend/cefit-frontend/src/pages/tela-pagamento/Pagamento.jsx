@@ -47,13 +47,13 @@ function Pagamento() {
     <div>
       <Navbar/>
       <div className="bg-image cefit-background-img" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`, display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        <div className="login-container rounded-5 p-3">
+        <div className="login-container d-flex justify-content-center align-items-center rounded-5 p-3">
         {personalAtual.image ?
               (
                 <div>
                   <img src={require(`../../images/PersonalImages/${personalAtual.image}.png`)} alt="avatar"
                     className="img-fluid rounded-5" style={{ width: "150px" }} />
-                  <h5 className="my-3">{personalAtual.nome}</h5> 
+                  <h5 className="my-3 d-flex justify-content-center align-items-center">{personalAtual.nome}</h5> 
                   <h1>R$29,90</h1>
                 </div>
               ):(
