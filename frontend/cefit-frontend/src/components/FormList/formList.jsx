@@ -1,14 +1,13 @@
 import "./styles.css"
 import { Link } from "react-router-dom";
 
-function FormList({items, listTitle, buttonText, buttonAction, getList }) {
+function FormList({ items, listTitle, buttonText, buttonAction }) {
     const handleAddItem = (event) => {
         event.preventDefault();
         buttonAction();
-        getList(items);
     }
 
-    return(
+    return (
         <>
             <div className="my-4">
                 <span className="d-flex justify-content-between mb-4 list-header">

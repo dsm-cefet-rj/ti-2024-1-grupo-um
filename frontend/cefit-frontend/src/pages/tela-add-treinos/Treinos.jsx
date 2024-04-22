@@ -1,9 +1,10 @@
 //imports components
 import Navbar from "../../components/Navbar/Navbar";
 import FooterComp from "../../components/Footer/Footer";
-import FormCreator from "../../components/FormCreator/formCreator";
 import Modal from "../../components/Modal/AddExercicio";
 import AreaFIT from "../tela-area-fit/AreaFIT";
+import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
+import SelectComponentYup from "../../components/InputComponent/SelectComponentYup";
 
 // import css
 import "./styles.css";
@@ -18,6 +19,11 @@ import { addInfo, addTreino } from "../../redux/form-treino/slice";
 import { addExercicio, clearExercises } from "../../redux/exercises/slice";
 import { addTraining } from "../../redux/trainings/slice";
 
+import * as Yup from "yup";
+import { Formik, Form } from "formik";
+import FormList from "../../components/FormList/formList";
+
+
 
 function AddTreinos() {
     //inicializadores
@@ -28,9 +34,6 @@ function AddTreinos() {
     const loggedUser = useSelector(rootReducer => rootReducer.user);
     const exercicios = useSelector(rootReducer => rootReducer.exercises);
     const form = useSelector(rootReducer => rootReducer.forms);
-    // criando o forms com o id do usuario
-    // const formId = idGen();
-    // dispatch(addForms({idUser: loggedUser.user.id, id: formId, infos: {}}));
 
     const [showModal, setShowModal] = useState(false);
 
@@ -51,86 +54,55 @@ function AddTreinos() {
         navigate("/areaFIT");
     }
 
-
-    // debugger;
-
     const openModal = () => {
         setShowModal(true);
     };
 
-    const formFields = [
-        {
-            component: "input",
-            classes: "",
-            id: "title",
-            type: "text",
-            text: <b>Nome do Treino:</b>,
-            placeholder: "Digite o nome do treino",
-        },
-        {
-            component: "input",
-            classes: "",
-            id: "descricao",
-            type: "text",
-            text: <b>Descrição do Treino:</b>,
-            placeholder: "Digite a descrição do treino",
-        },
-        {
-            component: "radio",
-            classes: "",
-            id: "type",
-            name: "training-type",
-            text: <b>Tipo do Treino:</b>,
-            options: [
-                {
-                    id: "type",
-                    value: "inferiores",
-                    text: "Inferiores",
-                },
-                {
-                    id: "type",
-                    value: "superiores",
-                    text: "Superiores",
-                },
-                {
-                    id: "type",
-                    value: "cardio",
-                    text: "Cardio",
-                },
-                {
-                    id: "type",
-                    value: "natacao",
-                    text: "Natação",
-                },
-                {
-                    id: "type",
-                    value: "crossfit",
-                    text: "Crossfit",
-                },
-                {
-                    id: "type",
-                    value: "outro",
-                    text: "Outro",
-                },
-            ],
-        },
+    const trainingTypes = ["inferiores", "cardio", "natacao", "crossfit", "outro"]
 
-        {
-            component: "textArea",
-            classes: "",
-            id: "observacoes",
-            type: "text",
-            text: <b>Observações:</b>,
-            placeholder: "Digite observações sobre o treino",
-        },
-        {
-            component: "formList",
-            items: useSelector(rootReducer => rootReducer.exercises),
-            buttonText: "+ Exercício",
-            listTitle: "Exercícios",
-            buttonAction: openModal, // Alterado para abrir o modal
-        }
-    ]
+    const initialValues = {
+        title: "",
+        descricao: "",
+        type: "",
+        observacoes: "",
+    }
+
+    const validationSchema = Yup.object({
+        title: Yup.string().required("Nome é obrigatório"),
+        descricao: Yup.string().required("Descrição é obrigatória"),
+        type: Yup.string().required("Selecione um tipo").oneOf(trainingTypes),
+        observacoes: Yup.string(),
+    })
+
+    const formTest = () => {
+        return (
+            <>
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    onSubmit={(values) => {
+                        handleSubmitForm(values);
+                    }}>
+                    {({ isValid }) => (
+                        <Form>
+                            <div className="container mx-4 cefit-form">
+                                <h2 id="titulo-form">Adicionar Novo Treino</h2>
+                                <InputComponentYup classes="mt-3" id="titleInput" name="title" text={<b>Nome do Treino:</b>} type="text" placeholder="Digite o nome do treino" />
+                                <InputComponentYup classes="mt-3" id="descricaoInput" name="descricao" text={<b>Descrição do Treino:</b>} type="text" placeholder="Digite a descrição do treino" />
+                                <SelectComponentYup classes="mt-3" id="typeSelect" name="type" text={<b>Tipo do Treino:</b>} options={trainingTypes} />
+                                <InputComponentYup classes="mt-3" id="observacoesInput" name="observacoes" text={<b>Observações:</b>} type="text" placeholder="Digite as observações do treino" />
+                                <FormList items={exercicios} buttonText="+ Exercícios" listTitle="Exercícios" buttonAction={openModal} />
+
+                                <div className="mt-3 d-flex justify-content-center">
+                                    <button className="btn-submit" type="submit" disabled={!isValid}>Enviar</button>
+                                </div>
+                            </div>
+                        </Form>
+                    )}
+                </Formik>
+            </>
+        )
+    }
 
     //veriricando login do usuario
     if (!loggedUser.logged) {
@@ -142,10 +114,11 @@ function AddTreinos() {
             <Navbar />
             {!loggedUser ? navigate("/areaFIT") : <></>}
             <div className="container form-card p-5">
-                <div className="container mx-4 cefit-form">
+                {/* <div className="container mx-4 cefit-form">
                     <h2 id="titulo-form">Adicionar Novo Treino</h2>
-                    <FormCreator fields={formFields} buttonText={"Salvar Treino"} buttonAction={handleSubmitForm} />
-                </div>
+                      <FormCreator fields={formFields} buttonText={"Salvar Treino"} buttonAction={handleSubmitForm} /> 
+                </div> */}
+                {formTest()}
                 {showModal && (
                     <Modal
                         setModal={() => {
