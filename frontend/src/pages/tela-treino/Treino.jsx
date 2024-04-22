@@ -1,7 +1,8 @@
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import FooterComp from "../../components/Footer/Footer.jsx";
 import Exercicio from "../../components/Exercicio/Exercicios.jsx";
-
+//modal
+import Modal from "../../components/Modal/AddExercicio";
 
 import "./treinos.css";
 import { useParams, useNavigate, Navigate } from "react-router-dom";
@@ -80,14 +81,23 @@ function Treino() {
         dispatch(deleteTraining(id));
         navigate("/areaFIT");
     }
-  
+    
+    /*const openModal = () => {
+        setShowModal(true);
+    };*/
+
     return (
         <>
         <Navbar />
         <div className="treino">
         <div className="traino-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
             <h1 className="display-4">Exercícios</h1>
-            </div>
+        </div>
+        
+        <div className="botao">
+            <button className="btn-submit">+ Exercício</button>
+        </div>
+
             <div className="exercicios">
             {id?(
                 Exercises.map((exercicio, index) => (
@@ -113,6 +123,15 @@ function Treino() {
                     />
                 ))
             )}
+            {/*{showModal && (
+                    <Modal
+                        setModal={() => {
+                            setShowModal();
+
+                        }}
+                        idForm={form.id}
+                    />
+                )}*/}
             </div>
         </div>
         <div className="btn-div">
