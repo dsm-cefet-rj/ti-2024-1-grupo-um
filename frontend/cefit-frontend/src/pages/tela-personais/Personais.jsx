@@ -2,7 +2,7 @@
 import Navbar from "../../components/Navbar/Navbar";
 import PersonalCard from "../../components/PersonalCard/PersonalCard"
 import FooterComp from "../../components/Footer/Footer";
-
+import NotLoggedInPersonais from "./NotLoggedPersonais";
 //css
 import "./Personais.css";
 
@@ -11,8 +11,11 @@ import { useSelector } from "react-redux";
 
 
 function Personais(){
+    const currentUser =  useSelector(rootReducer => rootReducer.user);
     const Personais = useSelector(rootReducer => rootReducer.personais);
-    
+    if (!currentUser.logged) {
+        return <NotLoggedInPersonais />;
+      }
     return(
         <>
         <Navbar/>

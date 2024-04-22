@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
-import "./AreaFIT.css";
-import imgfit from "./img-fit.png";
+import "./Personais.css";
 import FooterComp from "../../components/Footer/Footer";
 
-function NotLoggedInAreaFIT(){
+function NotLoggedInPersonais(){
   
     return(
         <>
@@ -14,11 +13,14 @@ function NotLoggedInAreaFIT(){
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-lg-6 text-center">
-                        <h2 data-aos="fade-down"><span>Área FIT</span></h2>
+                        <h2 data-aos="fade-down"><span>Personais</span></h2>
                         <p className="line"></p>
-                        <p data-aos="fade-up">Seu local ideal dedicado à saúde e ao condicionamento físico, onde os usuários podem montar seus próprios treinos personalizados de acordo com suas metas e preferências, além de visualizar treinos elaborados por profissionais. Com uma variedade de exercícios e opções de personalização, os usuários têm a liberdade de criar rotinas adaptadas às suas necessidades individuais, promovendo um estilo de vida ativo e saudável.</p>
+                        <p data-aos="fade-up">O local ideal dedicado a você que busca por um personal adequado e qualificado para iniciar a sua jornada FIT.</p>
                         {/* <a data-aos="fade-up" data-aos-delay="200" href="#get-started" className="btn-get-started">Começar</a> */}
                         <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Começar</Link>
+                        <div>
+                        <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Quero ser um personal CEFIT</Link>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -46,62 +48,42 @@ function NotLoggedInAreaFIT(){
          <section class="page-section" id="services">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="display-4" id = "services-fit">Sua vida FIT em um só lugar</h2>
-                    <h3 class="section-subheading text-muted">Conheça a Área FIT</h3>
+                    <h2 class="display-4" id = "services-fit">Encontre seu personal ideal</h2>
+                    <h3 class="section-subheading text-muted">Conheça os personais CEFIT</h3>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-3">
                         
-                        <h3 class="info-title-fit">Monte seus treinos</h3>
+                        <h3 class="info-title-fit">Treinos montados</h3>
                         <div className="beneficios">
-                            <h5 class="info-title-fit">Empoderamento</h5>
-                            <p class="text-muted">Ao assumir o controle do seu treinamento, você se torna mais autoconfiante e empoderado em relação à sua saúde e condicionamento físico.</p>
-                            <h5 class="info-title-fit">Flexibilidade</h5>
-                            <p class="text-muted">Montar seus próprios treinos oferece flexibilidade para ajustar o programa conforme necessário, levando em consideração compromissos pessoais, mudanças de horário e objetivos em evolução.</p>
-
+                            <h5 class="info-title-fit">Solicitar consultoria</h5>
+                            <p class="text-muted">Ao solicitar uma consultoria com um valor acessível, o personal recebe sua Anamnese e monta seus treinos com base nos seus objetivos!</p>
+                            
                         </div>
                         
                     </div>
                     <div class="col-md-6">
-                        <p><img className="areafit-img" src={imgfit} alt="areafit-img"/></p>
+                        {/*<p><img className="areafit-img" src={imgfit} alt="areafit-img"/></p>*/}
                         <h3 class="info-title-fit">Comece sua jornada FIT agora mesmo!</h3>
-                        <p class="text-muted">Faça o seu cadastro e aproveite a Área FIT</p>
+                        <p class="text-muted">Faça o seu cadastro e encontre personais</p>
                         <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Começar</Link>
+                        <p class="text-muted">Faça o seu cadastro e seja um personal CEFIT</p>
+                        <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Ser um personal CEFIT</Link>
+                        
                     </div>
                     <div class="col-md-3">
                         
-                        <h3 class="info-title-fit">Visualize seus treinos montados pelo personal</h3>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                        <h3 class="info-title-fit">Seja um personal CEFIT</h3>
+                        <p class="text-muted">Ao se tornar um personal CEFIT, você pode possuir uma quantidade ilimitada de alunos por uma taxa que cabe no seu bolso!</p>
                     </div>
                     
                 </div>
             </div>
         </section>
       
-
-
-
-
-       {/* <h1 className="display-4">Exemplos</h1>
-        <div className="container mt-2" id="container-card">
-        <div className="row justify-content-center"id="row-card">
-          
-                {Treinos.map((treino, index) => (
-                  <div key={index} className="col mb-3">
-                    <TreinoCard
-                      title={treino.title}
-                      description={treino.description}
-                      type={treino.type}
-                    />
-                  </div>)
-                  )
-                }
-          
-        </div>
-            </div>*/}
             <FooterComp />
         </>
     );
 }
 
-export default NotLoggedInAreaFIT;
+export default NotLoggedInPersonais;

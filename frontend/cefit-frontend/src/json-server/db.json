@@ -166,11 +166,12 @@
   ],
   "anamnese": [
     {
-      "weigth": 20,
-      "motivation": "fdfhdsj",
+      "weigth": 89,
+      "motivation": "emagrecer",
       "activityFreq": "mais de 4 vezes na semana",
+      "date": "2024-04-02",
       "diet": "Sim",
-      "observacoes": "adasasxfsdfsf22222222222aaaaaaaaaaaaaaaaaaaaaaaaa",
+      "observacoes": "-",
       "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
       "id": "5754"
     }
