@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import "./Personais.css";
 import FooterComp from "../../components/Footer/Footer";
+import personal from "./images/personal-trainer.png";
+import consultoria from "./images/consultor.png";
+
 
 function NotLoggedInPersonais(){
   
@@ -52,29 +55,23 @@ function NotLoggedInPersonais(){
                     <h3 class="section-subheading text-muted">Conheça os personais CEFIT</h3>
                 </div>
                 <div class="row text-center">
-                    <div class="col-md-3">
-                        
+                    <div class="col-md-6">
+                        <p><img className="personal-icon" src={consultoria} alt="consult"/></p>
                         <h3 class="info-title-fit">Treinos montados</h3>
                         <div className="beneficios">
-                            <h5 class="info-title-fit">Solicitar consultoria</h5>
                             <p class="text-muted">Ao solicitar uma consultoria com um valor acessível, o personal recebe sua Anamnese e monta seus treinos com base nos seus objetivos!</p>
-                            
+                            <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Começar minha jornada FIT</Link>
+
                         </div>
                         
                     </div>
+                    
                     <div class="col-md-6">
-                        {/*<p><img className="areafit-img" src={imgfit} alt="areafit-img"/></p>*/}
-                        <h3 class="info-title-fit">Comece sua jornada FIT agora mesmo!</h3>
-                        <p class="text-muted">Faça o seu cadastro e encontre personais</p>
-                        <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Começar</Link>
-                        <p class="text-muted">Faça o seu cadastro e seja um personal CEFIT</p>
-                        <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Ser um personal CEFIT</Link>
-                        
-                    </div>
-                    <div class="col-md-3">
-                        
+                    <p><img className="personal-icon" src={personal} alt="personal-icon"/></p>
                         <h3 class="info-title-fit">Seja um personal CEFIT</h3>
                         <p class="text-muted">Ao se tornar um personal CEFIT, você pode possuir uma quantidade ilimitada de alunos por uma taxa que cabe no seu bolso!</p>
+                        <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Quero ser um personal CEFIT</Link>
+
                     </div>
                     
                 </div>
