@@ -62,11 +62,11 @@ function Pagamento() {
                   <h1 className="preco">R${personalAtual.preco}</h1>
                 </div>
               ):(
-                <div>
+                <div className="infos d-flex flex-column justify-content-center">
                   <img src={User} alt="caso2"
-                  className="rounded-circle img-fluid" style={{ width: "100px" }} />
-                  <h5 className="my-3">{personalAtual.nome}</h5> 
-                  <h1>{personalAtual.preco}</h1>
+                  className="img-personal" style={{ width: "100px" }} />
+                  <h5 className="my-3 d-flex justify-content-center align-items-center">{personalAtual.nome}</h5> 
+                  <h1 className="preco">{personalAtual.preco}</h1>
                 </div>
               )
             }
