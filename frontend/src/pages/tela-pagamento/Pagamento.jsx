@@ -71,15 +71,15 @@ function Pagamento() {
               )
             }
           <form className="adicionar-cartao mb-3" onSubmit={handlePayment}>
-            <InputComponent classes="mt-3" id="numeroInput" text="Número do Cartão" type="text" placeholder="XXXX XXXX XXXX XXXX" value={numero} onChange={(e) => setNumero(e.target.value)} />
-            <InputComponent classes="mt-3" id="cvcInput" text="CVC" type="text" placeholder="***" value={cvc} onChange={(e) => setCvc(e.target.value)} />
-            <InputComponent classes="mt-3" id="expiracaoInput" text="Data de Expiração" type="text" placeholder="MM/AA" value={expiracao} onChange={(e) => setExpiracao(e.target.value)} />
-            <InputComponent classes="mt-3" id="nomeInput" text="Nome no Cartão" type="text" placeholder="Insira nome no cartão" value={nome} onChange={(e) => setNome(e.target.value)} />
-            
+            <InputComponent classes="mt-2" id="numeroInput" text="Número do Cartão" type="text" placeholder="XXXX XXXX XXXX XXXX" value={numero} onChange={(e) => setNumero(e.target.value)} />
+            <InputComponent classes="mt-2" id="cvcInput" text="CVC" type="text" placeholder="***" value={cvc} onChange={(e) => setCvc(e.target.value)} />
+            <InputComponent classes="mt-2" id="expiracaoInput" text="Data de Expiração" type="text" placeholder="MM/AA" value={expiracao} onChange={(e) => setExpiracao(e.target.value)} />
+            <InputComponent classes="mt-2" id="nomeInput" text="Nome no Cartão" type="text" placeholder="Insira nome no cartão" value={nome} onChange={(e) => setNome(e.target.value)} />
+            <div className="d-flex justify-content-center">
+            < button className="btn-submit mt-3">Confirmar pagamento</button>
+          </div>
           </form>
-          <div className="d-flex justify-content-center">
-              <button className="btn-submit" type='Submit'>Confirmar compra</button>
-            </div>
+          
         </div>
 
       </div>

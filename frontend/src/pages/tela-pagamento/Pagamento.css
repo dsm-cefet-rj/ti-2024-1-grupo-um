@@ -5,19 +5,23 @@
     border-radius: 15px;
     font-size: 15px;
     position: relative;
+    max-height: 600px;
 }
 .infos{
     align-items: center;
     margin: auto;
     justify-content: center;
-    
-    
+    margin-bottom: -20px;
 }
 .img-personal{
-    border-radius: 100%;
+    border-radius: 15px;
     margin: auto;
 }
 .preco{
     color: #3166d1;
     font-size: 30px;
+}
+.mt-2{
+    margin-top: 7px;
+    margin-bottom: 5px;
 }

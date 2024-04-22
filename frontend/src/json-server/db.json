@@ -77,7 +77,7 @@
       "rating": 4,
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
       "image": "luiz",
-      "preco":"39,99"
+      "preco": "39,99"
     },
     {
       "id": "2",
@@ -89,7 +89,7 @@
       "rating": 5,
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
       "image": "arnold",
-      "preco":"39,99"
+      "preco": "39,99"
     },
     {
       "id": "3",
@@ -101,7 +101,7 @@
       "rating": 3,
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
       "image": "glauco",
-      "preco":"39,99"
+      "preco": "39,99"
     },
     {
       "id": "4",
@@ -113,7 +113,7 @@
       "rating": 1,
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
       "image": "vinicius",
-      "preco":"39,99"
+      "preco": "39,99"
     },
     {
       "id": "5",
@@ -125,7 +125,7 @@
       "rating": 2,
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
       "image": "chicoin",
-      "preco":"39,99"
+      "preco": "39,99"
     },
     {
       "id": "67",
@@ -137,7 +137,7 @@
       "rating": 5,
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
       "image": "",
-      "preco":"39,99"
+      "preco": "39,99"
     }
   ],
   "users": [
@@ -270,6 +270,21 @@
     {
       "id": "80a8",
       "idUser": "d30824a6-ca95-4992-bebd-9f5fe8a3aa35",
+      "idPersonal": "2"
+    },
+    {
+      "id": "4799",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "idPersonal": "2"
+    },
+    {
+      "id": "e01f",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "idPersonal": "1"
+    },
+    {
+      "id": "65e4",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
       "idPersonal": "2"
     }
   ]
