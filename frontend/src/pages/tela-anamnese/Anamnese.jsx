@@ -6,7 +6,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAnmneseAsync, addAnmnese } from "../../redux/anamnese/slice";
 import Login from "../tela-login/Login"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import VisuAnamnese from "./VisuAnamnese";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
 import SelectComponentYup from "../../components/InputComponent/SelectComponentYup";
@@ -29,7 +29,7 @@ function Anamnese() {
         navigate("/personais")
     }
     if (!currentUser.logged) {
-        return <Login />;
+        return <Navigate to="/login" />;
     }
     
     // se o user possui anamnese

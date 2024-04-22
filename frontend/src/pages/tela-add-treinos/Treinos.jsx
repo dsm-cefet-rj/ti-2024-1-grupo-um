@@ -29,7 +29,7 @@ function AddTreinos() {
     //inicializadores
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    
     // pegando o usuario
     const loggedUser = useSelector(rootReducer => rootReducer.user);
     const exercicios = useSelector(rootReducer => rootReducer.exercises);

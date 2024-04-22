@@ -4,7 +4,7 @@ import Exercicio from "../../components/Exercicio/Exercicios.jsx";
 
 
 import "./treinos.css";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -16,8 +16,13 @@ function Treino() {
     const {id} = useParams();
     const dispatch = useDispatch();
     const Exercises = useSelector(rootReducer => rootReducer.exercises)
-
     const navigate = useNavigate();
+    const currentUser = useSelector(rootReducer => rootReducer.user);
+
+    if(!currentUser.logged){
+        return <Navigate to={"/login"}/>
+    }
+    
 
     const exercicios = [
         {

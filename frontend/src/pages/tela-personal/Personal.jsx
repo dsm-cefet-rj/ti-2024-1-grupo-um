@@ -1,9 +1,10 @@
 //components
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Pagamento from "../tela-pagamento/Pagamento";
 import FooterComp from "../../components/Footer/Footer";
+import Login from "../tela-login/Login";
 
 //css
 import "././../tela-personal/Personal.css";
@@ -14,19 +15,22 @@ import user from "../../images/user.png";
 import { useSelector, useDispatch } from "react-redux";
 import { getAnamnese } from "../../redux/anamnese/slice";
 
-
 function Personal() {
+
   const {id} = useParams();
   const dispatch = useDispatch();
-  const currentUser = useSelector(rootReducer => rootReducer.user).user;
+  const currentUser = useSelector(rootReducer => rootReducer.user);
   //pega os personais e faz um filtro pelo personal com id parametro
   const personais = useSelector(rootReducer => rootReducer.personais);
   const personalAtual = personais.filter((personal) => personal.id === id)[0];
   //pega a anamnese relacionada ao usuario logado
-  dispatch(getAnamnese(currentUser.id));
+  dispatch(getAnamnese(currentUser.user.id));
 
   const anamnese = useSelector(rootReducer => rootReducer.anamnese);
-  console.log(anamnese);
+
+  if(!currentUser.logged){
+    return <Navigate to={"/login"}/>
+  }
 
 
 
@@ -64,7 +68,7 @@ function Personal() {
               {estrelas}
             </div>
             <div className="d-flex justify-content-center mb-2">
-              {anamnese.weigth!=""?(
+              {anamnese.preenchida?(
                   <Link data-aos="fade-up" data-aos-delay="200" to={`/pagamento/${personalAtual.id}`} className="btn btn-primary">Solicitar consultoria</Link>
                 ):(
                   <Link data-aos="fade-up" data-aos-delay="200" to={`/anamnese`} className="btn btn-primary">Solicitar consultoria</Link>
