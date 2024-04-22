@@ -4,6 +4,11 @@ import FormCreator from "../../components/FormCreator/formCreator";
 import { useDispatch } from "react-redux";
 import { addExercise } from "../../redux/exercises/slice";
 
+import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
+
+import * as Yup from "yup";
+import { Formik, Form } from "formik";
+
 function Modal(props) {
     const dispatch = useDispatch();
 
@@ -15,51 +20,51 @@ function Modal(props) {
         )
         setModal(false);
     }
-    const formFields = [
-        {
-            component: "input",
-            classes: "",
-            id: "name",
-            type: "text",
-            text: <b>Nome do Exercício:</b>,
-            placeholder: "Digite o nome do exercício",
-        },
-        {
-            component: "input",
-            classes: "",
-            id: "series",
-            type: "text",
-            text: <b>Séries x Repetições:</b>,
-            placeholder: "Exemplo: 3x15",
-        },
-        {
-            component: "input",
-            classes: "",
-            id: "peso",
-            type: "text",
-            text: <b>Peso</b>,
-            placeholder: "Digite seu peso (kg)",
-        },
-        {
-            component: "textArea",
-            classes: "",
-            id: "observacoes",
-            type: "text",
-            text: <b>Observações:</b>,
-            placeholder: "Exemplo: ajuste do banco, pausa, descanso",
-        }
-    ]
+    const initialValues = {
+        name: "",
+        series: "",
+        peso: "",
+        observacoes: "",
+    }
+   const validationSchema = Yup.object({
+    name: Yup.string().required("Esse campo é obrigatório"),
+    series: Yup.string().required("Esse campo é obrigatório."),
+    peso: Yup.number(),
+    observacoes: Yup.string(),
+   })
+
     return (
         <>
             <div className="modal-overlay">
-                <div className="modal" id="modal">
-                    <h2 id="titulo-form">Adicionar novo exercício</h2>
-                    <FormCreator fields={formFields} buttonText={"Salvar Exercício"} buttonAction={handleSubmitForm}/>
-                    <span className="modal-close" id="close-modal" onClick={() => {setModal(false)}}>
-                    &#10005; {/* HTML code for a multiplication sign */}
-                    </span>
-                </div>
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    onSubmit={(values) => {
+                        handleSubmitForm(values)
+                    }}
+                >
+                    {({ isValid }) =>(
+                        <Form>
+                            <div className="modal" id="modal">
+                            <h2 id="titulo-form">Adicionar novo exercício</h2>
+                            <InputComponentYup classes="mt-3" id="nameInput" name="name" text={<b>Nome do exercício:</b>} type="string" placeholder="Digite o nome do exercício" />
+                            <InputComponentYup classes="mt-3" id="seriesInput" name="series" text={<b>Séries:</b>} type="string" placeholder="Séries x repetições ou duração (min)" />
+                            <InputComponentYup classes="mt-3" id="pesoInput" name="peso" text={<b>Carga:</b>} type="number" placeholder="Carga utilizada (kg)" />
+                            <InputComponentYup classes="mt-3" id="observacoesInput" name="observacoes" text={<b>Observações:</b>} type="string" placeholder="Ajuste do banco, descanso, etc..." />
+
+                            <span className="modal-close" id="close-modal" onClick={() => {setModal(false)}}>
+                            &#10005; {/* HTML code for a multiplication sign */}
+                            </span>
+                            <div className="mt-3 d-flex justify-content-center">
+                                    <button className="btn-submit" type="submit" disabled={!isValid}>Salvar exercício</button>
+                             </div>
+                        </div>
+                   
+                        
+                        </Form>
+                     )}
                 
+                </Formik>
             </div>
         </>
     );

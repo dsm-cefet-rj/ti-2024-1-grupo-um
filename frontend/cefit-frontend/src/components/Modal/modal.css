@@ -14,17 +14,17 @@
 .modal {
   background-color: #ffffff;
   border: 1px solid #bebebe;
-  border-radius: 5px;
+  border-radius: 15px;
   padding: 20px;
-  width: 60%;
-  height: 500px;
+  width: 70%;
+  height: 520px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   position: relative;
-  margin-top: 85px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin: auto;
   
 }
 
