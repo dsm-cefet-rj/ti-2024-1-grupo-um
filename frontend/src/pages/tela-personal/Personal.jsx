@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Pagamento from "../tela-pagamento/Pagamento";
+import FooterComp from "../../components/Footer/Footer";
 
 //css
 import "././../tela-personal/Personal.css";
@@ -123,6 +124,7 @@ function Personal() {
             <p className="mb-1" style={{ fontSize: "0.85rem" }}>{personalAtual.biografia}</p>
           </div>
         </div>
+        <FooterComp/>
     </div>
   );
 }

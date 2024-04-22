@@ -22,6 +22,38 @@
       "peso": 25,
       "observacoes": "ajuste do banco 4",
       "idForm": "80ef2aac-0c68-49c3-be0c-75bd63e847f4"
+    },
+    {
+      "id": "d120",
+      "name": "supino",
+      "series": "3x15",
+      "peso": 10,
+      "observacoes": "",
+      "idForm": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c"
+    },
+    {
+      "id": "b4ae",
+      "name": "Supino 45 HBC",
+      "series": "3x15",
+      "peso": 20,
+      "observacoes": "",
+      "idForm": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c"
+    },
+    {
+      "id": "8d65",
+      "name": "crucifixo",
+      "series": "3x8",
+      "peso": 10,
+      "observacoes": "",
+      "idForm": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c"
+    },
+    {
+      "id": "a3de",
+      "name": "Elevação Lateral",
+      "series": "3x10",
+      "peso": 8,
+      "observacoes": "",
+      "idForm": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c"
     }
   ],
   "treino": [
@@ -38,6 +70,14 @@
       "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
       "descricao": "Pernas",
       "title": "Treino teste",
+      "type": "inferiores",
+      "observacoes": ""
+    },
+    {
+      "id": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c",
+      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
+      "descricao": "Peito",
+      "title": "Treino A",
       "type": "inferiores",
       "observacoes": ""
     }

@@ -24,8 +24,10 @@ const exercisesSlice = createSlice({
         addExercise: (state, action) => {
             state.push(action.payload);
         },
-        clearExercises: (state,action) => {
-            state.map(() => state.pop());
+        clearExercises: (state) => {
+            while(state.length > 0){
+                state.pop()
+            }
         }
     },
     extraReducers: (builder) => {

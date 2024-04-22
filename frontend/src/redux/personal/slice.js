@@ -14,6 +14,7 @@ const getPersonais = createAsyncThunk("personais/getPersonaisAsync", async() => 
     return response.data; 
 });
 
+
 const personalSlice = createSlice({
     name:"personal",
     initialState,
@@ -21,8 +22,10 @@ const personalSlice = createSlice({
         addPersonal: (state, action) => {
             state.push(action.payload);
         },
-        clearPersonals: (state,action) => {
-            state.map(() => state.pop());
+        clearPersonals: (state) => {
+            while(state.length > 0){
+                state.pop()
+            }
         }
     },
     extraReducers: (builder) => {

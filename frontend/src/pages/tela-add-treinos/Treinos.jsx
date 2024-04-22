@@ -58,7 +58,7 @@ function AddTreinos() {
         setShowModal(true);
     };
 
-    const trainingTypes = ["inferiores", "cardio", "natacao", "crossfit", "outro"]
+    const trainingTypes = ["superiores", "inferiores", "cardio", "natacao", "crossfit", "outro"]
 
     const initialValues = {
         title: "",

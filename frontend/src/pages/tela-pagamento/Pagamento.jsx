@@ -14,8 +14,6 @@ function Pagamento() {
   const navigate = useNavigate();
 
   const personais = useSelector(rootReducer => rootReducer.personais);
-  console.log(personais);
-  console.log(id);
   const personalAtual = personais.filter((personal) => personal.id == id)[0];
   console.log(personalAtual);
 
@@ -50,11 +48,11 @@ function Pagamento() {
         <div className="login-container d-flex justify-content-center align-items-center rounded-5 p-3">
         {personalAtual.image ?
               (
-                <div>
+                <div className="d-flex justify-content-center">
                   <img src={require(`../../images/PersonalImages/${personalAtual.image}.png`)} alt="avatar"
                     className="img-fluid rounded-5" style={{ width: "150px" }} />
                   <h5 className="my-3 d-flex justify-content-center align-items-center">{personalAtual.nome}</h5> 
-                  <h1>R$29,90</h1>
+                  <h1>{personalAtual.preco}</h1>
                 </div>
               ):(
                 <div>
