@@ -178,6 +178,14 @@
       "senha": "abc12345",
       "birth": "",
       "CPF": "343242343242"
+    },
+    {
+      "id": "c29bb054-7787-4966-be6c-fbced658a251",
+      "nome": "Luiz Henrique Gonçalves Dantas",
+      "email": "personal@teste",
+      "senha": "teste123",
+      "birth": "2024-04-24",
+      "CPF": "12345678910"
     }
   ],
   "anamnese": [
@@ -190,6 +198,15 @@
       "observacoes": "-",
       "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
       "id": "5754"
+    },
+    {
+      "weigth": 70,
+      "motivation": "Musculos",
+      "activityFreq": "até 3 vezes por semana",
+      "diet": "Sim",
+      "observacoes": "",
+      "userId": "c29bb054-7787-4966-be6c-fbced658a251",
+      "id": "746f"
     }
   ],
   "aluno": [
