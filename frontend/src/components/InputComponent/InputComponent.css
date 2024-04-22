@@ -1,0 +1,10 @@
+.input-cefit{
+    border: var(--bs-border-width) solid #636464;
+}
+.erro {
+    font-size: 15px;
+    font-weight: bold;
+    color: red;
+    padding: 0 5px;
+}
+

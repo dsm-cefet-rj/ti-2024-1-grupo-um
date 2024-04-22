@@ -1,0 +1,292 @@
+{
+  "exercicios": [
+    {
+      "id": "5d21",
+      "name": "Supino maq",
+      "series": "3x12",
+      "peso": "25",
+      "idForm": "f1d0cffb-b9fe-480d-94f1-26d645f7925a"
+    },
+    {
+      "id": "d2cb",
+      "name": "Remada maquina",
+      "series": "3x12",
+      "peso": "27",
+      "observacoes": "bajk",
+      "idForm": "f1d0cffb-b9fe-480d-94f1-26d645f7925a"
+    },
+    {
+      "id": "d120",
+      "name": "supino",
+      "series": "3x15",
+      "peso": 10,
+      "observacoes": "",
+      "idForm": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c"
+    },
+    {
+      "id": "b4ae",
+      "name": "Supino 45 HBC",
+      "series": "3x15",
+      "peso": 20,
+      "observacoes": "",
+      "idForm": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c"
+    },
+    {
+      "id": "8d65",
+      "name": "crucifixo",
+      "series": "3x8",
+      "peso": 10,
+      "observacoes": "",
+      "idForm": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c"
+    },
+    {
+      "id": "a3de",
+      "name": "Elevação Lateral",
+      "series": "3x10",
+      "peso": 8,
+      "observacoes": "",
+      "idForm": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c"
+    }
+  ],
+  "treino": [
+    {
+      "id": "f1d0cffb-b9fe-480d-94f1-26d645f7925a",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "descricao": "Braço",
+      "title": "Treino A",
+      "type": "superiores",
+      "observacoes": "Sextas"
+    },
+    {
+      "id": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c",
+      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
+      "descricao": "Peito",
+      "title": "Treino A",
+      "type": "inferiores",
+      "observacoes": ""
+    }
+  ],
+  "personais": [
+    {
+      "id": "1",
+      "nome": "Luiz",
+      "idade": 20,
+      "descricao": "Especialista em finalização",
+      "formacao": "UFRJ - Educação Física",
+      "cidade": "Rio de Janeiro, RJ",
+      "rating": 4,
+      "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
+      "image": "luiz",
+      "preco": "39,99"
+    },
+    {
+      "id": "2",
+      "nome": "Arnold Schwarzenegger",
+      "idade": 76,
+      "descricao": "3x Olympia Winner",
+      "formacao": "UFRJ - Educação Física",
+      "cidade": "California, US",
+      "rating": 5,
+      "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
+      "image": "arnold",
+      "preco": "39,99"
+    },
+    {
+      "id": "3",
+      "nome": "Glauco Amorim",
+      "idade": 45,
+      "descricao": "Treinador de alta performance",
+      "formacao": "UFRJ - Educação Física",
+      "cidade": "Niteroi, RJ",
+      "rating": 3,
+      "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
+      "image": "glauco",
+      "preco": "39,99"
+    },
+    {
+      "id": "4",
+      "nome": "Vinicius",
+      "idade": 20,
+      "descricao": "Treinador",
+      "formacao": "UFRJ - Educação Física",
+      "cidade": "Rio de Janeiro, RJ",
+      "rating": 1,
+      "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
+      "image": "vinicius",
+      "preco": "39,99"
+    },
+    {
+      "id": "5",
+      "nome": "Chico",
+      "idade": 25,
+      "descricao": "Aquariano Nato",
+      "formacao": "UFRJ - Educação Física",
+      "cidade": "Rio de Janeiro, RJ",
+      "rating": 2,
+      "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
+      "image": "chicoin",
+      "preco": "39,99"
+    },
+    {
+      "id": "67",
+      "nome": "Caio",
+      "idade": 21,
+      "descricao": "Especialista em passes",
+      "formacao": "CEFET-RJ BCC",
+      "cidade": "Rio de Janeiro, RJ",
+      "rating": 5,
+      "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
+      "image": "",
+      "preco": "39,99"
+    }
+  ],
+  "users": [
+    {
+      "id": "ef683b02-38ce-4ff1-97da-2105fba94aff",
+      "nome": "Vinicius",
+      "senha": "123123",
+      "email": "vinicius.p.drumond@gmail.com",
+      "nascimento": "2024-04-01",
+      "CPF": "16288772780",
+      "treinos": []
+    },
+    {
+      "nome": "Caio Santos",
+      "email": "caio@1",
+      "senha": "12345678c",
+      "birth": "2024-04-19",
+      "CPF": "123768125378",
+      "id": "4302f00c-35d5-42f7-84a9-0450766db4ca"
+    },
+    {
+      "id": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "nome": "ana",
+      "senha": "1",
+      "email": "1@1"
+    },
+    {
+      "id": "82083e08-463e-452a-a33b-c6add2da3a6c",
+      "senha": "123",
+      "email": "teste@teste"
+    },
+    {
+      "id": "a673677a-dcee-4856-9b41-aff6283cc051",
+      "nome": "carol",
+      "senha": "1",
+      "email": "1@2"
+    },
+    {
+      "id": "dfa4c0c7-eb5f-4446-829d-8f8c49e6991a",
+      "numero": "",
+      "cvc": "",
+      "expiracao": "",
+      "nome": ""
+    },
+    {
+      "id": "72b5bc50-34d2-474d-9cd6-a9f8edc5cdc6",
+      "nome": "romario",
+      "senha": "123",
+      "CPF": "romario@1"
+    },
+    {
+      "id": "011aa4c6-c91e-462e-afa8-a021342dcbc5",
+      "nome": "",
+      "senha": "321",
+      "email": "romario@1"
+    },
+    {
+      "id": "b9034cf3-a0e8-4fcf-b2f0-ddac026e63f1",
+      "nome": "carol",
+      "email": "2@2",
+      "senha": "abc12345",
+      "birth": "",
+      "CPF": "454556456"
+    },
+    {
+      "id": "6bccc216-b99a-4050-9abd-cd67d222b05e",
+      "nome": "ana c",
+      "email": "3@3",
+      "senha": "abc12345",
+      "birth": "",
+      "CPF": "343242343242"
+    },
+    {
+      "id": "c29bb054-7787-4966-be6c-fbced658a251",
+      "nome": "Luiz Henrique Gonçalves Dantas",
+      "email": "personal@teste",
+      "senha": "teste123",
+      "birth": "2024-04-24",
+      "CPF": "12345678910"
+    }
+  ],
+  "anamnese": [
+    {
+      "weigth": 89,
+      "motivation": "emagrecer",
+      "activityFreq": "mais de 4 vezes na semana",
+      "date": "2024-04-02",
+      "diet": "Sim",
+      "observacoes": "-",
+      "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "id": "5754"
+    },
+    {
+      "weigth": 70,
+      "motivation": "Musculos",
+      "activityFreq": "até 3 vezes por semana",
+      "diet": "Sim",
+      "observacoes": "",
+      "userId": "c29bb054-7787-4966-be6c-fbced658a251",
+      "id": "746f"
+    },
+    {
+      "id": "fed9",
+      "weigth": 69,
+      "motivation": "Hipertrofia muscular",
+      "activityFreq": "até 3 vezes por semana",
+      "date": "",
+      "diet": "Não",
+      "observacoes": "",
+      "userId": "4302f00c-35d5-42f7-84a9-0450766db4ca"
+    }
+  ],
+  "aluno": [
+    {
+      "id": "ff3d",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "idPersonal": {
+        "id": "2"
+      }
+    },
+    {
+      "id": "ce14",
+      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
+      "idPersonal": "2"
+    },
+    {
+      "id": "597f",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "idPersonal": "2"
+    },
+    {
+      "id": "80a8",
+      "idUser": "d30824a6-ca95-4992-bebd-9f5fe8a3aa35",
+      "idPersonal": "2"
+    },
+    {
+      "id": "4799",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "idPersonal": "2"
+    },
+    {
+      "id": "e01f",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "idPersonal": "1"
+    },
+    {
+      "id": "65e4",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "idPersonal": "2"
+    }
+  ]
+}
