@@ -57,7 +57,7 @@ function Treino() {
                         nome={exercicio.name}
                         carga={exercicio.peso}
                         rep={exercicio.series}
-                        obs={exercicio.obs}
+                        obs={exercicio.observacoes}
                         type={exercicio.type}
                         idExercicio={exercicio.id}
                     />
