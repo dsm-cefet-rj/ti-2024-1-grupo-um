@@ -5,8 +5,10 @@ import FooterComp from "../../components/Footer/Footer";
 import "./trainer.png";
 import areafit_icon from "./areafit_icon.png";
 import personal_icon from "./trainer.png"
+import {useSelector} from "react-redux";
 
 function Home(){
+    const currentUser = useSelector(rootReducer => rootReducer.user);
     return(
         <>
         <section id="hero" className="hero">
@@ -19,7 +21,7 @@ function Home(){
                         <p className="line"></p>
                         <p data-aos="fade-up">Sua plataforma dedicada à conexão entre personal trainers e entusiastas do fitness. Aqui, você pode encontrar o personal ideal, criar seu próprio treino e acompanhar seu progresso, tudo em um só lugar. Transforme sua jornada fitness com o CEFIT hoje mesmo!</p>
                         {/* <a data-aos="fade-up" data-aos-delay="200" href="#get-started" className="btn-get-started">Começar</a> */}
-                        <Link data-aos="fade-up" data-aos-delay="200" to={"cadastro"} className="btn-get-started">Começar</Link>
+                        <Link data-aos="fade-up" data-aos-delay="200" to={currentUser.logged ? "/areaFIT" : "/cadastro"} className="btn-get-started">Começar</Link>
                         </div>
                     </div>
                 </div>

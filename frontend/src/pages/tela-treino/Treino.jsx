@@ -27,7 +27,7 @@ function Treino() {
         return <Navigate to={"/login"}/>
     }
   
-    const handleDeleteTreino = (idTreino) => {
+    const handleDeleteTreino = () => {
         dispatch(deleteTreinoByID(id));
         dispatch(deleteTraining(id));
         navigate("/areaFIT");
@@ -53,12 +53,13 @@ function Treino() {
             {id?(
                 Exercises.map((exercicio, index) => (
                     <Exercicio
-                    key={index}
-                    nome={exercicio.name}
-                    carga={exercicio.peso}
-                    rep={exercicio.series}
-                    obs={exercicio.obs}
-                    type={exercicio.type}
+                        key={index}
+                        nome={exercicio.name}
+                        carga={exercicio.peso}
+                        rep={exercicio.series}
+                        obs={exercicio.obs}
+                        type={exercicio.type}
+                        idExercicio={exercicio.id}
                     />
                 ))
             ):(

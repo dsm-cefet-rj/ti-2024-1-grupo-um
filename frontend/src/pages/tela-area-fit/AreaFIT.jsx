@@ -58,7 +58,7 @@ function AreaFIT() {
         </div>
     </div>
 
-    <Link to={"/add-treinos"} >
+    <Link to={"/add-treinos"} className="link-monte-treino" >
       <button className="monte-button" onClick={() => {dispatch(addForms({idUser: currentUser.user.id, id: idGen(), infos: {}}))}}>Monte seu treino</button>
     </Link>
     <div className="espacamento">
