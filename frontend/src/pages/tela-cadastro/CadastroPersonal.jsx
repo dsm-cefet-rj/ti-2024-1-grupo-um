@@ -4,6 +4,7 @@ import InputComponent from "../../components/InputComponent/InputComponent";
 import CefetImage from "../../components/CefetImage/CefetImage";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
+import FooterComp from "../../components/Footer/Footer";
 //react imports
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -61,37 +62,40 @@ function CadastroPersonal(){
     }
 
     return(
-        <div className="bg-image cefit-background-img" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
-                <div className="login-container rounded-5 p-3">
-                    <div className="cefit-logo verde text-center rounded-5 m-auto">
-                        <img src={logo} alt="foto cefit" className="p-1" width="100%" height="100%"/>
+        <div>
+            <div className="bg-image cefit-background-img" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
+                    <div className="login-container rounded-5 p-3">
+                        <div className="cefit-logo verde text-center rounded-5 m-auto">
+                            <img src={logo} alt="foto cefit" className="p-1" width="100%" height="100%"/>
+                        </div>
+                        <Formik
+                            initialValues={initialValues}
+                            validationSchema={validationSchema}
+                            onSubmit={(values) => {
+                                handlePersonalSingUp(values);
+                            }}>
+                                {({ isValid }) => (
+                            <Form className="formulario-cadastro">
+                                <InputComponentYup classes="mt-3" id="nameImput" name="nome"text="Nome Completo" type="text" placeholder="Seu nome completo aqui"/>
+                                <InputComponentYup classes="" id="InputEmail" name="email" text="Email" type="email" placeholder="Insira seu email aqui" />
+                                <InputComponentYup classes="" id="CPFInput" name="CPF" text="CPF" type="text" placeholder="Seu CPF aqui" />
+                                <InputComponentYup classes="" id="age" name="birth" text="Data de Nascimento" type="date" placeholder="" />
+                                <InputComponentYup classes="" id="descricao" name="descricao" text="Descricao" type="text" placeholder="Breve Descricao" />
+                                <InputComponentYup classes="" id="cidade" name="cidade" text="Cidade" type="text" placeholder="Cidade em que mora" />
+                                <InputComponentYup classes="" id="biografia" name="biografia" text="Biografia" type="text" placeholder="Sua Biografia aqui" />
+                                <InputComponentYup classes="" id="preco" name="preco" text="Preço da sua consultoria" type="text" placeholder="Ex: R$ 39,90" />
+                                <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
+                                <div className="d-flex w-100 mt-3">
+                                    <button type="submit" className="btn verde w-100" disabled={!isValid}>Cadastrar</button>
+                                </div>
+    
+                            </Form>
+                            )}
+                        </Formik>
                     </div>
-                    <Formik
-                        initialValues={initialValues}
-                        validationSchema={validationSchema}
-                        onSubmit={(values) => {
-                            handlePersonalSingUp(values);
-                        }}>
-                            {({ isValid }) => (
-                        <Form className="formulario-cadastro">
-                            <InputComponentYup classes="mt-3" id="nameImput" name="nome"text="Nome Completo" type="text" placeholder="Seu nome completo aqui"/>
-                            <InputComponentYup classes="" id="InputEmail" name="email" text="Email" type="email" placeholder="Insira seu email aqui" />
-                            <InputComponentYup classes="" id="CPFInput" name="CPF" text="CPF" type="text" placeholder="Seu CPF aqui" />
-                            <InputComponentYup classes="" id="age" name="birth" text="Data de Nascimento" type="date" placeholder="" />
-                            <InputComponentYup classes="" id="descricao" name="descricao" text="Descricao" type="text" placeholder="Breve Descricao" />
-                            <InputComponentYup classes="" id="cidade" name="cidade" text="Cidade" type="text" placeholder="Cidade em que mora" />
-                            <InputComponentYup classes="" id="biografia" name="biografia" text="Biografia" type="text" placeholder="Sua Biografia aqui" />
-                            <InputComponentYup classes="" id="preco" name="preco" text="Preço da sua consultoria" type="text" placeholder="Ex: R$ 39,90" />
-                            <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
-                            <div className="d-flex w-100 mt-3">
-                                <button type="submit" className="btn verde w-100" disabled={!isValid}>Cadastrar</button>
-                            </div>
-
-                        </Form>
-                        )}
-                    </Formik>
                 </div>
-            </div>
+            <FooterComp/>
+        </div>
     );
 }
 export default CadastroPersonal;

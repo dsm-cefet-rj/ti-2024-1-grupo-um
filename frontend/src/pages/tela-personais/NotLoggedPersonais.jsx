@@ -70,8 +70,7 @@ function NotLoggedInPersonais(){
                     <p><img className="personal-icon" src={personal} alt="personal-icon"/></p>
                         <h3 class="info-title-fit">Seja um personal CEFIT</h3>
                         <p class="text-muted">Ao se tornar um personal CEFIT, você pode possuir uma quantidade ilimitada de alunos por uma taxa que cabe no seu bolso!</p>
-                        <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Quero ser um personal CEFIT</Link>
-
+                        <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastroPersonal"} className="btn-get-started">Quero ser um personal CEFIT</Link>
                     </div>
                     
                 </div>
