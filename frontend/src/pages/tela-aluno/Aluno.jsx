@@ -52,33 +52,37 @@ function Aluno() {
                     <div>
                         <img src={user} alt="foto de perfil usuario"
                             className="rounded-circle img-fluid" style={{ width: "150px" }} />
-                        <h5 className="my-3">{usuario.nomeUser}</h5>
+                        <h4 className="my-3" id="nome-aluno">{usuario.nomeUser}</h4>
+                        
                     </div>
-                    <div className="card m-auto" id="card-block-personal">
-                        <h1 className="mb-4" style={{ fontWeight: "bold" }}>Anamnese</h1>
-                        <div className="card-body">
-                            <p className="mb-1" style={{ fontWeight: "bold" }}>Peso</p>
-                            <p className="mb-1" style={{ fontSize: "0.85rem" }}>{anamnese.weigth} Kg</p>
+                    <div className="card m-auto" id="card-anamnese">
+                        <h2 className="display-4" id="titulo-anamnese">Anamnese</h2>
+                        <div className="line" id="linha-div">
+
                         </div>
                         <div className="card-body">
-                            <p className="mb-1" style={{ fontWeight: "bold" }}>Motivação</p>
-                            <p className="mb-1" style={{ fontSize: "0.85rem" }}>{anamnese.motivation}</p>
+                            <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Peso</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.weigth} Kg</p>
                         </div>
                         <div className="card-body">
-                            <p className="mb-1" style={{ fontWeight: "bold" }}>Frequência de Atividade Física</p>
-                            <p className="mb-1" style={{ fontSize: "0.85rem" }}>{anamnese.activityFreq}</p>
+                            <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Motivação</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.motivation}</p>
                         </div>
                         <div className="card-body">
-                            <p className="mb-1" style={{ fontWeight: "bold" }}>Data de Nascimento</p>
-                            <p className="mb-1" style={{ fontSize: "0.85rem" }}>{anamnese.date}</p>
+                            <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Frequência de Atividade Física</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.activityFreq}</p>
                         </div>
                         <div className="card-body">
-                            <p className="mb-1" style={{ fontWeight: "bold" }}>Faz Dieta?</p>
-                            <p className="mb-1" style={{ fontSize: "0.85rem" }}>{anamnese.dieta}</p>
+                            <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Data do último exame</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.date}</p>
                         </div>
                         <div className="card-body">
-                            <p className="mb-1" style={{ fontWeight: "bold" }}>Observacoes</p>
-                            <p className="mb-1" style={{ fontSize: "0.85rem" }}>{anamnese.observacoes}</p>
+                            <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Faz Dieta?</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.diet}</p>
+                        </div>
+                        <div className="card-body">
+                            <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Observações</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.observacoes}</p>
                         </div>
                     </div>
 
@@ -87,7 +91,7 @@ function Aluno() {
 
             {treinosUser.map((treino) => 
             <>
-                <div className="exercicio-card">
+                <div className="exercicio-card" id="treino-aluno">
                     <div className="exercicio-info">
                         <Link className="card-title" id="exercicio-nome" onClick={() => {dispatch(getExercisesByTreinoID(treino.id))}} to={`/EditTreinoAluno/${treino.id}`}>{treino.title}</Link>
                     </div>
