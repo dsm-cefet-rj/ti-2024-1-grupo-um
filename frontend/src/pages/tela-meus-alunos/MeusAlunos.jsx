@@ -1,21 +1,25 @@
 //Components
 import Navbar from "../../components/Navbar/Navbar";
-import PersonalCard from "../../components/PersonalCard/PersonalCard"
 import FooterComp from "../../components/Footer/Footer";
-import NotLoggedInPersonais from "./NotLoggedPersonais";
+import AlunoCard from "../../components/AlunoCard/AlunoCard";
+
 //css
-import "./Personais.css";
+import "./MeusAlunos.css";
 
 //redux
 import { useSelector } from "react-redux";
+//react
+import { Navigate } from "react-router-dom";
 
 
-function Personais(){
-    const currentUser =  useSelector(rootReducer => rootReducer.user);
-    const Personais = useSelector(rootReducer => rootReducer.personais);
-    if (!currentUser.logged) {
-        return <NotLoggedInPersonais />;
+function MeusAlunos(){
+    const currentPersonal =  useSelector(rootReducer => rootReducer.user);
+    const Alunos = useSelector(rootReducer => rootReducer.aluno);
+
+    if (!currentPersonal.loggedPersonal) {
+        return <Navigate to="/login" />;
     }
+
     return(
         <>
         <Navbar/>
@@ -24,11 +28,11 @@ function Personais(){
                 <span className="seta"><i className="fas fa-arrow-left"></i></span>
             </a>
             <div className="trainer-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-            <h1 className="display-4">Personais</h1>
+            <h1 className="display-4">Meus Alunos</h1>
             </div>
             <div className="card-deck" id="card-deck-personal">
-                {Personais.map((personal, index)=>
-                    <PersonalCard {...personal}/>
+                {Alunos.map((aluno)=>
+                    <AlunoCard {...aluno}/>
                 )}
             </div>
         </div>
@@ -37,4 +41,4 @@ function Personais(){
     )
 }
 
-export default Personais
+export default MeusAlunos;

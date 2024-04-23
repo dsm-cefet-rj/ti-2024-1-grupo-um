@@ -23,6 +23,7 @@ import Pagamento from './pages/tela-pagamento/Pagamento.jsx';
 import Error from './pages/tela-error/error.jsx'
 import Perfil from './pages/tela-perfil/Perfil.jsx';
 import PerfilPersonal from './pages/tela-perfil/PerfilPersonal.jsx';
+import MeusAlunos from './pages/tela-meus-alunos/MeusAlunos.jsx';
 
 
 
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
       {
         path:"perfilPersonal",
         element: <PerfilPersonal/>
+      },
+      {
+        path:"meusAlunos",
+        element: <MeusAlunos/>
       }
     ]
   }

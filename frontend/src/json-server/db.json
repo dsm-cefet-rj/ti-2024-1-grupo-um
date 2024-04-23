@@ -175,6 +175,7 @@
       "cidade": "12312312",
       "biografia": "2412414",
       "preco": "100",
+      "image": null,
       "id": "19febee2-e5c7-449b-83a1-97bb064c68ee"
     }
   ],
@@ -338,6 +339,19 @@
     },
     {
       "id": "6e09",
+      "nome": "Caio Santos",
+      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
+      "idPersonal": "19febee2-e5c7-449b-83a1-97bb064c68ee"
+    },
+    {
+      "id": "6e02",
+      "nome": "Caio Santos",
+      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
+      "idPersonal": "19febee2-e5c7-449b-83a1-97bb064c68ee"
+    },
+    {
+      "id": "6e01",
+      "nome": "Caio Santos",
       "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
       "idPersonal": "19febee2-e5c7-449b-83a1-97bb064c68ee"
     }
