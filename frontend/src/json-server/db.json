@@ -62,6 +62,14 @@
       "peso": 15,
       "observacoes": "Obs",
       "idForm": "37e9547d-8d83-4dc8-a76a-603cd4c76114"
+    },
+    {
+      "id": "6b7d",
+      "name": "Super exercicio bolado",
+      "series": "1x40",
+      "peso": 25,
+      "observacoes": "",
+      "idForm": "1dab0326-f45a-4f20-ae44-6741c9047a9c"
     }
   ],
   "treino": [
@@ -88,6 +96,14 @@
       "title": "Nome",
       "type": "superiores",
       "observacoes": "Obs"
+    },
+    {
+      "id": "1dab0326-f45a-4f20-ae44-6741c9047a9c",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "descricao": "Descrição do treino",
+      "title": "Nome identificavel",
+      "type": "natacao",
+      "observacoes": ""
     }
   ],
   "personais": [

@@ -17,6 +17,8 @@ function Exercicio({ nome, carga, rep, obs, type}) {
     }
   }
 
+ 
+
     return (
       <div className="exercicio-card">
         <div id="img-exercicio">
