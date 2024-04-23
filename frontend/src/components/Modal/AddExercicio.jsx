@@ -12,12 +12,13 @@ import { Formik, Form } from "formik";
 function Modal(props) {
     const dispatch = useDispatch();
 
-    const { setModal, idForm } = props;
+    const { setModal, idForm, optionalFunction } = props;
 
     const handleSubmitForm = (info) => {
         dispatch(
             addExercise({ ...info, idForm })
         )
+        optionalFunction({...info, idForm})
         
         setModal(false);
     }

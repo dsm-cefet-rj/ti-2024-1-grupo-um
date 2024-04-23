@@ -18,12 +18,15 @@ import AreaFIT from './pages/tela-area-fit/AreaFIT.jsx';
 import Home from './pages/tela-home/Home.jsx';
 import Personal from './pages/tela-personal/Personal.jsx';
 import AddTreinos from './pages/tela-add-treinos/Treinos.jsx';
+import EditTreinoAluno from './pages/tela-personal-treino/EditTreinoAluno.jsx';
+import CreateTreinoAluno from './pages/tela-personal-treino/CreateTreinoAluno.jsx';
 import Treino from './pages/tela-treino/Treino.jsx';
 import Pagamento from './pages/tela-pagamento/Pagamento.jsx';
 import Error from './pages/tela-error/error.jsx'
 import Perfil from './pages/tela-perfil/Perfil.jsx';
 import PerfilPersonal from './pages/tela-perfil/PerfilPersonal.jsx';
 import MeusAlunos from './pages/tela-meus-alunos/MeusAlunos.jsx';
+import Aluno from './pages/tela-aluno/Aluno.jsx';
 
 
 
@@ -78,6 +81,14 @@ const router = createBrowserRouter([
         element: <Treino />
       },
       {
+        path: "EditTreinoAluno/:id",
+        element: <EditTreinoAluno/>
+      },
+      {
+        path: "CreateTreinoAluno/:id",
+        element: <CreateTreinoAluno/>
+      },
+      {
         path: "pagamento/:id",
         element: <Pagamento/>
       },
@@ -92,6 +103,10 @@ const router = createBrowserRouter([
       {
         path:"meusAlunos",
         element: <MeusAlunos/>
+      },
+      {
+        path:"aluno/:id",
+        element: <Aluno/>
       }
     ]
   }

@@ -1,0 +1,375 @@
+body {
+    font-family: 'Aileron', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+.exercicio-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    background-color: #fff;
+    margin-bottom: 10px;
+    width: 90%;
+    border-radius: 15px;
+    height: 100px;
+    transition: 0.5s;
+    cursor: pointer;
+  }
+.exercicio-card:hover{
+    transform: scale(1);
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+}
+.exercicio-card::before, .exercicio-card::after{
+    position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: scale3d(0, 0, 1);
+      transition: transform .3s ease-out 0s;
+      background: rgba(255, 255, 255, 0.1);
+      content: '';
+      pointer-events: none;
+}
+.exercicio-card::before{
+    transform-origin: left top;
+}
+.exercicio-card::after{
+    transform-origin: right bottom;
+}
+.exercicio-card:hover::before, .exercicio-card:hover::after, .exercicio-card:focus::after{
+    transform: scale3d(1, 1, 1);
+}
+
+.exercicio-info {
+    display: block;
+    flex-direction: column;
+    margin-left: 50px;
+    align-items: center;
+    font-size: 15px;
+  }
+.exercise-image{
+    width: 70px;
+    height: 70px;
+    margin-left: 15px;
+}
+#exercicio-nome{
+    font-size: 23px;
+    display: flex;
+    transition: 1s;
+}
+#exercicio-nome:hover{
+    transform: scale(1);
+    color:#47dad2;
+}
+
+#img-exercicio{
+    align-items: center;
+}
+#exercicio-subtitle{
+    font-size: 14px;
+    display: flex;
+}
+.checkbox {
+    margin-left: auto;
+    margin-right: 17px; 
+    width: 45px;
+    height: 45px;
+    border: none; 
+    background-color: rgb(240, 240, 240);
+    border-radius: 7px;
+    appearance: none; 
+    cursor: pointer;
+    outline: none;
+    display: flex; /* Usa flexbox para alinhar o conteúdo */
+    justify-content: center; /* Alinha o conteúdo horizontalmente no centro */
+    align-items: center; /* Alinha o conteúdo verticalmente no centro */
+    position: relative; /* Adiciona posição relativa para o elemento pai */
+}
+
+.checkbox:checked::after {
+    content: "✔";
+    font-size: 30px;
+    color: #3166d1;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%;
+    height: 100%; 
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+}
+
+.lixeira-image{
+    width: 30px;
+    height: 30px;
+}
+
+.btn-lixeira{
+    border-radius: 7px;
+    border: 1px solid red;
+    background-color: red;
+    margin-right: 15px;
+    width: 45px;
+    height: 45px;
+
+}
+.btn-lixeira:hover{
+    background-color: rgb(248, 100, 100);
+    border-color: transparent;
+}
+.navbar {
+    background-color: #515151;
+    color: white;
+    height: 70px;
+    position: relative; 
+}
+
+.botao-busca{
+    margin-left: 10px;
+}
+
+.header {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.title {
+    font-size: 25px;
+    margin-bottom: 0;
+    font-family: 'Aileron', sans-serif;
+}
+
+.profile-link {
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    margin-top: 20px;
+    margin-right: 20px; 
+}
+
+.profile-link:hover{
+    color: #3166d1;
+}
+
+.container {
+    max-width: 100%;
+    padding: 20px;
+    font-family: 'Aileron', sans-serif;
+    position: relative;
+}
+
+.back-button {
+    position: relative;
+    left: 20px;
+    top: 15px;
+    
+}
+
+.card-img-top{
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+}
+
+.seta {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    font-size: 17px; 
+    color: #3166d1;
+}
+
+.seta:hover{
+    color: #5d89e2
+}
+
+.trainer-header {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #3166d1;
+    text-align: center;
+}
+
+.search-bar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-bar input[type="text"] {
+    padding: 8px;
+    width: 60%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+}
+
+.search-bar button {
+    padding: 7px 4px;
+    border-color: white;
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #5d89e2;
+}
+
+.search-bar button:hover {
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.menu-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-btn i {
+    font-size: 24px;
+    color: white; 
+}
+
+.menu-btn i:hover {
+    color: #3166d1;
+}
+
+.button-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.button-item {
+    width: 500px;
+    margin: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+    display: flex;
+    cursor: pointer;
+}
+
+.button-item:hover{
+    background-color: #eeeeee;
+    box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.5);
+}
+
+.button-info img {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    align-self: flex-start;
+    flex: 0;
+    margin-bottom: 10px;
+}
+
+.button-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    color: #515151
+}
+
+.button-name {
+    font-size: 18px;
+    margin-bottom: 5px;
+    
+}
+
+.button-description {
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+
+.button-rating {
+    font-size: 17px;
+    padding: 2px 2px;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    height: 30px;
+    width: 20px;
+    align-self: center;
+    flex: 0;
+    text-align: center;
+    margin-left: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+.imagem-estrela{
+    width: 20px;
+    height: 20px;
+}
+
+.card{
+    flex: 1;
+    margin-bottom: 50px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#card-stats{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    color: #515151;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.card-title{
+    font-weight: bold;
+}
+
+#card-deck-personal{
+    padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 0.1fr)); /* Cria colunas automáticas com um tamanho mínimo de 200px /
+    grid-gap:10px; / Espaçamento entre os itens do grid */
+    justify-items: center;
+    justify-content: center;
+    margin: 2rem 0rem;
+    padding: 1rem 0rem;
+    transition: 0.9s;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card-deck :hover{
+    background-color: #eeeeee;
+    box-shadow: 0px 4px 2px rgba(0, 0, 0, 0.5);
+    transform: scale(1.03);
+}
+
+.navbar{
+    margin-bottom: 10px;
+}
+
+.card-img-top{
+    pointer-events: none;
+}
+
+#card-block-personal{
+
+    pointer-events: none;
+}
+
+.btn-primary{
+    pointer-events: auto;
+}
