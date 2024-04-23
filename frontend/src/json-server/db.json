@@ -46,6 +46,30 @@
       "peso": 8,
       "observacoes": "",
       "idForm": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c"
+    },
+    {
+      "id": "6f8e",
+      "name": "Exercicio 1",
+      "series": "3x15",
+      "peso": 10,
+      "observacoes": "Obs",
+      "idForm": "37e9547d-8d83-4dc8-a76a-603cd4c76114"
+    },
+    {
+      "id": "50fc",
+      "name": "Exercicio 2",
+      "series": "2x10",
+      "peso": 15,
+      "observacoes": "Obs",
+      "idForm": "37e9547d-8d83-4dc8-a76a-603cd4c76114"
+    },
+    {
+      "id": "6b7d",
+      "name": "Super exercicio bolado",
+      "series": "1x40",
+      "peso": 25,
+      "observacoes": "",
+      "idForm": "1dab0326-f45a-4f20-ae44-6741c9047a9c"
     }
   ],
   "treino": [
@@ -63,6 +87,22 @@
       "descricao": "Peito",
       "title": "Treino A",
       "type": "inferiores",
+      "observacoes": ""
+    },
+    {
+      "id": "37e9547d-8d83-4dc8-a76a-603cd4c76114",
+      "idUser": "82083e08-463e-452a-a33b-c6add2da3a6c",
+      "descricao": "Descrição do treino",
+      "title": "Nome",
+      "type": "superiores",
+      "observacoes": "Obs"
+    },
+    {
+      "id": "1dab0326-f45a-4f20-ae44-6741c9047a9c",
+      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
+      "descricao": "Descrição do treino",
+      "title": "Nome identificavel",
+      "type": "natacao",
       "observacoes": ""
     }
   ],
@@ -248,6 +288,16 @@
       "diet": "Não",
       "observacoes": "",
       "userId": "4302f00c-35d5-42f7-84a9-0450766db4ca"
+    },
+    {
+      "id": "0025",
+      "weigth": 72,
+      "motivation": "Musculos",
+      "activityFreq": "até 3 vezes por semana",
+      "date": "2024-04-10",
+      "diet": "Sim",
+      "observacoes": "",
+      "userId": "82083e08-463e-452a-a33b-c6add2da3a6c"
     }
   ],
   "aluno": [

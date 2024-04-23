@@ -58,13 +58,13 @@ function Navbar() {
                         {
                             currentUserNavbar ? (
                                 <div>
-                                    <Link to={"/perfil"}> Olá, {currentUserNavbar.nome} </Link>
-                                    <button to="/login" className="signup-button" type="button" onClick={Logout}>logout</button>
+                                    <Link to={"/perfil"} className="editar-perfil"> Olá, {currentUserNavbar.nome} </Link>
+                                    <button to="/login" className="signup-button" type="button" onClick={Logout}>Logout</button>
                                 </div>
                             ) : (
                                 <div className="d-flex">
-                                    <Link to="/login" className="signup-button">Sign in</Link>
-                                    <Link to="/cadastro" className="signup-button">Sign up</Link>
+                                    <Link to="/login" className="signup-button">Sign In</Link>
+                                    <Link to="/cadastro" className="signup-button">Sign Up</Link>
                                 </div>
                             )
 

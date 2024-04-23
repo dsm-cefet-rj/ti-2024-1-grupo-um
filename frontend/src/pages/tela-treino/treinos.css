@@ -20,3 +20,10 @@
     color: #fff;
     transform: scale(1.05);
 }
+
+.botao{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-bottom: 20px;
+}
