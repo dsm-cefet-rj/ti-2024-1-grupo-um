@@ -18,9 +18,8 @@ function Modal(props) {
         dispatch(
             addExercise({ ...info, idForm })
         )
-        optionalFunction({...info, idForm})
-        
         setModal(false);
+        optionalFunction({...info, idForm})
     }
     const initialValues = {
         name: "",

@@ -7,10 +7,10 @@ import React, { useState } from 'react';
 import "./treinos.css";
 import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 
 import { deleteTreinoByID, deleteTraining } from "../../redux/trainings/slice.js";
+import { addExercicio } from "../../redux/exercises/slice.js";
 
 function Treino() {
     //id treino
@@ -20,7 +20,6 @@ function Treino() {
     const navigate = useNavigate();
     const currentUser = useSelector(rootReducer => rootReducer.user);
     const [showModal, setShowModal] = useState(false);
-    const form = useSelector(rootReducer => rootReducer.forms);
     const exercicios = useSelector(rootReducer => rootReducer.exercises);
 
     if(!currentUser.logged){
@@ -83,7 +82,8 @@ function Treino() {
                             setShowModal();
 
                         }}
-                        idForm={form.id}
+                        idForm={id}
+                        optionalFunction={(info) => {dispatch(addExercicio(info))}}
                     />
                 )}
             </div>

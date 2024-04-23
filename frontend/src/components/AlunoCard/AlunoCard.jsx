@@ -10,7 +10,7 @@ import { getAnamnese } from "../../redux/anamnese/slice";
 // react router dom
 import { Link } from "react-router-dom";
 
-function AlunoCard({ nome, idUser}){
+function AlunoCard({ nomeUser, idUser}){
     const dispatch = useDispatch();
 
     const handleOnClick = () => {
@@ -25,7 +25,7 @@ function AlunoCard({ nome, idUser}){
                 <p className="card-text">{descricao}</p>
             </div> */}
             <div className="card-footer">
-                <h5 className="card-title">{nome}</h5>
+                <h5 className="card-title">{nomeUser}</h5>
             </div>
         </Link>
     );

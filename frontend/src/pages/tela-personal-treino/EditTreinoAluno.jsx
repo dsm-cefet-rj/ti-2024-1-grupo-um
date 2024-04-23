@@ -7,7 +7,6 @@ import React, { useState } from 'react';
 import "./styles.css";
 import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 
 import { deleteTreinoByID, deleteTraining } from "../../redux/trainings/slice.js";

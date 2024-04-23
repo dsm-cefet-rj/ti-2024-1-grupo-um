@@ -5,11 +5,11 @@ import axios from "axios";
 const initialState = {
     idUser: "",
     id: "",
-    descricao:"",
-    title:"",
-    type:"",
+    descricao: "",
+    title: "",
+    type: "",
     observacoes: "",
-}; 
+};
 
 const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
     const response = await axios.post("http://localhost:3004/treino", data);
@@ -29,11 +29,19 @@ const formsSlice = createSlice({
             state.title = action.payload.title;
             state.type = action.payload.type;
         },
-        
+        clearForms: (state) => {
+            state.idUser = "";
+            state.id = "";
+            state.descricao= "";
+            state.title= "";
+            state.type = "";
+            state.observacoes = "";
+        }
+
     }
 })
 
-export const { addForms, addInfo, saveFormIntoDB } = formsSlice.actions;
+export const { addForms, addInfo, clearForms } = formsSlice.actions;
 
 export { addTreino };
 export default formsSlice.reducer;

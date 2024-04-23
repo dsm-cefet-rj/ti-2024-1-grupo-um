@@ -17,7 +17,6 @@ function NotLoggedInAreaFIT(){
                         <h2 data-aos="fade-down"><span>Área FIT</span></h2>
                         <p className="line"></p>
                         <p data-aos="fade-up">Seu local ideal dedicado à saúde e ao condicionamento físico, onde os usuários podem montar seus próprios treinos personalizados de acordo com suas metas e preferências, além de visualizar treinos elaborados por profissionais. Com uma variedade de exercícios e opções de personalização, os usuários têm a liberdade de criar rotinas adaptadas às suas necessidades individuais, promovendo um estilo de vida ativo e saudável.</p>
-                        {/* <a data-aos="fade-up" data-aos-delay="200" href="#get-started" className="btn-get-started">Começar</a> */}
                         <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Começar</Link>
                         </div>
                     </div>
@@ -77,28 +76,6 @@ function NotLoggedInAreaFIT(){
                 </div>
             </div>
         </section>
-      
-
-
-
-
-       {/* <h1 className="display-4">Exemplos</h1>
-        <div className="container mt-2" id="container-card">
-        <div className="row justify-content-center"id="row-card">
-          
-                {Treinos.map((treino, index) => (
-                  <div key={index} className="col mb-3">
-                    <TreinoCard
-                      title={treino.title}
-                      description={treino.description}
-                      type={treino.type}
-                    />
-                  </div>)
-                  )
-                }
-          
-        </div>
-            </div>*/}
             <FooterComp />
         </>
     );

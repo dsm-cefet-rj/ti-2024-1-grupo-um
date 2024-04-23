@@ -19,7 +19,6 @@ function Pagamento() {
   const navigate = useNavigate();
   const personais = useSelector(rootReducer => rootReducer.personais);
   const personalAtual = personais.filter((personal) => personal.id == id)[0];
-  console.log(personalAtual);
   
   const [numero, setNumero] = useState('');
   const [cvc, setCvc] = useState('');

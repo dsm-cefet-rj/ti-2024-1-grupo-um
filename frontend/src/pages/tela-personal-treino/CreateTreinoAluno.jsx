@@ -2,7 +2,6 @@
 import Navbar from "../../components/Navbar/Navbar";
 import FooterComp from "../../components/Footer/Footer";
 import Modal from "../../components/Modal/AddExercicio";
-import AreaFIT from "../tela-area-fit/AreaFIT";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
 import SelectComponentYup from "../../components/InputComponent/SelectComponentYup";
 
@@ -10,12 +9,12 @@ import SelectComponentYup from "../../components/InputComponent/SelectComponentY
 import "./styles.css";
 
 //imports react
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import React, { useState } from 'react';
 
 //imports redux
 import { useDispatch, useSelector } from "react-redux";
-import { addInfo, addTreino } from "../../redux/form-treino/slice";
+import { addInfo, addTreino, clearForms } from "../../redux/form-treino/slice";
 import { addExercicio, clearExercises } from "../../redux/exercises/slice";
 import { addTraining } from "../../redux/trainings/slice";
 
@@ -29,9 +28,6 @@ function CreateTreinoAluno() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    //id do aluno
-    const { id } = useParams();
-    
     // pegando o usuario
     const loggedUser = useSelector(rootReducer => rootReducer.user);
     const exercicios = useSelector(rootReducer => rootReducer.exercises);
@@ -53,6 +49,7 @@ function CreateTreinoAluno() {
         dispatch(addTraining(treinoInfo));
         exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
         dispatch(clearExercises());
+        dispatch(clearForms());
         navigate("/meusAlunos");
     }
 
@@ -77,8 +74,8 @@ function CreateTreinoAluno() {
     })
 
     //veriricando login do usuario
-    if (!loggedUser.logged) {
-        return <AreaFIT />
+    if (!loggedUser.loggedPersonal) {
+        return <Navigate to="/" />
     }
 
     return (
@@ -112,9 +109,9 @@ function CreateTreinoAluno() {
                     <Modal
                         setModal={() => {
                             setShowModal();
-
                         }}
                         idForm={form.id}
+                        optionalFunction={(e) => {}}
                     />
                 )}
             </div>

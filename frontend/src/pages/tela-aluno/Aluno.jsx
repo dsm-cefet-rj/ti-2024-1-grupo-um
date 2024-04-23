@@ -11,8 +11,9 @@ import lixeira from "../../components/Exercicio/lixeira.png";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { clearExercises, getExercisesByTreinoID } from "../../redux/exercises/slice";
+import { addForms } from "../../redux/form-treino/slice";
 import { v4 as idGen } from "uuid";
-
+import { deleteTraining, deleteTreinoByID } from "../../redux/trainings/slice";
 function Aluno() {
 
     const { id } = useParams();
@@ -31,7 +32,10 @@ function Aluno() {
 
     const usuario = alunos.filter((aluno) => aluno.idUser === id)[0];
 
-
+    const handleDeleteTreino = (treinoId) => {
+        dispatch(deleteTreinoByID(treinoId))
+        dispatch(deleteTraining(treinoId))
+    }
 
     if (!currentUser.loggedPersonal) {
         return <Navigate to={"/login"} />
@@ -48,7 +52,7 @@ function Aluno() {
                     <div>
                         <img src={user} alt="foto de perfil usuario"
                             className="rounded-circle img-fluid" style={{ width: "150px" }} />
-                        <h5 className="my-3">{usuario.nome}</h5>
+                        <h5 className="my-3">{usuario.nomeUser}</h5>
                     </div>
                     <div className="card m-auto" id="card-block-personal">
                         <h1 className="mb-4" style={{ fontWeight: "bold" }}>Anamnese</h1>
@@ -88,7 +92,7 @@ function Aluno() {
                         <Link className="card-title" id="exercicio-nome" onClick={() => {dispatch(getExercisesByTreinoID(treino.id))}} to={`/EditTreinoAluno/${treino.id}`}>{treino.title}</Link>
                     </div>
                     <div className="btn-div">
-                        <button className="btn-lixeira" onClick={() => {}}>
+                        <button className="btn-lixeira" onClick={() => {handleDeleteTreino(treino.id)}}>
                             <img className="lixeira-image" src={lixeira} alt="lixeira" />
                         </button>
                     </div>
@@ -97,7 +101,7 @@ function Aluno() {
             )}
 
             <div className="d-flex justify-content-center mb-2">
-                <Link data-aos="fade-up" data-aos-delay="200" to={`/`} onClick={() => {dispatch(addForms({idUser: id, id: idGen(), infos: {}}))}} className="btn btn-success w-50">Preescrever Treino</Link>
+                <Link data-aos="fade-up" data-aos-delay="200" to={`/CreateTreinoAluno`} onClick={() => {dispatch(addForms({idUser: id, id: idGen(), infos: {}}))}} className="btn btn-success w-50">Preescrever Treino</Link>
             </div>
             <FooterComp />
         </div>

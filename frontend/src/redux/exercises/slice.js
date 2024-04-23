@@ -19,7 +19,6 @@ const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoI
 
 const deleteExercicioByID = createAsyncThunk("exercises/deleteExerciseByID", async (idExercicio) => {
     try{
-        debugger;
         await axios.delete(`http://localhost:3004/exercicios/${idExercicio}`)
     }
     catch(err){

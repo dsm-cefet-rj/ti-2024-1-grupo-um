@@ -85,7 +85,7 @@ const router = createBrowserRouter([
         element: <EditTreinoAluno/>
       },
       {
-        path: "CreateTreinoAluno/:id",
+        path: "CreateTreinoAluno",
         element: <CreateTreinoAluno/>
       },
       {

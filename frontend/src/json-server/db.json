@@ -1,14 +1,6 @@
 {
   "exercicios": [
     {
-      "id": "a3de",
-      "name": "Elevação Lateral",
-      "series": "3x10",
-      "peso": 8,
-      "observacoes": "",
-      "idForm": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c"
-    },
-    {
       "id": "6f8e",
       "name": "Exercicio 1",
       "series": "3x15",
@@ -33,20 +25,60 @@
       "idForm": "1dab0326-f45a-4f20-ae44-6741c9047a9c"
     },
     {
-      "id": "cf47",
-      "name": "dasdjosa",
+      "id": "94f3",
+      "name": "exteste",
       "series": "2x1",
-      "peso": 12,
+      "peso": 2,
       "observacoes": "",
-      "idForm": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c"
+      "idForm": "40c1da2f-9a4b-461c-85d3-802951d3eba9"
     },
     {
-      "id": "35cf",
-      "name": "teste",
-      "series": "3x2",
-      "peso": 12,
+      "id": "a82d",
+      "name": "testando ",
+      "series": "2x1",
+      "peso": 2,
       "observacoes": "",
-      "idForm": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c"
+      "idForm": ""
+    },
+    {
+      "id": "245f",
+      "name": "casa",
+      "series": "12x1",
+      "peso": 2,
+      "observacoes": "",
+      "idForm": ""
+    },
+    {
+      "id": "1817",
+      "name": "muahaha triplo",
+      "series": "2x2",
+      "peso": 2,
+      "observacoes": "",
+      "idForm": "40c1da2f-9a4b-461c-85d3-802951d3eba9"
+    },
+    {
+      "id": "1f05",
+      "name": "Supino Reto",
+      "series": "3x10",
+      "peso": 20,
+      "observacoes": "",
+      "idForm": "f3b28b51-265b-4212-b028-922f069f18b1"
+    },
+    {
+      "id": "f22b",
+      "name": "crucifixo maquina",
+      "series": "3x12",
+      "peso": 20,
+      "observacoes": "",
+      "idForm": "f3b28b51-265b-4212-b028-922f069f18b1"
+    },
+    {
+      "id": "d749",
+      "name": "Extensão de ombros",
+      "series": "3x12",
+      "peso": 2,
+      "observacoes": "",
+      "idForm": "f3b28b51-265b-4212-b028-922f069f18b1"
     }
   ],
   "treino": [
@@ -57,14 +89,6 @@
       "title": "Treino A",
       "type": "superiores",
       "observacoes": "Sextas"
-    },
-    {
-      "id": "3cf4220d-e158-4a5f-b3f4-c8256da7b44c",
-      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
-      "descricao": "Peito",
-      "title": "Treino A",
-      "type": "inferiores",
-      "observacoes": ""
     },
     {
       "id": "37e9547d-8d83-4dc8-a76a-603cd4c76114",
@@ -81,6 +105,22 @@
       "title": "Nome identificavel",
       "type": "natacao",
       "observacoes": ""
+    },
+    {
+      "id": "40c1da2f-9a4b-461c-85d3-802951d3eba9",
+      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
+      "descricao": "dasdas",
+      "title": "treinoteste",
+      "type": "superiores",
+      "observacoes": "dasdas"
+    },
+    {
+      "id": "f3b28b51-265b-4212-b028-922f069f18b1",
+      "idUser": "e3a49252-9be8-4c3e-9b91-1277613e23a5",
+      "descricao": "Peito e Ombro",
+      "title": "Treino A",
+      "type": "superiores",
+      "observacoes": "Tomar cuidado com pesos muito grandes na tensão do ombro"
     }
   ],
   "personais": [
@@ -169,6 +209,20 @@
       "preco": "100",
       "image": null,
       "id": "19febee2-e5c7-449b-83a1-97bb064c68ee"
+    },
+    {
+      "id": "6320bcb9-1dc7-4410-ac1a-cb56e85df24b",
+      "nome": "ronaldo",
+      "email": "ronaldo@personal",
+      "senha": "12345678c",
+      "birth": "2024-04-11",
+      "CPF": "412412412",
+      "descricao": "caca",
+      "formacao": "caca",
+      "cidade": "caca",
+      "biografia": "caca",
+      "preco": "213.20",
+      "image": null
     }
   ],
   "users": [
@@ -248,6 +302,14 @@
       "senha": "teste123",
       "birth": "2024-04-24",
       "CPF": "12345678910"
+    },
+    {
+      "nome": "diogo",
+      "email": "diogo@diogo",
+      "senha": "12345678",
+      "birth": "2024-04-12",
+      "CPF": "32121521512",
+      "id": "e3a49252-9be8-4c3e-9b91-1277613e23a5"
     }
   ],
   "anamnese": [
@@ -289,6 +351,16 @@
       "diet": "Sim",
       "observacoes": "",
       "userId": "82083e08-463e-452a-a33b-c6add2da3a6c"
+    },
+    {
+      "id": "b425",
+      "weigth": 42,
+      "motivation": "Hipertrofia muscular",
+      "activityFreq": "Nenhuma",
+      "date": "2024-04-16",
+      "diet": "Não",
+      "observacoes": "",
+      "userId": "e3a49252-9be8-4c3e-9b91-1277613e23a5"
     }
   ],
   "aluno": [
@@ -334,6 +406,12 @@
       "nome": "Caio Santos",
       "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
       "idPersonal": "19febee2-e5c7-449b-83a1-97bb064c68ee"
+    },
+    {
+      "id": "8f7e",
+      "idUser": "e3a49252-9be8-4c3e-9b91-1277613e23a5",
+      "nomeUser": "diogo",
+      "idPersonal": "6320bcb9-1dc7-4410-ac1a-cb56e85df24b"
     }
   ]
 }
