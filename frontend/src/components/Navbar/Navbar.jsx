@@ -58,7 +58,7 @@ function Navbar() {
                         {
                             currentUserNavbar ? (
                                 <div>
-                                    <Link to={"/perfil"}> Olá, {currentUserNavbar.nome} </Link>
+                                    <Link to={"/perfil"} className="editar-perfil"> Olá, {currentUserNavbar.nome} </Link>
                                     <button to="/login" className="signup-button" type="button" onClick={Logout}>logout</button>
                                 </div>
                             ) : (

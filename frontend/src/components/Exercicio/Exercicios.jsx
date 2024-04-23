@@ -13,7 +13,6 @@ function Exercicio({ nome, carga, rep, obs, type}) {
         return <img className="exercise-image" src={cardio} alt="cardio"/>;
       default:
         return <img className="exercise-image" src={padr} alt="img padrao"/>;
-
     }
   }
 
