@@ -48,9 +48,14 @@ function Navbar() {
                                         <Link className="nav-link mx-lg-2" aria-current="page" to={"/personais"}>Personais</Link>
                                     </li>
                                     {currentUserNavbar && (
-                                        <li>
-                                            <Link className="nav-link mx-lg-2" aria-current="page" to={"/anamnese"}>Anamnese</Link>
-                                        </li>
+                                        <>
+                                            <li className="nav-item">
+                                                <Link className="nav-link mx-lg-2" aria-current="page" to={"/anamnese"}>Anamnese</Link>
+                                            </li>
+                                            <li className="nav-item">
+                                                <Link to={"/perfil"} className="nav-link">Perfil</Link>
+                                            </li>
+                                        </>
                                     )}
                                 </ul>
                             </div>
@@ -58,7 +63,7 @@ function Navbar() {
                         {
                             currentUserNavbar ? (
                                 <div>
-                                    <Link to={"/perfil"} className="editar-perfil"> Olá, {currentUserNavbar.nome} </Link>
+                                    <span>Olá, {currentUserNavbar.nome}! </span>
                                     <button to="/login" className="signup-button" type="button" onClick={Logout}>Logout</button>
                                 </div>
                             ) : (

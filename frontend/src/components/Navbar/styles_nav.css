@@ -12,14 +12,14 @@
 }
 
 .editar-perfil{
+  text-decoration: none;
   background-color: #272021;
   color: #fff;
   font-size: 14px;
   padding: 8px 10px;
   border-radius: 20px;
   border: 1px solid;
-  border-color: transparent;
-  text-decoration: none;
+  border-color: #3166d1;
   transition: 0.3s background-color;
   margin-right: 4px;
 }
