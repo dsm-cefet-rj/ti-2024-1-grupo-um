@@ -1,20 +1,16 @@
 
 //Componentes
-import InputComponent from "../../components/InputComponent/InputComponent";
-import CefetImage from "../../components/CefetImage/CefetImage";
-import SubmitButton from "../../components/SubmitButton/SubmitButton";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
 import FooterComp from "../../components/Footer/Footer";
 //react imports
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 //style imports
 import logo from "./../../images/logo.png";
 import "./CadastroPersonal.css";
 import "./../pages.css";
 //import yup and formik
 import * as Yup from "yup";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 //redux
 import { useDispatch } from "react-redux";
 import { createPersonal } from "../../redux/personal/slice";
