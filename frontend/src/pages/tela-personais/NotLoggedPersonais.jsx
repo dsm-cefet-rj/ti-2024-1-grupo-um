@@ -22,7 +22,7 @@ function NotLoggedInPersonais(){
                         {/* <a data-aos="fade-up" data-aos-delay="200" href="#get-started" className="btn-get-started">Começar</a> */}
                         <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Começar</Link>
                         <div>
-                        <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastro"} className="btn-get-started">Quero ser um personal CEFIT</Link>
+                        <Link data-aos="fade-up" data-aos-delay="200" to={"/cadastroPersonal"} className="btn-get-started">Quero ser um personal CEFIT</Link>
                         </div>
                         </div>
                     </div>

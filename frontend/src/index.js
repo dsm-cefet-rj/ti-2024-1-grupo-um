@@ -22,6 +22,7 @@ import Treino from './pages/tela-treino/Treino.jsx';
 import Pagamento from './pages/tela-pagamento/Pagamento.jsx';
 import Error from './pages/tela-error/error.jsx'
 import Perfil from './pages/tela-perfil/Perfil.jsx';
+import LoginPersonal from './pages/tela-login/LoginPersonal.jsx';
 
 
 
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login/>
+      },
+      {
+        path: "loginPersonal",
+        element: <LoginPersonal/>
       },
       {
         path: "cadastro",

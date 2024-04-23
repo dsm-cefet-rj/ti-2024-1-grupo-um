@@ -3,7 +3,7 @@
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
 import FooterComp from "../../components/Footer/Footer";
 //react imports
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //style imports
 import logo from "./../../images/logo.png";
 import "./CadastroPersonal.css";
@@ -14,7 +14,6 @@ import { Formik, Form } from "formik";
 //redux
 import { useDispatch } from "react-redux";
 import { createPersonal } from "../../redux/personal/slice";
-
 // import { createHash } from "crypto";
 import { v4 as idGen } from "uuid";
 
@@ -29,7 +28,6 @@ function CadastroPersonal(){
         descricao: Yup.string().required("Descrição é obrigatória."),
         formacao: Yup.string().required("Formação é obrigatória."),
         cidade: Yup.string().required("Cidade é obrigatória."),
-        rating: Yup.number().required("Rating é obrigatório."),
         biografia: Yup.string().required("Biografia é obrigatória."),
         preco: Yup.number().required("Preço é obrigatório.")
     });
@@ -43,7 +41,6 @@ function CadastroPersonal(){
         descricao:"",
         formacao:"",
         cidade:"",
-        rating:"",
         biografia:"",
         preco:""
     };
@@ -54,6 +51,7 @@ function CadastroPersonal(){
     const dispatch = useDispatch();
     const handlePersonalSingUp=(values)=>{
         dispatch(createPersonal({...values, id: idGen()}));
+        alert("personal cadastrado com uscesso");
         navigate("/loginPersonal");
     }
 
@@ -78,9 +76,13 @@ function CadastroPersonal(){
                                 <InputComponentYup classes="" id="age" name="birth" text="Data de Nascimento" type="date" placeholder="" />
                                 <InputComponentYup classes="" id="descricao" name="descricao" text="Descricao" type="text" placeholder="Breve Descricao" />
                                 <InputComponentYup classes="" id="cidade" name="cidade" text="Cidade" type="text" placeholder="Cidade em que mora" />
+                                <InputComponentYup classes="" id="formacao" name="formacao" text="Formação" type="text" placeholder="Sua Formação aqui" />
                                 <InputComponentYup classes="" id="biografia" name="biografia" text="Biografia" type="text" placeholder="Sua Biografia aqui" />
                                 <InputComponentYup classes="" id="preco" name="preco" text="Preço da sua consultoria" type="text" placeholder="Ex: R$ 39,90" />
                                 <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
+                                <div className="cadastro-texto mt-3">
+                                    Possui conta?<Link to="/loginPersonal">Faça o seu Login!</Link>
+                                </div>
                                 <div className="d-flex w-100 mt-3">
                                     <button type="submit" className="btn verde w-100" disabled={!isValid}>Cadastrar</button>
                                 </div>

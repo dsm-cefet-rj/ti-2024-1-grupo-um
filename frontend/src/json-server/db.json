@@ -163,6 +163,19 @@
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
       "image": "",
       "preco": "39,99"
+    },
+    {
+      "id": "19febee2-e5c7-449b-83a1-97bb064c68ee",
+      "nome": "ney",
+      "email": "ney@1",
+      "senha": "12345678c",
+      "birth": "2024-04-19",
+      "CPF": "412512521512",
+      "descricao": "312321321",
+      "formacao": "Educação Física - UFRJ",
+      "cidade": "12312312",
+      "biografia": "2412414",
+      "preco": "133"
     }
   ],
   "users": [
