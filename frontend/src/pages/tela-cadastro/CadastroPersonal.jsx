@@ -3,38 +3,61 @@
 import InputComponent from "../../components/InputComponent/InputComponent";
 import CefetImage from "../../components/CefetImage/CefetImage";
 import SubmitButton from "../../components/SubmitButton/SubmitButton";
-
+import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
 //react imports
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 //style imports
 import logo from "./../../images/logo.png";
 import "./CadastroPersonal.css";
 import "./../pages.css";
+//import yup and formik
+import * as Yup from "yup";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+//redux
+import { useDispatch } from "react-redux";
+import { createPersonal } from "../../redux/personal/slice";
 
 // import { createHash } from "crypto";
 import { v4 as idGen } from "uuid";
 
-function Cadastro(){
+function CadastroPersonal(){
 
-    const [ nome, setNome ] = useState();
-    const [ password, setPassword ] = useState();
-    const [ descricao, setDescricao ] = useState();
-    const [ biografia, setBiografia ] = useState();
+    const validationSchema = Yup.object({
+        nome: Yup.string().required("O nome é obrigatório."),
+        email: Yup.string().email().required("O email é obrigatório."),
+        senha: Yup.string().required("Senha é obrigatória.").min(8, "Senha deve conter pelo menos 8 caracteres."),
+        birth: Yup.date().required("Data de Nascimento é obrigatória."),
+        CPF: Yup.string().required("CPF é obrigatório."),
+        descricao: Yup.string().required("Descrição é obrigatória."),
+        formacao: Yup.string().required("Formação é obrigatória."),
+        cidade: Yup.string().required("Cidade é obrigatória."),
+        rating: Yup.number().required("Rating é obrigatório."),
+        biografia: Yup.string().required("Biografia é obrigatória."),
+        preco: Yup.number().required("Preço é obrigatório.")
+    });
 
-    const cadastro = {
-        nome: nome,
-        senha: password,
-        descricao: descricao,
-        biografia: biografia,
-        id: idGen()
-    }
+    const initialValues = {
+        nome: "",
+        email: "",
+        senha:"",
+        birth: "",
+        CPF: "",
+        descricao:"",
+        formacao:"",
+        cidade:"",
+        rating:"",
+        biografia:"",
+        preco:""
+    };
+
+
 
     const navigate = useNavigate();
-
-    const handlePersonalSingUp=(e)=>{
-        e.preventDefault();
+    const dispatch = useDispatch();
+    const handlePersonalSingUp=(values)=>{
+        dispatch(createPersonal({...values, id: idGen()}));
+        navigate("/loginPersonal");
     }
 
     return(
@@ -43,27 +66,32 @@ function Cadastro(){
                     <div className="cefit-logo verde text-center rounded-5 m-auto">
                         <img src={logo} alt="foto cefit" className="p-1" width="100%" height="100%"/>
                     </div>
-                    <form className="formulario-cadastro" >
-                        <InputComponent classes="mt-3" id="nameImput" text={<b>Nome Completo</b>} type="text" placeholder="Seu nome completo aqui" value={nome} onChange={(e) => [setNome(e.target.value)]}/>
-                        <InputComponent classes="" id="descricao" text={<b>Descricao</b>} type="text" placeholder="Insira sua descricao aqui" value={descricao} onChange={(e) => [setDescricao(e.target.value)]}/>
-                        <InputComponent classes="" id="biografia" text={<b>Biografia</b>} type="text" placeholder="Biografia aqui" value={biografia} onChange={(e) => [setBiografia(e.target.value)]}/>
-                        <InputComponent classes="" id="Password" text={<b>Senha</b>} type="password" placeholder="Insira sua senha aqui"value={password} onChange={(e) => [setPassword(e.target.value)]}/>
-                        {/* {
-                            id: 2,
-                            nome: "Arnold Schwarzenegger",
-                            descricao: "3x Olympia Winner",
-                            rating: [],
-                            biografia: ""
-                        }, */}
-                        <div className="d-flex w-100 mt-3">
-                            <button type="submit" className="btn verde w-100" onClick={handlePersonalSingUp}>Cadastrar</button>
-                        </div>
-                        <div className="cadastro-texto mt-3">
-                            Possui conta?<Link to="/login">Faça o seu Login!</Link>
-                        </div>
-                    </form>
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={(values) => {
+                            handlePersonalSingUp(values);
+                        }}>
+                            {({ isValid }) => (
+                        <Form className="formulario-cadastro">
+                            <InputComponentYup classes="mt-3" id="nameImput" name="nome"text="Nome Completo" type="text" placeholder="Seu nome completo aqui"/>
+                            <InputComponentYup classes="" id="InputEmail" name="email" text="Email" type="email" placeholder="Insira seu email aqui" />
+                            <InputComponentYup classes="" id="CPFInput" name="CPF" text="CPF" type="text" placeholder="Seu CPF aqui" />
+                            <InputComponentYup classes="" id="age" name="birth" text="Data de Nascimento" type="date" placeholder="" />
+                            <InputComponentYup classes="" id="descricao" name="descricao" text="Descricao" type="text" placeholder="Breve Descricao" />
+                            <InputComponentYup classes="" id="cidade" name="cidade" text="Cidade" type="text" placeholder="Cidade em que mora" />
+                            <InputComponentYup classes="" id="biografia" name="biografia" text="Biografia" type="text" placeholder="Sua Biografia aqui" />
+                            <InputComponentYup classes="" id="preco" name="preco" text="Preço da sua consultoria" type="text" placeholder="Ex: R$ 39,90" />
+                            <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
+                            <div className="d-flex w-100 mt-3">
+                                <button type="submit" className="btn verde w-100" disabled={!isValid}>Cadastrar</button>
+                            </div>
+
+                        </Form>
+                        )}
+                    </Formik>
                 </div>
             </div>
     );
 }
-export default Cadastro;
+export default CadastroPersonal;

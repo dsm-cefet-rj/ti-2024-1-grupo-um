@@ -13,7 +13,10 @@ const getPersonais = createAsyncThunk("personais/getPersonaisAsync", async() => 
     const response = await axios.get("http://localhost:3004/personais");
     return response.data; 
 });
-
+const createPersonal = createAsyncThunk('personais/addPersonalAsync', async (data) => {
+    const response = await axios.post("http://localhost:3004/personais", data)
+    return response.data;
+});
 
 const personalSlice = createSlice({
     name:"personal",
@@ -39,5 +42,5 @@ const personalSlice = createSlice({
 
 export const { addPersonal, clearPersonals } = personalSlice.actions;
 
-export { getPersonais }
+export { getPersonais, createPersonal }
 export default personalSlice.reducer;

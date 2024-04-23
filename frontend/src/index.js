@@ -24,6 +24,7 @@ import Error from './pages/tela-error/error.jsx'
 import Perfil from './pages/tela-perfil/Perfil.jsx';
 
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "cadastro",
         element: <Cadastro/>
+      },
+      {
+        path: "cadastroPersonal",
+        element: <CadastroPersonal/>
       },
       {
         path: "personais",
