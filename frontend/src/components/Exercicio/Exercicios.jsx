@@ -3,8 +3,12 @@ import cardio from "./esteira-icon.png";
 import musculacao from "./haltere-icon.png";
 import padr from "./default-icon.png";
 import lixeira from "./lixeira.png";
+import { deleteExercicioByID, deleteExercicio } from "../../redux/exercises/slice.js";
+import { useDispatch } from "react-redux";
 
-function Exercicio({ nome, carga, rep, obs, type}) {
+function Exercicio({ nome, carga, rep, obs, type, idExercicio}) {
+  const dispatch = useDispatch();
+
   const Img =() => {
     switch(type){
       case 'musc':
@@ -16,7 +20,11 @@ function Exercicio({ nome, carga, rep, obs, type}) {
     }
   }
 
- 
+  const handleDeleteExercicio = () => {
+    dispatch(deleteExercicioByID(idExercicio));
+    dispatch(deleteExercicio(idExercicio));
+    //navigate("/treino");
+  }
 
     return (
       <div className="exercicio-card">
@@ -31,7 +39,7 @@ function Exercicio({ nome, carga, rep, obs, type}) {
         </div>
         <input type="checkbox" className="checkbox" />
         <div className="btn-div">
-            <button className="btn-lixeira" >
+            <button className="btn-lixeira" onClick={() => {handleDeleteExercicio()}}>
               <img className="lixeira-image" src={lixeira} alt="lixeira"/>
             </button>
         </div>

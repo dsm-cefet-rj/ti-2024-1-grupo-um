@@ -17,6 +17,17 @@ const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoI
     }
 } )
 
+const deleteExercicioByID = createAsyncThunk("exercises/deleteExerciseByID", async (idExercicio) => {
+    try{
+        debugger;
+        await axios.delete(`http://localhost:3004/exercicios/${idExercicio}`)
+    }
+    catch(err){
+        console.log("Não foi possível excluir o exercício");
+    }
+})
+
+
 const exercisesSlice = createSlice({
     name: "exercises",
     initialState,
@@ -27,6 +38,14 @@ const exercisesSlice = createSlice({
         clearExercises: (state) => {
             while(state.length > 0){
                 state.pop()
+            }
+        },
+        deleteExercicio: (state, action) => {
+            for (let i=0; i < state.length; i++){
+                if(state[i].id === action.payload){
+                    state.splice(i, 1);
+                    break;
+                }
             }
         }
     },
@@ -41,7 +60,7 @@ const exercisesSlice = createSlice({
 
 
 
-export const { addExercise, clearExercises } = exercisesSlice.actions;
+export const { addExercise, clearExercises, deleteExercicio } = exercisesSlice.actions;
 
-export {addExercicio, getExercisesByTreinoID}
+export {addExercicio, getExercisesByTreinoID, deleteExercicioByID}
 export default exercisesSlice.reducer;
