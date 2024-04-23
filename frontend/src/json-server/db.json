@@ -7,6 +7,14 @@
       "peso": 20,
       "observacoes": "",
       "idForm": "a3b7b9e5-9439-4309-83ac-768b5b088003"
+    },
+    {
+      "id": "6fb4",
+      "name": "Remada maquina",
+      "series": "3x15",
+      "peso": 25,
+      "observacoes": "descanso de 40s",
+      "idForm": "f752de52-af0e-4b78-9b5a-3d7c098fae16"
     }
   ],
   "treino": [
@@ -17,6 +25,14 @@
       "title": "Treino A",
       "type": "superiores",
       "observacoes": ""
+    },
+    {
+      "id": "f752de52-af0e-4b78-9b5a-3d7c098fae16",
+      "idUser": "f0761fa0-ca1d-4064-bd68-8514373b066a",
+      "descricao": "Biceps",
+      "title": "Treino B",
+      "type": "superiores",
+      "observacoes": "AA"
     }
   ],
   "personais": [
@@ -143,6 +159,14 @@
       "senha": "12345678",
       "birth": "2024-04-11",
       "CPF": "12321312321"
+    },
+    {
+      "id": "2e3fcf0c-11dd-4a2d-8276-7f86928634f5",
+      "nome": "Ana carolina",
+      "email": "ana@1",
+      "senha": "abc12345",
+      "birth": "2024-04-02",
+      "CPF": "1234556666"
     }
   ],
   "anamnese": [
@@ -155,6 +179,15 @@
       "diet": "Não",
       "observacoes": "",
       "userId": "f0761fa0-ca1d-4064-bd68-8514373b066a"
+    },
+    {
+      "weigth": 52,
+      "motivation": "Perder peso",
+      "activityFreq": "até 3 vezes por semana",
+      "diet": "Não",
+      "observacoes": "Quero crescer",
+      "userId": "2e3fcf0c-11dd-4a2d-8276-7f86928634f5",
+      "id": "8cee"
     }
   ],
   "aluno": [
@@ -163,6 +196,12 @@
       "idUser": "f0761fa0-ca1d-4064-bd68-8514373b066a",
       "nomeUser": "Caio Santos de Souza",
       "idPersonal": "6320bcb9-1dc7-4410-ac1a-cb56e85df24b"
+    },
+    {
+      "id": "5966",
+      "idUser": "2e3fcf0c-11dd-4a2d-8276-7f86928634f5",
+      "nomeUser": "Ana carolina",
+      "idPersonal": "ee5d6e44-4075-4200-8748-7af3b4b7cd1a"
     }
   ]
 }

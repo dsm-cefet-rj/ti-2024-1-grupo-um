@@ -57,7 +57,7 @@ function CadastroPersonal(){
 
     return(
         <div>
-            <div className="bg-image cefit-background-img" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
+            <div className="bg-image cefit-background-img" id="cad-personal" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
                     <div className="login-container rounded-5 p-3">
                         <div className="cefit-logo verde text-center rounded-5 m-auto">
                             <img src={logo} alt="foto cefit" className="p-1" width="100%" height="100%"/>
