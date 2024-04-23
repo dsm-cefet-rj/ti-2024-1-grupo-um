@@ -223,6 +223,20 @@
       "biografia": "caca",
       "preco": "213.20",
       "image": null
+    },
+    {
+      "id": "ee5d6e44-4075-4200-8748-7af3b4b7cd1a",
+      "nome": "ana carolina",
+      "email": "ana@ana",
+      "senha": "abc12345",
+      "birth": "2024-04-10",
+      "CPF": "154547864546",
+      "descricao": "fhsfsjdfsfdsf",
+      "formacao": "educacao fisica",
+      "cidade": "caxias",
+      "biografia": "aaaaaa",
+      "preco": "55",
+      "image": null
     }
   ],
   "users": [

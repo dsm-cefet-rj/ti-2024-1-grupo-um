@@ -6,7 +6,14 @@
     width: 150px;
     min-width: 20px;
 }
-
+.bg-image{
+    height: 100%;
+}
 .verde{
     background-color: #0fe661;
+    color: #fff;
+}
+.verde:hover{
+    background-color: #51e088;
+    color: #fff;
 }

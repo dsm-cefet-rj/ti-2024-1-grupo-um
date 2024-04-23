@@ -81,7 +81,7 @@ function CadastroPersonal(){
                                 <InputComponentYup classes="" id="preco" name="preco" text="Preço da sua consultoria" type="text" placeholder="Ex: R$ 39,90" />
                                 <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
                                 <div className="cadastro-texto mt-3">
-                                    Possui conta?<Link to="/login">Faça o seu Login!</Link>
+                                    Possui conta? <Link to="/login"> Faça o seu Login!</Link>
                                 </div>
                                 <div className="d-flex w-100 mt-3">
                                     <button type="submit" className="btn verde w-100" disabled={!isValid}>Cadastrar</button>
@@ -92,7 +92,7 @@ function CadastroPersonal(){
                         </Formik>
                     </div>
                 </div>
-            <FooterComp/>
+           
         </div>
     );
 }
