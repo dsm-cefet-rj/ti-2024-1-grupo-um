@@ -12,14 +12,14 @@ import { Formik, Form } from "formik";
 function Modal(props) {
     const dispatch = useDispatch();
 
-    const { setModal, idForm } = props;
+    const { setModal, idForm, optionalFunction } = props;
 
     const handleSubmitForm = (info) => {
         dispatch(
             addExercise({ ...info, idForm })
         )
-        
         setModal(false);
+        optionalFunction({...info, idForm})
     }
     const initialValues = {
         name: "",
@@ -31,7 +31,7 @@ function Modal(props) {
         name: Yup.string().required("Esse campo é obrigatório"),
         series: Yup.string().required("Esse campo é obrigatório.").matches(/^\d{0,2}x\d{0,2}$/, "Deve ser no formato 00x00"),
         peso: Yup.number(),
-        observacoes: Yup.string(),
+        observacoes: Yup.string().max(50, "Máximo de 50 caracteres"),
     })
 
     return (

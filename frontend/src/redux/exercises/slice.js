@@ -15,11 +15,10 @@ const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoI
     } catch (err) {
         return [];
     }
-} )
+})
 
 const deleteExercicioByID = createAsyncThunk("exercises/deleteExerciseByID", async (idExercicio) => {
     try{
-        debugger;
         await axios.delete(`http://localhost:3004/exercicios/${idExercicio}`)
     }
     catch(err){
@@ -51,6 +50,9 @@ const exercisesSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getExercisesByTreinoID.fulfilled, (state, action) => {
+            while (state.length > 0) {
+                state.pop()
+            }
             for (let exercise of action.payload) {
                 state.push(exercise);
             }

@@ -5,7 +5,9 @@ import axios from "axios";
 
 const initialState = {
     logged: false,
-    user: {}
+    loggedPersonal: false,
+    user: {},
+    personal: {},
 };
 
 const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
@@ -29,9 +31,15 @@ const userSlice = createSlice({
             state.logged = true;
             state.user = action.payload;
         },
+        addLoggedPersonal: (state, action) => {
+            state.loggedPersonal = true;
+            state.personal = action.payload;
+        },
         logoutUser: (state) => {
             state.logged = false;
+            state.loggedPersonal = false;
             state.user = {};
+            state.personal={};
         },
         addTraining: (state, action) => {
             if(state.logged){
@@ -41,7 +49,7 @@ const userSlice = createSlice({
     }
 })
 
-export const { loginUser, logoutUser, addTraining, addLoggedUser } = userSlice.actions;
+export const { loginUser, logoutUser, addTraining, addLoggedUser, addLoggedPersonal } = userSlice.actions;
 
 export { addUser, updateUser, deleteUser }
 

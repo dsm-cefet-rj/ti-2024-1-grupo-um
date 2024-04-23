@@ -2,9 +2,9 @@ import Navbar from "../../components/Navbar/Navbar.jsx";
 import FooterComp from "../../components/Footer/Footer.jsx";
 import Exercicio from "../../components/Exercicio/Exercicios.jsx";
 //modal
-import Modal from "../../components/Modal/AddExercicio";
+import Modal from "../../components/Modal/AddExercicio.jsx";
 import React, { useState } from 'react';
-import "./treinos.css";
+import "./styles.css";
 import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -12,20 +12,20 @@ import { useDispatch } from "react-redux";
 import { deleteTreinoByID, deleteTraining } from "../../redux/trainings/slice.js";
 import { addExercicio } from "../../redux/exercises/slice.js";
 
-function Treino() {
+function EditTreinoAluno() {
+    //init
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     //id treino
     const {id} = useParams();
-    const dispatch = useDispatch();
-    const Exercises = useSelector(rootReducer => rootReducer.exercises)
-    const navigate = useNavigate();
-    const currentUser = useSelector(rootReducer => rootReducer.user);
-    const [showModal, setShowModal] = useState(false);
-    const exercicios = useSelector(rootReducer => rootReducer.exercises);
 
-    if(!currentUser.logged){
-        return <Navigate to={"/login"}/>
-    }
-  
+    //modal
+    const [showModal, setShowModal] = useState(false);
+
+    const Exercises = useSelector(rootReducer => rootReducer.exercises)
+    const currentUser = useSelector(rootReducer => rootReducer.user);
+
     const handleDeleteTreino = () => {
         dispatch(deleteTreinoByID(id));
         dispatch(deleteTraining(id));
@@ -35,6 +35,15 @@ function Treino() {
     const openModal = () => {
         setShowModal(true);
     };
+
+    const handlePostExercise = (info) => {
+        dispatch(addExercicio(info))
+    }
+
+    if(!currentUser.loggedPersonal){
+        return <Navigate to={"/login"}/>
+    }
+  
 
     return (
         <>
@@ -49,7 +58,8 @@ function Treino() {
             </div>
 
             <div className="exercicios">
-            {id?(
+
+            {id && (
                 Exercises.map((exercicio, index) => (
                     <Exercicio
                         key={index}
@@ -59,18 +69,6 @@ function Treino() {
                         obs={exercicio.observacoes}
                         type={exercicio.type}
                         idExercicio={exercicio.id}
-                    />
-                ))
-            ):(
-                exercicios.map((exercicio, index) => (
-                    <Exercicio
-                    key={index}
-                    nome={exercicio.nome}
-                    carga={exercicio.carga}
-                    rep={exercicio.rep}
-                    obs={exercicio.obs}
-                    type={exercicio.type}
-                    
                     />
                 ))
             )}
@@ -83,16 +81,16 @@ function Treino() {
 
                         }}
                         idForm={id}
-                        optionalFunction={(info) => {dispatch(addExercicio(info))}}
+                        optionalFunction={handlePostExercise}
                     />
                 )}
             </div>
-        <div className="btn-div">
-            <button className="btn-delete" onClick={() =>{handleDeleteTreino(id)}}>Excluir treino</button>
-        </div>
+            <div className="btn-div">
+                <button className="btn-delete" onClick={() =>{handleDeleteTreino(id)}}>Excluir treino</button>
+            </div>
         <FooterComp />
         </>
     );
-  }
+}
   
-  export default Treino;
+export default EditTreinoAluno;

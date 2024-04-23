@@ -5,7 +5,7 @@ import InputComponentYup from "../../components/InputComponent/InputComponenteYu
 import './style.css';
 //react
 import React from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { addLoggedUser, deleteUser, logoutUser, updateUser } from "../../redux/user/slice";
@@ -20,7 +20,6 @@ import { Formik, Form } from "formik";
 function Perfil() {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     
     const currentUser = useSelector(rootReducer => rootReducer.user);
     const treinos = useSelector(rootReducer => rootReducer.trainings);
@@ -31,18 +30,13 @@ function Perfil() {
         dispatch(updateUser(infos));
         dispatch(addLoggedUser(infos));
         alert("usuario editado com sucesso!");
-        // infos["userId"] = currentUser.user.id;
-        // dispatch(addAnmneseAsync(infos))
-        // dispatch(addAnmnese(infos))
-        // navigate("/personais")
     }
     const handleUserDelete = () => {
         const idUser = currentUser.user.id;
-        debugger;
         for(let treino of treinos){
             dispatch(deleteTreinoByID(treino.id));
         }
-        //clear trainings dispatch(clear)
+        //clear trainings
         dispatch(deleteAnamnese(anamnese?.id));
         //clear anamnese
         dispatch(deleteAlunoByUserId(idUser));

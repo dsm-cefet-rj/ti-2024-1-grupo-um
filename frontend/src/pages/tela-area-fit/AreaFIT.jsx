@@ -47,7 +47,7 @@ function AreaFIT() {
               <div key={index} className="col mb-3">
                 <TreinoCard
                   title={treino.title}
-                  description={treino.description}
+                  description={treino.descricao}
                   type={treino.type}
                   id={treino.id}
           
