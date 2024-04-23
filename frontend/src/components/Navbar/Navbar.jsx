@@ -7,6 +7,8 @@ import { logoutUser } from "../../redux/user/slice";
 import { clearExercises } from "../../redux/exercises/slice";
 import { clearPersonals } from "../../redux/personal/slice";
 import { clearAnamnese } from "../../redux/anamnese/slice";
+import { clearTrainings } from "../../redux/trainings/slice";
+import { clearAlunos } from "../../redux/aluno/slice";
 
 
 
@@ -14,14 +16,15 @@ function Navbar() {
     const user = useSelector(rootReducer => rootReducer.user);
     const dispatch = useDispatch();
     const currentUserNavbar = user.logged ? user.user : null;
-    // if(currentUserNavbar != null && currentUserNavbar != undefined){
-    //     var id = currentUserNavbar.id;
-    // }
+    const currentPersonalNavbar = user.loggedPersonal ? user.personal : null;
+
     function Logout() {
         dispatch(logoutUser());
         dispatch(clearExercises());
         dispatch(clearPersonals());
         dispatch(clearAnamnese());
+        dispatch(clearTrainings());
+        dispatch(clearAlunos());
     }
     return (
         <>
@@ -41,19 +44,32 @@ function Navbar() {
                                     <li className="nav-item">
                                         <Link className="nav-link mx-lg-2" aria-current="page" to={"/"}>Home</Link>
                                     </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link mx-lg-2" aria-current="page" to={`/areaFIT`}>Área FIT</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link mx-lg-2" aria-current="page" to={"/personais"}>Personais</Link>
-                                    </li>
-                                    {currentUserNavbar && (
+                                    {!currentPersonalNavbar ? (
                                         <>
                                             <li className="nav-item">
-                                                <Link className="nav-link mx-lg-2" aria-current="page" to={"/anamnese"}>Anamnese</Link>
+                                                <Link className="nav-link mx-lg-2" aria-current="page" to={`/areaFIT`}>Área FIT</Link>
                                             </li>
                                             <li className="nav-item">
-                                                <Link to={"/perfil"} className="nav-link">Perfil</Link>
+                                                <Link className="nav-link mx-lg-2" aria-current="page" to={"/personais"}>Personais</Link>
+                                            </li>
+                                            {currentUserNavbar && (
+                                                <>
+                                                    <li className="nav-item">
+                                                        <Link className="nav-link mx-lg-2" aria-current="page" to={"/anamnese"}>Anamnese</Link>
+                                                    </li>
+                                                    <li className="nav-item">
+                                                        <Link to={"/perfil"} className="nav-link">Perfil</Link>
+                                                    </li>
+                                                </>
+                                            )}
+                                        </>
+                                    ) : (
+                                        <>
+                                            <li className="nav-item">
+                                                <Link to={"/perfilPersonal"} className="nav-link">Perfil</Link>
+                                            </li>
+                                            <li className="nav-item">
+                                                <Link to={"/meusAlunos"} className="nav-link">Meus Alunos</Link>
                                             </li>
                                         </>
                                     )}
@@ -61,9 +77,9 @@ function Navbar() {
                             </div>
                         </div>
                         {
-                            currentUserNavbar ? (
+                            (currentUserNavbar || currentPersonalNavbar) ? (
                                 <div>
-                                    <span>Olá, {currentUserNavbar.nome}! </span>
+                                    <span>Olá, {currentUserNavbar?.nome || currentPersonalNavbar?.nome}! </span>
                                     <button to="/login" className="signup-button" type="button" onClick={Logout}>Logout</button>
                                 </div>
                             ) : (

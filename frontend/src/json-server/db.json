@@ -161,11 +161,10 @@
       "cidade": "Rio de Janeiro, RJ",
       "rating": 5,
       "biografia": "Ea reprehenderit dolore id itaque voluptatum sed eius voluptatem et natus omnis qui deserunt illo. Qui aperiam sapiente in praesentium eius ut incidunt praesentium in tempore sint est molestiae repudiandae hic veritatis eveniet. Eum ducimus nihil ab dolor eaque et mollitia corporis est commodi voluptas sit quisquam praesentium.",
-      "image": "",
+      "image": null,
       "preco": "39,99"
     },
     {
-      "id": "19febee2-e5c7-449b-83a1-97bb064c68ee",
       "nome": "ney",
       "email": "ney@1",
       "senha": "12345678c",
@@ -175,7 +174,8 @@
       "formacao": "Educação Física - UFRJ",
       "cidade": "12312312",
       "biografia": "2412414",
-      "preco": "133"
+      "preco": "100",
+      "id": "19febee2-e5c7-449b-83a1-97bb064c68ee"
     }
   ],
   "users": [
@@ -335,6 +335,11 @@
       "id": "65e4",
       "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
       "idPersonal": "2"
+    },
+    {
+      "id": "6e09",
+      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
+      "idPersonal": "19febee2-e5c7-449b-83a1-97bb064c68ee"
     }
   ]
 }

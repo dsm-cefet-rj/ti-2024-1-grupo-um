@@ -1,11 +1,8 @@
 //import components
-import InputComponent from "../../components/InputComponent/InputComponent";
 import CefetImage from "../../components/CefetImage/CefetImage";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
-import SelectComponentYup from "../../components/InputComponent/SelectComponentYup";
 
 //import react stuff
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getTreinosByUserID } from "../../redux/trainings/slice";
 
@@ -16,31 +13,31 @@ import axios from "axios";
 import "./../pages.css";
 
 //redux
-import { useDispatch, useSelector } from "react-redux";
-import { addLoggedUser, logoutUser } from "../../redux/user/slice";
+import { useDispatch } from "react-redux";
+import { addLoggedPersonal, addLoggedUser, logoutUser } from "../../redux/user/slice";
 import { clearPersonals, getPersonais } from "../../redux/personal/slice";
 import { clearAnamnese, getAnamnese } from "../../redux/anamnese/slice";
 import { clearExercises } from "../../redux/exercises/slice";
+import { clearAlunos, getAlunosByPersonalId } from "../../redux/aluno/slice";
 
 //yup
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
-import FormList from "../../components/FormList/formList";
 
 function Login(){
-    // const [email, setEmail] = useState();
-    // const [senha, setSenha] = useState();
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     //dispatchs para deslogar totalmente em caso de redirecionamento
     dispatch(logoutUser());
+    dispatch(clearAlunos());
     dispatch(clearExercises());
     dispatch(clearPersonals());
     dispatch(clearAnamnese());
 
     async function Autentica (info){
+        //caso login de usuario
         const response = await axios.get("http://localhost:3004/users");
         const users = response.data;
 
@@ -55,6 +52,22 @@ function Login(){
                 return;
             }
         }
+        //caso login de personal
+        const responsePersonal = await axios.get("http://localhost:3004/personais");
+        const personais = responsePersonal.data;
+
+        for (let personal of personais){
+            if(personal.email === info.email && personal.senha === info.senha){
+                dispatch(addLoggedPersonal(personal));
+                dispatch(getAlunosByPersonalId(personal.id));
+                
+                alert("autenticado");
+                navigate("/");
+                //navigate("/meusAlunos");
+                return;
+            }
+        }
+
         alert("usuario invalido");
     }
 
@@ -74,19 +87,6 @@ function Login(){
             <div className="div-principal container d-flex align-items-center justify-content-center m-auto">
                 <div className="w-50 rounded-5 p-4 login-container">
                     <CefetImage/>
-                    {/*                                         
-                    <form className="formulario-login" onSubmit={Autentica}>
-                        <InputComponent classes="mb-3 mt-3" id="InputEmail" text={<b>Email</b>} type="text" placeholder="Insira seu email aqui" value={email} onChange={(e)=>[setEmail(e.target.value)]}/>
-                        <InputComponent classes="mb-3" id="Password" text="Senha" type="password" placeholder="Insira sua senha aqui" value={senha} onChange={(e)=>[setSenha(e.target.value)]}/>
-                        
-                        <div className="d-flex w-100 mt-3">
-                            <button type="submit" className="btn btn-primary w-100">Entrar</button>
-                        </div>
-                        <div className="mt-3">
-                            Não possui conta?<Link to="/cadastro"> Cadastre-se agora!</Link> 
-                        </div>
-                    </form>
-                    */}
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
@@ -96,13 +96,16 @@ function Login(){
                         {({ isValid }) => (
                         <Form className="formulario-login">
                                 <InputComponentYup classes="mb-3 mt-3" id="InputEmail" name="email" text={<b>Email:</b>} type="text" placeholder="Insira seu email aqui" />
-                                <InputComponentYup classes="mb-3" id="Password" name="senha" text={<b>Senha:</b>} type="text" placeholder="Digite a descrição do treino" />
+                                <InputComponentYup classes="mb-3" id="Password" name="senha" text={<b>Senha:</b>} type="password" placeholder="Digite a descrição do treino" />
 
                                 <div className="d-flex w-100 mt-3">
                                     <button className="btn-submit btn-primary w-100" type="submit" disabled={!isValid}>Enviar</button>
                                 </div>
                                 <div className="mt-3">
                                     Não possui conta?<Link to="/cadastro"> Cadastre-se agora!</Link> 
+                                </div>
+                                <div className="mt-3 text-center">
+                                    Personal?<Link to="/cadastroPersonal"> Cadastre-se agora!</Link> 
                                 </div>
                         </Form>
                         )}
