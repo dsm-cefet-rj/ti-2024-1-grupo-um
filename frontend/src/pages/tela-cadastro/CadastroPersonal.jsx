@@ -44,10 +44,10 @@ function Cadastro(){
                         <img src={logo} alt="foto cefit" className="p-1" width="100%" height="100%"/>
                     </div>
                     <form className="formulario-cadastro" >
-                        <InputComponent classes="mt-3" id="nameImput" text="Nome Completo" type="text" placeholder="Seu nome completo aqui" value={nome} onChange={(e) => [setNome(e.target.value)]}/>
-                        <InputComponent classes="" id="descricao" text="Descricao" type="text" placeholder="Insira sua descricao aqui" value={descricao} onChange={(e) => [setDescricao(e.target.value)]}/>
-                        <InputComponent classes="" id="biografia" text="Biografia" type="text" placeholder="Biografia aqui" value={biografia} onChange={(e) => [setBiografia(e.target.value)]}/>
-                        <InputComponent classes="" id="Password" text="Senha" type="password" placeholder="Insira sua senha aqui"value={password} onChange={(e) => [setPassword(e.target.value)]}/>
+                        <InputComponent classes="mt-3" id="nameImput" text={<b>Nome Completo</b>} type="text" placeholder="Seu nome completo aqui" value={nome} onChange={(e) => [setNome(e.target.value)]}/>
+                        <InputComponent classes="" id="descricao" text={<b>Descricao</b>} type="text" placeholder="Insira sua descricao aqui" value={descricao} onChange={(e) => [setDescricao(e.target.value)]}/>
+                        <InputComponent classes="" id="biografia" text={<b>Biografia</b>} type="text" placeholder="Biografia aqui" value={biografia} onChange={(e) => [setBiografia(e.target.value)]}/>
+                        <InputComponent classes="" id="Password" text={<b>Senha</b>} type="password" placeholder="Insira sua senha aqui"value={password} onChange={(e) => [setPassword(e.target.value)]}/>
                         {/* {
                             id: 2,
                             nome: "Arnold Schwarzenegger",

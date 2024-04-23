@@ -64,11 +64,11 @@ function Cadastro(){
                         }}>
                             {({ isValid }) => (
                             <Form className="formulario-cadastro">
-                                <InputComponentYup classes="mt-3" id="nameImput" name="nome"text="Nome Completo" type="text" placeholder="Seu nome completo aqui"/>
-                                <InputComponentYup classes="" id="InputEmail" name="email" text="Email" type="email" placeholder="Insira seu email aqui" />
-                                <InputComponentYup classes="" id="CPFInput" name="CPF" text="CPF" type="text" placeholder="Seu CPF aqui" />
-                                <InputComponentYup classes="" id="age" name="birth" text="Data de Nascimento" type="date" placeholder="" />
-                                <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
+                                <InputComponentYup classes="mt-3" id="nameImput" name="nome" text={<b>Nome Completo</b>} type="text" placeholder="Seu nome completo aqui"/>
+                                <InputComponentYup classes="" id="InputEmail" name="email" text={<b>Email</b>} type="email" placeholder="Insira seu email aqui" />
+                                <InputComponentYup classes="" id="CPFInput" name="CPF" text={<b>CPF</b>} type="text" placeholder="Seu CPF aqui" />
+                                <InputComponentYup classes="" id="age" name="birth" text={<b>Data de Nascimento</b>} type="date" placeholder="" />
+                                <InputComponentYup classes="" id="Password" name="senha" text={<b>Senha</b>} type="password" placeholder="Insira sua senha aqui"/>
                                 <div className="mt-3 d-flex justify-content-center">
                                     <button className="btn-submit" type="submit" disabled={!isValid}>Cadastrar</button>
                                 </div>
