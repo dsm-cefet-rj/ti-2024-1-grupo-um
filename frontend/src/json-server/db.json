@@ -1,126 +1,22 @@
 {
   "exercicios": [
     {
-      "id": "6f8e",
-      "name": "Exercicio 1",
-      "series": "3x15",
-      "peso": 10,
-      "observacoes": "Obs",
-      "idForm": "37e9547d-8d83-4dc8-a76a-603cd4c76114"
-    },
-    {
-      "id": "50fc",
-      "name": "Exercicio 2",
-      "series": "2x10",
-      "peso": 15,
-      "observacoes": "Obs",
-      "idForm": "37e9547d-8d83-4dc8-a76a-603cd4c76114"
-    },
-    {
-      "id": "6b7d",
-      "name": "Super exercicio bolado",
-      "series": "1x40",
-      "peso": 25,
-      "observacoes": "",
-      "idForm": "1dab0326-f45a-4f20-ae44-6741c9047a9c"
-    },
-    {
-      "id": "94f3",
-      "name": "exteste",
-      "series": "2x1",
-      "peso": 2,
-      "observacoes": "",
-      "idForm": "40c1da2f-9a4b-461c-85d3-802951d3eba9"
-    },
-    {
-      "id": "a82d",
-      "name": "testando ",
-      "series": "2x1",
-      "peso": 2,
-      "observacoes": "",
-      "idForm": ""
-    },
-    {
-      "id": "245f",
-      "name": "casa",
-      "series": "12x1",
-      "peso": 2,
-      "observacoes": "",
-      "idForm": ""
-    },
-    {
-      "id": "1817",
-      "name": "muahaha triplo",
-      "series": "2x2",
-      "peso": 2,
-      "observacoes": "",
-      "idForm": "40c1da2f-9a4b-461c-85d3-802951d3eba9"
-    },
-    {
-      "id": "1f05",
-      "name": "Supino Reto",
+      "id": "da56",
+      "name": "supino",
       "series": "3x10",
       "peso": 20,
       "observacoes": "",
-      "idForm": "f3b28b51-265b-4212-b028-922f069f18b1"
-    },
-    {
-      "id": "f22b",
-      "name": "crucifixo maquina",
-      "series": "3x12",
-      "peso": 20,
-      "observacoes": "",
-      "idForm": "f3b28b51-265b-4212-b028-922f069f18b1"
-    },
-    {
-      "id": "d749",
-      "name": "Extensão de ombros",
-      "series": "3x12",
-      "peso": 2,
-      "observacoes": "",
-      "idForm": "f3b28b51-265b-4212-b028-922f069f18b1"
+      "idForm": "a3b7b9e5-9439-4309-83ac-768b5b088003"
     }
   ],
   "treino": [
     {
-      "id": "f1d0cffb-b9fe-480d-94f1-26d645f7925a",
-      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
-      "descricao": "Braço",
+      "id": "a3b7b9e5-9439-4309-83ac-768b5b088003",
+      "idUser": "f0761fa0-ca1d-4064-bd68-8514373b066a",
+      "descricao": "peito",
       "title": "Treino A",
       "type": "superiores",
-      "observacoes": "Sextas"
-    },
-    {
-      "id": "37e9547d-8d83-4dc8-a76a-603cd4c76114",
-      "idUser": "82083e08-463e-452a-a33b-c6add2da3a6c",
-      "descricao": "Descrição do treino",
-      "title": "Nome",
-      "type": "superiores",
-      "observacoes": "Obs"
-    },
-    {
-      "id": "1dab0326-f45a-4f20-ae44-6741c9047a9c",
-      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
-      "descricao": "Descrição do treino",
-      "title": "Nome identificavel",
-      "type": "natacao",
       "observacoes": ""
-    },
-    {
-      "id": "40c1da2f-9a4b-461c-85d3-802951d3eba9",
-      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
-      "descricao": "dasdas",
-      "title": "treinoteste",
-      "type": "superiores",
-      "observacoes": "dasdas"
-    },
-    {
-      "id": "f3b28b51-265b-4212-b028-922f069f18b1",
-      "idUser": "e3a49252-9be8-4c3e-9b91-1277613e23a5",
-      "descricao": "Peito e Ombro",
-      "title": "Treino A",
-      "type": "superiores",
-      "observacoes": "Tomar cuidado com pesos muito grandes na tensão do ombro"
     }
   ],
   "personais": [
@@ -241,190 +137,31 @@
   ],
   "users": [
     {
-      "id": "ef683b02-38ce-4ff1-97da-2105fba94aff",
-      "nome": "Vinicius",
-      "senha": "123123",
-      "email": "vinicius.p.drumond@gmail.com",
-      "nascimento": "2024-04-01",
-      "CPF": "16288772780",
-      "treinos": []
-    },
-    {
-      "nome": "Caio Santos",
+      "id": "f0761fa0-ca1d-4064-bd68-8514373b066a",
+      "nome": "Caio Santos de Souza",
       "email": "caio@1",
-      "senha": "12345678c",
-      "birth": "2024-04-19",
-      "CPF": "123768125378",
-      "id": "4302f00c-35d5-42f7-84a9-0450766db4ca"
-    },
-    {
-      "id": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
-      "nome": "ana",
-      "senha": "1",
-      "email": "1@1"
-    },
-    {
-      "id": "82083e08-463e-452a-a33b-c6add2da3a6c",
-      "senha": "123",
-      "email": "teste@teste"
-    },
-    {
-      "id": "a673677a-dcee-4856-9b41-aff6283cc051",
-      "nome": "carol",
-      "senha": "1",
-      "email": "1@2"
-    },
-    {
-      "id": "dfa4c0c7-eb5f-4446-829d-8f8c49e6991a",
-      "numero": "",
-      "cvc": "",
-      "expiracao": "",
-      "nome": ""
-    },
-    {
-      "id": "72b5bc50-34d2-474d-9cd6-a9f8edc5cdc6",
-      "nome": "romario",
-      "senha": "123",
-      "CPF": "romario@1"
-    },
-    {
-      "id": "011aa4c6-c91e-462e-afa8-a021342dcbc5",
-      "nome": "",
-      "senha": "321",
-      "email": "romario@1"
-    },
-    {
-      "id": "b9034cf3-a0e8-4fcf-b2f0-ddac026e63f1",
-      "nome": "carol",
-      "email": "2@2",
-      "senha": "abc12345",
-      "birth": "",
-      "CPF": "454556456"
-    },
-    {
-      "id": "6bccc216-b99a-4050-9abd-cd67d222b05e",
-      "nome": "ana c",
-      "email": "3@3",
-      "senha": "abc12345",
-      "birth": "",
-      "CPF": "343242343242"
-    },
-    {
-      "id": "c29bb054-7787-4966-be6c-fbced658a251",
-      "nome": "Luiz Henrique Gonçalves Dantas",
-      "email": "personal@teste",
-      "senha": "teste123",
-      "birth": "2024-04-24",
-      "CPF": "12345678910"
-    },
-    {
-      "nome": "diogo",
-      "email": "diogo@diogo",
       "senha": "12345678",
-      "birth": "2024-04-12",
-      "CPF": "32121521512",
-      "id": "e3a49252-9be8-4c3e-9b91-1277613e23a5"
+      "birth": "2024-04-11",
+      "CPF": "12321312321"
     }
   ],
   "anamnese": [
     {
-      "weigth": 89,
-      "motivation": "emagrecer",
-      "activityFreq": "mais de 4 vezes na semana",
-      "date": "2024-04-02",
-      "diet": "Sim",
-      "observacoes": "-",
-      "userId": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
-      "id": "5754"
-    },
-    {
-      "weigth": 70,
-      "motivation": "Musculos",
-      "activityFreq": "até 3 vezes por semana",
-      "diet": "Sim",
-      "observacoes": "",
-      "userId": "c29bb054-7787-4966-be6c-fbced658a251",
-      "id": "746f"
-    },
-    {
-      "id": "fed9",
+      "id": "cd21",
       "weigth": 69,
       "motivation": "Hipertrofia muscular",
       "activityFreq": "até 3 vezes por semana",
-      "date": "",
+      "date": "2018-05-23",
       "diet": "Não",
       "observacoes": "",
-      "userId": "4302f00c-35d5-42f7-84a9-0450766db4ca"
-    },
-    {
-      "id": "0025",
-      "weigth": 72,
-      "motivation": "Musculos",
-      "activityFreq": "até 3 vezes por semana",
-      "date": "2024-04-10",
-      "diet": "Sim",
-      "observacoes": "",
-      "userId": "82083e08-463e-452a-a33b-c6add2da3a6c"
-    },
-    {
-      "id": "b425",
-      "weigth": 42,
-      "motivation": "Hipertrofia muscular",
-      "activityFreq": "Nenhuma",
-      "date": "2024-04-16",
-      "diet": "Não",
-      "observacoes": "",
-      "userId": "e3a49252-9be8-4c3e-9b91-1277613e23a5"
+      "userId": "f0761fa0-ca1d-4064-bd68-8514373b066a"
     }
   ],
   "aluno": [
     {
-      "id": "ff3d",
-      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
-      "idPersonal": {
-        "id": "2"
-      }
-    },
-    {
-      "id": "ce14",
-      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
-      "idPersonal": "2"
-    },
-    {
-      "id": "597f",
-      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
-      "idPersonal": "2"
-    },
-    {
-      "id": "80a8",
-      "idUser": "d30824a6-ca95-4992-bebd-9f5fe8a3aa35",
-      "idPersonal": "2"
-    },
-    {
-      "id": "4799",
-      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
-      "idPersonal": "2"
-    },
-    {
-      "id": "e01f",
-      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
-      "idPersonal": "1"
-    },
-    {
-      "id": "65e4",
-      "idUser": "b81f88a8-60e8-42cb-8cf6-e602f6473764",
-      "idPersonal": "2"
-    },
-    {
-      "id": "6e09",
-      "nome": "Caio Santos",
-      "idUser": "4302f00c-35d5-42f7-84a9-0450766db4ca",
-      "idPersonal": "19febee2-e5c7-449b-83a1-97bb064c68ee"
-    },
-    {
-      "id": "8f7e",
-      "idUser": "e3a49252-9be8-4c3e-9b91-1277613e23a5",
-      "nomeUser": "diogo",
+      "id": "7438",
+      "idUser": "f0761fa0-ca1d-4064-bd68-8514373b066a",
+      "nomeUser": "Caio Santos de Souza",
       "idPersonal": "6320bcb9-1dc7-4410-ac1a-cb56e85df24b"
     }
   ]
