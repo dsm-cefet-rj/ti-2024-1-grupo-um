@@ -66,7 +66,7 @@ function Pagamento() {
                   <img src={User} alt="caso2"
                   className="img-personal" style={{ width: "100px" }} />
                   <h5 className="my-3 d-flex justify-content-center align-items-center">{personalAtual.nome}</h5> 
-                  <h1 className="preco">{personalAtual.preco}</h1>
+                  <h1 className="preco">R${personalAtual.preco}</h1>
                 </div>
               )
             }
