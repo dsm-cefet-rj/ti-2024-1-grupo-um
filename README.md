@@ -8,3 +8,6 @@
 - Abrir outro terminal e inserir:
   - cd ./frontend
   - npm run server
+
+
+Link do video de apresentação: https://youtu.be/gWEfMC4-WcA
