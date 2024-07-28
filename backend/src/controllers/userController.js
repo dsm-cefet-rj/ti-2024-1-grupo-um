@@ -1,0 +1,9 @@
+//here the user controller
+
+//READ_ALL
+//READ_ONE
+//CREATE_USER
+//UPDATE_USER
+//DELETE_USER
+//LOGIN
+//LOGOUT
