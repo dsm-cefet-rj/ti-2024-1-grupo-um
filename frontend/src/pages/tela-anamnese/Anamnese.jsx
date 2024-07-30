@@ -61,7 +61,7 @@ function Anamnese() {
     return (
         <>
             <Navbar />
-            <div className="form-card p-5">
+            <div className="bg-image cefit-background-img" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
