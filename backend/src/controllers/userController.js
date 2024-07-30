@@ -28,19 +28,32 @@ async function readOne(req, res){
 }
 async function createUser(req, res){
     try{
-        const newUser = req.body;
         //desmembrar objeto
+        const newUser = {
+            nome: req.body.nome,
+            cpf: req.body.CPF,
+            email: req.body.email,
+            birth: req.body.birth,
+            senha: req.body.senha
+        }
+        
         console.log(req.body);
+
         //verificar email
         const existingEmail = await userModel.find({email: req.body.email});
         if(existingEmail){
             return res.status(400).send({
-                message:"Email ja cadastrado"
+                message: 'Email ja cadastrado'
             });
         }
 
-
         //verificar cpf
+        const existingCPF = await userModel.find({CPF: req.body.cpf});
+        if(existingCPF){
+            return res.satus(400).send({
+                message: 'Cpf já cadastrado'
+            });
+        }
 
         const result = await userModel.create(newUser);
 
@@ -58,9 +71,17 @@ async function createUser(req, res){
 }
 async function deleteUser(req, res){
     try{
-        
+        const userDelete = await userModel.findById(req.params.id);
+        if(userDelete){
+            const result = await userDelete.remove();
+            res.status(201).send({
+                message: 'Usuário removido com sucesso'
+            })
+        }
     }catch(error){
-        
+        return res.status(400).sen({
+            message: 'Ocorreu um erro para remover o usuário'
+        })
     }
 }
 async function login(req, res){
