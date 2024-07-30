@@ -48,28 +48,28 @@ async function createUser(req, res){
             senha: req.body.senha
         }
         
-        // console.log(req.body);
 
         //verificar email
-        const existingEmail = await userModel.find({email: req.body.email});
+        const existingEmailArray = await userModel.find({email: req.body.email});
+        const existingEmail = existingEmailArray[0];
 
-        if(existingEmail.length > 0){
+        if(existingEmail != undefined){
             return res.status(400).send({
                 message: 'Email ja cadastrado'
             });
         }
 
         //verificar cpf
-        const existingCPF = await userModel.find({CPF: newUser.CPF});
+        const existingCPFArray = await userModel.find({CPF: newUser.CPF});
+        const existingCPF = existingCPFArray[0];
 
-        if(existingCPF.length > 0){
+        if(existingCPF != undefined){
             return res.status(400).send({
                 message: 'Cpf já cadastrado'
             });
         }
 
         //hash de senha
-        console.log(newUser);
         const result = await userModel.create(newUser);
 
         return res.status(201).send({
@@ -80,7 +80,7 @@ async function createUser(req, res){
     }catch(error){
         return res.status(400).send({
             error: error,
-            message: 'Ocorreu um erro na criacao de usuario'
+            message: 'Ocorreu um erro na criação de usuario'
         });
     }
 }
@@ -93,13 +93,13 @@ async function updateUser(req, res) {
         const updatedUser = await userModel.findByIdAndUpdate(id, update);
 
         return res.status(200).send({
-            message:"usuario atualizado com sucesso.",
+            message:"Usuário atualizado com sucesso.",
             data: update
         });
 
     }catch(error){
         return res.status(400).send({
-            message:"ocorreu um erro na tentativa da atualização",
+            message:"Ocorreu um erro na tentativa da atualização",
             erro: error
         });
     }
@@ -108,11 +108,18 @@ async function deleteUser(req, res){
     try{
         const id = req.params.id;
         const userDelete = await userModel.findByIdAndDelete(id);
+
+        if(userDelete){
+            return res.status(200).send({
+                message: 'Usuário removido com sucesso',
+                data: userDelete
+            });
+        }else{
+            return res.status(400).send({
+                message: "Usuário não encontrado"
+            })
+        }
         
-        return res.status(200).send({
-            message: 'Usuário removido com sucesso',
-            data: userDelete
-        });
        
     }catch(error){
         return res.status(400).send({
