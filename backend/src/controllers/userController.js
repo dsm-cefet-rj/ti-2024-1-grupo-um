@@ -22,8 +22,19 @@ async function readAll(req, res) {
 async function readOne(req, res){
     try{
         //id
+        const user = await userModel.findById(req.params.id);
+        if(user){
+            return res.status(200).send(user);
+        }else{
+            return res.status(400).send({
+                message: 'Usuário não cadastrado'
+            });
+        }
     }catch(error){
-
+        return res.status(400).send({
+            error: error,
+            message: 'Ocorreu um erro'
+        })
     }
 }
 async function createUser(req, res){
@@ -74,7 +85,7 @@ async function deleteUser(req, res){
         const userDelete = await userModel.findById(req.params.id);
         if(userDelete){
             const result = await userDelete.remove();
-            res.status(201).send({
+            res.status(200).send({
                 message: 'Usuário removido com sucesso'
             })
         }
@@ -101,4 +112,4 @@ async function logout(req, res){
 
 
 
-export { readAll, createUser };
+export { readAll, createUser, deleteUser, readOne };
