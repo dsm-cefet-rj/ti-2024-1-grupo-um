@@ -1,5 +1,5 @@
 import express from "express";
-import {createAnamnese, updateAnamnese, deleteAnamnese, getAnamneseByUserId} from "../controllers/anamneseController"
+import {createAnamnese, updateAnamnese, deleteAnamnese, getAnamneseByUserId} from "../controllers/anamneseController.js"
 
 const anamneseRoutes = express.Router();
 

@@ -19,7 +19,7 @@ export const createAnamnese = async (req, res) => {
 
         const existingAnamnesesArray = await anamneseModel.find({ userId: req.body.userId })
 
-        if (existingAnamnesesArray.length > 1) {
+        if (existingAnamnesesArray.length >= 1) {
             return res.status(400).send({
                 message: 'Usuário já possui uma Anamnese'
             });
