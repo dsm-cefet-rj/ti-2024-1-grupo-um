@@ -7,10 +7,10 @@ const anamneseSchema = new mongoose.Schema({
     motivation: { type: mongoose.Schema.Types.String, required: [true, "A motivação é obrigatória"] },
     activityFreq: { type: mongoose.Schema.Types.String },
     date: { type: mongoose.Schema.Types.Date },
-    //diet: { type: mongoose.Schema.Types.String }, consertar
+    diet: { type: mongoose.Schema.Types.String },
     observacoes: { type: mongoose.Schema.Types.String }
 });
 
 const anamneseModel = mongoose.model("anamnese", anamneseSchema);
 
-export { AnamneseModel, anamneseSchema };
+export { anamneseModel, anamneseSchema };
