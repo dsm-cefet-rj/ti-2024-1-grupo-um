@@ -37,22 +37,50 @@ function Login(){
     dispatch(clearAnamnese());
 
     async function Autentica (info){
-        //caso login de usuario
-        const response = await axios.get("http://localhost:3004/users");
-        const users = response.data;
 
-        for (let user of users){
-            if(user.email === info.email && user.senha === info.senha){
-                dispatch(addLoggedUser(user));
-                dispatch(getTreinosByUserID(user.id))
-                dispatch(getPersonais());
-                dispatch(getAnamnese(user.id));
-                alert("autenticado");
-                navigate("/personais");
-                return;
-            }
+        
+        //caso login de usuario
+
+        // const response = await axios.get("http://localhost:3004/users");
+        // const users = response.data;
+
+        // for (let user of users){
+        //     if(user.email === info.email && user.senha === info.senha){
+        //         dispatch(addLoggedUser(user));
+        //         dispatch(getTreinosByUserID(user.id));
+        //         dispatch(getPersonais());
+        //         dispatch(getAnamnese(user.id));
+        //         alert("autenticado");
+        //         navigate("/personais");
+        //         return;
+        //     }
+        // }
+        const loginObj = {
+            email: info.email,
+            senha: info.senha
         }
-        //caso login de personal
+        const autenticado = await axios.post("http://localhost:3000/login", loginObj);     
+        if(autenticado.data.status == true){
+            dispatch(addLoggedUser(autenticado.data.user));
+            dispatch(getTreinosByUserID(autenticado.data.user.id));
+            dispatch(getPersonais());
+            dispatch(getAnamnese(autenticado.data.user.id));
+            alert("autenticado");
+            navigate("/personais");
+            return;
+        }
+
+        //adicionar user com comando dispatch(addLoggedUser(user));
+        //pegar os treinos do usuario atraves do dispatch(getTreinosByUserID(user.id));
+        //pegar todos os personais atraves do dispatch(getPersonais());
+        //pegar a anamnese do usuario atraves do dispatch(getAnamnese(user.id));
+        //alertar o usuario com alert("autenticado");
+        //navegar para /personais com navigate("/personais");
+
+
+
+
+        //caso login de personal 
         const responsePersonal = await axios.get("http://localhost:3004/personais");
         const personais = responsePersonal.data;
 

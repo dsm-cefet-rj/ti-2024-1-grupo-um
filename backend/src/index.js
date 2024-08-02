@@ -7,7 +7,7 @@ import 'dotenv/config';
 
 import routes from "./routes/index.js";
 import databaseConnect from "./database/dbConnect.js";
-
+import cors from "cors";
 const app = express();
 
 
@@ -20,9 +20,9 @@ connection.once("open", () => {
     console.log("Conexão com o banco feita com sucesso");
 })
 
+app.use(cors());
 app.use(express.json());
 app.use(routes);
-// app.use(cors());
 
 const PORT = 3000;
 app.listen(PORT,() => {

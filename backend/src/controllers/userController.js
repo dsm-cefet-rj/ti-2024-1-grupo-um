@@ -137,7 +137,8 @@ async function login(req, res){
         const existingUser = existingUserArray[0];
         if(existingUser == undefined){
             return res.status(400).send({
-                message: "Login ou Senha errados."
+                message: "Login ou Senha errados.",
+                status: false
             });
         }
         //hash de senha
@@ -145,11 +146,15 @@ async function login(req, res){
             console.log(req.body);
             return res.status(200).send({
                 message: "usuario autenticado com sucesso",
-                token: "hahahatoken"
+                status: true,
+                token: "hahahatoken",
+                user: existingUser
             });
+            
         }else{
             return res.status(400).send({
                 message: "Login ou Senha errados.",
+                status: false
             })
         }
     }catch(error){
