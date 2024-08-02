@@ -16,11 +16,11 @@ const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
 });
 
 const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
-    await axios.put(`http://localhost:3004/users/${data.id}`, data);
+    await axios.put(`http://localhost:3000/user/${data.id}`, data);
 });
 
 const deleteUser = createAsyncThunk("users/deleteUserAsync", async(id)=>{
-    await axios.delete(`http://localhost:3004/users/${id}`);
+    await axios.delete(`http://localhost:3000/user/${id}`);
 });
 
 const userSlice = createSlice({

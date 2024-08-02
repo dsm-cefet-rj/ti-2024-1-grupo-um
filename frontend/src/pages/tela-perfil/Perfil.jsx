@@ -26,22 +26,23 @@ function Perfil() {
     const anamnese = useSelector(rootReducer => rootReducer.anamnese);
 
     const handleSubmitForm = (infos) => {
-        infos["id"] = currentUser.user.id;
+        console.log(infos);
+        infos["id"] = currentUser.user._id;
         dispatch(updateUser(infos));
         dispatch(addLoggedUser(infos));
         alert("usuario editado com sucesso!");
     }
     const handleUserDelete = () => {
-        const idUser = currentUser.user.id;
+        const userId = currentUser.user._id;
         for(let treino of treinos){
             dispatch(deleteTreinoByID(treino.id));
         }
         //clear trainings
         dispatch(deleteAnamnese(anamnese?.id));
         //clear anamnese
-        dispatch(deleteAlunoByUserId(idUser));
+        // dispatch(deleteAlunoByUserId(userId));
         //clear aluno
-        dispatch(deleteUser(idUser));
+        dispatch(deleteUser(userId));
         dispatch(clearAnamnese());
         dispatch(clearTrainings());
         dispatch(clearExercises());
@@ -61,12 +62,24 @@ function Perfil() {
         CPF: Yup.string().required("CPF obrigatório.")
     });
 
+    function formatDate(dateString) {
+        // Cria um objeto Date a partir da string ISO
+        const date = new Date(dateString);
+    
+        // Extrai o dia, mês e ano
+        const day = String(date.getUTCDate()).padStart(2, '0');
+        const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // getUTCMonth retorna o mês de 0 a 11
+        const year = date.getUTCFullYear();
+    
+        return `${year}-${month}-${day}`;
+
+    }
 
     const initialValues = {
         nome: currentUser.user.nome,
         email: currentUser.user.email,
         senha: currentUser.user.senha,
-        birth: currentUser.user.nascimento,
+        birth: formatDate(currentUser.user.birth),
         CPF: currentUser.user.CPF
     };
     

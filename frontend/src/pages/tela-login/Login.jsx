@@ -64,7 +64,7 @@ function Login(){
             dispatch(addLoggedUser(autenticado.data.user));
             dispatch(getTreinosByUserID(autenticado.data.user.id));
             dispatch(getPersonais());
-            dispatch(getAnamnese(autenticado.data.user.id));
+            dispatch(getAnamnese(autenticado.data.user._id));
             alert("autenticado");
             navigate("/personais");
             return;
