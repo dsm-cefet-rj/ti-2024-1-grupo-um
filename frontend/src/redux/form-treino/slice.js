@@ -3,8 +3,7 @@ import axios from "axios";
 
 
 const initialState = {
-    idUser: "",
-    id: "",
+    userId: "",
     descricao: "",
     title: "",
     type: "",
@@ -12,7 +11,8 @@ const initialState = {
 };
 
 const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
-    const response = await axios.post("http://localhost:3004/treino", data);
+    console.log(data);
+    const response = await axios.post("http://localhost:3000/training", data);
     return response.data;
 });
 
@@ -21,17 +21,16 @@ const formsSlice = createSlice({
     initialState,
     reducers: {
         addForms: (state, action) => {
-            state.idUser = action.payload.idUser;
-            state.id = action.payload.id;
+            state.userId = action.payload.userId;
         },
         addInfo: (state, action) => {
             state.descricao = action.payload.descricao;
             state.title = action.payload.title;
             state.type = action.payload.type;
+            state.observacoes = action.payload.observacoes;
         },
         clearForms: (state) => {
-            state.idUser = "";
-            state.id = "";
+            state.userId = "";
             state.descricao= "";
             state.title= "";
             state.type = "";

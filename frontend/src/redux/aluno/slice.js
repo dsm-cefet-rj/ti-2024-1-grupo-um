@@ -8,7 +8,7 @@ const createAluno = createAsyncThunk('aluno/addAlunoAsync', async(data) =>{
 
 const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(id)=>{
 
-  const alunos = await axios.get(`http://localhost:3004/aluno?idUser=${id}`);
+  const alunos = await axios.get(`http://localhost:3004/aluno?userId=${id}`);
 
   for (let aluno of alunos.data){
     await axios.delete(`http://localhost:3004/aluno/${aluno.id}`);

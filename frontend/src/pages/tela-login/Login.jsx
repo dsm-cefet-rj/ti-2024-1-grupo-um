@@ -59,10 +59,11 @@ function Login(){
             email: info.email,
             senha: info.senha
         }
-        const autenticado = await axios.post("http://localhost:3000/login", loginObj);     
+        const autenticado = await axios.post("http://localhost:3000/login", loginObj);   
+        console.log(autenticado.data.user)  
         if(autenticado.data.status == true){
             dispatch(addLoggedUser(autenticado.data.user));
-            dispatch(getTreinosByUserID(autenticado.data.user.id));
+            dispatch(getTreinosByUserID(autenticado.data.user._id));
             dispatch(getPersonais());
             dispatch(getAnamnese(autenticado.data.user._id));
             alert("autenticado");

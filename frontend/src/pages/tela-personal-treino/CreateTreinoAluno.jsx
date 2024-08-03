@@ -38,7 +38,7 @@ function CreateTreinoAluno() {
     const handleSubmitForm = (info) => {
         dispatch(addInfo(info));
         const treinoInfo = {
-            idUser: form.idUser,
+            userId: form.userId,
             id: form.id,
             descricao: info.descricao,
             title: info.title,

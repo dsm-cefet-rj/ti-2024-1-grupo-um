@@ -10,16 +10,16 @@ import { getAnamnese } from "../../redux/anamnese/slice";
 // react router dom
 import { Link } from "react-router-dom";
 
-function AlunoCard({ nomeUser, idUser}){
+function AlunoCard({ nomeUser, userId}){
     const dispatch = useDispatch();
 
     const handleOnClick = () => {
-        dispatch(getTreinosByUserID(idUser));
-        dispatch(getAnamnese(idUser));
+        dispatch(getTreinosByUserID(userId));
+        dispatch(getAnamnese(userId));
     }
 
     return (
-        <Link className="card" id="card-personal" onClick={handleOnClick} to={`/aluno/${idUser}`} >
+        <Link className="card" id="card-personal" onClick={handleOnClick} to={`/aluno/${userId}`} >
             <img className="card-img-top m-auto mt-2" src={user} alt="Imagem de capa do card"/>
             {/* <div className="card-body text-center">
                 <p className="card-text">{descricao}</p>

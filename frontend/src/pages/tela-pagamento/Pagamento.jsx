@@ -37,8 +37,8 @@ function Pagamento() {
   const handlePayment = (e) => {
     e.preventDefault();
     dispatch(createAluno({
-      idUser: currentUser.user.id,
-      nomeUser: currentUser.user.nome,
+      userId: currentUser.user.id,
+      userName: currentUser.user.nome,
       idPersonal: id
     }));
     alert("pagamento feito com sucesso!");

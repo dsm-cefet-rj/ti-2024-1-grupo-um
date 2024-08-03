@@ -40,8 +40,7 @@ function AddTreinos() {
     const handleSubmitForm = (info) => {
         dispatch(addInfo(info));
         const treinoInfo = {
-            idUser: form.idUser,
-            id: form.id,
+            userId: form.userId,
             descricao: info.descricao,
             title: info.title,
             type: info.type,
@@ -49,7 +48,7 @@ function AddTreinos() {
         }
         dispatch(addTreino(treinoInfo));
         dispatch(addTraining(treinoInfo));
-        exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
+        // exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
         dispatch(clearExercises());
         navigate("/areaFIT");
     }

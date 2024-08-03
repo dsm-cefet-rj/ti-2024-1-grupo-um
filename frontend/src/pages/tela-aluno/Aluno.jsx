@@ -30,7 +30,7 @@ function Aluno() {
 
     const alunos = useSelector(rootReducer => rootReducer.aluno);
 
-    const usuario = alunos.filter((aluno) => aluno.idUser === id)[0];
+    const usuario = alunos.filter((aluno) => aluno.userId === id)[0];
 
     const handleDeleteTreino = (treinoId) => {
         dispatch(deleteTreinoByID(treinoId))
@@ -105,7 +105,7 @@ function Aluno() {
             )}
 
             <div className="d-flex justify-content-center mb-2">
-                <Link data-aos="fade-up" data-aos-delay="200" to={`/CreateTreinoAluno`} onClick={() => {dispatch(addForms({idUser: id, id: idGen(), infos: {}}))}} className="btn btn-success w-50">Preescrever Treino</Link>
+                <Link data-aos="fade-up" data-aos-delay="200" to={`/CreateTreinoAluno`} onClick={() => {dispatch(addForms({userId: id, id: idGen(), infos: {}}))}} className="btn btn-success w-50">Preescrever Treino</Link>
             </div>
             <FooterComp />
         </div>

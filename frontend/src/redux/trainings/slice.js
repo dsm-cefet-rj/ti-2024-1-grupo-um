@@ -4,25 +4,25 @@ import axios from "axios";
 const initialState = [];
 
 
-const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", async(idUser) => {
+const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", async(userId) => {
     try{
-
-        const response = await axios.get(`http://localhost:3004/treino?idUser=${idUser}`);
+        const response = await axios.get(`http://localhost:3000/training/${userId}`);
+        console.log(response.data);
         return response.data; 
     } catch(err){
-        return [];
+        console.log(err);
     }
 });
 
 const deleteTreinoByID = createAsyncThunk("treino/deleteTreinoByID", async (idTreino) => {
     try {
-        await axios.delete(`http://localhost:3004/treino/${idTreino}`);
+        await axios.delete(`http://localhost:3000/training/${idTreino}`); // Modificado para backend
 
-        const exercises = await axios.get(`http://localhost:3004/exercicios?idForm=${idTreino}`);
+        // const exercises = await axios.get(`http://localhost:3004/exercicios?idForm=${idTreino}`);
 
-        for(let exercise of exercises.data){
-            await axios.delete(`http://localhost:3004/exercicios/${exercise.id}`)
-        }
+        // for(let exercise of exercises.data){
+        //     await axios.delete(`http://localhost:3004/exercicios/${exercise.id}`)
+        // }
     } catch(err) {
         console.log("Não foi possível excluir o treino...");
     }
@@ -37,7 +37,7 @@ const trainingsSlice = createSlice({
         },
         deleteTraining: (state, action) => {
             for (let i = 0; i < state.length; i++) {
-                if (state[i].id === action.payload) {
+                if (state[i]._id === action.payload) {
                     state.splice(i, 1);
                     break;
                 }
@@ -54,8 +54,10 @@ const trainingsSlice = createSlice({
             while (state.length > 0) {
                 state.pop()
             }
-            for (let training of action.payload) {
-                state.push(training)
+            if(!action.payload.message){
+                for (let training of action.payload) {
+                    state.push(training)
+                }
             }
         })
 

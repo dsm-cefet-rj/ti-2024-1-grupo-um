@@ -5,7 +5,7 @@ import axios from "axios";
 const initialState = {
     preenchida: false,
     activityFreq: "",
-    weigth: "",
+    weight: "",
     motivation: "",
     exam: "",
     diet: "",
@@ -21,6 +21,7 @@ const addAnmneseAsync = createAsyncThunk('anamnese/addAnamneseAsync', async (dat
 
 
 const getAnamnese = createAsyncThunk('anamnese/getAnamneseAsync', async (userId) => {
+    console.log(userId);
     const response = await axios.get(`http://localhost:3000/anamnese/${userId}`);
     return response.data;
 });
