@@ -23,8 +23,8 @@ async function readOne(req, res){
     try{
         //id
         const personal = await personalModel.findById(req.params.id);
-        if(user){
-            return res.status(200).send(user);
+        if(personal){
+            return res.status(200).send(personal);
         }else{
             return res.status(400).send({
                 message: 'Personal não cadastrado'
