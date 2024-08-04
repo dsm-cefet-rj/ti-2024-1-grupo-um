@@ -76,7 +76,7 @@ async function createPersonal(req, res){
         }
 
         //hash de senha
-        const result = await personalModel.create(newUser);
+        const result = await personalModel.create(newPersonal);
 
         return res.status(201).send({
             message: 'Personal criado com sucesso',
