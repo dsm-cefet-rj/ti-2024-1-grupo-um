@@ -1,5 +1,5 @@
 //import components
-import CefetImage from "../../components/CefetImage/CefetImage";
+import CefetImageVerde from "../../components/CefetImage/CefetImage";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
 
 //import react stuff
@@ -24,7 +24,7 @@ import { clearAlunos, getAlunosByPersonalId } from "../../redux/aluno/slice";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 
-function Login(){
+function LoginPersonal(){
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -115,9 +115,7 @@ function Login(){
         {{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
             <div className="div-principal container d-flex align-items-center justify-content-center m-auto">
                 <div className="w-50 rounded-5 p-4 login-container">
-                    <div className="cefit-logo verde text-center rounded-5 m-auto">
-                        <img src={logo} alt="foto cefit" className="p-1" width="100%" height="100%"/>
-                    </div>
+                    <CefetImageVerde/>
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
@@ -147,4 +145,4 @@ function Login(){
     );
 }
 
-export default Login;
+export default LoginPersonal;

@@ -27,7 +27,7 @@ import Perfil from './pages/tela-perfil/Perfil.jsx';
 import PerfilPersonal from './pages/tela-perfil/PerfilPersonal.jsx';
 import MeusAlunos from './pages/tela-meus-alunos/MeusAlunos.jsx';
 import Aluno from './pages/tela-aluno/Aluno.jsx';
-
+import LoginPersonal from './pages/tela-login/LoginPersonal.jsx'
 
 
 const router = createBrowserRouter([
@@ -107,6 +107,10 @@ const router = createBrowserRouter([
       {
         path:"aluno/:id",
         element: <Aluno/>
+      },
+      {
+        path:"LoginPersonal",
+        element: <LoginPersonal/>
       }
     ]
   }
