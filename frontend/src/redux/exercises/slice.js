@@ -1,15 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { createAxiosInstance } from "../../utils/api";
 
-
-import axios from "axios";
 const api = createAxiosInstance();
 
 const initialState = [];
 
 const addExercicio = createAsyncThunk('user/addExerciseAsync', async (data) => {
-    const response = await api.post("/exercicios", data);
-    return response.data;
+    try{
+        const exerciseToBeCreated = {
+            trainingId: data.idForm,
+            name: data.name,
+            peso: data.peso,
+            series: data.series,
+            observacoes: data.observacoes
+        }
+        const response = await api.post(`/exercise`, exerciseToBeCreated);
+        return response.data;
+    }catch(error){
+        console.log(error);
+    }
 });
 
 const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoID", async (idTreino) => {

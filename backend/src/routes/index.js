@@ -3,6 +3,7 @@ import userRoutes from "./userRoutes.js";
 import anamneseRoutes from "./anamneseRoutes.js";
 import trainingRoutes from "./trainingRoutes.js";
 import personalRoutes from "./personalRoutes.js";
+import exerciseRoutes from "./exerciseRoutes.js";
 
 const routes = express.Router();
 
@@ -10,5 +11,6 @@ routes.use(userRoutes);
 routes.use(anamneseRoutes);
 routes.use(trainingRoutes);
 routes.use(personalRoutes);
+routes.use(exerciseRoutes);
 
 export default routes;

@@ -115,7 +115,9 @@ function Login(){
         {{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
             <div className="div-principal container d-flex align-items-center justify-content-center m-auto">
                 <div className="w-50 rounded-5 p-4 login-container">
-                    <CefetImage/>
+                    <div className="cefit-logo verde text-center rounded-5 m-auto">
+                        <img src={logo} alt="foto cefit" className="p-1" width="100%" height="100%"/>
+                    </div>
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
