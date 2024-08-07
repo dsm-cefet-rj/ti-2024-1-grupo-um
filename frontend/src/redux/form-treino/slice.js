@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAxiosInstance } from "../../utils/api";
+
+
 import axios from "axios";
+const api = createAxiosInstance();
 
 
 const initialState = {
@@ -12,7 +16,7 @@ const initialState = {
 
 const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
     console.log(data);
-    const response = await axios.post("http://localhost:3000/training", data);
+    const response = await api.post("/training", data);
     return response.data;
 });
 

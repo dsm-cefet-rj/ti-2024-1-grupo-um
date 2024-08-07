@@ -59,7 +59,7 @@ function Login(){
             email: info.email,
             senha: info.senha
         }
-        const autenticado = await axios.post("http://localhost:5000/login", loginObj);   
+        const autenticado = await axios.post("http://localhost:3000/login", loginObj);   
         console.log(autenticado.data.user)
         if(autenticado.data.status == true){
             dispatch(addLoggedUser(autenticado.data.user));
@@ -106,8 +106,8 @@ function Login(){
     }
 
     const validationSchema = Yup.object({
-        email: Yup.string().email().required("Insira um email do personal"),
-        senha: Yup.string().required("Insira a senha do personal")
+        email: Yup.string().email().required("Insira um email"),
+        senha: Yup.string().required("Insira a senha")
     })
 
     return(

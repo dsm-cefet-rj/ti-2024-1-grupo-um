@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createAxiosInstance } from "../../utils/api";
 
+const api = createAxiosInstance();
 const initialState = [];
 
 
 const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", async(userId) => {
     try{
-        const response = await axios.get(`http://localhost:3000/training/${userId}`);
+        const response = await api.get(`/training/${userId}`);
         console.log(response.data);
         return response.data; 
     } catch(err){
@@ -16,7 +18,7 @@ const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", as
 
 const deleteTreinoByID = createAsyncThunk("treino/deleteTreinoByID", async (idTreino) => {
     try {
-        await axios.delete(`http://localhost:3000/training/${idTreino}`); // Modificado para backend
+        await api.delete(`/training/${idTreino}`); // Modificado para backend
 
         // const exercises = await axios.get(`http://localhost:3004/exercicios?idForm=${idTreino}`);
 

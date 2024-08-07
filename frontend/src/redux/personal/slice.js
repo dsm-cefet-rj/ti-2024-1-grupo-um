@@ -1,25 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAxiosInstance } from "../../utils/api";
+
+const api = createAxiosInstance();
+
 
 const initialState = [];
 
 const getPersonais = createAsyncThunk("personais/getPersonaisAsync", async() => {
-    const response = await axios.get("http://localhost:3004/personais");
+    const response = await api.get("/personal");
     return response.data; 
 });
 
 const createPersonal = createAsyncThunk('personais/addPersonalAsync', async (data) => {
-    const response = await axios.post("http://localhost:3004/personais", data)
+    const response = await api.post("/personal", data)
     return response.data;
 });
 
 const updatePersonal = createAsyncThunk("personais/updatePersonalAsync", async (data) => {
-    await axios.put(`http://localhost:3004/personais/${data.id}`, data);
+    await api.put(`/personal/${data.id}`, data);
 });
 
 const deletePersonal = createAsyncThunk("personais/deletePersonalAsync", async(id)=>{
-    await axios.delete(`http://localhost:3004/personais/${id}`);
+    await api.delete(`/personal/${id}`);
 });
 
 
