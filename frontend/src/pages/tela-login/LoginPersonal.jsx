@@ -1,6 +1,8 @@
 //import components
 import CefetImageVerde from "../../components/CefetImage/CefetImage";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
+import "../../components/CefetImage/CefetImage.css";
+import logo from "../../images/logo.png";
 
 //import react stuff
 import { Link, useNavigate } from "react-router-dom";
@@ -115,7 +117,11 @@ function LoginPersonal(){
         {{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
             <div className="div-principal container d-flex align-items-center justify-content-center m-auto">
                 <div className="w-50 rounded-5 p-4 login-container">
-                    <CefetImageVerde/>
+                    <div className="cefit-logo verde text-center rounded-5 m-auto">
+                        <a href="/Login">
+                            <img src={logo} alt="foto cefit" className="p-1" width="100%" height="100%"/>
+                        </a>
+                    </div>
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
