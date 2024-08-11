@@ -94,3 +94,14 @@ body{
     border: var(--bs-border-width) solid #636464;
     width: 50%;
 }
+.d-flex {
+    display: flex; /* Define o container como flexível */
+}
+
+.space-between {
+    justify-content: space-between; /* Distribui o espaço restante entre os itens */
+}
+
+.align-items-center {
+    align-items: center; /* Alinha verticalmente no centro */
+}

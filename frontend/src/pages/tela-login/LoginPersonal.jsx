@@ -136,11 +136,20 @@ function LoginPersonal(){
                                 <div className="d-flex w-100 mt-3">
                                     <button className="btn-submit btn-primary w-100" type="submit" disabled={!isValid}>Enviar</button>
                                 </div>
-                                <div className="mt-3">
-                                    Não possui conta?<Link to="/cadastro"> Cadastre-se agora!</Link> 
-                                </div>
-                                <div className="mt-3 text-center">
-                                    Personal?<Link to="/cadastroPersonal"> Cadastre-se agora!</Link> 
+                                <div className="d-flex space-between align-items-center">
+                                    <div>
+                                        <div className="mt-3">
+                                            Não possui conta? <Link to="/cadastro">Cadastre-se agora!</Link> 
+                                        </div>
+                                        <div className="mt-3">
+                                            Personal? <Link to="/cadastroPersonal">Cadastre-se agora!</Link> 
+                                        </div>
+                                    </div>
+                                    <div className="d-flex align-items-center w-20 mt-3">
+                                        <a href="/your-link" className="btn verde rounded-5 w-20">
+                                            Aluno
+                                        </a>
+                                    </div>
                                 </div>
                         </Form>
                         )}
