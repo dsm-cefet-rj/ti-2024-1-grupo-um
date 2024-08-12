@@ -18,7 +18,19 @@ const createPersonal = createAsyncThunk('personais/addPersonalAsync', async (dat
 });
 
 const updatePersonal = createAsyncThunk("personais/updatePersonalAsync", async (data) => {
-    await api.put(`/personal/${data.id}`, data);
+    const req = {
+        CPF: data.CPF,
+        biografia: data.biografia,
+        birth: data.birth,
+        cidade: data.cidade,
+        descricao: data.descricao,
+        email: data.email,
+        formacao: data.formacao,
+        nome: data.nome,
+        preco: data.preco,
+        senha: data.senha
+    }
+    await api.put(`/personal/${data._id}`, req);
 });
 
 const deletePersonal = createAsyncThunk("personais/deletePersonalAsync", async(id)=>{

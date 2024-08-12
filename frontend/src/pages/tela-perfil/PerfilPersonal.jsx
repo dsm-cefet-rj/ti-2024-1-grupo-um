@@ -24,9 +24,10 @@ function PerfilPersonal() {
     const currentUser = useSelector(rootReducer => rootReducer.user);
 
     const handleSubmitForm = (infos) => {
-        infos["id"] = currentUser.personal.id;
-        dispatch(updatePersonal(infos));
-        dispatch(addLoggedPersonal(infos));
+        console.log(currentUser.personal);
+        console.log(currentUser.personal._id);
+        dispatch(updatePersonal({...infos, _id: currentUser.personal._id}));
+        // dispatch(addLoggedPersonal(infos));
         alert("Personal editado com sucesso!");
         navigate("/");
     }

@@ -33,7 +33,7 @@ const updateAnamnese = createAsyncThunk('anamnese/updateAnamneseAsync', async (p
 })
 
 const deleteAnamneseByUserId = createAsyncThunk('anamnese/deleteAnamneseAsync', async (userId) => {
-    await api.delete(`/anamnese?userId=${userId}`);
+    await api.delete(`/anamnese/${userId}`);
 })
 
 const deleteAnamnese = createAsyncThunk('anamnese/deleteAnamneseAsync', async (anamneseId) => {
