@@ -1,6 +1,45 @@
 //here the aluno controller
 import { alunoModel } from "../models/AlunoModel.js";
 
+//CREATE_ALUNO
+async function createAluno(req, res) {
+    try {
+        const newAluno = {
+            idUser: req.body.idUser,
+            nomeUser: req.body.nomeUser,
+            idPersonal: req.body.idPersonal
+        };
+
+        //verificar se o aluno já existe para o personal
+        const existingAlunoArray = await alunoModel.find({
+            idUser: newAluno.idUser,
+            idPersonal: newAluno.idPersonal
+        });
+        const existingAluno = existingAlunoArray[0];
+
+        if (existingAluno != undefined) {
+            return res.status(400).send({
+                message: 'Esse aluno já está registrado para o personal.'
+            });
+        }
+
+        
+        const result = await alunoModel.create(newAluno);
+
+        return res.status(201).send({
+            message: 'Aluno criado com sucesso',
+            aluno: newAluno
+        });
+
+    } catch (error) {
+        return res.status(400).send({
+            error: error.message,
+            message: 'Ocorreu um erro na criação do aluno'
+        });
+    }
+}
+
+
 //GET_ALUNOS_BY_PERSONAL_ID
 async function readAllByPersonalId(req, res) {
     try{
@@ -14,7 +53,7 @@ async function readAllByPersonalId(req, res) {
     }
 }
 
-//CREATE_ALUNO
+
 //DELETE_ALUNO_BY_USER_ID
 //DELETE_ALUNO_BY_PERSONAL_ID
 
