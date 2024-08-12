@@ -52,8 +52,55 @@ async function readAllByPersonalId(req, res) {
         })
     }
 }
-
-
 //DELETE_ALUNO_BY_USER_ID
+async function deleteAlunoByUserId(req, res){
+    try{
+        const idUser = req.params.idUser;
+        const alunoDelete = await alunoModel.findByIdAndDelete(idUser);
+
+        if(alunoDelete){
+            return res.status(200).send({
+                message: 'Aluno removido com sucesso',
+                data: alunoDelete
+            });
+        }else{
+            return res.status(400).send({
+                message: "Aluno não encontrado"
+            })
+        }
+        
+       
+    }catch(error){
+        return res.status(400).send({
+            message: 'Ocorreu um erro para remover o aluno'
+        })
+    }
+}
+
 //DELETE_ALUNO_BY_PERSONAL_ID
 
+async function deleteAlunoByPersonalrId(req, res){
+    try{
+        const idPersonal = req.params.idPersonal;
+        const alunoDelete = await alunoModel.findByIdAndDelete(idPersonal);
+        if(alunoDelete){
+            return res.status(200).send({
+                message: 'Aluno removido com sucesso',
+                data: alunoDelete
+            });
+        }else{
+            return res.status(400).send({
+                message: "Aluno não encontrado"
+            })
+        }
+        
+    }catch(error){
+        return res.status(400).send({
+            message: 'Ocorreu um erro para remover o aluno'
+        })
+    }
+}
+
+export {
+    readAllByPersonalId, createAluno, deleteAlunoByPersonalrId, deleteAlunoByUserId
+}
