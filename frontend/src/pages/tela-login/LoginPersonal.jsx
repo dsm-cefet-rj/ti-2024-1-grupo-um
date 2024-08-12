@@ -45,20 +45,21 @@ function LoginPersonal(){
             senha: info.senha
         }
         //caso login de personal 
-        const autenticado = await axios.post("http://localhost:5000/loginPersonal", loginObj);
-        const response = autenticado.data;
-        if(response.status === true){
-            const personal = response.personal;
-            dispatch(addLoggedPersonal(personal));
-            dispatch(getAlunosByPersonalId(personal._id));
-            alert("autenticado");
-            navigate("/");
-            return;
-        }else{
+        try{
+            const autenticado = await axios.post("http://localhost:5000/loginPersonal", loginObj);
+            const response = autenticado.data;
+            if(response.status === true){
+                const personal = response.personal;
+                dispatch(addLoggedPersonal(personal));
+                dispatch(getAlunosByPersonalId(personal._id));
+                alert("autenticado");
+                navigate("/");
+                return;
+            }
+        }catch(error){
             alert("Login ou senha incorretos");
         }
     }
-
     const initialValues = {
         email: "",
         senha: "",
