@@ -8,7 +8,7 @@ import "./PersonalCard.css";
 // react router dom
 import { Link } from "react-router-dom";
 
-function PersonalCard({ nome, descricao, rating, id, image }) {
+function PersonalCard({ nome, descricao, id, image }) {
     return (
         <Link className="card" id="card-personal" to={`/personal/${id}`}>
             {image ? (<img className="card-img-top m-auto mt-2" src={require(`../../images/PersonalImages/${image}.png`)} alt="Imagem de capa do card" />)

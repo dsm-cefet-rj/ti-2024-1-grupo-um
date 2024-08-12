@@ -34,10 +34,10 @@ function Personal() {
 
 
 
-  const estrelas = [];
-  for (let i = 0; i < personalAtual.rating; i++) {
-      estrelas.push(<img key={i} className="imagem-estrela" src={star} alt="imagem estrela"/>);
-  }
+  // const estrelas = [];
+  // for (let i = 0; i < personalAtual.rating; i++) {
+  //     estrelas.push(<img key={i} className="imagem-estrela" src={star} alt="imagem estrela"/>);
+  // }
 
   return (
     <div className="card-personal">
@@ -64,9 +64,9 @@ function Personal() {
                 </div>
               )
             }
-            <div className="margin-bottom-10px mb-4">
+            {/* <div className="margin-bottom-10px mb-4">
               {estrelas}
-            </div>
+            </div> */}
             <div className="d-flex justify-content-center mb-2">
               {anamnese.preenchida?(
                   <Link data-aos="fade-up" data-aos-delay="200" to={`/pagamento/${personalAtual.id}`} className="btn btn-primary">Solicitar consultoria</Link>
