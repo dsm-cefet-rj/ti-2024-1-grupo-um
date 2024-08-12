@@ -41,7 +41,7 @@ async function createAluno(req, res) {
 
 
 //GET_ALUNOS_BY_PERSONAL_ID
-async function readAllByPersonalId(req, res) {
+async function getAlunosByPersonalId(req, res) {
     try{
         const alunoList = await alunoModel.find();
 
@@ -79,7 +79,7 @@ async function deleteAlunoByUserId(req, res){
 
 //DELETE_ALUNO_BY_PERSONAL_ID
 
-async function deleteAlunoByPersonalrId(req, res){
+async function deleteAlunoByPersonalId(req, res){
     try{
         const idPersonal = req.params.idPersonal;
         const alunoDelete = await alunoModel.findByIdAndDelete(idPersonal);
