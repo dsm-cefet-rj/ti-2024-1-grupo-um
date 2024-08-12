@@ -23,7 +23,7 @@ function Anamnese() {
     const anamneseUser = useSelector(rootReducer => rootReducer.anamnese);
 
     const handleSubmitForm = (infos) => {
-        infos["userId"] = currentUser.user.id;
+        infos["userId"] = currentUser.user._id;
         dispatch(addAnmneseAsync(infos))
         dispatch(addAnmnese(infos))
         navigate("/personais")
@@ -38,7 +38,7 @@ function Anamnese() {
     }
 
     const initialValues = {
-        weigth: "",
+        weight: "",
         motivation: "",
         activityFreq: "",
         date: "",
@@ -50,7 +50,7 @@ function Anamnese() {
     const yesOrNot = ["Sim", "Não"];
 
     const validationSchema = Yup.object({
-        weigth: Yup.number().required("Peso é obrigatório").max(500, "Peso não deve ser maior que 500"),
+        weight: Yup.number().required("Peso é obrigatório").max(500, "Peso não deve ser maior que 500"),
         motivation: Yup.string().required("Motivação é obrigatório"),
         activityFreq: Yup.string().required("Selecione uma opção").oneOf(freqOptions),
         date: Yup.date(),
@@ -74,7 +74,7 @@ function Anamnese() {
                             <div className="container cefit-form">
                                 <h2 id="titulo-form">Faça sua Anamnese</h2>
 
-                                <InputComponentYup classes="mt-3" id="weigthInput" name="weigth" text={<b>Seu peso:</b>} type="number" placeholder="Digite o seu peso (em kg)" />
+                                <InputComponentYup classes="mt-3" id="weigthInput" name="weight" text={<b>Seu peso:</b>} type="number" placeholder="Digite o seu peso (em kg)" />
                                 <InputComponentYup classes="mt-3" id="motivationInput" name="motivation" text={<b>Motivação/Objetivo:</b>} type="text" placeholder="Ganhar peso, perder peso, ganhar músculos ..." />
                                 <SelectComponentYup classes="mt-3" id="activityFreqSelect" name="activityFreq" text={<b>Com que frequência faz atividade física?</b>} options={freqOptions} />
                                 <InputComponentYup classes="mt-3" id="dateInput" name="date" text={<b>Data do ultimo exame médico ou físico:</b>} type="date" placeholder="" />

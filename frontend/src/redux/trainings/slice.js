@@ -19,6 +19,7 @@ const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", as
 const deleteTreinoByID = createAsyncThunk("treino/deleteTreinoByID", async (idTreino) => {
     try {
         await api.delete(`/training/${idTreino}`); // Modificado para backend
+        
 
         // const exercises = await axios.get(`http://localhost:3004/exercicios?idForm=${idTreino}`);
 

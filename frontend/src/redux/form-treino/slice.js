@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { createAxiosInstance } from "../../utils/api";
 
-
-import axios from "axios";
 const api = createAxiosInstance();
 
 

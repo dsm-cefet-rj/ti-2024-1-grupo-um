@@ -38,6 +38,7 @@ function AddTreinos() {
     const [showModal, setShowModal] = useState(false);
 
     const handleSubmitForm = (info) => {
+        console.log(info)
         dispatch(addInfo(info));
         const treinoInfo = {
             userId: form.userId,
@@ -48,7 +49,7 @@ function AddTreinos() {
         }
         dispatch(addTreino(treinoInfo));
         dispatch(addTraining(treinoInfo));
-        // exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
+        exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
         dispatch(clearExercises());
         navigate("/areaFIT");
     }
