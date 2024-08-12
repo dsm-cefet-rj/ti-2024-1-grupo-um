@@ -37,8 +37,6 @@ function Login(){
     dispatch(clearAnamnese());
 
     async function Autentica (info){
-
-        
         //caso login de usuario
 
         // const response = await axios.get("http://localhost:3004/users");
@@ -69,35 +67,9 @@ function Login(){
             alert("autenticado");
             navigate("/personais");
             return;
+        }else{
+            alert("usuario invalido");
         }
-
-        //adicionar user com comando dispatch(addLoggedUser(user));
-        //pegar os treinos do usuario atraves do dispatch(getTreinosByUserID(user.id));
-        //pegar todos os personais atraves do dispatch(getPersonais());
-        //pegar a anamnese do usuario atraves do dispatch(getAnamnese(user.id));
-        //alertar o usuario com alert("autenticado");
-        //navegar para /personais com navigate("/personais");
-
-
-
-
-        //caso login de personal 
-        const responsePersonal = await axios.get("http://localhost:3004/personais");
-        const personais = responsePersonal.data;
-
-        for (let personal of personais){
-            if(personal.email === info.email && personal.senha === info.senha){
-                dispatch(addLoggedPersonal(personal));
-                dispatch(getAlunosByPersonalId(personal.id));
-                
-                alert("autenticado");
-                navigate("/");
-                //navigate("/meusAlunos");
-                return;
-            }
-        }
-
-        alert("usuario invalido");
     }
 
     const initialValues = {
@@ -140,7 +112,7 @@ function Login(){
                                         </div>
                                     </div>
                                     <div className="d-flex align-items-center w-20 mt-3">
-                                        <a href="/your-link" className="btn btn-primary rounded-5 w-20">
+                                        <a href="/LoginPersonal" className="btn btn-primary rounded-5 w-20">
                                             Personal
                                         </a>
                                     </div>

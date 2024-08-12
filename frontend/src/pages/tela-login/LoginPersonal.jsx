@@ -40,66 +40,23 @@ function LoginPersonal(){
 
     async function Autentica (info){
 
-        
-        //caso login de usuario
-
-        // const response = await axios.get("http://localhost:3004/users");
-        // const users = response.data;
-
-        // for (let user of users){
-        //     if(user.email === info.email && user.senha === info.senha){
-        //         dispatch(addLoggedUser(user));
-        //         dispatch(getTreinosByUserID(user.id));
-        //         dispatch(getPersonais());
-        //         dispatch(getAnamnese(user.id));
-        //         alert("autenticado");
-        //         navigate("/personais");
-        //         return;
-        //     }
-        // }
         const loginObj = {
             email: info.email,
             senha: info.senha
         }
-        const autenticado = await axios.post("http://localhost:3000/login", loginObj);   
-        console.log(autenticado.data.user)
-        if(autenticado.data.status == true){
-            dispatch(addLoggedUser(autenticado.data.user));
-            dispatch(getTreinosByUserID(autenticado.data.user._id));
-            dispatch(getPersonais());
-            dispatch(getAnamnese(autenticado.data.user._id));
-            alert("autenticado");
-            navigate("/personais");
-            return;
-        }
-
-        //adicionar user com comando dispatch(addLoggedUser(user));
-        //pegar os treinos do usuario atraves do dispatch(getTreinosByUserID(user.id));
-        //pegar todos os personais atraves do dispatch(getPersonais());
-        //pegar a anamnese do usuario atraves do dispatch(getAnamnese(user.id));
-        //alertar o usuario com alert("autenticado");
-        //navegar para /personais com navigate("/personais");
-
-
-
-
         //caso login de personal 
-        const responsePersonal = await axios.get("http://localhost:3004/personais");
-        const personais = responsePersonal.data;
-
-        for (let personal of personais){
-            if(personal.email === info.email && personal.senha === info.senha){
-                dispatch(addLoggedPersonal(personal));
-                dispatch(getAlunosByPersonalId(personal.id));
-                
-                alert("autenticado");
-                navigate("/");
-                //navigate("/meusAlunos");
-                return;
-            }
+        const autenticado = await axios.post("http://localhost:5000/loginPersonal", loginObj);
+        const response = autenticado.data;
+        if(response.status === true){
+            const personal = response.personal;
+            dispatch(addLoggedPersonal(personal));
+            dispatch(getAlunosByPersonalId(personal._id));
+            alert("autenticado");
+            navigate("/");
+            return;
+        }else{
+            alert("Login ou senha incorretos");
         }
-
-        alert("usuario invalido");
     }
 
     const initialValues = {
@@ -146,7 +103,7 @@ function LoginPersonal(){
                                         </div>
                                     </div>
                                     <div className="d-flex align-items-center w-20 mt-3">
-                                        <a href="/your-link" className="btn verde rounded-5 w-20">
+                                        <a href="/login" className="btn verde rounded-5 w-20">
                                             Aluno
                                         </a>
                                     </div>
