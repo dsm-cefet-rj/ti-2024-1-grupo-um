@@ -25,7 +25,7 @@ function AreaFIT() {
   
 
   dispatch(clearExercises());
-  dispatch(getAnamnese(currentUser.id));
+  dispatch(getAnamnese(currentUser.user._id));
 
   
   // Filtrar os treinos pelo idUser
@@ -49,7 +49,7 @@ function AreaFIT() {
                   title={treino.title}
                   description={treino.descricao}
                   type={treino.type}
-                  id={treino.id}
+                  id={treino._id} //talvez mudar para _id
           
                 />
               </div>)
@@ -59,7 +59,7 @@ function AreaFIT() {
     </div>
 
     <Link to={"/add-treinos"} className="link-monte-treino" >
-      <button className="monte-button" onClick={() => {dispatch(addForms({idUser: currentUser.user.id, id: idGen(), infos: {}}))}}>Monte seu treino</button>
+      <button className="monte-button" onClick={() => {dispatch(addForms({userId: currentUser.user._id, infos: {}}))}}>Monte seu treino</button>
     </Link>
     <div className="espacamento">
 

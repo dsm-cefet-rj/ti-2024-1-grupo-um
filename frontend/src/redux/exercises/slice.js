@@ -1,16 +1,30 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAxiosInstance } from "../../utils/api";
+
+const api = createAxiosInstance();
 
 const initialState = [];
 
 const addExercicio = createAsyncThunk('user/addExerciseAsync', async (data) => {
-    const response = await axios.post("http://localhost:3004/exercicios", data);
-    return response.data;
+    try{
+        console.log(data);
+        const exerciseToBeCreated = {
+            trainingId: data.idForm,
+            name: data.name,
+            peso: data.peso,
+            series: data.series,
+            observacoes: data.observacoes
+        }
+        const response = await api.post(`/exercise`, exerciseToBeCreated);
+        return response.data;
+    }catch(error){
+        console.log(error);
+    }
 });
 
 const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoID", async (idTreino) => {
     try {
-        const response = await axios.get(`http://localhost:3004/exercicios?idForm=${idTreino}`);
+        const response = await api.get(`/exercise/${idTreino}`);
         return response.data;
     } catch (err) {
         return [];
@@ -19,7 +33,7 @@ const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoI
 
 const deleteExercicioByID = createAsyncThunk("exercises/deleteExerciseByID", async (idExercicio) => {
     try{
-        await axios.delete(`http://localhost:3004/exercicios/${idExercicio}`)
+        await api.delete(`/exercise/${idExercicio}`);
     }
     catch(err){
         console.log("Não foi possível excluir o exercício");
@@ -41,9 +55,16 @@ const exercisesSlice = createSlice({
         },
         deleteExercicio: (state, action) => {
             for (let i=0; i < state.length; i++){
-                if(state[i].id === action.payload){
+                if(state[i]._id === action.payload){
                     state.splice(i, 1);
                     break;
+                }
+            }
+        },
+        deleteExerciciosByTreinoId: (state, action) => {
+            for(let i = 0; i < state.length; i++){
+                if(state[i].idForm === action.payload){
+                    state.splice(i, 1);
                 }
             }
         }
@@ -62,7 +83,7 @@ const exercisesSlice = createSlice({
 
 
 
-export const { addExercise, clearExercises, deleteExercicio } = exercisesSlice.actions;
+export const { addExercise, clearExercises, deleteExercicio, deleteExerciciosByTreinoId } = exercisesSlice.actions;
 
 export {addExercicio, getExercisesByTreinoID, deleteExercicioByID}
 export default exercisesSlice.reducer;

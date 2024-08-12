@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAxiosInstance } from "../../utils/api";
+
+const api = createAxiosInstance();
 
 
 const initialState = {
     preenchida: false,
     activityFreq: "",
-    weigth: "",
+    weight: "",
     motivation: "",
     exam: "",
     diet: "",
@@ -15,26 +17,27 @@ const initialState = {
 }
 
 const addAnmneseAsync = createAsyncThunk('anamnese/addAnamneseAsync', async (data) => {
-    const response = await axios.post("http://localhost:3004/anamnese", data);
+    const response = await api.post("/anamnese", data);
     return response.data;
 });
 
 
 const getAnamnese = createAsyncThunk('anamnese/getAnamneseAsync', async (userId) => {
-    const response = await axios.get(`http://localhost:3004/anamnese?userId=${userId}`);
+    console.log(userId);
+    const response = await api.get(`/anamnese/${userId}`);
     return response.data;
 });
 
 const updateAnamnese = createAsyncThunk('anamnese/updateAnamneseAsync', async (payload) => {
-    await axios.put(`http://localhost:3004/anamnese/${payload.id}`, payload);
+    await api.put(`/anamnese/${payload.id}`, payload);
 })
 
 const deleteAnamneseByUserId = createAsyncThunk('anamnese/deleteAnamneseAsync', async (userId) => {
-    await axios.delete(`http://localhost:3004/anamnese?userId=${userId}`);
+    await api.delete(`/anamnese?userId=${userId}`);
 })
 
 const deleteAnamnese = createAsyncThunk('anamnese/deleteAnamneseAsync', async (anamneseId) => {
-    await axios.delete(`http://localhost:3004/anamnese/${anamneseId}`);
+    await api.delete(`/anamnese/${anamneseId}`);
 })
 
 

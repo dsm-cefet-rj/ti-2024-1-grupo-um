@@ -9,7 +9,7 @@ import InputComponentYup from "../../components/InputComponent/InputComponenteYu
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 
-function Modal(props) {
+function  Modal(props) {
     const dispatch = useDispatch();
 
     const { setModal, idForm, optionalFunction } = props;

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAxiosInstance } from "../../utils/api";
 
-
+const api  = createAxiosInstance();
 
 const initialState = {
     logged: false,
@@ -11,16 +11,16 @@ const initialState = {
 };
 
 const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
-    const response = await axios.post("http://localhost:3004/users", data)
+    const response = await api.post("/user", data)
     return response.data;
 });
 
 const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
-    await axios.put(`http://localhost:3004/users/${data.id}`, data);
+    await api.put(`/user/${data.id}`, data);
 });
 
 const deleteUser = createAsyncThunk("users/deleteUserAsync", async(id)=>{
-    await axios.delete(`http://localhost:3004/users/${id}`);
+    await api.delete(`/user/${id}`);
 });
 
 const userSlice = createSlice({
@@ -28,11 +28,11 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         addLoggedUser: (state, action) => { 
-            state.logged = true;
+            state.logged = true; //switch to token in the future
             state.user = action.payload;
         },
         addLoggedPersonal: (state, action) => {
-            state.loggedPersonal = true;
+            state.loggedPersonal = true; //switch to token in the future
             state.personal = action.payload;
         },
         logoutUser: (state) => {

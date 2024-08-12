@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 import { deleteTreinoByID, deleteTraining } from "../../redux/trainings/slice.js";
-import { addExercicio } from "../../redux/exercises/slice.js";
+import { addExercicio, deleteExerciciosByTreinoId } from "../../redux/exercises/slice.js";
 
 function Treino() {
     //id treino
@@ -29,6 +29,7 @@ function Treino() {
     const handleDeleteTreino = () => {
         dispatch(deleteTreinoByID(id));
         dispatch(deleteTraining(id));
+        dispatch(deleteExerciciosByTreinoId(id));
         navigate("/areaFIT");
     }
     
@@ -58,7 +59,7 @@ function Treino() {
                         rep={exercicio.series}
                         obs={exercicio.observacoes}
                         type={exercicio.type}
-                        idExercicio={exercicio.id}
+                        idExercicio={exercicio._id}
                     />
                 ))
             ):(

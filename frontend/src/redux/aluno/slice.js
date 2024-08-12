@@ -1,31 +1,36 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { createAxiosInstance } from "../../utils/api";
+
+const api = createAxiosInstance();
+
+
 
 const createAluno = createAsyncThunk('aluno/addAlunoAsync', async(data) =>{
-  const response = await axios.post("http://localhost:3004/aluno", data);
+  const response = await api.post("/aluno", data);
   return response.data;
 })
 
 const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(id)=>{
 
-  const alunos = await axios.get(`http://localhost:3004/aluno?idUser=${id}`);
+  const alunos = await api.get(`/aluno?userId=${id}`);
 
   for (let aluno of alunos.data){
-    await axios.delete(`http://localhost:3004/aluno/${aluno.id}`);
+    await api.delete(`/aluno/${aluno.id}`);
   }
 });
 
 const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async(personalId) => {
-  const response = await axios.get(`http://localhost:3004/aluno?idPersonal=${personalId}`);
+  const response = await api.get(`/aluno?idPersonal=${personalId}`);
   return response.data;
 })
 
 const deleteAlunoByPersonalId = createAsyncThunk("personais/deletePersonalAsync", async(id)=>{
 
-  const alunos = await axios.get(`http://localhost:3004/aluno?idPersonal=${id}`);
+  const alunos = await api.get(`/aluno?idPersonal=${id}`);
 
   for (let aluno of alunos.data){
-    await axios.delete(`http://localhost:3004/aluno/${aluno.id}`);
+    await api.delete(`/aluno/${aluno.id}`);
   }
 });
 

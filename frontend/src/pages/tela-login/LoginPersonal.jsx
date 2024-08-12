@@ -1,6 +1,8 @@
 //import components
-import CefetImage from "../../components/CefetImage/CefetImage";
+import CefetImageVerde from "../../components/CefetImage/CefetImage";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
+import "../../components/CefetImage/CefetImage.css";
+import logo from "../../images/logo.png";
 
 //import react stuff
 import { Link, useNavigate } from "react-router-dom";
@@ -24,7 +26,7 @@ import { clearAlunos, getAlunosByPersonalId } from "../../redux/aluno/slice";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 
-function Login(){
+function LoginPersonal(){
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -37,38 +39,23 @@ function Login(){
     dispatch(clearAnamnese());
 
     async function Autentica (info){
-        //caso login de usuario
 
-        // const response = await axios.get("http://localhost:3004/users");
-        // const users = response.data;
-
-        // for (let user of users){
-        //     if(user.email === info.email && user.senha === info.senha){
-        //         dispatch(addLoggedUser(user));
-        //         dispatch(getTreinosByUserID(user.id));
-        //         dispatch(getPersonais());
-        //         dispatch(getAnamnese(user.id));
-        //         alert("autenticado");
-        //         navigate("/personais");
-        //         return;
-        //     }
-        // }
         const loginObj = {
             email: info.email,
             senha: info.senha
         }
-        const autenticado = await axios.post("http://localhost:5000/login", loginObj);   
-        console.log(autenticado.data.user)
-        if(autenticado.data.status == true){
-            dispatch(addLoggedUser(autenticado.data.user));
-            dispatch(getTreinosByUserID(autenticado.data.user._id));
-            dispatch(getPersonais());
-            dispatch(getAnamnese(autenticado.data.user._id));
+        //caso login de personal 
+        const autenticado = await axios.post("http://localhost:5000/loginPersonal", loginObj);
+        const response = autenticado.data;
+        if(response.status === true){
+            const personal = response.personal;
+            dispatch(addLoggedPersonal(personal));
+            dispatch(getAlunosByPersonalId(personal._id));
             alert("autenticado");
-            navigate("/personais");
+            navigate("/");
             return;
         }else{
-            alert("usuario invalido");
+            alert("Login ou senha incorretos");
         }
     }
 
@@ -78,8 +65,8 @@ function Login(){
     }
 
     const validationSchema = Yup.object({
-        email: Yup.string().email().required("Insira um email do personal"),
-        senha: Yup.string().required("Insira a senha do personal")
+        email: Yup.string().email().required("Insira um email"),
+        senha: Yup.string().required("Insira a senha")
     })
 
     return(
@@ -87,7 +74,11 @@ function Login(){
         {{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
             <div className="div-principal container d-flex align-items-center justify-content-center m-auto">
                 <div className="w-50 rounded-5 p-4 login-container">
-                    <CefetImage/>
+                    <div className="cefit-logo verde text-center rounded-5 m-auto">
+                        <a href="/Login">
+                            <img src={logo} alt="foto cefit" className="p-1" width="100%" height="100%"/>
+                        </a>
+                    </div>
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
@@ -112,8 +103,8 @@ function Login(){
                                         </div>
                                     </div>
                                     <div className="d-flex align-items-center w-20 mt-3">
-                                        <a href="/LoginPersonal" className="btn btn-primary rounded-5 w-20">
-                                            Personal
+                                        <a href="/login" className="btn verde rounded-5 w-20">
+                                            Aluno
                                         </a>
                                     </div>
                                 </div>
@@ -126,4 +117,4 @@ function Login(){
     );
 }
 
-export default Login;
+export default LoginPersonal;
