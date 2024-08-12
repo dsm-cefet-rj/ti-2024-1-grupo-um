@@ -7,6 +7,7 @@ const initialState = [];
 
 const addExercicio = createAsyncThunk('user/addExerciseAsync', async (data) => {
     try{
+        console.log(data);
         const exerciseToBeCreated = {
             trainingId: data.idForm,
             name: data.name,
@@ -23,7 +24,7 @@ const addExercicio = createAsyncThunk('user/addExerciseAsync', async (data) => {
 
 const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoID", async (idTreino) => {
     try {
-        const response = await api.get(`/exercicios?idForm=${idTreino}`);
+        const response = await api.get(`/exercise/${idTreino}`);
         return response.data;
     } catch (err) {
         return [];
@@ -32,7 +33,7 @@ const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoI
 
 const deleteExercicioByID = createAsyncThunk("exercises/deleteExerciseByID", async (idExercicio) => {
     try{
-        await api.delete(`/exercicios/${idExercicio}`)
+        await api.delete(`/exercise/${idExercicio}`);
     }
     catch(err){
         console.log("Não foi possível excluir o exercício");
@@ -54,9 +55,16 @@ const exercisesSlice = createSlice({
         },
         deleteExercicio: (state, action) => {
             for (let i=0; i < state.length; i++){
-                if(state[i].id === action.payload){
+                if(state[i]._id === action.payload){
                     state.splice(i, 1);
                     break;
+                }
+            }
+        },
+        deleteExerciciosByTreinoId: (state, action) => {
+            for(let i = 0; i < state.length; i++){
+                if(state[i].idForm === action.payload){
+                    state.splice(i, 1);
                 }
             }
         }
@@ -75,7 +83,7 @@ const exercisesSlice = createSlice({
 
 
 
-export const { addExercise, clearExercises, deleteExercicio } = exercisesSlice.actions;
+export const { addExercise, clearExercises, deleteExercicio, deleteExerciciosByTreinoId } = exercisesSlice.actions;
 
 export {addExercicio, getExercisesByTreinoID, deleteExercicioByID}
 export default exercisesSlice.reducer;

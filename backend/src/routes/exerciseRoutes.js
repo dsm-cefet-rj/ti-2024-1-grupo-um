@@ -1,10 +1,13 @@
 import express from "express";
+import { getAllExercisesByTrainingId, createExercise, getAll, deleteExercise, deleteAllExercisesByTrainingId } from "../controllers/exercisesController.js";
 
 const exerciseRoutes = express.Router();
 
-exerciseRoutes.get("/exercise", (req, res) =>  res.status(200).send({message: "rota get exercises"}));
-exerciseRoutes.get("/exercise/:trainingId", (req, res) => res.status(200).send({message:"rota get all by training id"}));
-exerciseRoutes.post("/exercise", (req, res) => console.log(req.body));
+exerciseRoutes.get("/exercise", getAll);
+exerciseRoutes.get("/exercise/:trainingId", getAllExercisesByTrainingId);
+exerciseRoutes.post("/exercise", createExercise);
+exerciseRoutes.delete("/exercise", deleteAllExercisesByTrainingId);
+exerciseRoutes.delete("/exercise/:exerciseId", deleteExercise);
 //   "/exercise"
 //req.params.id
 //exerciseRoutes.put("/exercise/:luiz", funcao);

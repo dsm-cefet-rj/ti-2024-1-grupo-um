@@ -28,11 +28,11 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         addLoggedUser: (state, action) => { 
-            state.logged = true;
+            state.logged = true; //switch to token in the future
             state.user = action.payload;
         },
         addLoggedPersonal: (state, action) => {
-            state.loggedPersonal = true;
+            state.loggedPersonal = true; //switch to token in the future
             state.personal = action.payload;
         },
         logoutUser: (state) => {
