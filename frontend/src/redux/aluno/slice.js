@@ -20,8 +20,8 @@ const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(id)=
   }
 });
 
-const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async(personalId) => {
-  const response = await api.get(`/aluno?idPersonal=${personalId}`);
+const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async(idPersonal) => {
+  const response = await api.get(`/aluno?idPersonal=${idPersonal}`);
   return response.data;
 })
 

@@ -102,5 +102,5 @@ async function deleteAlunoByPersonalId(req, res){
 }
 
 export {
-    getAlunosByPersonalId, createAluno, deleteAlunoByPersonalId, deleteAlunoByUserId, deleteAlunoByPersonalId
+    getAlunosByPersonalId, createAluno, deleteAlunoByPersonalId, deleteAlunoByUserId
 }

@@ -1,5 +1,5 @@
 import express from "express";
-import { createAluno, getAlunosByPersonalId, deleteAlunoByPersonalId, deleteAlunoByUserId } from "../controllers/alunoController";
+import { createAluno, getAlunosByPersonalId, deleteAlunoByPersonalId, deleteAlunoByUserId } from "../controllers/alunoController.js";
 const alunoRoutes = express.Router();
 
 alunoRoutes.post("/aluno", createAluno)
