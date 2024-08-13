@@ -3,11 +3,11 @@ import { readAll, createPersonal, readOne, updatePersonal, deletePersonal, login
 
 const personalRoutes = express.Router();
 
-personalRoutes.get('/personal/:id', readOne);
+personalRoutes.get('/personal/:_id', readOne);
 personalRoutes.get('/personal', readAll);
 personalRoutes.post('/personal', createPersonal);
-personalRoutes.put('/personal/:id', updatePersonal);
-personalRoutes.delete('/personal/:id', deletePersonal);
+personalRoutes.put('/personal/:_id', updatePersonal);
+personalRoutes.delete('/personal/:_id', deletePersonal);
 
 personalRoutes.post('/loginPersonal', loginPersonal);
 

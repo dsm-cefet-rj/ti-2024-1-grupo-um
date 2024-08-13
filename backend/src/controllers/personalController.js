@@ -22,7 +22,7 @@ async function readAll(req, res) {
 async function readOne(req, res){
     try{
         //id
-        const personal = await personalModel.findById(req.params.id);
+        const personal = await personalModel.findById(req.params._id);
         if(personal){
             return res.status(200).send(personal);
         }else{
@@ -92,7 +92,7 @@ async function createPersonal(req, res){
 }
 async function updatePersonal(req, res) {
     try{
-        const id = req.params.id;
+        const id = req.params._id;
 
         const update = req.body;
 
@@ -112,7 +112,7 @@ async function updatePersonal(req, res) {
 }
 async function deletePersonal(req, res){
     try{
-        const id = req.params.id;
+        const id = req.params._id;
         const personalDelete = await personalModel.findByIdAndDelete(id);
 
         if(personalDelete){
@@ -126,7 +126,6 @@ async function deletePersonal(req, res){
             })
         }
         
-       
     }catch(error){
         return res.status(400).send({
             message: 'Ocorreu um erro para remover o personal'
