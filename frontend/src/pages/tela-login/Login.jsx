@@ -1,15 +1,15 @@
 //import components
 import CefetImage from "../../components/CefetImage/CefetImage";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
-
+import { ToastContainer, toast } from 'react-toastify';
 //import react stuff
 import { Link, useNavigate } from "react-router-dom";
 import { getTreinosByUserID } from "../../redux/trainings/slice";
-
 //import axios
 import axios from "axios";
 
 //css 
+import 'react-toastify/dist/ReactToastify.css';
 import "./../pages.css";
 
 //redux
@@ -62,18 +62,29 @@ function Login(){
             const autenticado = await axios.post("http://localhost:5000/login", loginObj);
             console.log(autenticado.data.user)
             if(autenticado.data.status == true){
+                notify("success");
                 dispatch(addLoggedUser(autenticado.data.user));
                 dispatch(getTreinosByUserID(autenticado.data.user._id));
                 dispatch(getPersonais());
                 dispatch(getAnamnese(autenticado.data.user._id));
-                alert("autenticado");
+                // alert("autenticado");
+                notify("success");
+                setTimeout(1000);
+                // toast("Usuário autenticado com sucesso!");
                 navigate("/personais");
                 return;
             }else{
-                alert("usuario invalido");
+                toast.error("Login ou senha incorretos");
+                // alert("usuario invalido");
             }
         }catch(err){
-            alert(err);
+            toast.error(err);
+            // alert(err);
+        }
+    }
+    const notify = (word) => {
+        if(word === "success"){
+            toast.success("Login realizado com sucesso");
         }
     }
 
@@ -127,6 +138,7 @@ function Login(){
                     </Formik>
                 </div>
             </div>
+            
         </div>
     );
 }
