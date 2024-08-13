@@ -4,9 +4,12 @@ import { alunoModel } from "../models/AlunoModel.js";
 //CREATE_ALUNO
 async function createAluno(req, res) {
     try {
+        // userId: currentUser.user._id,
+        // userName: currentUser.user.nome,
+        // idPersonal: id
         const newAluno = {
-            idUser: req.body.idUser,
-            nomeUser: req.body.nomeUser,
+            idUser: req.body.userId,
+            nomeUser: req.body.userName,
             idPersonal: req.body.idPersonal
         };
 
@@ -24,7 +27,7 @@ async function createAluno(req, res) {
         }
 
         
-        const result = await alunoModel.create(newAluno);
+        await alunoModel.create(newAluno);
 
         return res.status(201).send({
             message: 'Aluno criado com sucesso',
@@ -43,7 +46,9 @@ async function createAluno(req, res) {
 //GET_ALUNOS_BY_PERSONAL_ID
 async function getAlunosByPersonalId(req, res) {
     try{
-        const alunoList = await alunoModel.find();
+        const idPersonal = req.params.idPersonal;
+
+        const alunoList = await alunoModel.find({idPersonal});
 
         return res.status(200).send(alunoList);
     }catch(error){

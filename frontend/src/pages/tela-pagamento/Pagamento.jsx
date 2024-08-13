@@ -36,11 +36,15 @@ function Pagamento() {
   
   const handlePayment = (e) => {
     e.preventDefault();
-    dispatch(createAluno({
-      userId: currentUser.user.id,
-      userName: currentUser.user.nome,
-      idPersonal: id
-    }));
+    try{
+      dispatch(createAluno({
+        userId: currentUser.user._id,
+        userName: currentUser.user.nome,
+        idPersonal: id
+      }));
+    }catch(error){
+      // toast.error("Você já é matriculado com esse personal.");
+    }
     alert("pagamento feito com sucesso!");
     navigate("/");
   };
