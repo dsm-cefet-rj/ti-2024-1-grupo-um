@@ -21,23 +21,24 @@ function MeusAlunos(){
     }
 
     return(
-        <>
-        <Navbar/>
-        <div className="container">
-            <a href="#" className="back-button">
-                <span className="seta"><i className="fas fa-arrow-left"></i></span>
-            </a>
-            <div className="trainer-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-            <h1 className="display-4">Meus Alunos</h1>
+        <div style={{height:'100vh'}}>
+            <Navbar/>
+            <div className="container">
+                <a href="#" className="back-button">
+                    <span className="seta"><i className="fas fa-arrow-left"></i></span>
+                </a>
+                <div className="trainer-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+                <h1 className="display-4">Meus Alunos</h1>
+                </div>
+                <div className="card-deck" id="card-deck-personal">
+                    {Alunos.map((aluno)=>
+                        <AlunoCard {...aluno}/>
+                    )}
+                </div>
             </div>
-            <div className="card-deck" id="card-deck-personal">
-                {Alunos.map((aluno)=>
-                    <AlunoCard {...aluno}/>
-                )}
-            </div>
+            <FooterComp />
         </div>
-        <FooterComp />
-        </>
+        
     )
 }
 
