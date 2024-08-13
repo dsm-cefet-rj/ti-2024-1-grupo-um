@@ -18,7 +18,7 @@ function Pagamento() {
   const { id } = useParams();
   const navigate = useNavigate();
   const personais = useSelector(rootReducer => rootReducer.personais);
-  const personalAtual = personais.filter((personal) => personal.id == id)[0];
+  const personalAtual = personais.filter((personal) => personal._id === id)[0];
   
   const [numero, setNumero] = useState('');
   const [cvc, setCvc] = useState('');
