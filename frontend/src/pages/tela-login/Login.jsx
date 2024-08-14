@@ -94,8 +94,8 @@ function Login(){
     }
 
     const validationSchema = Yup.object({
-        email: Yup.string().email().required("Insira um email do personal"),
-        senha: Yup.string().required("Insira a senha do personal")
+        email: Yup.string().email().required("O email é obrigatório"),
+        senha: Yup.string().required("A senha é obrigatória")
     })
 
     return(
@@ -113,7 +113,7 @@ function Login(){
                         {({ isValid }) => (
                         <Form className="formulario-login">
                                 <InputComponentYup classes="mb-3 mt-3" id="InputEmail" name="email" text={<b>Email:</b>} type="text" placeholder="Insira seu email aqui" />
-                                <InputComponentYup classes="mb-3" id="Password" name="senha" text={<b>Senha:</b>} type="password" placeholder="Digite a descrição do treino" />
+                                <InputComponentYup classes="mb-3" id="Password" name="senha" text={<b>Senha:</b>} type="password" placeholder="Insira sua senha aqui" />
 
                                 <div className="d-flex w-100 mt-3">
                                     <button className="btn-submit btn-primary w-100" type="submit" disabled={!isValid}>Enviar</button>
