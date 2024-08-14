@@ -89,9 +89,24 @@ async function updateUser(req, res) {
 }
 async function deleteUser(req, res){
     try{
-        
+        const id = req.params.id;
+        const userDelete = await userModel.findByIdAndDelete(id);
+
+        if(userDelete){
+            return res.status(200).send({
+                message: 'User removido com sucesso',
+                data: userDelete
+            });
+        }else{
+            return res.status(400).send({
+                message: 'user nao encontrado'
+            })
+        }
+
     }catch(error){
-        
+        return res.status(400).send({
+            message: 'Ocorreu um erro para remover o user'
+        })
     }
 }
 
