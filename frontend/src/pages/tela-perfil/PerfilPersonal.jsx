@@ -32,7 +32,7 @@ function PerfilPersonal() {
         navigate("/");
     }
     const handlePersonalDelete = () => {
-        const idPersonal = currentUser.personal.id;
+        const idPersonal = currentUser.personal._id;
         dispatch(deleteAlunoByPersonalId(idPersonal));
         dispatch(deletePersonal(idPersonal));
         dispatch(clearAlunos());
