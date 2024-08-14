@@ -94,8 +94,10 @@ async function createTrainingForgymStudent(req, res){
             observacoes: req.body.observacoes
         }
 
-        return res.status(201).send({
-            message: "Treino criado com sucesso"
+        await trainingModel.create(training);
+        
+        return res.status(200).send({
+            message: "Treino criado com sucesso."
         })
 
     }catch(error){

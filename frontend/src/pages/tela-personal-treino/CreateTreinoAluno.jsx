@@ -37,6 +37,8 @@ function CreateTreinoAluno() {
 
     const handleSubmitForm = (info) => {
         dispatch(addInfo(info));
+        console.log(info);
+        console.log(form);
         const treinoInfo = {
             userId: form.userId,
             id: form.id,
@@ -111,7 +113,7 @@ function CreateTreinoAluno() {
                             setShowModal();
                         }}
                         idForm={form.id}
-                        optionalFunction={(e) => {}}
+                        optionalFunction={(e) => {dispatch(addExercicio(e))}}
                     />
                 )}
             </div>
