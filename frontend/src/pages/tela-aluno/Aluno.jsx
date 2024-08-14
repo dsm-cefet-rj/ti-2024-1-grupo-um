@@ -30,7 +30,10 @@ function Aluno() {
 
     const alunos = useSelector(rootReducer => rootReducer.aluno);
 
-    const usuario = alunos.filter((aluno) => aluno.userId === id)[0];
+    const usuario = alunos.filter((aluno) => aluno.idUser === id)[0];
+    console.log(alunos);
+    console.log(usuario);
+    console.log(alunos.filter((aluno) => aluno.userId === id))
 
     const handleDeleteTreino = (treinoId) => {
         dispatch(deleteTreinoByID(treinoId))
@@ -62,7 +65,7 @@ function Aluno() {
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Peso</p>
-                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.weigth} Kg</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.weight} Kg</p>
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Motivação</p>
@@ -93,10 +96,10 @@ function Aluno() {
             <>
                 <div className="exercicio-card" id="treino-aluno">
                     <div className="exercicio-info">
-                        <Link className="card-title" id="exercicio-nome" onClick={() => {dispatch(getExercisesByTreinoID(treino.id))}} to={`/EditTreinoAluno/${treino.id}`}>{treino.title}</Link>
+                        <Link className="card-title" id="exercicio-nome" onClick={() => {dispatch(getExercisesByTreinoID(treino._id))}} to={`/EditTreinoAluno/${treino._id}`}>{treino.title}</Link>
                     </div>
                     <div className="btn-div">
-                        <button className="btn-lixeira" onClick={() => {handleDeleteTreino(treino.id)}}>
+                        <button className="btn-lixeira" onClick={() => {handleDeleteTreino(treino._id)}}>
                             <img className="lixeira-image" src={lixeira} alt="lixeira" />
                         </button>
                     </div>

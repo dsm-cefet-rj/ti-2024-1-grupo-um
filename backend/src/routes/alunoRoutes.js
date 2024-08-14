@@ -4,8 +4,8 @@ const alunoRoutes = express.Router();
 
 alunoRoutes.post("/aluno", createAluno)
 alunoRoutes.get("/aluno/:idPersonal", getAlunosByPersonalId)
-alunoRoutes.delete("/aluno/:idPersonal", deleteAlunoByPersonalId)
-alunoRoutes.delete("/aluno/:idUser", deleteAlunoByUserId)
+alunoRoutes.delete("/aluno/personal/:idPersonal", deleteAlunoByPersonalId)
+alunoRoutes.delete("/aluno/user/:userId", deleteAlunoByUserId)
 
 
 export default alunoRoutes;
