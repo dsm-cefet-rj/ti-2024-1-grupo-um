@@ -40,7 +40,14 @@ async function readOne(req, res){
 async function createUser(req, res){
     try{
         //desmembrar objeto
-        console.log(req.body);
+        const newUser = {
+            nome: req.body.nome,
+            CPF: req.body.CPF,
+            email: req.body.email,
+            birth: req.body.birth,
+            senha: req.body.senha
+        
+        }
         //verificar email
         const existingEmailArray = await userModel.find({email: req.body.email});
         const existingEmail = existingEmailArray[0];
