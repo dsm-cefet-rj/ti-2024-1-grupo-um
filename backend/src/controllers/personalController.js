@@ -1,5 +1,6 @@
 //here the personal controller
 import { personalModel } from "../models/PersonalModel.js";
+import jsonwebtoken from "jsonwebtoken";
 //READ_ALL - feito
 //READ_ONE - feito
 //CREATE_PERSONAL - feito
@@ -149,10 +150,11 @@ async function loginPersonal(req, res){
         //hash de senha
         if(senha === existingPersonal.senha){
             console.log(req.body);
+            const token = jsonwebtoken.sign(req.body, process.env.SECRET_JWT, {expiresIn: 300});
             return res.status(200).send({
                 message: "Personal autenticado com sucesso",
                 status: true,
-                token: "personaltoken",
+                token: token,
                 personal: existingPersonal
             });
             
