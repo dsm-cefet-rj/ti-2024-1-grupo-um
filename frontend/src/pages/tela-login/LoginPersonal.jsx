@@ -7,7 +7,7 @@ import logo from "../../images/logo.png";
 //import react stuff
 import { Link, useNavigate } from "react-router-dom";
 import { getTreinosByUserID } from "../../redux/trainings/slice";
-
+import { notify } from "../../App";
 //import axios
 import axios from "axios";
 
@@ -52,12 +52,21 @@ function LoginPersonal(){
                 const personal = response.personal;
                 dispatch(addLoggedPersonal(personal));
                 dispatch(getAlunosByPersonalId(personal._id));
-                alert("autenticado");
-                navigate("/");
+                notify("success", "Login realizado com sucesso");
+                // setTimeout(10000);
+
+                setTimeout(() => {
+                    navigate("/personais");
+                }, 2000);
+                // toast("Usuário autenticado com sucesso!");
                 return;
+            }else{
+                notify("error", "Login ou senha inválidos.");
+                // alert("usuario invalido");
             }
-        }catch(error){
-            alert("Login ou senha incorretos");
+        }catch(err){
+            notify("error", "Login ou senha inválidos.");
+            // alert(err);
         }
     }
     const initialValues = {

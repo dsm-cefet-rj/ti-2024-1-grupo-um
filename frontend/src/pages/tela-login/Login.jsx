@@ -9,7 +9,7 @@ import { getTreinosByUserID } from "../../redux/trainings/slice";
 import axios from "axios";
 
 //css 
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.min.css';
 import "./../pages.css";
 
 //redux
@@ -19,7 +19,7 @@ import { clearPersonals, getPersonais } from "../../redux/personal/slice";
 import { clearAnamnese, getAnamnese } from "../../redux/anamnese/slice";
 import { clearExercises } from "../../redux/exercises/slice";
 import { clearAlunos, getAlunosByPersonalId } from "../../redux/aluno/slice";
-
+import { notify } from "../../App";
 //yup
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
@@ -62,31 +62,29 @@ function Login(){
             const autenticado = await axios.post("http://localhost:5000/login", loginObj);
             console.log(autenticado.data.user)
             if(autenticado.data.status == true){
-                notify("success");
                 dispatch(addLoggedUser(autenticado.data.user));
                 dispatch(getTreinosByUserID(autenticado.data.user._id));
                 dispatch(getPersonais());
                 dispatch(getAnamnese(autenticado.data.user._id));
                 // alert("autenticado");
-                notify("success");
-                setTimeout(1000);
+                notify("success", "Login realizado com sucesso");
+                // setTimeout(10000);
+
+                setTimeout(() => {
+                    navigate("/personais");
+                }, 2000);
                 // toast("Usuário autenticado com sucesso!");
-                navigate("/personais");
                 return;
             }else{
-                toast.error("Login ou senha incorretos");
+                notify("error", "Login ou senha inválidos.");
                 // alert("usuario invalido");
             }
         }catch(err){
-            toast.error(err);
+            notify("error", "Login ou senha inválidos.");
             // alert(err);
         }
     }
-    const notify = (word) => {
-        if(word === "success"){
-            toast.success("Login realizado com sucesso");
-        }
-    }
+
 
     const initialValues = {
         email: "",
@@ -138,7 +136,7 @@ function Login(){
                     </Formik>
                 </div>
             </div>
-            
+            <ToastContainer/>
         </div>
     );
 }
