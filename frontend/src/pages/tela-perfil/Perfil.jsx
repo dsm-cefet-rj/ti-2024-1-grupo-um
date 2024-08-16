@@ -5,7 +5,7 @@ import InputComponentYup from "../../components/InputComponent/InputComponenteYu
 import './style.css';
 //react
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { addLoggedUser, deleteUser, logoutUser, updateUser } from "../../redux/user/slice";
@@ -16,10 +16,12 @@ import { clearExercises } from "../../redux/exercises/slice";
 //Yup
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import { notify } from "../../index";
 
 function Perfil() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     const currentUser = useSelector(rootReducer => rootReducer.user);
     const treinos = useSelector(rootReducer => rootReducer.trainings);
@@ -27,10 +29,16 @@ function Perfil() {
 
     const handleSubmitForm = (infos) => {
         console.log(infos);
-        infos["id"] = currentUser.user._id;
+        infos._id = currentUser.user._id;
+        console.log(infos);
         dispatch(updateUser(infos));
         dispatch(addLoggedUser(infos));
-        alert("usuario editado com sucesso!");
+
+        notify("success", "Usuario editado com sucesso");
+
+        setTimeout(() => {
+            navigate("/personais");
+        }, 2000);
     }
     const handleUserDelete = () => {
         const userId = currentUser.user._id;

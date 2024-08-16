@@ -131,6 +131,7 @@ async function login(req, res){
                 status: false
             });
         }
+        console.log(existingUser)
         //hash de senha
         if(senha === existingUser.senha){
             console.log(req.body);
