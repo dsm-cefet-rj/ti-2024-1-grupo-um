@@ -10,6 +10,7 @@ import SelectComponentYup from "../../components/InputComponent/SelectComponentY
 
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import { notify } from "../../index";
 
 function VisuAnamnese() {
 
@@ -23,7 +24,11 @@ function VisuAnamnese() {
         infos["id"] = anamnese.id;
         dispatch(updateAnamnese(infos))
         dispatch(addAnmnese(infos))
-        navigate("/personais")
+      
+        notify("success", "Anamnese atualizada com sucesso");
+        setTimeout(() => {
+            navigate("/personais");
+        }, 2000);
     }
 
     if (!currentUser.logged) {

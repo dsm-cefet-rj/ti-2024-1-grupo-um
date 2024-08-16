@@ -22,6 +22,7 @@ import { addTraining } from "../../redux/trainings/slice";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import FormList from "../../components/FormList/formList";
+import { notify } from "../../index.js";
 
 
 
@@ -51,7 +52,10 @@ function AddTreinos() {
         dispatch(addTraining(treinoInfo));
         exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
         dispatch(clearExercises());
-        navigate("/areaFIT");
+        notify("success", "Treino adicionado com sucesso");
+        setTimeout(() => {
+            navigate("/areaFIT");
+        }, 2000)
     }
 
     const openModal = () => {

@@ -16,7 +16,7 @@ const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
 });
 
 const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
-    await api.put(`/user/${data.id}`, data);
+    await api.put(`/user/${data._id}`, data);
 });
 
 const deleteUser = createAsyncThunk("users/deleteUserAsync", async(id)=>{

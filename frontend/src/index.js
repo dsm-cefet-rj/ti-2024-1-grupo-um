@@ -28,13 +28,14 @@ import PerfilPersonal from './pages/tela-perfil/PerfilPersonal.jsx';
 import MeusAlunos from './pages/tela-meus-alunos/MeusAlunos.jsx';
 import Aluno from './pages/tela-aluno/Aluno.jsx';
 import LoginPersonal from './pages/tela-login/LoginPersonal.jsx'
+import { toast, ToastContainer } from 'react-toastify';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
-    errorElement: <Error />,
+    errorElement: <Error/>,
     children: [
       {
         path: "/",
@@ -116,11 +117,22 @@ const router = createBrowserRouter([
   }
 ]);
 
+export const notify = (type, message) => {
+  if(type === "success"){
+    toast.success(message || "Usuário autenticado com sucesso!", {
+      autoClose:1000
+    });
+  } else if(type === "error") {
+    toast.error(message || "Ocorreu um erro!");
+  }
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
+      <ToastContainer/>
     </Provider>
   </React.StrictMode>
 );

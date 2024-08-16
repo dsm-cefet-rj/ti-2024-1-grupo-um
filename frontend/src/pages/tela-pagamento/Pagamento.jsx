@@ -12,6 +12,7 @@ import { createAluno } from '../../redux/aluno/slice';
 import User from '../../images/user.png';
 //css
 import './Pagamento.css';
+import { notify } from '../../index';
 
 function Pagamento() {
   const currentUser = useSelector(rootReducer => rootReducer.user);
@@ -45,8 +46,13 @@ function Pagamento() {
     }catch(error){
       // toast.error("Você já é matriculado com esse personal.");
     }
-    alert("pagamento feito com sucesso!");
-    navigate("/");
+    
+    notify("success", "Pagamento realizado com sucesso");
+
+    setTimeout(() => {
+        navigate("/");
+    }, 2000);
+
   };
   
   if(!currentUser.logged){

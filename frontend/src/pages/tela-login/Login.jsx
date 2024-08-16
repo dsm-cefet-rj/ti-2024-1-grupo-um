@@ -19,7 +19,7 @@ import { clearPersonals, getPersonais } from "../../redux/personal/slice";
 import { clearAnamnese, getAnamnese } from "../../redux/anamnese/slice";
 import { clearExercises } from "../../redux/exercises/slice";
 import { clearAlunos, getAlunosByPersonalId } from "../../redux/aluno/slice";
-import { notify } from "../../App";
+import { notify } from "../../index";
 //yup
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
@@ -67,12 +67,12 @@ function Login(){
                 dispatch(getPersonais());
                 dispatch(getAnamnese(autenticado.data.user._id));
                 // alert("autenticado");
-                notify("success", "Login realizado com sucesso");
+                notify("success", "Login realizado com sucesso")
                 // setTimeout(10000);
 
                 setTimeout(() => {
                     navigate("/personais");
-                }, 2000);
+                }, 3000);
                 // toast("Usuário autenticado com sucesso!");
                 return;
             }else{

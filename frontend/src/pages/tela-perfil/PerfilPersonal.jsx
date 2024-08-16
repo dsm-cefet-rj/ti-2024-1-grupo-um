@@ -14,6 +14,7 @@ import { deletePersonal, updatePersonal } from "../../redux/personal/slice";
 //Yup
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import { notify } from "../../index";
 
 
 function PerfilPersonal() {
@@ -28,8 +29,13 @@ function PerfilPersonal() {
         console.log(currentUser.personal._id);
         dispatch(updatePersonal({...infos, _id: currentUser.personal._id}));
         // dispatch(addLoggedPersonal(infos));
-        alert("Personal editado com sucesso!");
-        navigate("/");
+        
+        notify("success", "Personal editado com sucesso");
+
+        setTimeout(() => {
+            navigate("/");
+        }, 2000);
+        
     }
     const handlePersonalDelete = () => {
         const idPersonal = currentUser.personal._id;

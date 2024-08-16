@@ -17,6 +17,8 @@ import { createPersonal } from "../../redux/personal/slice";
 // import { createHash } from "crypto";
 import { v4 as idGen } from "uuid";
 
+import { notify } from "../../index";
+
 function CadastroPersonal(){
 
     const validationSchema = Yup.object({
@@ -51,8 +53,11 @@ function CadastroPersonal(){
     const dispatch = useDispatch();
     const handlePersonalSingUp=(values)=>{
         dispatch(createPersonal({...values, image: null, id: idGen()}));
-        alert("personal cadastrado com uscesso");
-        navigate("/login");
+        notify("success", "Cadastro realizado com sucesso");
+
+        setTimeout(() => {
+            navigate("/login");
+        }, 2000)
     }
 
     return(

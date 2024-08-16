@@ -20,6 +20,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 //import gerador de id
 import { v4 as idGen } from "uuid";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
+import { notify } from "../../index";
 
 function Cadastro(){
 
@@ -49,7 +50,12 @@ function Cadastro(){
 
     const handleSingUp=(values)=>{
         dispatch(addUser({...values, id:idGen()}));
-        navigate("/login");
+
+        notify("success", "Cadastro realizado com sucesso");
+
+        setTimeout(() => {
+            navigate("/login");
+        }, 2000)
     }
 
     return(

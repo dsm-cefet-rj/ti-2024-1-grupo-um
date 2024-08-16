@@ -7,7 +7,7 @@ import logo from "../../images/logo.png";
 //import react stuff
 import { Link, useNavigate } from "react-router-dom";
 import { getTreinosByUserID } from "../../redux/trainings/slice";
-import { notify } from "../../App";
+import { notify } from "../../index";
 //import axios
 import axios from "axios";
 
