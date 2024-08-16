@@ -85,7 +85,7 @@ function Anamnese() {
                                 <SelectComponentYup classes="mt-3" id="activityFreqSelect" name="activityFreq" text={<b>Com que frequência faz atividade física?</b>} options={freqOptions} />
                                 <InputComponentYup classes="mt-3" id="dateInput" name="date" text={<b>Data do ultimo exame médico ou físico:</b>} type="date" placeholder="" />
                                 <SelectComponentYup classes="mt-3" id="dietSelect" name="diet" text={<b>Faz dieta?</b>} options={yesOrNot} />
-                                <InputComponentYup classes="mt-3" id="observacoesInput" name="observacoes" text={<b>Observações:</b>} type="text" placeholder="(opcional) Digite observações" />
+                                <InputComponentYup classes="mt-3" id="observacoesInput" name="observacoes" text={<b>Observações:</b>} type="text" placeholder="(Opcional) Digite observações" />
 
                                 <div className="mt-3 d-flex justify-content-center">
                                     <button className="btn-submit" type="submit" disabled={!isValid}>Enviar</button>
