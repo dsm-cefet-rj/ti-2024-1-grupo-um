@@ -98,7 +98,7 @@ function LoginPersonal(){
                         {({ isValid }) => (
                         <Form className="formulario-login">
                                 <InputComponentYup classes="mb-3 mt-3" id="InputEmail" name="email" text={<b>Email:</b>} type="text" placeholder="Insira seu email aqui" />
-                                <InputComponentYup classes="mb-3" id="Password" name="senha" text={<b>Senha:</b>} type="password" placeholder="Digite a descrição do treino" />
+                                <InputComponentYup classes="mb-3" id="Password" name="senha" text={<b>Senha:</b>} type="password" placeholder="Insira sua senha aqui" />
 
                                 <div className="d-flex w-100 mt-3">
                                     <button className="btn-submit btn-primary w-100" type="submit" disabled={!isValid}>Enviar</button>
