@@ -84,7 +84,7 @@ function Anamnese() {
                             <div className="container cefit-form">
                                 <h2 id="titulo-form">Faça sua Anamnese</h2>
 
-                                <InputComponentYup classes="mt-3" id="weigthInput" name="weight" text={<b>Seu peso:</b>} type="number" placeholder="Digite o seu peso (em kg)" />
+                                <InputComponentYup classes="mt-3" id="weightInput" name="weight" text={<b>Seu peso:</b>} type="number" placeholder="Digite o seu peso (em kg)" />
                                 <InputComponentYup classes="mt-3" id="motivationInput" name="motivation" text={<b>Motivação/Objetivo:</b>} type="text" placeholder="Ganhar peso, perder peso, ganhar músculos ..." />
                                 <SelectComponentYup classes="mt-3" id="activityFreqSelect" name="activityFreq" text={<b>Com que frequência faz atividade física?</b>} options={freqOptions} />
                                 <InputComponentYup classes="mt-3" id="dateInput" name="date" text={<b>Data do ultimo exame médico ou físico:</b>} type="date" placeholder="" />

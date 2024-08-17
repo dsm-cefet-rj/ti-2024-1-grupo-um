@@ -37,7 +37,7 @@ function VisuAnamnese() {
         return <Navigate to="/login" />
     }
     const initialValues = {
-        weigth: anamnese.weigth,
+        weight: anamnese.weight,
         motivation: anamnese.motivation,
         activityFreq: anamnese.activityFreq,
         date: anamnese.date,
@@ -49,7 +49,7 @@ function VisuAnamnese() {
     const yesOrNot = ["Sim", "Não"];
     
     const validationSchema = Yup.object({
-        weigth: Yup.number().required("Peso é obrigatório").max(500, "Peso não deve ser maior que 500"),
+        weight: Yup.number().required("Peso é obrigatório").max(500, "Peso não deve ser maior que 500"),
         motivation: Yup.string().required("Motivação é obrigatório"),
         activityFreq: Yup.string().required("Selecione uma opção").oneOf(freqOptions),
         date: Yup.date(),
@@ -74,7 +74,7 @@ function VisuAnamnese() {
                             <div className="container cefit-form">
                                 <h2 id="titulo-form">Anamnese</h2>
                                 <h4 id="subtitulo-form">Edite sua anamnese</h4>
-                                <InputComponentYup classes="mt-3" id="weigthInput" name="weigth" text={<b>Seu peso:</b>} type="number" placeholder="Digite o seu peso (em kg)" />
+                                <InputComponentYup classes="mt-3" id="weightInput" name="weight" text={<b>Seu peso:</b>} type="number" placeholder="Digite o seu peso (em kg)" />
                                 <InputComponentYup classes="mt-3" id="motivationInput" name="motivation" text={<b>Motivação/Objetivo:</b>} type="text" placeholder="Ganhar peso, perder peso, ganhar músculos ..." />
                                 <SelectComponentYup classes="mt-3" id="activityFreqSelect" name="activityFreq" text={<b>Com que frequência faz atividade física?</b>} options={freqOptions} />
                                 <InputComponentYup classes="mt-3" id="dateInput" name="date" text={<b>Data do ultimo exame médico ou físico:</b>} type="date" placeholder="" />
