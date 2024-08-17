@@ -17,6 +17,8 @@ import { clearExercises } from "../../redux/exercises/slice";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import { notify } from "../../index";
+import { ToastContainer } from 'react-toastify';
+
 
 function Perfil() {
 
@@ -94,6 +96,7 @@ function Perfil() {
     return (
         <>
             <Navbar />
+            <ToastContainer/>
             <div className="form-card p-5">
                 <Formik
                     initialValues={initialValues}

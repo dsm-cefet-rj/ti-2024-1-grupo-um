@@ -15,6 +15,7 @@ import { deletePersonal, updatePersonal } from "../../redux/personal/slice";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import { notify } from "../../index";
+import { ToastContainer } from 'react-toastify';
 
 
 function PerfilPersonal() {
@@ -44,6 +45,7 @@ function PerfilPersonal() {
         dispatch(clearAlunos());
         dispatch(logoutUser());
         navigate("/");
+        notify("sucess", "Personal deletado");
     }
 
     if (!currentUser.loggedPersonal) {
@@ -79,6 +81,7 @@ function PerfilPersonal() {
     return (
         <>
             <Navbar />
+            <ToastContainer/>
             <div className="form-card p-5">
                 <Formik
                     initialValues={initialValues}

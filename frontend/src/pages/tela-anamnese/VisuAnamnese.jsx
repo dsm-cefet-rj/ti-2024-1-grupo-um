@@ -8,9 +8,12 @@ import { useNavigate, Navigate } from "react-router-dom";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
 import SelectComponentYup from "../../components/InputComponent/SelectComponentYup";
 
+
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import { notify } from "../../index";
+import { ToastContainer } from 'react-toastify';
+
 
 function VisuAnamnese() {
 
@@ -20,12 +23,11 @@ function VisuAnamnese() {
     const anamnese = useSelector(rootReducer => rootReducer.anamnese);
 
     const handleSubmitForm = (infos) => {
+        notify("success", "Anamnese atualizada com sucesso");
         infos["userId"] = currentUser.user.id;
         infos["id"] = anamnese.id;
         dispatch(updateAnamnese(infos))
         dispatch(addAnmnese(infos))
-      
-        notify("success", "Anamnese atualizada com sucesso");
         setTimeout(() => {
             navigate("/personais");
         }, 2000);
@@ -58,12 +60,13 @@ function VisuAnamnese() {
     return (
         <>
             <Navbar />
+            <ToastContainer/>
             <div className="form-card p-5">
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
                     onSubmit={(values) => {
-                        handleSubmitForm(values)
+                        handleSubmitForm(values);
                     }}
                 >
                     {({ isValid }) => (

@@ -14,6 +14,8 @@ import SelectComponentYup from "../../components/InputComponent/SelectComponentY
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import { notify } from "../../index";
+import { ToastContainer } from 'react-toastify';
+
 
 function Anamnese() {
 
@@ -24,11 +26,12 @@ function Anamnese() {
     const anamneseUser = useSelector(rootReducer => rootReducer.anamnese);
 
     const handleSubmitForm = (infos) => {
+        notify("success", "Anamnese criada com sucesso");
         infos["userId"] = currentUser.user._id;
         dispatch(addAnmneseAsync(infos))
         dispatch(addAnmnese(infos))
 
-        notify("success", "Anamnese criada com sucesso");
+        
 
         setTimeout(() => {
             navigate("/personais");
@@ -67,6 +70,7 @@ function Anamnese() {
     return (
         <>
             <Navbar />
+            <ToastContainer/>
             <div className="bg-image cefit-background-img" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
                 <Formik
                     initialValues={initialValues}

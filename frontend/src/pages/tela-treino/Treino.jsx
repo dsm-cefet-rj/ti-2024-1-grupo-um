@@ -11,6 +11,9 @@ import { useDispatch } from "react-redux";
 
 import { deleteTreinoByID, deleteTraining } from "../../redux/trainings/slice.js";
 import { addExercicio, deleteExerciciosByTreinoId } from "../../redux/exercises/slice.js";
+import { ToastContainer } from 'react-toastify';
+import { notify } from "../../index.js";
+
 
 function Treino() {
     //id treino
@@ -27,10 +30,12 @@ function Treino() {
     }
   
     const handleDeleteTreino = () => {
+        notify("success", "Treino deletado com sucesso!");
         dispatch(deleteTreinoByID(id));
         dispatch(deleteTraining(id));
         dispatch(deleteExerciciosByTreinoId(id));
         navigate("/areaFIT");
+        
     }
     
     const openModal = () => {
@@ -40,6 +45,7 @@ function Treino() {
     return (
         <>
         <Navbar />
+        <ToastContainer/>
         <div className="treino">
             <div className="traino-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
                 <h1 className="display-4">Exercícios</h1>

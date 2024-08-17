@@ -23,6 +23,7 @@ import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import FormList from "../../components/FormList/formList";
 import { notify } from "../../index.js";
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -86,6 +87,7 @@ function AddTreinos() {
     return (
         <>
             <Navbar />
+            <ToastContainer/>
             <div className="container form-card p-5">
                 <Formik
                     initialValues={initialValues}

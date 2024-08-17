@@ -4,10 +4,14 @@ import FormCreator from "../../components/FormCreator/formCreator";
 import { useDispatch } from "react-redux";
 import { addExercise } from "../../redux/exercises/slice";
 
+
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
+import { ToastContainer } from 'react-toastify';
+
 
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import { notify } from "../..";
 
 function  Modal(props) {
     const dispatch = useDispatch();
@@ -18,8 +22,10 @@ function  Modal(props) {
         dispatch(
             addExercise({ ...info, idForm })
         )
+        notify("success", "Exercício adicionado com sucesso!");
         setModal(false);
         optionalFunction({...info, idForm})
+        
     }
     const initialValues = {
         name: "",
@@ -36,6 +42,7 @@ function  Modal(props) {
 
     return (
         <>
+            <ToastContainer/>
             <div className="modal-overlay">
                 <Formik
                     initialValues={initialValues}

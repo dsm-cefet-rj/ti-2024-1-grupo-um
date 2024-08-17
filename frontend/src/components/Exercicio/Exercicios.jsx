@@ -5,6 +5,10 @@ import padr from "./default-icon.png";
 import lixeira from "./lixeira.png";
 import { deleteExercicioByID, deleteExercicio } from "../../redux/exercises/slice.js";
 import { useDispatch } from "react-redux";
+import { notify } from "../../index.js";
+import { ToastContainer } from 'react-toastify';
+
+
 
 function Exercicio({ nome, carga, rep, obs, type, idExercicio}) {
   const dispatch = useDispatch();
@@ -23,11 +27,15 @@ function Exercicio({ nome, carga, rep, obs, type, idExercicio}) {
   const handleDeleteExercicio = () => {
     dispatch(deleteExercicioByID(idExercicio));
     dispatch(deleteExercicio(idExercicio));
+    notify("success", "Exercício deletado com sucesso!");
     //navigate("/treino");
   }
 
     return (
+      <>
+      <ToastContainer/>
       <div className="exercicio-card">
+       
         <div id="img-exercicio">
             
           <Img />
@@ -44,6 +52,7 @@ function Exercicio({ nome, carga, rep, obs, type, idExercicio}) {
             </button>
         </div>
       </div>
+      </>
     );
   }
   

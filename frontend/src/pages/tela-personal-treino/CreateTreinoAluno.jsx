@@ -21,6 +21,8 @@ import { addTraining } from "../../redux/trainings/slice";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import FormList from "../../components/FormList/formList";
+import { ToastContainer } from 'react-toastify';
+import { notify } from "../..";
 
 
 function CreateTreinoAluno() {
@@ -52,7 +54,9 @@ function CreateTreinoAluno() {
         exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
         dispatch(clearExercises());
         dispatch(clearForms());
+        notify("success", "Treino criado com sucesso");
         navigate("/meusAlunos");
+
     }
 
     const openModal = () => {
@@ -83,6 +87,7 @@ function CreateTreinoAluno() {
     return (
         <>
             <Navbar />
+            <ToastContainer/>
             <div className="container form-card p-5">
                 <Formik
                     initialValues={initialValues}

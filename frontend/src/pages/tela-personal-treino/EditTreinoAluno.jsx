@@ -12,6 +12,10 @@ import { useDispatch } from "react-redux";
 import { deleteTreinoByID, deleteTraining } from "../../redux/trainings/slice.js";
 import { addExercicio } from "../../redux/exercises/slice.js";
 
+import { ToastContainer } from 'react-toastify';
+import { notify } from "../../index.js";
+
+
 function EditTreinoAluno() {
     //init
     const dispatch = useDispatch();
@@ -29,6 +33,7 @@ function EditTreinoAluno() {
     const handleDeleteTreino = () => {
         dispatch(deleteTreinoByID(id));
         dispatch(deleteTraining(id));
+        notify("success", "treino deletado com sucesso!");
         navigate("/areaFIT");
     }
     
@@ -37,6 +42,8 @@ function EditTreinoAluno() {
     };
 
     const handlePostExercise = (info) => {
+        notify("sucess", "treino editado com sucesso!");
+
         dispatch(addExercicio(info))
     }
 
@@ -48,6 +55,7 @@ function EditTreinoAluno() {
     return (
         <>
         <Navbar />
+        <ToastContainer/>
         <div className="treino">
             <div className="traino-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
                 <h1 className="display-4">Exercícios</h1>
