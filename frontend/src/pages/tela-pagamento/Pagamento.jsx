@@ -62,7 +62,6 @@ function Pagamento() {
   return (
     <div>
       <Navbar/>
-      <ToastContainer/>
       <div className="bg-image cefit-background-img" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`, display: 'flex', flexDirection: 'column', gap: '20px' }}>
         <div className="pag-container">
         {personalAtual.image ?

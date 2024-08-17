@@ -87,7 +87,6 @@ function AddTreinos() {
     return (
         <>
             <Navbar />
-            <ToastContainer/>
             <div className="container form-card p-5">
                 <Formik
                     initialValues={initialValues}
@@ -115,8 +114,7 @@ function AddTreinos() {
                 {showModal && (
                     <Modal
                         setModal={() => {
-                            setShowModal();
-
+                            setShowModal(!showModal);
                         }}
                         idForm={form.id}
                     />

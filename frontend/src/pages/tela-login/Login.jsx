@@ -136,7 +136,6 @@ function Login(){
                     </Formik>
                 </div>
             </div>
-            <ToastContainer/>
         </div>
     );
 }

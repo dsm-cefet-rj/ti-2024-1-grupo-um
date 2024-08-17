@@ -96,7 +96,6 @@ function Perfil() {
     return (
         <>
             <Navbar />
-            <ToastContainer/>
             <div className="form-card p-5">
                 <Formik
                     initialValues={initialValues}

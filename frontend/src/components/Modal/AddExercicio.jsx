@@ -16,17 +16,8 @@ import { notify } from "../..";
 function  Modal(props) {
     const dispatch = useDispatch();
 
-    const { setModal, idForm, optionalFunction } = props;
+    const { setModal, handleSubmitForm } = props;
 
-    const handleSubmitForm = (info) => {
-        dispatch(
-            addExercise({ ...info, idForm })
-        )
-        notify("success", "Exercício adicionado com sucesso!");
-        setModal(false);
-        optionalFunction({...info, idForm})
-        
-    }
     const initialValues = {
         name: "",
         series: "",
@@ -42,7 +33,6 @@ function  Modal(props) {
 
     return (
         <>
-            <ToastContainer/>
             <div className="modal-overlay">
                 <Formik
                     initialValues={initialValues}

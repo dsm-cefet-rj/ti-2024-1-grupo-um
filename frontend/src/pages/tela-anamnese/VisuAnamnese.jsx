@@ -60,7 +60,6 @@ function VisuAnamnese() {
     return (
         <>
             <Navbar />
-            <ToastContainer/>
             <div className="form-card p-5">
                 <Formik
                     initialValues={initialValues}

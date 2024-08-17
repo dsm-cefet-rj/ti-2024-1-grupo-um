@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 import { deleteTreinoByID, deleteTraining } from "../../redux/trainings/slice.js";
-import { addExercicio, deleteExerciciosByTreinoId } from "../../redux/exercises/slice.js";
+import { addExercicio, addExercise, deleteExerciciosByTreinoId } from "../../redux/exercises/slice.js";
 import { ToastContainer } from 'react-toastify';
 import { notify } from "../../index.js";
 
@@ -42,10 +42,22 @@ function Treino() {
         setShowModal(true);
     };
 
+    const handleSubmitForm = (info) => {
+        dispatch(addExercise({ ...info, idForm: id }))
+        
+        notify("success", "Exercício adicionado com sucesso!");
+
+        setTimeout(()=>{
+            // setShowModal(false);
+            dispatch(addExercicio({...info, idForm: id}));
+        }, 2000)
+        
+    }
+
     return (
         <>
         <Navbar />
-        <ToastContainer/>
+
         <div className="treino">
             <div className="traino-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
                 <h1 className="display-4">Exercícios</h1>
@@ -86,16 +98,16 @@ function Treino() {
             {showModal && (
                     <Modal
                         setModal={() => {
-                            setShowModal();
-
+                            setShowModal(!showModal);
                         }}
-                        idForm={id}
+                        handleSubmitForm={(info) => handleSubmitForm(info)}
+                        
                         optionalFunction={(info) => {dispatch(addExercicio(info))}}
                     />
                 )}
             </div>
         <div className="btn-div">
-            <button className="btn-delete" onClick={() =>{handleDeleteTreino(id)}}>Excluir treino</button>
+            <button className="btn-delete" onClick={() =>handleDeleteTreino(id)}>Excluir treino</button>
         </div>
         <FooterComp />
         </>

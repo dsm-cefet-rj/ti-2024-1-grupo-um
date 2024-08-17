@@ -33,7 +33,6 @@ function Exercicio({ nome, carga, rep, obs, type, idExercicio}) {
 
     return (
       <>
-      <ToastContainer/>
       <div className="exercicio-card">
        
         <div id="img-exercicio">

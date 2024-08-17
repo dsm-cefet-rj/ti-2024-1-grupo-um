@@ -87,7 +87,6 @@ function CreateTreinoAluno() {
     return (
         <>
             <Navbar />
-            <ToastContainer/>
             <div className="container form-card p-5">
                 <Formik
                     initialValues={initialValues}

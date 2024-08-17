@@ -119,12 +119,16 @@ const router = createBrowserRouter([
 ]);
 
 export const notify = (type, message) => {
-  if(type === "success"){
-    toast.success(message || "Usuário autenticado com sucesso!", {
-      autoClose:1000
-    });
-  } else if(type === "error") {
-    toast.error(message || "Ocorreu um erro!");
+  try{
+    if(type === "success"){
+      toast.success(message, {
+        autoClose:1000
+      });
+    } else if(type === "error") {
+      toast.error(message || "Ocorreu um erro!");
+    }
+  }catch(error){
+
   }
 }
 
@@ -132,8 +136,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
-      <ToastContainer/>
+      <RouterProvider router={router}>
+      </RouterProvider>
+        <ToastContainer />
     </Provider>
   </React.StrictMode>
 );
