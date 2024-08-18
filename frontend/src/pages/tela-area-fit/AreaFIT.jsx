@@ -31,9 +31,9 @@ function AreaFIT() {
 
 	return (
 		<>
-    <div style={{ height: "100vh" }}>
+    <div>
 
-			<div style={{height:"80%"}}>
+			<div>
 				<Navbar />
 				<div className="fit-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
 					<h1 className="display-4">Área FIT</h1>
