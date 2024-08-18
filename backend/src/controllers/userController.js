@@ -47,19 +47,27 @@ async function createUser(req, res){
             email: req.body.email,
             birth: req.body.birth,
             senha: req.body.senha
-        
         }
         //verificar email
         const existingEmailArray = await userModel.find({email: req.body.email});
         const existingEmail = existingEmailArray[0];
+        console.log(existingEmailArray);
+        console.log(existingEmail);
 
         if(existingEmail != undefined){
-            return res.status(400).send({
-                message: 'Email ja cadastrado'
-            });
+            // return res.status(400).send({
+            //     message: 'Email ja cadastrado'
+            // });
+            throw new Error({message: "Email já cadastrado"});
         }
 
         //verificar cpf
+        const existingCPFArray = await userModel.find({CPF: newUser.CPF});
+        const existingCPF = existingCPFArray[0];
+        if(existingCPF){
+            throw new Error({message: "CPF já cadastrado."});
+        }
+
 
         const result = await userModel.create(newUser);
 
@@ -71,7 +79,7 @@ async function createUser(req, res){
     }catch(error){
         return res.status(400).send({
             error: error,
-            message: 'Ocorreu um erro na criação de usuario'
+            message: error.message
         });
     }
 }

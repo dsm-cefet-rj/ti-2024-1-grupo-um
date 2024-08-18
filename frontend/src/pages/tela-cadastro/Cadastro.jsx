@@ -49,13 +49,13 @@ function Cadastro(){
     const dispatch = useDispatch();
 
     const handleSingUp=(values)=>{
-        dispatch(addUser({...values, id:idGen()}));
-
-        notify("success", "Cadastro realizado com sucesso");
-
-        setTimeout(() => {
-            navigate("/login");
-        }, 2000)
+            const status = dispatch(addUser(values));
+            // notify("success", "Cadastro realizado com sucesso");
+            if(status){
+                setTimeout(() => {
+                    navigate("/login");
+                }, 2000)
+            }
     }
 
     return(

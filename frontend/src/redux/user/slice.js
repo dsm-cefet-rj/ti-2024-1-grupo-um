@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { createAxiosInstance } from "../../utils/api";
+import { notify } from "../../index";
 
 const api  = createAxiosInstance();
 
@@ -11,8 +12,16 @@ const initialState = {
 };
 
 const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
-    const response = await api.post("/user", data)
-    return response.data;
+    try{
+        await api.post("/user", data);
+        notify("success", "Usuário criado com sucesso.");
+        return true;
+
+    }catch(error){
+        console.log(error);
+        notify("error", error.message);
+        return false;
+    }
 });
 
 const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
