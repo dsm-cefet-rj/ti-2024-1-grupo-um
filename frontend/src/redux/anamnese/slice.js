@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import CreateAxiosInstance from "../../utils/api";
 
+const api  = CreateAxiosInstance(); 
+
 const initialState = {
     preenchida: false,
     activityFreq: "",
@@ -14,31 +16,27 @@ const initialState = {
 }
 
 const addAnmneseAsync = createAsyncThunk('anamnese/addAnamneseAsync', async (data) => {
-    const api  = CreateAxiosInstance(); 
+
     const response = await api.post("/anamnese/", data);
     return response.data;
 });
 
 
 const getAnamnese = createAsyncThunk('anamnese/getAnamneseAsync', async (userId) => {
-    const api  = CreateAxiosInstance(); 
     console.log(userId);
     const response = await api.get(`/anamnese/${userId}`);
     return response.data;
 });
 
 const updateAnamnese = createAsyncThunk('anamnese/updateAnamneseAsync', async (payload) => {
-    const api  = CreateAxiosInstance();
     await api.put(`/anamnese/`, payload);
 })
 
 const deleteAnamneseByUserId = createAsyncThunk('anamnese/deleteAnamneseAsync', async (userId) => {
-    const api  = CreateAxiosInstance();
     await api.delete(`/anamnese/${userId}`);
 })
 
 const deleteAnamnese = createAsyncThunk('anamnese/deleteAnamneseAsync', async (anamneseId) => {
-    const api  = CreateAxiosInstance();
     await api.delete(`/anamnese/${anamneseId}`);
 })
 

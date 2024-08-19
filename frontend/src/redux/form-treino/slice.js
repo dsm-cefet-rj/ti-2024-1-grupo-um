@@ -9,8 +9,10 @@ const initialState = {
     observacoes: "",
 };
 
+const api  = CreateAxiosInstance();
+
 const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
-    const api  = CreateAxiosInstance();
+
     console.log(data);
     const response = await api.post("/training", data);
     return response.data;

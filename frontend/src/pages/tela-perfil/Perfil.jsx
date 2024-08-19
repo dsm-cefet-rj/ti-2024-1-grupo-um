@@ -31,14 +31,21 @@ function Perfil() {
 
     const handleSubmitForm = (infos) => {
         infos._id = currentUser.user._id;
-        
-        dispatch(updateUser(infos));
-        dispatch(addLoggedUser(infos));
+        console.log(infos);
+        dispatch(updateUser({...infos, token: currentUser.logged, _id: currentUser.user._id}));
+        dispatch(addLoggedUser({
+            user: {
+                ...infos,
+            },
+            token: currentUser.logged
+
+        }));
 
         setTimeout(() => {
             navigate("/personais");
         }, 2000);
     }
+
     const handleUserDelete = () => {
         const userId = currentUser.user._id;
         for(let treino of treinos){

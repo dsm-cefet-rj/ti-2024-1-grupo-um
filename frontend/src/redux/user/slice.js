@@ -1,7 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import CreateAxiosInstance from "../../utils/api";
 import { notify } from "../../index";
+import { useSelector } from "react-redux";
+import rootReducer from "../root-reducer";
 
+const api  = CreateAxiosInstance();
 
 const initialState = {
     logged: null,
@@ -11,11 +14,7 @@ const initialState = {
 };
 
 
-
-
-
 const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
-    const api  = CreateAxiosInstance();
     try{
         const response = await api.post("/user", data);
         notify("success", "Usuário criado com sucesso.");
@@ -29,9 +28,23 @@ const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
 });
 
 const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
-    const api  = CreateAxiosInstance(); 
     try{
-        await api.put(`/user/${data._id}`, data);
+        const token = data.token;
+        console.log(data);
+        const updateUser = {
+            CPF: data.CPF,
+            birth: data.birth,
+            email: data.email,
+            nome: data.nome,
+            senha: data.senha
+        }
+        console.log("passou linha 41");
+        await api.put(`/user/${data._id}`, updateUser, {
+            headers: {
+                Authorization:`${token}`
+            }
+        });
+        console.log("passou linha 47");
         notify("success", "Usuario atualizado com sucesso");
     }catch(error){
         notify("error", error.message);
@@ -39,7 +52,6 @@ const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
 });
 
 const deleteUser = createAsyncThunk("users/deleteUserAsync", async(id)=>{
-    const api  = CreateAxiosInstance(); 
     await api.delete(`/user/${id}`);
 });
 
