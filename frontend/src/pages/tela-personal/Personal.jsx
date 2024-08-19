@@ -14,7 +14,7 @@ import user from "../../images/user.png";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { getAnamnese } from "../../redux/anamnese/slice";
-import { createAxiosInstance } from "../../utils/api";
+import CreateAxiosInstance from "../../utils/api";
 import { useEffect, useState } from "react";
 
 function Personal() {
@@ -26,7 +26,7 @@ function Personal() {
   //   setPersonalAtual(actual);
   // }, [id]);
 
-  const api = createAxiosInstance();
+  const api = CreateAxiosInstance();
   
   const dispatch = useDispatch();
   const currentUser = useSelector(rootReducer => rootReducer.user);

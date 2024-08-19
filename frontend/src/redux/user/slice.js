@@ -1,21 +1,25 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { createAxiosInstance } from "../../utils/api";
+import CreateAxiosInstance from "../../utils/api";
 import { notify } from "../../index";
 
-const api  = createAxiosInstance();
 
 const initialState = {
-    logged: false,
-    loggedPersonal: false,
+    logged: null,
+    loggedPersonal: null,
     user: {},
     personal: {},
 };
 
+
+
+
+
 const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
+    const api  = CreateAxiosInstance();
     try{
-        await api.post("/user", data);
+        const response = await api.post("/user", data);
         notify("success", "Usuário criado com sucesso.");
-        return true;
+        return response.data;
 
     }catch(error){
         console.log(error);
@@ -25,10 +29,17 @@ const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
 });
 
 const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
-    await api.put(`/user/${data._id}`, data);
+    const api  = CreateAxiosInstance(); 
+    try{
+        await api.put(`/user/${data._id}`, data);
+        notify("success", "Usuario atualizado com sucesso");
+    }catch(error){
+        notify("error", error.message);
+    }
 });
 
 const deleteUser = createAsyncThunk("users/deleteUserAsync", async(id)=>{
+    const api  = CreateAxiosInstance(); 
     await api.delete(`/user/${id}`);
 });
 
@@ -36,9 +47,12 @@ const userSlice = createSlice({
     name:"user",
     initialState,
     reducers: {
-        addLoggedUser: (state, action) => { 
-            state.logged = true; //switch to token in the future
-            state.user = action.payload;
+        addLoggedUser: (state, action) => {
+            console.log(action.payload);
+            if(action.payload.token){
+                state.logged = action.payload.token; //switch to token in the future
+            }
+            state.user = action.payload.user;
         },
         addLoggedPersonal: (state, action) => {
             state.loggedPersonal = true; //switch to token in the future

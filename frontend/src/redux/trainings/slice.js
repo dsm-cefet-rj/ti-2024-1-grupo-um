@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { createAxiosInstance } from "../../utils/api";
+import CreateAxiosInstance  from "../../utils/api";
 
-const api = createAxiosInstance();
 const initialState = [];
-
+const api  = CreateAxiosInstance();
 
 const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", async(userId) => {
     try{
+
         const response = await api.get(`/training/${userId}`);
         console.log(response.data);
         return response.data; 
@@ -57,7 +57,8 @@ const trainingsSlice = createSlice({
             while (state.length > 0) {
                 state.pop()
             }
-            if(!action.payload.message){
+            console.log(action.payload);
+            if(!action.payload?.message){
                 for (let training of action.payload) {
                     state.push(training)
                 }

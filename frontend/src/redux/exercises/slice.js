@@ -1,11 +1,11 @@
+import CreateAxiosInstance from "../../utils/api";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { createAxiosInstance } from "../../utils/api";
 
-const api = createAxiosInstance();
 
 const initialState = [];
 
 const addExercicio = createAsyncThunk('user/addExerciseAsync', async (data) => {
+    const api  = CreateAxiosInstance(); 
     try{
         console.log(data);
         const exerciseToBeCreated = {
@@ -23,6 +23,7 @@ const addExercicio = createAsyncThunk('user/addExerciseAsync', async (data) => {
 });
 
 const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoID", async (idTreino) => {
+    const api  = CreateAxiosInstance(); 
     try {
         const response = await api.get(`/exercise/${idTreino}`);
         return response.data;
@@ -32,6 +33,7 @@ const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoI
 })
 
 const deleteExercicioByID = createAsyncThunk("exercises/deleteExerciseByID", async (idExercicio) => {
+    const api  = CreateAxiosInstance(); 
     try{
         await api.delete(`/exercise/${idExercicio}`);
     }

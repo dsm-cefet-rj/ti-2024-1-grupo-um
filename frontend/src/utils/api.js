@@ -1,15 +1,20 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
 
-const createAxiosInstance = () => {
-    // const { token } = useAuth();
+
+
+const CreateAxiosInstance = () => {
+
+  const { token } = useSelector((rootReducer) => rootReducer.auth);
+
+  return axios.create({
+    baseURL: "http://localhost:5000",
+    headers: {
+      Authorization: `${token}`,
+    },
+  });
+
   
-    const api = axios.create({
-      baseURL: "http://localhost:5000",
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    });
-    return api;
-  };
+};
   
-  export { createAxiosInstance };
+  export default CreateAxiosInstance;

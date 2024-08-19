@@ -30,13 +30,10 @@ function Perfil() {
     const anamnese = useSelector(rootReducer => rootReducer.anamnese);
 
     const handleSubmitForm = (infos) => {
-        console.log(infos);
         infos._id = currentUser.user._id;
-        console.log(infos);
+        
         dispatch(updateUser(infos));
         dispatch(addLoggedUser(infos));
-
-        notify("success", "Usuario editado com sucesso");
 
         setTimeout(() => {
             navigate("/personais");

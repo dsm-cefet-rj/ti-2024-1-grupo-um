@@ -62,7 +62,7 @@ function Login(){
             const autenticado = await axios.post("http://localhost:5000/login", loginObj);
             console.log(autenticado.data.user)
             if(autenticado.data.status == true){
-                dispatch(addLoggedUser(autenticado.data.user));
+                dispatch(addLoggedUser(autenticado.data));
                 dispatch(getTreinosByUserID(autenticado.data.user._id));
                 dispatch(getPersonais());
                 dispatch(getAnamnese(autenticado.data.user._id));

@@ -1,23 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createAxiosInstance } from "../../utils/api";
-
-const api = createAxiosInstance();
-
+import CreateAxiosInstance from "../../utils/api";
 
 const initialState = [];
 
 const getPersonais = createAsyncThunk("personais/getPersonaisAsync", async() => {
-    const response = await api.get("/personal");
-    return response.data; 
+    const api  = CreateAxiosInstance(); 
+    try{
+        const response = await api.get("/personal");
+        return response.data; 
+    }catch(error){
+        //logic
+    }
 });
 
 const createPersonal = createAsyncThunk('personais/addPersonalAsync', async (data) => {
-    const response = await api.post("/personal", data)
-    return response.data;
+    const api  = CreateAxiosInstance(); 
+    try{
+        const response = await api.post("/personal", data)
+        return response.data;
+    }catch(error){
+        return error.message;
+    }
 });
 
 const updatePersonal = createAsyncThunk("personais/updatePersonalAsync", async (data) => {
+    const api  = CreateAxiosInstance(); 
     const req = {
         CPF: data.CPF,
         biografia: data.biografia,
@@ -30,10 +38,13 @@ const updatePersonal = createAsyncThunk("personais/updatePersonalAsync", async (
         preco: data.preco,
         senha: data.senha
     }
+    //tratar notificacao update personal try catch notify
     await api.put(`/personal/${data._id}`, req);
 });
 
 const deletePersonal = createAsyncThunk("personais/deletePersonalAsync", async(id)=>{
+    const api  = CreateAxiosInstance(); 
+    //tratar try catch notificacao delete personal
     await api.delete(`/personal/${id}`);
 });
 
