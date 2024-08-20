@@ -42,12 +42,14 @@ const updatePersonal = createAsyncThunk("personais/updatePersonalAsync", async (
     }
     //tratar notificacao update personal try catch notify
     await api.put(`/personal/${data._id}`, req);
+    //auth 
 });
 
 const deletePersonal = createAsyncThunk("personais/deletePersonalAsync", async(id)=>{
     const api  = CreateAxiosInstance(); 
     //tratar try catch notificacao delete personal
     await api.delete(`/personal/${id}`);
+    // auth
 });
 
 

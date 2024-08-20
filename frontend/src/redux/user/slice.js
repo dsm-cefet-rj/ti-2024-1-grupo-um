@@ -30,6 +30,7 @@ const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
 const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
     try{
         const token = data.token;
+        
         console.log(data);
         const updateUser = {
             CPF: data.CPF,
@@ -38,13 +39,11 @@ const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
             nome: data.nome,
             senha: data.senha
         }
-        console.log("passou linha 41");
         await api.put(`/user/${data._id}`, updateUser, {
             headers: {
                 Authorization:`${token}`
             }
         });
-        console.log("passou linha 47");
         notify("success", "Usuario atualizado com sucesso");
     }catch(error){
         notify("error", error.message);
@@ -53,6 +52,7 @@ const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
 
 const deleteUser = createAsyncThunk("users/deleteUserAsync", async(id)=>{
     await api.delete(`/user/${id}`);
+    // auth
 });
 
 const userSlice = createSlice({

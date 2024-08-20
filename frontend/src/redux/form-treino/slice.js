@@ -16,6 +16,7 @@ const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
     console.log(data);
     const response = await api.post("/training", data);
     return response.data;
+    //auth
 });
 
 const formsSlice = createSlice({

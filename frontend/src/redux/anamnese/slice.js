@@ -19,6 +19,7 @@ const addAnmneseAsync = createAsyncThunk('anamnese/addAnamneseAsync', async (dat
 
     const response = await api.post("/anamnese/", data);
     return response.data;
+    //auth
 });
 
 
@@ -26,18 +27,22 @@ const getAnamnese = createAsyncThunk('anamnese/getAnamneseAsync', async (userId)
     console.log(userId);
     const response = await api.get(`/anamnese/${userId}`);
     return response.data;
+    //auth
 });
 
 const updateAnamnese = createAsyncThunk('anamnese/updateAnamneseAsync', async (payload) => {
     await api.put(`/anamnese/`, payload);
+    //auth
 })
 
 const deleteAnamneseByUserId = createAsyncThunk('anamnese/deleteAnamneseAsync', async (userId) => {
     await api.delete(`/anamnese/${userId}`);
+    //auth
 })
 
 const deleteAnamnese = createAsyncThunk('anamnese/deleteAnamneseAsync', async (anamneseId) => {
     await api.delete(`/anamnese/${anamneseId}`);
+    //auth
 })
 
 

@@ -7,6 +7,7 @@ const createAluno = createAsyncThunk('aluno/addAlunoAsync', async(data) =>{
   const api  = CreateAxiosInstance(); 
   const response = await api.post("/aluno", data);
   return response.data;
+  //auth
 })
 
 const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(id)=>{
@@ -16,6 +17,7 @@ const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(id)=
 
   for (let aluno of alunos.data){
     await api.delete(`/aluno/${aluno.id}`);
+    //auth
   }
 });
 
@@ -23,6 +25,7 @@ const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async
   const api  = CreateAxiosInstance(); 
   const response = await api.get(`/aluno/${idPersonal}`);
   return response.data;
+  //auth
 })
 
 const deleteAlunoByPersonalId = createAsyncThunk("personais/deletePersonalAsync", async(id)=>{
@@ -32,6 +35,7 @@ const deleteAlunoByPersonalId = createAsyncThunk("personais/deletePersonalAsync"
   for (let aluno of alunos.data){
     await api.delete(`/aluno/user/${aluno.id}`);
   }
+  //auth
 });
 
 const alunoSlice = createSlice({
