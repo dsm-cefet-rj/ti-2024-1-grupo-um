@@ -49,14 +49,20 @@ function AddTreinos() {
             type: info.type,
             observacoes: info.observacoes
         }
-        dispatch(addTreino(treinoInfo));
+        dispatch(addTreino({
+            infos: treinoInfo,
+            token: loggedUser.logged,
+            exercicios
+        }));
         dispatch(addTraining(treinoInfo));
-        exercicios.map((exercicio) => dispatch(addExercicio({...exercicio, token: loggedUser.logged})));
+        exercicios.map((exercicio) => dispatch(addExercicio({
+            ...exercicio,
+            token: loggedUser.logged
+        })));
         dispatch(clearExercises());
-        notify("success", "Treino adicionado com sucesso");
-        setTimeout(() => {
-            navigate("/areaFIT");
-        }, 2000)
+        
+        navigate("/areaFIT");
+        
     }
     const handleSubmitAddExercise = (info) => {
         dispatch(addExercise(info));

@@ -15,14 +15,20 @@ import { addForms } from "../../redux/form-treino/slice";
 import { v4 as idGen } from "uuid";
 //axios
 import { getAnamnese } from "../../redux/anamnese/slice";
+import { useEffect } from "react";
 
 function AreaFIT() {
 	const dispatch = useDispatch();
 	const currentUser = useSelector((rootReducer) => rootReducer.user);
 	const trainings = useSelector((rootReducer) => rootReducer.trainings);
-
-	dispatch(clearExercises());
-	dispatch(getAnamnese(currentUser.user._id));
+	
+	useEffect(() => {
+		dispatch(clearExercises());
+		dispatch(getAnamnese({
+			userId: currentUser.user._id,
+			token: currentUser.logged
+		}));
+	}, [])
 
 	// Filtrar os treinos pelo idUser
 	if (!currentUser.logged) {
