@@ -7,7 +7,6 @@ const api  = CreateAxiosInstance();
 const initialState = [];
 
 const addExercicio = createAsyncThunk('user/addExerciseAsync', async (data) => {
-
     try{
         console.log(data);
         const exerciseToBeCreated = {
@@ -17,14 +16,15 @@ const addExercicio = createAsyncThunk('user/addExerciseAsync', async (data) => {
             series: data.series,
             observacoes: data.observacoes
         }
-        const response = await api.post(`/exercise`, exerciseToBeCreated, {
+        const response = await api.post(`/exercise/`, exerciseToBeCreated, {
             headers: {
                 Authorization:`${data.token}`
             }
         });
+        notify("success", "Sucesso ao criar exercicio");
         return response.data;
     }catch(error){
-        console.log(error);
+        notify("error", error.message)
     }
 });
 

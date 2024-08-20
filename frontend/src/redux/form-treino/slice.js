@@ -14,8 +14,27 @@ const api  = CreateAxiosInstance();
 const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
 
     console.log(data);
-    const response = await api.post("/training", data);
+    const response = await api.post("/training", data.infos,{
+        headers:{
+            Authorization:`${data.token}`
+        }
+    });
+    for(const exercise of data.exercises){
+        const exerciseToBeCreated = {
+            trainingId: response.data.trainings.id,
+            name: exercise.name,
+            peso: exercise.peso,
+            series: exercise.series,
+            observacoes: exercise.observacoes
+        }
+        const response = await api.post(`/exercise/${exerciseToBeCreated.trainingId}`, exerciseToBeCreated, {
+            headers: {
+                Authorization:`${data.token}`
+            }
+        })
+    }
     return response.data;
+
     //auth
 });
 

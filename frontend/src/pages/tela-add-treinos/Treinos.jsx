@@ -55,10 +55,10 @@ function AddTreinos() {
             exercicios
         }));
         dispatch(addTraining(treinoInfo));
-        exercicios.map((exercicio) => dispatch(addExercicio({
-            ...exercicio,
-            token: loggedUser.logged
-        })));
+        // exercicios.map((exercicio) => dispatch(addExercicio({
+        //     ...exercicio,
+        //     token: loggedUser.logged
+        // })));
         dispatch(clearExercises());
         
         navigate("/areaFIT");

@@ -50,14 +50,15 @@ function Treino() {
     const handleSubmitForm = (info) => {
 
         dispatch(addExercise({ ...info, idForm: id }))
-        dispatch(addExercicio({...info, idForm: id}));
+        dispatch(addExercicio({
+            ...info,
+            idForm: id,
+            token: currentUser.logged
+        }));
 
-        notify("success", "Exercício adicionado com sucesso!");
+        // notify("success", "Exercício adicionado com sucesso!");
         
-        setTimeout(()=>{
-            // setShowModal(false);
-            setShowModal(false);
-        }, 2000)
+        setShowModal(false);
         
     }
 
