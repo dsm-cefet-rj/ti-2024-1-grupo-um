@@ -52,14 +52,26 @@ function Perfil() {
     const handleUserDelete = () => {
         const userId = currentUser.user._id;
         for(let treino of treinos){
-            dispatch(deleteTreinoByID(treino.id));
+            dispatch(deleteTreinoByID({
+                idTreino: treino.id,
+                token: currentUser.logged
+            }));
         }
         //clear trainings
-        dispatch(deleteAnamnese(anamnese?.id));
+        dispatch(deleteAnamnese({
+            anamneseId: anamnese?.id,
+            token: currentUser.logged
+        }));
         //clear anamnese
-        // dispatch(deleteAlunoByUserId(userId));
+        dispatch(deleteAlunoByUserId({
+            id: userId,
+            token: currentUser.logged
+        }));
         //clear aluno
-        dispatch(deleteUser(userId));
+        dispatch(deleteUser({
+            id: userId,
+            token: currentUser.logged
+        }));
         dispatch(clearAnamnese());
         dispatch(clearTrainings());
         dispatch(clearExercises());

@@ -60,7 +60,9 @@ function Login(){
 
         try{
             const autenticado = await axios.post("http://localhost:5000/login", loginObj);
+
             console.log(autenticado.data.user)
+
             if(autenticado.data.status == true){
                 dispatch(addLoggedUser(autenticado.data));
                 dispatch(getTreinosByUserID({
@@ -68,7 +70,10 @@ function Login(){
                     token: autenticado.data.token
                 }));
                 dispatch(getPersonais(autenticado.data.token));
-                dispatch(getAnamnese(autenticado.data.user._id));
+                dispatch(getAnamnese({
+                    userId: autenticado.data.user._id,
+                    token: autenticado.data.token
+                }));
                 // alert("autenticado");
                 notify("success", "Login realizado com sucesso")
                 // setTimeout(10000);

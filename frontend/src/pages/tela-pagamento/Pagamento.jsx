@@ -42,7 +42,8 @@ function Pagamento() {
       dispatch(createAluno({
         userId: currentUser.user._id,
         userName: currentUser.user.nome,
-        idPersonal: id
+        idPersonal: id,
+        token: currentUser.logged
       }));
     }catch(error){
       // toast.error("Você já é matriculado com esse personal.");

@@ -48,13 +48,15 @@ function Treino() {
     };
 
     const handleSubmitForm = (info) => {
-        dispatch(addExercise({ ...info, idForm: id }))
-        
-        notify("success", "Exercício adicionado com sucesso!");
 
+        dispatch(addExercise({ ...info, idForm: id }))
+        dispatch(addExercicio({...info, idForm: id}));
+
+        notify("success", "Exercício adicionado com sucesso!");
+        
         setTimeout(()=>{
             // setShowModal(false);
-            dispatch(addExercicio({...info, idForm: id}));
+            setShowModal(false);
         }, 2000)
         
     }
@@ -107,7 +109,9 @@ function Treino() {
                         }}
                         handleSubmitForm={(info) => handleSubmitForm(info)}
                         
-                        optionalFunction={(info) => {dispatch(addExercicio(info))}}
+                        optionalFunction={(info) => {
+                            dispatch(addExercicio({...info, token: currentUser.logged}))
+                        }}
                     />
                 )}
             </div>

@@ -17,7 +17,11 @@ const addExercicio = createAsyncThunk('user/addExerciseAsync', async (data) => {
             series: data.series,
             observacoes: data.observacoes
         }
-        const response = await api.post(`/exercise`, exerciseToBeCreated);
+        const response = await api.post(`/exercise`, exerciseToBeCreated, {
+            headers: {
+                Authorization:`${data.token}`
+            }
+        });
         return response.data;
     }catch(error){
         console.log(error);

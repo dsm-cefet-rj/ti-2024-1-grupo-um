@@ -8,31 +8,38 @@ const initialState = {
     activityFreq: "",
     weight: "",
     motivation: "",
-    exam: "",
+    date: "",
     diet: "",
     observacoes: "",
     userId: "",
-    id: ""
 }
 
 const addAnmneseAsync = createAsyncThunk('anamnese/addAnamneseAsync', async (data) => {
 
     const response = await api.post("/anamnese/", data);
     return response.data;
-    //auth
 });
 
 
-const getAnamnese = createAsyncThunk('anamnese/getAnamneseAsync', async (userId) => {
-    console.log(userId);
-    const response = await api.get(`/anamnese/${userId}`);
+const getAnamnese = createAsyncThunk('anamnese/getAnamneseAsync', async (data) => {
+
+    console.log(data);
+    
+    const response = await api.get(`/anamnese/${data.userId}`,{
+        headers: {
+            Authorization:`${data.token}`
+        }
+    });
     return response.data;
-    //auth
+
 });
 
-const updateAnamnese = createAsyncThunk('anamnese/updateAnamneseAsync', async (payload) => {
-    await api.put(`/anamnese/`, payload);
-    //auth
+const updateAnamnese = createAsyncThunk('anamnese/updateAnamneseAsync', async (data) => {
+    await api.put(`/anamnese/`, data.infos, {
+        headers: {
+            Authorization:`${data.token}`
+        }
+    });
 })
 
 const deleteAnamneseByUserId = createAsyncThunk('anamnese/deleteAnamneseAsync', async (userId) => {
@@ -40,8 +47,12 @@ const deleteAnamneseByUserId = createAsyncThunk('anamnese/deleteAnamneseAsync', 
     //auth
 })
 
-const deleteAnamnese = createAsyncThunk('anamnese/deleteAnamneseAsync', async (anamneseId) => {
-    await api.delete(`/anamnese/${anamneseId}`);
+const deleteAnamnese = createAsyncThunk('anamnese/deleteAnamneseAsync', async (infos) => {
+    await api.delete(`/anamnese/${infos.anamneseId}`,{
+        headers: {
+            Authorization:`${infos.token}`
+        }
+    });
     //auth
 })
 
@@ -53,44 +64,45 @@ const anamneseSlice = createSlice({
         addAnmnese: (state, action) => {
             //maybe remove this reducer.
             state.preenchida = true;
-            state.activityFreq = action.payload.activityFreq;
-            state.weight = action.payload.weight;
-            state.motivation = action.payload.motivation;
-            state.exam = action.payload.exam;
-            state.diet = action.payload.diet;
-            state.observacoes = action.payload.observacoes;
-            state.userId = action.payload.userId;
-            state.id = action.payload.id;
+            state.activityFreq = action.data.activityFreq;
+            state.weight = action.data.weight;
+            state.motivation = action.data.motivation;
+            state.date = action.data.date;
+            state.diet = action.data.diet;
+            state.observacoes = action.data.observacoes;
+            state.userId = action.data.userId;
+            state._id = action.data._id;
         },
         clearAnamnese: (state,action)=>{
             state.preenchida = false;
             state.activityFreq = "";
             state.weight = "";
             state.motivation = "";
-            state.exam = "";
+            state.date = "";
             state.diet = "";
             state.observacoes = "";
             state.userId = "";
-            state.id = "";
+            state._id = "";
         }
     },
     extraReducers: builder =>{
         builder.addCase(getAnamnese.fulfilled, (state, action) => {
-            if (action.payload.length > 0){
+            console.log(action.payload[0]);
+            if (action.payload[0]){
                 const anamnese = action.payload[0];
                 state.preenchida = true;
                 state.activityFreq = anamnese.activityFreq;
                 state.weight = anamnese.weight;
                 state.motivation = anamnese.motivation;
-                state.exam = anamnese.exam;
+                state.date = anamnese.date;
                 state.diet = anamnese.diet;
                 state.observacoes = anamnese.observacoes;
                 state.userId = anamnese.userId;
-                state.id = anamnese.id;
+                state._id = anamnese._id;
             }
         })
         builder.addCase(addAnmneseAsync.fulfilled, (state,action) => {
-            state.id = action.payload.id;
+            state._id = action.data.id;
         })
     }
 })

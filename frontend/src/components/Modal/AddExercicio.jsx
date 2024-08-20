@@ -16,7 +16,7 @@ import { notify } from "../..";
 function  Modal(props) {
     const dispatch = useDispatch();
 
-    const { setModal, handleSubmitForm } = props;
+    const { setModal, handleSubmitForm , idForm} = props;
 
     const initialValues = {
         name: "",

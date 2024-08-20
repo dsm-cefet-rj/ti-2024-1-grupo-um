@@ -23,14 +23,30 @@ function VisuAnamnese() {
     const anamnese = useSelector(rootReducer => rootReducer.anamnese);
 
     const handleSubmitForm = (infos) => {
-        notify("success", "Anamnese atualizada com sucesso");
-        infos["userId"] = currentUser.user.id;
-        infos["id"] = anamnese.id;
-        dispatch(updateAnamnese(infos))
+
+        infos["userId"] = currentUser.user._id;
+        infos["id"] = anamnese._id;
+        console.log(infos);
+
+        dispatch(updateAnamnese({
+            infos: {...infos},
+            token: currentUser.logged
+        }))
         dispatch(addAnmnese(infos))
-        setTimeout(() => {
-            navigate("/personais");
-        }, 2000);
+
+        // setTimeout(() => {
+        //     navigate("/personais");
+        // }, 2000);
+    }
+
+    function formatDate(dateString) {
+        // Cria um objeto Date a partir da string ISO
+        const date = new Date(dateString);
+        // Extrai o dia, mês e ano
+        const day = String(date.getUTCDate()).padStart(2, '0');
+        const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // getUTCMonth retorna o mês de 0 a 11
+        const year = date.getUTCFullYear();
+        return `${year}-${month}-${day}`;
     }
 
     if (!currentUser.logged) {
@@ -40,7 +56,7 @@ function VisuAnamnese() {
         weight: anamnese.weight,
         motivation: anamnese.motivation,
         activityFreq: anamnese.activityFreq,
-        date: anamnese.date,
+        date: formatDate(anamnese.date),
         diet: anamnese.diet,
         observacoes: anamnese.observacoes,
     }

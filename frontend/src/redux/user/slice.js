@@ -50,9 +50,18 @@ const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
     }
 });
 
-const deleteUser = createAsyncThunk("users/deleteUserAsync", async(id)=>{
-    await api.delete(`/user/${id}`);
-    // auth
+const deleteUser = createAsyncThunk("users/deleteUserAsync", async(infos)=>{
+    try{
+        await api.delete(`/user/${infos.id}`,{
+            headers: {
+                Authorization:`${infos.token}`
+            }
+        });
+        notify("success", "Usuario deletado com sucesso.");
+    }catch(error){
+        notify("error", error.message);
+    }
+    
 });
 
 const userSlice = createSlice({
