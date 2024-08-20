@@ -7,7 +7,7 @@ export default function verifyJWT(req, res, next){
         return res.json({ "message" : "Não há token inserido"});
     }
     try{
-        jsonwebtoken.verify(token, process.env.SECRET_JWT);
+        jsonwebtoken.verify(token, process.env.SECRET_JWT_USER);
         console.log("verificacao bem sucedida")
         next();
     }catch(error){

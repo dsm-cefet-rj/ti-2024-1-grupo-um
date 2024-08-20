@@ -63,8 +63,11 @@ function Login(){
             console.log(autenticado.data.user)
             if(autenticado.data.status == true){
                 dispatch(addLoggedUser(autenticado.data));
-                dispatch(getTreinosByUserID(autenticado.data.user._id));
-                dispatch(getPersonais());
+                dispatch(getTreinosByUserID({
+                    userId: autenticado.data.user._id, 
+                    token: autenticado.data.token
+                }));
+                dispatch(getPersonais(autenticado.data.token));
                 dispatch(getAnamnese(autenticado.data.user._id));
                 // alert("autenticado");
                 notify("success", "Login realizado com sucesso")

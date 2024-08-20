@@ -30,11 +30,16 @@ function Treino() {
     }
   
     const handleDeleteTreino = () => {
-        notify("success", "Treino deletado com sucesso!");
-        dispatch(deleteTreinoByID(id));
+        dispatch(deleteTreinoByID({
+            idTreino: id, 
+            token: currentUser.logged
+        }));
         dispatch(deleteTraining(id));
         dispatch(deleteExerciciosByTreinoId(id));
-        navigate("/areaFIT");
+        notify("success", "Treino deletado com sucesso!");
+        setTimeout(() => {
+            navigate("/areaFIT");
+        }, 2000)
         
     }
     

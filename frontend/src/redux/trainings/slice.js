@@ -1,14 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import CreateAxiosInstance  from "../../utils/api";
+import { notify } from "../..";
 
 const initialState = [];
 const api  = CreateAxiosInstance();
 
-const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", async(userId) => {
+const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", async(infos) => {
     try{
 
-        const response = await api.get(`/training/${userId}`);
+        const response = await api.get(`/training/${infos.userId}`, {
+            headers: {
+                Authorization:`${infos.token}`
+            }
+        });
         console.log(response.data);
         return response.data; 
     } catch(err){
@@ -16,18 +21,22 @@ const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", as
     }
 });
 
-const deleteTreinoByID = createAsyncThunk("treino/deleteTreinoByID", async (idTreino) => {
+const deleteTreinoByID = createAsyncThunk("treino/deleteTreinoByID", async (infos) => {
     try {
-        await api.delete(`/training/${idTreino}`); // Modificado para backend
-        
+        await api.delete(`/training/${infos.idTreino}`, {
+            headers: {
+                Authorization:`${infos.token}`
+            }
+        }); 
+        await api.delete(`/exercise?trainingId=${infos.idTreino}`, {
+            headers: {
+                Authorization:`${infos.token}`
+            }
+        })
 
-        // const exercises = await axios.get(`http://localhost:3004/exercicios?idForm=${idTreino}`);
-
-        // for(let exercise of exercises.data){
-        //     await axios.delete(`http://localhost:3004/exercicios/${exercise.id}`)
-        // }
+        notify("success", "Treino excluido com sucesso");
     } catch(err) {
-        console.log("Não foi possível excluir o treino...");
+        notify("error", "Não foi possível excluir o treino...");
     }
 })
 

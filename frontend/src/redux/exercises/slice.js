@@ -1,3 +1,4 @@
+import { notify } from "../..";
 import CreateAxiosInstance from "../../utils/api";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -23,21 +24,30 @@ const addExercicio = createAsyncThunk('user/addExerciseAsync', async (data) => {
     }
 });
 
-const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoID", async (idTreino) => {
+const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoID", async (infos) => {
     try {
-        const response = await api.get(`/exercise/${idTreino}`);
+        const response = await api.get(`/exercise/${infos.idTreino}`, {
+            headers: {
+                Authorization:`${infos.token}`
+            }
+        });
         return response.data;
     } catch (err) {
         return [];
     }
 })
 
-const deleteExercicioByID = createAsyncThunk("exercises/deleteExerciseByID", async (idExercicio) => {
+const deleteExercicioByID = createAsyncThunk("exercises/deleteExerciseByID", async (infos) => {
     try{
-        await api.delete(`/exercise/${idExercicio}`);
+        const response = await api.delete(`/exercise/${infos.idTreino}`, {
+            headers: {
+                Authorization:`${infos.token}`
+            }
+        });
+        notify("success", response.data.message);
     }
     catch(err){
-        console.log("Não foi possível excluir o exercício");
+        notify("error", err.message);
     }
 })
 

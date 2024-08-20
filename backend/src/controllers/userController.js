@@ -143,7 +143,7 @@ async function login(req, res){
         //hash de senha
         if(senha === existingUser.senha){
             console.log(req.body);
-            const token = jsonwebtoken.sign(req.body, process.env.SECRET_JWT, {expiresIn: '1h'});
+            const token = jsonwebtoken.sign(req.body, process.env.SECRET_JWT_USER, {expiresIn: '1h'});
             return res.status(200).send({
                 message: "usuario autenticado com sucesso",
                 status: true,
@@ -166,6 +166,7 @@ async function login(req, res){
 }
 async function logout(req, res){
     try{
+        
 
     }catch(error){
         

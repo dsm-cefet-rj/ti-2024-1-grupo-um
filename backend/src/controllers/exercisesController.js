@@ -57,7 +57,7 @@ async function deleteExercise( req, res ) {
         const deletedExercise = await exerciseModel.findByIdAndDelete(exerciseId);
 
         return res.status(200).send({
-            message: "exercicio deletado com sucesso."
+            message: "Exercicio deletado com sucesso."
         })
     }catch(error){
         return res.status(400).send({
@@ -69,13 +69,16 @@ async function deleteExercise( req, res ) {
 async function deleteAllExercisesByTrainingId(req, res){
     try{
         const trainingId = req.query.trainingId;
+
         if(!trainingId){
             throw new Error("trainingId nao informado.");
         }
+
         const deletedTrainings = await exerciseModel.deleteMany({trainingId});
         return res.status(200).send({
             message:`${deletedTrainings.length} foram deletados do sistema.`
         })
+        
     }catch(error){
         return res.status(400).send({
             message: 'Ocorreu um erro ao deletar os exercicios',

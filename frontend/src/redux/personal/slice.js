@@ -3,11 +3,15 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import CreateAxiosInstance from "../../utils/api";
 
 const initialState = [];
+const api  = CreateAxiosInstance(); 
 
-const getPersonais = createAsyncThunk("personais/getPersonaisAsync", async() => {
-    const api  = CreateAxiosInstance(); 
+const getPersonais = createAsyncThunk("personais/getPersonaisAsync", async(token) => {
     try{
-        const response = await api.get("/personal");
+        const response = await api.get("/personal", {
+            headers: {
+                Authorization:`${token}`
+            }
+        });
         return response.data; 
     }catch(error){
         //logic
@@ -15,7 +19,6 @@ const getPersonais = createAsyncThunk("personais/getPersonaisAsync", async() => 
 });
 
 const createPersonal = createAsyncThunk('personais/addPersonalAsync', async (data) => {
-    const api  = CreateAxiosInstance(); 
     try{
         const response = await api.post("/personal", data)
         return response.data;
@@ -25,7 +28,6 @@ const createPersonal = createAsyncThunk('personais/addPersonalAsync', async (dat
 });
 
 const updatePersonal = createAsyncThunk("personais/updatePersonalAsync", async (data) => {
-    const api  = CreateAxiosInstance(); 
     const req = {
         CPF: data.CPF,
         biografia: data.biografia,

@@ -32,13 +32,16 @@ function Perfil() {
     const handleSubmitForm = (infos) => {
         infos._id = currentUser.user._id;
         console.log(infos);
-        dispatch(updateUser({...infos, token: currentUser.logged, _id: currentUser.user._id}));
+        dispatch(updateUser({
+            ...infos, 
+            token: currentUser.logged, 
+            _id: currentUser.user._id
+        }));
         dispatch(addLoggedUser({
             user: {
                 ...infos,
             },
             token: currentUser.logged
-
         }));
 
         setTimeout(() => {
