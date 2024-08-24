@@ -1,6 +1,6 @@
 import express from "express";
 import { createAluno, getAlunosByPersonalId, deleteAlunoByPersonalId, deleteAlunoByUserId } from "../controllers/alunoController.js";
-import verifyJWT from "../middlewares/Auth.js";
+import { verifyJWT, authorizeType } from "../middlewares/Auth.js";
 
 const alunoRoutes = express.Router();
 

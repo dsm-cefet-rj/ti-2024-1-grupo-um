@@ -1,6 +1,6 @@
 import express from "express";
 import { readAll, createPersonal, readOne, updatePersonal, deletePersonal, loginPersonal } from "../controllers/personalController.js";
-import verifyJWT from "../middlewares/Auth.js";
+import { verifyJWT , authorizeType } from "../middlewares/Auth.js";
 
 const personalRoutes = express.Router();
 

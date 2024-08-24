@@ -158,13 +158,17 @@ async function login(req, res){
         console.log(existingUser);
         //hash de senha
         const passwordMatch = await bcrypt.compare(senha, existingUser.senha);
+        // const passwordMatch = true;
         if(!passwordMatch){
             throw new Error("Login ou senha errados");
         }else{
             console.log(req.body);
             const token = jsonwebtoken.sign(
-                req.body, 
-                process.env.SECRET_JWT_USER, 
+                {
+                    id: existingUser._id,
+                    type: "user"
+                }, 
+                process.env.SECRET_JWT, 
                 {expiresIn: '1h'}
             );
             return res.status(200).send({

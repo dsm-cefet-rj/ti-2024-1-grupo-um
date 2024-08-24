@@ -171,7 +171,13 @@ async function loginPersonal(req, res){
         }
         if(senha === existingPersonal.senha){
             console.log(req.body);
-            const token = jsonwebtoken.sign(req.body, process.env.SECRET_JWT_PERSONAL, {expiresIn: '1h'});
+            const token = jsonwebtoken.sign(
+                {
+                    id: personal._id,
+                    type: "personal" 
+                }, 
+                process.env.SECRET_JWT, 
+                {expiresIn: '1h'});
             return res.status(200).send({
                 message: "Personal autenticado com sucesso",
                 status: true,

@@ -1,11 +1,11 @@
 import express from "express";
 import { getAllExercisesByTrainingId, createExercise, getAll, deleteExercise, deleteAllExercisesByTrainingId } from "../controllers/exercisesController.js";
-import verifyJWT from "../middlewares/Auth.js";
+import { verifyJWT, authorizeType } from "../middlewares/Auth.js";
 
 const exerciseRoutes = express.Router();
 
-exerciseRoutes.use(verifyJWT);
-// exerciseRoutes.get("/exercise", getAll);
+// exerciseRoutes.use(verifyJWT);
+exerciseRoutes.get("/exercise", getAll);
 exerciseRoutes.get("/exercise/:trainingId", getAllExercisesByTrainingId);
 exerciseRoutes.post("/exercise",  createExercise);
 exerciseRoutes.delete("/exercise", deleteAllExercisesByTrainingId);
