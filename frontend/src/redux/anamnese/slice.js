@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import CreateAxiosInstance from "../../utils/api";
+import { notify } from "../../index";
 
 const api  = CreateAxiosInstance(); 
 
@@ -15,9 +16,17 @@ const initialState = {
 }
 
 const addAnmneseAsync = createAsyncThunk('anamnese/addAnamneseAsync', async (data) => {
-
-    const response = await api.post("/anamnese/", data);
-    return response.data;
+    try{
+        const response = await api.post("/anamnese/", data.infos, {
+            headers: {
+                Authorization:`${data.token}`
+            }
+        });
+        notify("success", "Anamnese adicionada com sucesso.");
+        return response.data;
+    }catch(error){
+        notify("error", error.message)
+    }
 });
 
 
@@ -100,9 +109,6 @@ const anamneseSlice = createSlice({
                 state.userId = anamnese.userId;
                 state._id = anamnese._id;
             }
-        })
-        builder.addCase(addAnmneseAsync.fulfilled, (state,action) => {
-            state._id = action.data.id;
         })
     }
 })

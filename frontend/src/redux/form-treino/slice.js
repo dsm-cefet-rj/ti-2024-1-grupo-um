@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import CreateAxiosInstance from "../../utils/api";
+import { notify } from "../../index";
 
 const initialState = {
     userId: "",
@@ -33,6 +34,8 @@ const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
             }
         })
     }
+    
+    notify("success", "Treino adicionado com sucesso");
     return response.data;
 
     //auth

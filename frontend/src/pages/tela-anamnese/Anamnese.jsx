@@ -26,10 +26,13 @@ function Anamnese() {
     const anamneseUser = useSelector(rootReducer => rootReducer.anamnese);
 
     const handleSubmitForm = (infos) => {
-        notify("success", "Anamnese criada com sucesso");
-        infos["userId"] = currentUser.user._id;
-        dispatch(addAnmneseAsync(infos))
-        dispatch(addAnmnese(infos))
+        
+        infos.userId = currentUser.user._id;
+        dispatch(addAnmneseAsync({
+            infos: infos, 
+            token: currentUser.logged
+        }));
+        dispatch(addAnmnese(infos));
 
         
 
