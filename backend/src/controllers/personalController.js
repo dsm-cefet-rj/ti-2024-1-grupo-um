@@ -1,6 +1,7 @@
 //here the personal controller
 import { personalModel } from "../models/PersonalModel.js";
 import jsonwebtoken from "jsonwebtoken";
+import bcrypt from "bcrypt";
 //READ_ALL - feito
 //READ_ONE - feito
 //CREATE_PERSONAL - feito
@@ -8,6 +9,12 @@ import jsonwebtoken from "jsonwebtoken";
 //DELETE_PERSONAL - feito
 //LOGIN_PERSONAL - feito
 //LOGOUT_PERSONAL - falta
+
+const salt_rounds = process.env.SALT_ROUNDS;
+
+async function crypt(senha){
+    return await bcrypt.hash(senha, Number(salt_rounds));
+}
 
 async function readAll(req, res) {
     try{
@@ -77,6 +84,9 @@ async function createPersonal(req, res){
         }
 
         //hash de senha
+        const hashedPassword = await crypt(newPersonal.senha);
+        newPersonal.senha = hashedPassword;
+
         const result = await personalModel.create(newPersonal);
 
         return res.status(201).send({
@@ -97,7 +107,11 @@ async function updatePersonal(req, res) {
 
         const update = req.body;
 
-        const updatedPersonal = await personalModel.findByIdAndUpdate(id, update);
+        const newPassword = await crypt(update.senha);
+
+        update.senha = newPassword;
+
+        await personalModel.findByIdAndUpdate(id, update);
 
         return res.status(200).send({
             message:"Personal atualizado com sucesso.",
@@ -148,9 +162,16 @@ async function loginPersonal(req, res){
             });
         }
         //hash de senha
+        const passwordMatch = await bcrypt.compare(senha, existingPersonal.senha);
+        if(!passwordMatch){
+            return res.status(400).send({
+                message: "Login ou Senha errados",
+                status: false
+            })
+        }
         if(senha === existingPersonal.senha){
             console.log(req.body);
-            const token = jsonwebtoken.sign(req.body, process.env.SECRET_JWT, {expiresIn: 300});
+            const token = jsonwebtoken.sign(req.body, process.env.SECRET_JWT_PERSONAL, {expiresIn: '1h'});
             return res.status(200).send({
                 message: "Personal autenticado com sucesso",
                 status: true,

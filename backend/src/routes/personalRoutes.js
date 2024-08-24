@@ -5,7 +5,7 @@ import verifyJWT from "../middlewares/Auth.js";
 const personalRoutes = express.Router();
 
 personalRoutes.get('/personal/:_id', readOne);
-personalRoutes.get('/personal', verifyJWT, readAll);
+personalRoutes.get('/personal', readAll);
 personalRoutes.post('/personal', createPersonal);
 personalRoutes.put('/personal/:_id', updatePersonal);
 personalRoutes.delete('/personal/:_id', deletePersonal);

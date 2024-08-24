@@ -52,7 +52,7 @@ function LoginPersonal(){
                 const personal = response.personal;
                 dispatch(addLoggedPersonal(personal));
                 dispatch(getAlunosByPersonalId(personal._id));
-                notify("success", "Login realizado com sucesso");
+                notify("success", response.message);
                 // setTimeout(10000);
 
                 setTimeout(() => {
@@ -65,7 +65,7 @@ function LoginPersonal(){
                 // alert("usuario invalido");
             }
         }catch(err){
-            notify("error", "Login ou senha inválidos.");
+            notify("error", err.response.data.message);
             // alert(err);
         }
     }

@@ -1,6 +1,13 @@
 //here the user controller
 import { userModel } from "../models/UserModel.js";
 import jsonwebtoken from "jsonwebtoken";
+import bcrypt from "bcrypt";
+
+const salt_rounds = process.env.SALT_ROUNDS;
+
+async function crypt(senha){
+    return await bcrypt.hash(senha, Number(salt_rounds));
+}
 //READ_ALL
 //READ_ONE
 //CREATE_USER
@@ -41,13 +48,8 @@ async function readOne(req, res){
 async function createUser(req, res){
     try{
         //desmembrar objeto
-        const newUser = {
-            nome: req.body.nome,
-            CPF: req.body.CPF,
-            email: req.body.email,
-            birth: req.body.birth,
-            senha: req.body.senha
-        }
+       
+
         //verificar email
         const existingEmailArray = await userModel.find({email: req.body.email});
         const existingEmail = existingEmailArray[0];
@@ -62,12 +64,21 @@ async function createUser(req, res){
         }
 
         //verificar cpf
-        const existingCPFArray = await userModel.find({CPF: newUser.CPF});
+        const existingCPFArray = await userModel.find({CPF: req.body.CPF});
         const existingCPF = existingCPFArray[0];
         if(existingCPF){
             throw new Error({message: "CPF já cadastrado."});
         }
 
+        const newSenha = await crypt(req.body.senha);
+
+        const newUser = {
+            nome: req.body.nome,
+            CPF: req.body.CPF,
+            email: req.body.email,
+            birth: req.body.birth,
+            senha: newSenha
+        }
 
         const result = await userModel.create(newUser);
 
@@ -88,6 +99,10 @@ async function updateUser(req, res) {
         const id = req.params.id;
 
         const update = req.body;
+
+        const newSenha = await crypt(update.senha);
+
+        update.senha = newSenha;
 
         const updatedUser = await userModel.findByIdAndUpdate(id, update);
 
@@ -133,33 +148,36 @@ async function login(req, res){
 
         const existingUserArray = await userModel.find({email});
         const existingUser = existingUserArray[0];
+
         if(existingUser == undefined){
             return res.status(400).send({
                 message: "Login ou Senha errados.",
                 status: false
             });
         }
-        console.log(existingUser)
+        console.log(existingUser);
         //hash de senha
-        if(senha === existingUser.senha){
+        const passwordMatch = await bcrypt.compare(senha, existingUser.senha);
+        if(!passwordMatch){
+            throw new Error("Login ou senha errados");
+        }else{
             console.log(req.body);
-            const token = jsonwebtoken.sign(req.body, process.env.SECRET_JWT_USER, {expiresIn: '1h'});
+            const token = jsonwebtoken.sign(
+                req.body, 
+                process.env.SECRET_JWT_USER, 
+                {expiresIn: '1h'}
+            );
             return res.status(200).send({
-                message: "usuario autenticado com sucesso",
+                message: "Login realizado com sucesso",
                 status: true,
                 token: token,
                 user: existingUser
             });
-            
-        }else{
-            return res.status(400).send({
-                message: "Login ou Senha errados.",
-                status: false
-            })
         }
+        
     }catch(error){
         return res.status(400).send({
-            message: "ocorreu um erro no login",
+            message: error.message,
             erro: error
         });
     }

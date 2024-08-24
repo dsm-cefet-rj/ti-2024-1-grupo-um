@@ -60,8 +60,9 @@ function Login(){
 
         try{
             const autenticado = await axios.post("http://localhost:5000/login", loginObj);
+            
 
-            console.log(autenticado.data.user)
+            console.log(autenticado.data);
 
             if(autenticado.data.status == true){
                 dispatch(addLoggedUser(autenticado.data));
@@ -75,7 +76,7 @@ function Login(){
                     token: autenticado.data.token
                 }));
                 // alert("autenticado");
-                notify("success", "Login realizado com sucesso")
+                notify("success", autenticado.data.message);
                 // setTimeout(10000);
 
                 setTimeout(() => {
@@ -88,7 +89,8 @@ function Login(){
                 // alert("usuario invalido");
             }
         }catch(err){
-            notify("error", "Login ou senha inválidos.");
+            console.log(err);
+            notify("error", err.response.data.message);
             // alert(err);
         }
     }
