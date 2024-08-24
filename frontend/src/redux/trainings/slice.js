@@ -20,7 +20,17 @@ const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", as
         console.log(err);
     }
 });
-
+const deleteTreinosByUserId = createAsyncThunk("treino/deleteTreinos", async (token) => {
+    try{
+        await api.delete(`/training/`, {
+            headers: {
+                Authorization:`${token}`
+            }
+        });
+    }catch(error){
+        notify("error", error.message)
+    }
+});
 const deleteTreinoByID = createAsyncThunk("treino/deleteTreinoByID", async (infos) => {
     try {
         await api.delete(`/training/${infos.idTreino}`, {
@@ -79,5 +89,5 @@ const trainingsSlice = createSlice({
 
 export const { addTraining, deleteTraining, clearTrainings } = trainingsSlice.actions;
 
-export { getTreinosByUserID, deleteTreinoByID };
+export { getTreinosByUserID, deleteTreinoByID, deleteTreinosByUserId };
 export default trainingsSlice.reducer;

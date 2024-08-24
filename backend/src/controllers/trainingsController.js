@@ -1,3 +1,4 @@
+import { exerciseModel } from "../models/ExerciseModel.js";
 import { trainingModel } from "../models/TrainingModel.js";
 //readAll
 //readOne
@@ -123,5 +124,26 @@ async function deleteTraining(req, res){
         })
     }
 }
+async function deleteTrainingsByUserId(req, res){
+    try{
+        const id = req.user.id;
 
-export { readAllTrainings, readAll, readOne, createTraining, createTrainingForgymStudent, deleteTraining }
+        const treinos = await trainingModel.find({userId: id});
+
+        for(const treino of treinos){
+            await exerciseModel.deleteMany({trainingId: treino._id});
+        }
+
+        await trainingModel.deleteMany({userId : id});
+
+        return res.status(200).send({
+            message: "Treinos deletados com sucesso"
+        });
+    }catch(error){
+        return res.status(400).send({
+            message: error.message
+        })
+    }
+}
+
+export { readAllTrainings, readAll, readOne, createTraining, createTrainingForgymStudent, deleteTraining, deleteTrainingsByUserId }

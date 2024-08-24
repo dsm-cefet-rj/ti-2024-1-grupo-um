@@ -9,7 +9,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { addLoggedUser, deleteUser, logoutUser, updateUser } from "../../redux/user/slice";
-import { clearTrainings, deleteTreinoByID } from "../../redux/trainings/slice";
+import { clearTrainings, deleteTreinoByID, deleteTreinosByUserId } from "../../redux/trainings/slice";
 import { clearAnamnese, deleteAnamnese, deleteAnamneseByUserId } from "../../redux/anamnese/slice";
 import { deleteAlunoByUserId } from "../../redux/aluno/slice";
 import { clearExercises } from "../../redux/exercises/slice";
@@ -51,15 +51,20 @@ function Perfil() {
 
     const handleUserDelete = () => {
         const userId = currentUser.user._id;
-        for(let treino of treinos){
-            dispatch(deleteTreinoByID({
-                idTreino: treino.id,
-                token: currentUser.logged
-            }));
-        }
+
+        //TAREFA: -> -> -> tratar delete treinos <- <- <-
+        // for(let treino of treinos){
+        //     dispatch(deleteTreinoByID({
+        //         idTreino: treino.userId,
+        //         token: currentUser.logged
+        //     }));
+        // }
+        dispatch(deleteTreinosByUserId(currentUser.logged));
+        // TRATAR DELETE TREINOS
+
         //clear trainings
         dispatch(deleteAnamnese({
-            anamneseId: anamnese?.id,
+            anamneseId: anamnese?._id,
             token: currentUser.logged
         }));
         //clear anamnese
