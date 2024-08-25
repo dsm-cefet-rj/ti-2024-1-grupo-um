@@ -36,7 +36,7 @@ function Treino() {
         }));
         dispatch(deleteTraining(id));
         dispatch(deleteExerciciosByTreinoId(id));
-        notify("success", "Treino deletado com sucesso!");
+
         setTimeout(() => {
             navigate("/areaFIT");
         }, 2000)
