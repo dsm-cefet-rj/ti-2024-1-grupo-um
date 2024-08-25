@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import CreateAxiosInstance from "../../utils/api";
 import { notify } from "../../index";
-import { addTraining } from "../trainings/slice";
-import { useDispatch } from "react-redux";
 
 const initialState = {
     userId: "",
@@ -14,6 +12,34 @@ const initialState = {
 
 const api  = CreateAxiosInstance();
 
+const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
+
+    console.log(data);
+    const response = await api.post("/training", data.infos,{
+        headers:{
+            Authorization:`${data.token}`
+        }
+    });
+    for(const exercise of data.exercises){
+        const exerciseToBeCreated = {
+            trainingId: response.data.trainings.id,
+            name: exercise.name,
+            peso: exercise.peso,
+            series: exercise.series,
+            observacoes: exercise.observacoes
+        }
+        const response = await api.post(`/exercise/${exerciseToBeCreated.trainingId}`, exerciseToBeCreated, {
+            headers: {
+                Authorization:`${data.token}`
+            }
+        })
+    }
+    
+    notify("success", "Treino adicionado com sucesso");
+    return response.data;
+
+    //auth
+});
 
 const formsSlice = createSlice({
     name: "forms",
@@ -35,10 +61,11 @@ const formsSlice = createSlice({
             state.type = "";
             state.observacoes = "";
         }
-    },
 
+    }
 })
 
 export const { addForms, addInfo, clearForms } = formsSlice.actions;
 
+export { addTreino };
 export default formsSlice.reducer;

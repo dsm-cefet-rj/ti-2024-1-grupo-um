@@ -49,12 +49,11 @@ function CreateTreinoAluno() {
             type: info.type,
             observacoes: info.observacoes
         }
-        //add Auth to all of them
-        // dispatch(addTreino(treinoInfo));
-        // dispatch(addTraining(treinoInfo));
-        // exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
-        // dispatch(clearExercises());
-        // dispatch(clearForms());
+        dispatch(addTreino(treinoInfo));
+        dispatch(addTraining(treinoInfo));
+        exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
+        dispatch(clearExercises());
+        dispatch(clearForms());
         notify("success", "Treino criado com sucesso");
         navigate("/meusAlunos");
 

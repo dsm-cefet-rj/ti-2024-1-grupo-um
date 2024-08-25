@@ -15,9 +15,9 @@ import React, { useState } from 'react';
 
 //imports redux
 import { useDispatch, useSelector } from "react-redux";
-import { addInfo} from "../../redux/form-treino/slice";
+import { addInfo, addTreino } from "../../redux/form-treino/slice";
 import { addExercicio, addExercise, clearExercises } from "../../redux/exercises/slice";
-import { addTraining, addTreino } from "../../redux/trainings/slice";
+import { addTraining } from "../../redux/trainings/slice";
 
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
@@ -54,21 +54,18 @@ function AddTreinos() {
             token: loggedUser.logged,
             exercicios
         }));
-        // dispatch(addTraining(treinoInfo));
+        dispatch(addTraining(treinoInfo));
         // exercicios.map((exercicio) => dispatch(addExercicio({
         //     ...exercicio,
         //     token: loggedUser.logged
         // })));
         dispatch(clearExercises());
-
-        setTimeout(() => {
-            navigate("/areaFIT");
-        }, 2000)
+        
+        navigate("/areaFIT");
         
     }
     const handleSubmitAddExercise = (info) => {
         dispatch(addExercise(info));
-        setShowModal(false);
     }
 
     const openModal = () => {

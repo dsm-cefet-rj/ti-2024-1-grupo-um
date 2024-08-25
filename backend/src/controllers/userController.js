@@ -32,7 +32,6 @@ async function readOne(req, res){
         //id
         const user = await userModel.findById(req.params.id);
         if(user){
-
             return res.status(200).send(user);
         }else{
             return res.status(400).send({
