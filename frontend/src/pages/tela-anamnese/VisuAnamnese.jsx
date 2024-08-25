@@ -34,9 +34,9 @@ function VisuAnamnese() {
         }))
         dispatch(addAnmnese(infos))
 
-        // setTimeout(() => {
-        //     navigate("/personais");
-        // }, 2000);
+        setTimeout(() => {
+            navigate("/personais");
+        }, 2000);
     }
 
     function formatDate(dateString) {

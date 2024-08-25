@@ -44,11 +44,16 @@ const getAnamnese = createAsyncThunk('anamnese/getAnamneseAsync', async (data) =
 });
 
 const updateAnamnese = createAsyncThunk('anamnese/updateAnamneseAsync', async (data) => {
-    await api.put(`/anamnese/`, data.infos, {
-        headers: {
-            Authorization:`${data.token}`
-        }
-    });
+    try{
+        const response = await api.put(`/anamnese/`, data.infos, {
+            headers: {
+                Authorization:`${data.token}`
+            }
+        });
+        notify("success", response.data.message);
+    }catch(error){
+        notify("error", error.message);
+    }
 })
 
 const deleteAnamneseByUserId = createAsyncThunk('anamnese/deleteAnamneseAsync', async (userId) => {
@@ -73,14 +78,14 @@ const anamneseSlice = createSlice({
         addAnmnese: (state, action) => {
             //maybe remove this reducer.
             state.preenchida = true;
-            state.activityFreq = action.data.activityFreq;
-            state.weight = action.data.weight;
-            state.motivation = action.data.motivation;
-            state.date = action.data.date;
-            state.diet = action.data.diet;
-            state.observacoes = action.data.observacoes;
-            state.userId = action.data.userId;
-            state._id = action.data._id;
+            state.activityFreq = action.payload.activityFreq;
+            state.weight = action.payload.weight;
+            state.motivation = action.payload.motivation;
+            state.date = action.payload.date;
+            state.diet = action.payload.diet;
+            state.observacoes = action.payload.observacoes;
+            state.userId = action.payload.userId;
+            state._id = action.payload._id;
         },
         clearAnamnese: (state,action)=>{
             state.preenchida = false;
