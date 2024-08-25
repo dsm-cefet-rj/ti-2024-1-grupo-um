@@ -6,10 +6,10 @@ const exerciseRoutes = express.Router();
 
 // exerciseRoutes.use(verifyJWT);
 exerciseRoutes.get("/exercise", getAll);
-exerciseRoutes.get("/exercise/:trainingId", getAllExercisesByTrainingId);
-exerciseRoutes.post("/exercise",  createExercise);
-exerciseRoutes.delete("/exercise", deleteAllExercisesByTrainingId);
-exerciseRoutes.delete("/exercise/:exerciseId", deleteExercise);
+exerciseRoutes.get("/exercise/:trainingId", verifyJWT, authorizeType("user"), getAllExercisesByTrainingId);
+exerciseRoutes.post("/exercise", verifyJWT, authorizeType("user"), createExercise);
+exerciseRoutes.delete("/exercise", verifyJWT, authorizeType("user"), deleteAllExercisesByTrainingId);
+exerciseRoutes.delete("/exercise/:exerciseId", verifyJWT, authorizeType("user"), deleteExercise);
 
 //   "/exercise"
 //req.params.id

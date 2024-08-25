@@ -102,7 +102,7 @@ function Login(){
     }
 
     const validationSchema = Yup.object({
-        email: Yup.string().email().required("O email é obrigatório"),
+        email: Yup.string().email("O email deve ser valido.").required("O email é obrigatório"),
         senha: Yup.string().required("A senha é obrigatória")
     })
 

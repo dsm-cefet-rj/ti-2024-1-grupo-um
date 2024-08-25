@@ -6,6 +6,39 @@ import { notify } from "../..";
 const initialState = [];
 const api  = CreateAxiosInstance();
 
+const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
+    try{
+        console.log(data);
+        const response = await api.post("/training", data.infos,{
+            headers:{
+                Authorization:`${data.token}`
+            }
+        });
+        console.log(response.data.trainings);
+        console.log(response.data);
+        for(const exercise of data.exercicios){
+            const exerciseToBeCreated = {
+                trainingId: response.data.trainings._id,
+                name: exercise.name,
+                peso: exercise.peso,
+                series: exercise.series,
+                observacoes: exercise.observacoes
+            }
+            await api.post(`/exercise/`, exerciseToBeCreated, {
+                headers: {
+                    Authorization:`${data.token}`
+                }
+            })
+        }
+        
+        notify("success", "Treino adicionado com sucesso");
+        return response.data.trainings;
+
+    }catch(error){
+        notify("error", error.message);
+    }
+});
+
 const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", async(infos) => {
     try{
 
@@ -72,22 +105,25 @@ const trainingsSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(getTreinosByUserID.fulfilled, (state, action) => {
-            while (state.length > 0) {
-                state.pop()
-            }
-            console.log(action.payload);
-            if(!action.payload?.message){
-                for (let training of action.payload) {
-                    state.push(training)
+        builder
+            .addCase(getTreinosByUserID.fulfilled, (state, action) => {
+                while (state.length > 0) {
+                    state.pop()
                 }
-            }
-        })
-
+                console.log(action.payload);
+                if(!action.payload?.message){
+                    for (let training of action.payload) {
+                        state.push(training)
+                    }
+                }
+            })
+            .addCase(addTreino.fulfilled, (state, action) => {
+                state.push(action.payload);
+            })
     }
 })
 
 export const { addTraining, deleteTraining, clearTrainings } = trainingsSlice.actions;
 
-export { getTreinosByUserID, deleteTreinoByID, deleteTreinosByUserId };
+export { getTreinosByUserID, deleteTreinoByID, deleteTreinosByUserId, addTreino };
 export default trainingsSlice.reducer;
