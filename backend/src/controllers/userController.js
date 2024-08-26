@@ -57,18 +57,19 @@ async function createUser(req, res){
         console.log(existingEmailArray);
         console.log(existingEmail);
 
-        if(existingEmail != undefined){
+        if(existingEmail != undefined || existingEmail != null){
             // return res.status(400).send({
             //     message: 'Email ja cadastrado'
             // });
-            throw new Error({message: "Email já cadastrado"});
+            
+            throw new Error("Email já cadastrado");
         }
 
         //verificar cpf
         const existingCPFArray = await userModel.find({CPF: req.body.CPF});
         const existingCPF = existingCPFArray[0];
         if(existingCPF){
-            throw new Error({message: "CPF já cadastrado."});
+            throw new Error("CPF já cadastrado.");
         }
 
         const newSenha = await crypt(req.body.senha);
@@ -90,7 +91,6 @@ async function createUser(req, res){
 
     }catch(error){
         return res.status(400).send({
-            error: error,
             message: error.message
         });
     }

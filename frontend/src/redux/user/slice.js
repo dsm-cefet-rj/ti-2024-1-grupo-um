@@ -19,10 +19,9 @@ const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
         const response = await api.post("/user", data);
         notify("success", "Usuário criado com sucesso.");
         return response.data;
-
     }catch(error){
         console.log(error);
-        notify("error", error.message);
+        notify("error", error.response.data.message);
         return false;
     }
 });
