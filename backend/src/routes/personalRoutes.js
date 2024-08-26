@@ -4,11 +4,11 @@ import { verifyJWT , authorizeType } from "../middlewares/Auth.js";
 
 const personalRoutes = express.Router();
 
-personalRoutes.get('/personal/:_id', readOne);
+personalRoutes.get('/personal/:_id', verifyJWT, authorizeType("personal"), readOne);
 personalRoutes.get('/personal', readAll);
 personalRoutes.post('/personal', createPersonal);
-personalRoutes.put('/personal/:_id', updatePersonal);
-personalRoutes.delete('/personal/:_id', deletePersonal);
+personalRoutes.patch('/personal/:_id', verifyJWT, authorizeType("personal"), updatePersonal);
+personalRoutes.delete('/personal/:_id',  verifyJWT, authorizeType("personal"),deletePersonal);
 
 personalRoutes.post('/loginPersonal', loginPersonal);
 
