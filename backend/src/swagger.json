@@ -111,6 +111,7 @@
                 "description": "Rota responsável por criar um novo usuário",
                 "tags": ["User"],
                 "requestBody": {
+                    "required": true,
                     "content": {
                         "application/json":{
                             "schema":{
@@ -158,9 +159,15 @@
                                     }
                                 },
                                 "examples": {
-                                    "errorExample": {
+                                    "errorEmail": {
                                         "value": {
                                             "message": "Email já cadastrado",
+                                            "error": "ValidationError"
+                                        }
+                                    },
+                                    "errorCPF": {
+                                        "value": {
+                                            "message": "CPF já cadastrado",
                                             "error": "ValidationError"
                                         }
                                     }
@@ -170,8 +177,74 @@
                     }
                 }
             }
+        },
+        "/user/{id}/updateUser": {
+            "patch": {
+                "summary": "Atualiza usuário",
+                "description": "Essa rota é responsável por atualizar um usuário pelo id",
+                "tags": ["User"],
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id do usuário a ser atualizado",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+                ],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuário atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro na tentativa da atualização",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-
     },
     "components":{
         "schemas":{
