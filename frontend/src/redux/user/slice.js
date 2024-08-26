@@ -37,9 +37,9 @@ const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
             birth: data.birth,
             email: data.email,
             nome: data.nome,
-            senha: data.senha
         }
-        await api.put(`/user/${data._id}`, updateUser, {
+        if(data.senha.length > 0) updateUser.senha = data.senha;
+        await api.patch(`/user/${data._id}`, updateUser, {
             headers: {
                 Authorization:`${token}`
             }
