@@ -10,8 +10,7 @@ const personalSchema = new mongoose.Schema({
     formacao: { type: mongoose.Schema.Types.String, required:[true, "A formação é obrigatória"]},
     cidade: { type: mongoose.Schema.Types.String, required:[true, "A cidade é obrigatória"]},
     biografia: { type: mongoose.Schema.Types.String, required:[true, "A biografia é obrigatória"]},
-    preco: { type: mongoose.Schema.Types.Number, required:[true, "O preço é obrigatório"]},
-    _id: { type: mongoose.Schema.Types.ObjectId }
+    preco: { type: mongoose.Schema.Types.Number, required:[true, "O preço é obrigatório"]}
 });
 
 const personalModel = mongoose.model("personais", personalSchema);

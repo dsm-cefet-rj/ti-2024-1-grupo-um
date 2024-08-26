@@ -49,6 +49,7 @@ async function createPersonal(req, res){
     try{
         
         //verificar email
+        console.log(req.body);
         const existingEmailArray = await personalModel.find({email: req.body.email});
         const existingEmail = existingEmailArray[0];
 
@@ -59,7 +60,7 @@ async function createPersonal(req, res){
         }
 
         //verificar cpf
-        const existingCPFArray = await personalModel.find({CPF: newPersonal.CPF});
+        const existingCPFArray = await personalModel.find({CPF: req.body.CPF});
         const existingCPF = existingCPFArray[0];
 
         if(existingCPF != undefined){
@@ -74,17 +75,16 @@ async function createPersonal(req, res){
         // newPersonal.senha = hashedPassword;
         //desmembrar objeto
         const newPersonal = {
-            nome: req.body.nome,
-            CPF: req.body.CPF,
-            email: req.body.email,
-            birth: req.body.birth,
-            senha: newSenha,
-            descricao: req.body.descricao,
-            formacao: req.body.formacao,
-            cidade: req.body.cidade,
-            biografia: req.body.biografia,
-            preco: req.body.preco,
-
+            nome: req.body.nome, // ok
+            CPF: req.body.CPF, //ok
+            email: req.body.email, //ok
+            birth: req.body.birth, //ok
+            senha: newSenha, //ok
+            descricao: req.body.descricao, // ok
+            formacao: req.body.formacao, //ok
+            cidade: req.body.cidade, //ok
+            biografia: req.body.biografia, //ok
+            preco: req.body.preco,// ok
         }
         
 
@@ -97,7 +97,7 @@ async function createPersonal(req, res){
 
     }catch(error){
         return res.status(400).send({
-            error: error,
+            error: error.message,
             message: 'Ocorreu um erro na criação de personal'
         });
     }
@@ -156,6 +156,7 @@ async function loginPersonal(req, res){
 
         const existingPersonalArray = await personalModel.find({email});
         const existingPersonal = existingPersonalArray[0];
+        console.log(existingPersonal);
         if(existingPersonal == undefined){
             return res.status(400).send({
                 message: "Login ou Senha errados.",
@@ -164,33 +165,30 @@ async function loginPersonal(req, res){
         }
         //hash de senha
         const passwordMatch = await bcrypt.compare(senha, existingPersonal.senha);
+        console.log(passwordMatch);
         if(!passwordMatch){
             return res.status(400).send({
                 message: "Login ou Senha errados",
                 status: false
             })
-        }
-        if(senha === existingPersonal.senha){
+        }else{
             console.log(req.body);
             const token = jsonwebtoken.sign(
                 {
-                    id: personal._id,
+                    id: existingPersonal._id,
                     type: "personal" 
                 }, 
                 process.env.SECRET_JWT, 
-                {expiresIn: '1h'});
+                {
+                    expiresIn: '1h'
+                }
+            );
             return res.status(200).send({
                 message: "Personal autenticado com sucesso",
                 status: true,
                 token: token,
                 personal: existingPersonal
             });
-            
-        }else{
-            return res.status(400).send({
-                message: "Login ou Senha errados.",
-                status: false
-            })
         }
     }catch(error){
         return res.status(400).send({

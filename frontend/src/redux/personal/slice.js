@@ -20,6 +20,7 @@ const getPersonais = createAsyncThunk("personais/getPersonaisAsync", async(token
 
 const createPersonal = createAsyncThunk('personais/addPersonalAsync', async (data) => {
     try{
+        console.log(data);
         const response = await api.post("/personal", data)
         return response.data;
     }catch(error){
