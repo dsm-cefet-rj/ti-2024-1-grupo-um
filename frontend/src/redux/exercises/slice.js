@@ -43,7 +43,7 @@ const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoI
 
 const deleteExercicioByID = createAsyncThunk("exercises/deleteExerciseByID", async (infos) => {
     try{
-        const response = await api.delete(`/exercise/${infos.idTreino}`, {
+        const response = await api.delete(`/exercise/${infos.idExercicio}`, {
             headers: {
                 Authorization:`${infos.token}`
             }
