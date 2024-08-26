@@ -27,11 +27,89 @@
                     "description": "Id para busca",
                     "required": true,
                     "schema": {
-                    "type": "string"
+                        "type": "string"
                     }
                 }
                 ],
                 "security": [{"bearerAuth": []}],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Usuário não cadastrado/Ocorreu um erro",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/readAll":{
+            "get": {
+                "summary": "Ver todos os usuários",
+                "description": "Essa rota é responsável por ver todos os usuários",
+                "tags": ["User"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro ao recuperar a lista de usuários",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/createUser":{
+            "post":{
+                "summary": "Criar novo usuário",
+                "description": "Rota responsável por criar um novo usuário",
+                "tags": ["User"],
                 "requestBody": {
                     "content": {
                         "application/json":{
@@ -53,11 +131,8 @@
                     }
                 },
                 "responses": {
-                    "400": {
-                        "description": "Usuário não cadastrado/Ocorreu um erro"
-                    },
-                    "200": {
-                        "description": "OK",
+                    "201": {
+                        "description": "Usuário cadastrado com sucesso",
                         "content": {
                             "application/json": {
                                 "schema": {
@@ -66,15 +141,34 @@
                                 }
                             }
                         }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro ao tentar criar um usuário",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "errorExample": {
+                                        "value": {
+                                            "message": "Email já cadastrado",
+                                            "error": "ValidationError"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-            }
-        },
-        "/user/readAll":{
-            "get": {
-                "description": "Essa rota é responsável por ver todos os usuários",
-                "summary": "Ver todos os usuários",
-                "tags": ["User"]
             }
         }
 
