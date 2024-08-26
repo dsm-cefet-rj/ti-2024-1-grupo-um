@@ -33,7 +33,7 @@ app.listen(PORT,() => {
 })
 
 // https
-https.createServer({
-    cert: fs.readFileSync("src/SSL/code.crt"),
-    key: fs.readFileSync("src/SSL/code.key")
-}, app).listen(80, ()=> console.log("rodando em https"));
+// https.createServer({
+//     cert: fs.readFileSync("src/SSL/code.crt"),
+//     key: fs.readFileSync("src/SSL/code.key")
+// }, app).listen(80, ()=> console.log("rodando em https"));
