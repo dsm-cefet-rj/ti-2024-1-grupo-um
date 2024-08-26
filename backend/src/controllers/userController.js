@@ -101,15 +101,17 @@ async function updateUser(req, res) {
 
         const update = req.body;
 
-        const newSenha = await crypt(update.senha);
 
-        update.senha = newSenha;
+        if(update.senha) {
+            const newSenha = await crypt(update.senha);
+            update.senha = newSenha;
+        }
 
         const updatedUser = await userModel.findByIdAndUpdate(id, update);
 
         return res.status(200).send({
             message:"Usuário atualizado com sucesso.",
-            data: update
+            data: updatedUser
         });
 
     }catch(error){

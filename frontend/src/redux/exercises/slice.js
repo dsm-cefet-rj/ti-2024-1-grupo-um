@@ -43,7 +43,7 @@ const getExercisesByTreinoID = createAsyncThunk("exercises/getExercisesByTreinoI
 
 const deleteExercicioByID = createAsyncThunk("exercises/deleteExerciseByID", async (infos) => {
     try{
-        const response = await api.delete(`/exercise/${infos.idTreino}`, {
+        const response = await api.delete(`/exercise/${infos.idExercicio}`, {
             headers: {
                 Authorization:`${infos.token}`
             }
@@ -62,7 +62,6 @@ const exercisesSlice = createSlice({
     reducers: {
         addExercise: (state, action) => {
             state.push(action.payload);
-            notify("success", "Exercicio adicionado com sucesso");
         },
         clearExercises: (state) => {
             while(state.length > 0){

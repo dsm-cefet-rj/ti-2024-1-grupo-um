@@ -1,5 +1,6 @@
 import express from "express";
 import 'dotenv/config';
+import swaggerUi from "swagger-ui-express";
 
 // Load environment variables from .env file
 
@@ -11,6 +12,7 @@ import cors from "cors";
 
 import routes from "./routes/index.js";
 import databaseConnect from "./database/dbConnect.js";
+import swaggerDocs from "./swagger.json" assert { type: "json" };
 const app = express();
 
 
@@ -26,6 +28,7 @@ connection.once("open", () => {
 app.use(cors());
 app.use(express.json());
 app.use(routes);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 
 const PORT = 5000;
 app.listen(PORT,() => {
@@ -33,7 +36,7 @@ app.listen(PORT,() => {
 })
 
 // https
-https.createServer({
-    cert: fs.readFileSync("src/SSL/code.crt"),
-    key: fs.readFileSync("src/SSL/code.key")
-}, app).listen(80, ()=> console.log("rodando em https"));
+// https.createServer({
+//     cert: fs.readFileSync("src/SSL/code.crt"),
+//     key: fs.readFileSync("src/SSL/code.key")
+// }, app).listen(80, ()=> console.log("rodando em https"));

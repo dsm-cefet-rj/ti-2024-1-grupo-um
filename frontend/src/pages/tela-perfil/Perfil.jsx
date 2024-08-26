@@ -89,9 +89,7 @@ function Perfil() {
     const validationSchema = Yup.object({
         nome: Yup.string().required("O nome é Obrigatório"),
         email: Yup.string().email().required("O email é obrigatório."),
-        senha: Yup.string()
-        .required('Senha requerida.') 
-        .min(8, 'Senha deve conter ao menos 8 digitos.'),
+        senha: Yup.string(),
         birth: Yup.date().required("Data de Nascimento obrigatória."),
         CPF: Yup.string().required("CPF obrigatório.")
     });
@@ -112,7 +110,7 @@ function Perfil() {
     const initialValues = {
         nome: currentUser.user.nome,
         email: currentUser.user.email,
-        senha: currentUser.user.senha,
+        senha: "",
         birth: formatDate(currentUser.user.birth),
         CPF: currentUser.user.CPF
     };
