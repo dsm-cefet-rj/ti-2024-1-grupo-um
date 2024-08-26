@@ -10,12 +10,21 @@ import { getAnamnese } from "../../redux/anamnese/slice";
 // react router dom
 import { Link } from "react-router-dom";
 
-function AlunoCard({ nomeUser, idUser}){
+function AlunoCard({nomeUser, idUser, token}){
     const dispatch = useDispatch();
+    console.log(nomeUser);
+    console.log(idUser);
+    console.log(token)
 
     const handleOnClick = () => {
-        dispatch(getTreinosByUserID(idUser));
-        dispatch(getAnamnese(idUser));
+        dispatch(getTreinosByUserID({
+            userId: idUser,
+            token
+        }));
+        dispatch(getAnamnese({
+            userId: idUser,
+            token
+        }));
     }
 
     return (

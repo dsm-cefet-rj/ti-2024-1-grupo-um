@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import CreateAxiosInstance from "../../utils/api";
+import { notify } from '../..';
 
 const api  = CreateAxiosInstance();
 
@@ -34,15 +35,24 @@ const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(info
   }
 });
 
-const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async(idPersonal) => {
-  const api  = CreateAxiosInstance(); 
-  const response = await api.get(`/aluno/${idPersonal}`);
-  return response.data;
+const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async(data) => {
+  try{
+    const response = await api.get(`/aluno/${data.idPersonal}`,{
+      headers: {
+        Authorization:`${data.token}`
+      }
+    });
+    return response.data;
+  }catch(error){
+    notify("error", error.message);
+    return [];
+  }
+  
   //auth
 })
 
 const deleteAlunoByPersonalId = createAsyncThunk("personais/deletePersonalAsync", async(id)=>{
-  const api  = CreateAxiosInstance(); 
+
   const alunos = await api.get(`/aluno/${id}`);
 
   for (let aluno of alunos.data){

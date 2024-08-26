@@ -76,7 +76,8 @@ const userSlice = createSlice({
         },
         addLoggedPersonal: (state, action) => {
             state.loggedPersonal = true; //switch to token in the future
-            state.personal = action.payload;
+            state.personal = action.payload.personal;
+            state.loggedPersonal = action.payload.token
         },
         logoutUser: (state) => {
             state.logged = false;

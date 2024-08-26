@@ -50,8 +50,16 @@ function LoginPersonal(){
             const response = autenticado.data;
             if(response.status === true){
                 const personal = response.personal;
-                dispatch(addLoggedPersonal(personal));
-                dispatch(getAlunosByPersonalId(personal._id));
+                dispatch(addLoggedPersonal({
+                    personal,
+                    token: autenticado.data.token
+                }));
+
+                dispatch(getAlunosByPersonalId({
+                    idPersonal: personal._id,
+                    token: autenticado.data.token
+                }));
+
                 notify("success", response.message);
                 // setTimeout(10000);
 

@@ -32,7 +32,11 @@ function MeusAlunos(){
                 </div>
                 <div className="card-deck" id="card-deck-personal">
                     {Alunos.map((aluno)=>
-                        <AlunoCard {...aluno}/>
+                        <AlunoCard 
+                            nomeUser={aluno.nomeUser}
+                            idUser={aluno.idUser}
+                            token={currentPersonal.loggedPersonal}
+                        />
                     )}
                 </div>
             </div>

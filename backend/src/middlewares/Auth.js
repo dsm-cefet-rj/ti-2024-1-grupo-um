@@ -19,14 +19,13 @@ function verifyJWT(req, res, next){
     }
 }
 
-function authorizeType(type) {
+function authorizeTypes(allowedTypes) {
     return (req, res, next) => {
-        if (req.user.type !== type) {
-            return res.sendStatus(403); // Forbidden
+        if (!allowedTypes.includes(req.user.type)) {
+            return res.sendStatus(403);
         }
-        console.log(`${req.user.type} autorizado`)
         next();
     };
 }
 
-export { authorizeType, verifyJWT }
+export { authorizeTypes, verifyJWT }
