@@ -57,7 +57,7 @@ function CadastroPersonal(){
         notify("success", "Cadastro realizado com sucesso");
 
         setTimeout(() => {
-            navigate("/login");
+            navigate("/LoginPersonal");
         }, 2000)
     }
 
