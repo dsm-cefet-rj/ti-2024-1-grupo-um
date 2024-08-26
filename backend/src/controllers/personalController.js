@@ -47,22 +47,7 @@ async function readOne(req, res){
 }
 async function createPersonal(req, res){
     try{
-        //desmembrar objeto
-        const newPersonal = {
-            nome: req.body.nome,
-            CPF: req.body.CPF,
-            email: req.body.email,
-            birth: req.body.birth,
-            senha: req.body.senha,
-            descricao: req.body.descricao,
-            formacao: req.body.formacao,
-            cidade: req.body.cidade,
-            biografia: req.body.biografia,
-            preco: req.body.preco,
-
-        }
         
-
         //verificar email
         const existingEmailArray = await personalModel.find({email: req.body.email});
         const existingEmail = existingEmailArray[0];
@@ -84,8 +69,24 @@ async function createPersonal(req, res){
         }
 
         //hash de senha
-        const hashedPassword = await crypt(newPersonal.senha);
-        newPersonal.senha = hashedPassword;
+        const newSenha = await crypt(req.body.senha)
+        // const hashedPassword = await crypt(newPersonal.senha);
+        // newPersonal.senha = hashedPassword;
+        //desmembrar objeto
+        const newPersonal = {
+            nome: req.body.nome,
+            CPF: req.body.CPF,
+            email: req.body.email,
+            birth: req.body.birth,
+            senha: newSenha,
+            descricao: req.body.descricao,
+            formacao: req.body.formacao,
+            cidade: req.body.cidade,
+            biografia: req.body.biografia,
+            preco: req.body.preco,
+
+        }
+        
 
         const result = await personalModel.create(newPersonal);
 
