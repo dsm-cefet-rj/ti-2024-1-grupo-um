@@ -62,7 +62,6 @@ const exercisesSlice = createSlice({
     reducers: {
         addExercise: (state, action) => {
             state.push(action.payload);
-            notify("success", "Exercicio adicionado com sucesso");
         },
         clearExercises: (state) => {
             while(state.length > 0){

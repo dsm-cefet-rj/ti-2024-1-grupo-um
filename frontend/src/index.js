@@ -7,7 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./redux/store.js";
+import { PersistGate } from "redux-persist/integration/react";
+import store, { persistor } from "./redux/store.js";
 
 import App from "./App.js";
 import Login from "./pages/tela-login/Login.jsx";
@@ -30,6 +31,8 @@ import MeusAlunos from "./pages/tela-meus-alunos/MeusAlunos.jsx";
 import Aluno from "./pages/tela-aluno/Aluno.jsx";
 import LoginPersonal from "./pages/tela-login/LoginPersonal.jsx";
 import { toast, ToastContainer } from "react-toastify";
+
+
 
 const router = createBrowserRouter([
 	{
@@ -133,8 +136,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
 		<Provider store={store}>
-			<RouterProvider router={router}/>
-			<ToastContainer />
+			<PersistGate loading={null} persistor={persistor}>
+				<RouterProvider router={router} />
+				<ToastContainer />
+			</PersistGate>
 		</Provider>
 	</React.StrictMode>
 );
