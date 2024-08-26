@@ -1,0 +1,114 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "API Cefit",
+        "description": "Descrição da API",
+        "contact": {
+            "email": "exemplo@exemplo" 
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:5000/v1",
+            "description": "API de teste"
+        }
+    ],
+    "paths": {
+        "/user/{id}/readOne": {
+            "get": {
+                "summary": "Ver um usuário pelo id",
+                "description": "Essa rota será responsável para visualizar um usuário",
+                "tags": ["User"],
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id para busca",
+                    "required": true,
+                    "schema": {
+                    "type": "string"
+                    }
+                }
+                ],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "examples": {
+                                "users": {
+                                    "value": {
+                                        "nome": "Luiz",
+                                        "email": "luiz@teste.com",
+                                        "birth": "31/05/2003",
+                                        "CPF": "12345678910",
+                                        "senha": "luizteste123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Usuário não cadastrado/Ocorreu um erro"
+                    },
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/readAll":{
+            "get": {
+                "description": "Essa rota é responsável por ver todos os usuários",
+                "summary": "Ver todos os usuários",
+                "tags": ["User"]
+            }
+        }
+
+    },
+    "components":{
+        "schemas":{
+            "User": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "birth": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "CPF": {
+                        "type": "string"
+                    },
+                    "senha": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
