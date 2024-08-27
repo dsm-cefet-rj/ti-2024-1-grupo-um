@@ -31,10 +31,17 @@ function EditTreinoAluno() {
     const currentUser = useSelector(rootReducer => rootReducer.user);
 
     const handleDeleteTreino = () => {
-        dispatch(deleteTreinoByID(id));
+
+        dispatch(deleteTreinoByID({
+            idTreino: id,
+            token: currentUser.loggedPersonal
+        }));
+
         dispatch(deleteTraining(id));
-        notify("success", "treino deletado com sucesso!");
-        navigate("/areaFIT");
+
+        setTimeout(() => {
+            navigate("/areaFIT");
+        }, 2000);
     }
     
     const openModal = () => {
@@ -42,9 +49,10 @@ function EditTreinoAluno() {
     };
 
     const handlePostExercise = (info) => {
-        notify("sucess", "treino editado com sucesso!");
-
-        dispatch(addExercicio(info))
+        dispatch(addExercicio({
+            ...info,
+            token: currentUser.loggedPersonal
+        }));
     }
 
     if(!currentUser.loggedPersonal){
@@ -75,7 +83,7 @@ function EditTreinoAluno() {
                         rep={exercicio.series}
                         obs={exercicio.observacoes}
                         type={exercicio.type}
-                        idExercicio={exercicio.id}
+                        idExercicio={exercicio._id}
                     />
                 ))
             )}

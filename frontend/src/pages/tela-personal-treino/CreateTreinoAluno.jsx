@@ -14,9 +14,9 @@ import React, { useState } from 'react';
 
 //imports redux
 import { useDispatch, useSelector } from "react-redux";
-import { addInfo, addTreino, clearForms } from "../../redux/form-treino/slice";
-import { addExercicio, clearExercises } from "../../redux/exercises/slice";
-import { addTraining } from "../../redux/trainings/slice";
+import { addInfo, clearForms } from "../../redux/form-treino/slice";
+import { addExercicio, addExercise, clearExercises } from "../../redux/exercises/slice";
+import { addTraining, addTreino, addTreinoForStudent } from "../../redux/trainings/slice";
 
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
@@ -31,33 +31,48 @@ function CreateTreinoAluno() {
     const navigate = useNavigate();
 
     // pegando o usuario
-    const loggedUser = useSelector(rootReducer => rootReducer.user);
+    const personal = useSelector(rootReducer => rootReducer.user);
     const exercicios = useSelector(rootReducer => rootReducer.exercises);
     const form = useSelector(rootReducer => rootReducer.forms);
 
     const [showModal, setShowModal] = useState(false);
 
     const handleSubmitForm = (info) => {
+        
         dispatch(addInfo(info));
+
         console.log(info);
         console.log(form);
+
         const treinoInfo = {
             userId: form.userId,
-            id: form.id,
             descricao: info.descricao,
             title: info.title,
             type: info.type,
             observacoes: info.observacoes
         }
+
         //add Auth to all of them
+        dispatch(addTreinoForStudent({
+            infos: treinoInfo,
+            userId: form.userId,
+            token: personal.loggedPersonal,
+            exercicios
+        }));
         // dispatch(addTreino(treinoInfo));
         // dispatch(addTraining(treinoInfo));
         // exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
         // dispatch(clearExercises());
         // dispatch(clearForms());
-        notify("success", "Treino criado com sucesso");
-        navigate("/meusAlunos");
 
+        // notify("success", "Treino criado com sucesso");
+        navigate("/meusAlunos");
+    }
+    // dispatch(clearExercises());
+
+    const handleSubmitAddExercise = (info) => {
+        dispatch(addExercise(info));
+        setShowModal(false);
     }
 
     const openModal = () => {
@@ -81,7 +96,7 @@ function CreateTreinoAluno() {
     })
 
     //veriricando login do usuario
-    if (!loggedUser.loggedPersonal) {
+    if (!personal.loggedPersonal) {
         return <Navigate to="/" />
     }
 
@@ -118,7 +133,7 @@ function CreateTreinoAluno() {
                             setShowModal();
                         }}
                         idForm={form.id}
-                        optionalFunction={(e) => {dispatch(addExercicio(e))}}
+                        handleSubmitForm={handleSubmitAddExercise}
                     />
                 )}
             </div>

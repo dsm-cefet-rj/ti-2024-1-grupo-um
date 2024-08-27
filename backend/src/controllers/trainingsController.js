@@ -95,10 +95,12 @@ async function createTrainingForgymStudent(req, res){
             observacoes: req.body.observacoes
         }
 
-        await trainingModel.create(training);
+        const newTraining = await trainingModel.create(training);
+        console.log(newTraining);
         
         return res.status(200).send({
-            message: "Treino criado com sucesso."
+            message: "Treino criado com sucesso.",
+            trainings: newTraining
         })
 
     }catch(error){

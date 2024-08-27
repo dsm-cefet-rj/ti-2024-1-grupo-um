@@ -8,9 +8,10 @@ import React from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { addLoggedPersonal, logoutUser, } from "../../redux/user/slice";
+import { addLoggedPersonal, logoutUser, updatePersonal, } from "../../redux/user/slice";
 import { clearAlunos, deleteAlunoByPersonalId } from "../../redux/aluno/slice";
-import { deletePersonal, updatePersonal } from "../../redux/personal/slice";
+import { deletePersonal} from "../../redux/personal/slice";
+
 //Yup
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
@@ -28,10 +29,14 @@ function PerfilPersonal() {
     const handleSubmitForm = (infos) => {
         console.log(currentUser.personal);
         console.log(currentUser.personal._id);
-        dispatch(updatePersonal({...infos, _id: currentUser.personal._id}));
+        
+        dispatch(updatePersonal({
+            ...infos, 
+            _id: currentUser.personal._id,
+            token: currentUser.loggedPersonal
+        })); //auth
         // dispatch(addLoggedPersonal(infos));
         
-        notify("success", "Personal editado com sucesso");
 
         setTimeout(() => {
             navigate("/");
@@ -40,8 +45,14 @@ function PerfilPersonal() {
     }
     const handlePersonalDelete = () => {
         const idPersonal = currentUser.personal._id;
-        dispatch(deleteAlunoByPersonalId(idPersonal));
-        dispatch(deletePersonal(idPersonal));
+        dispatch(deleteAlunoByPersonalId({
+            _id: idPersonal,
+            token: currentUser.loggedPersonal
+        }));
+        dispatch(deletePersonal({
+            _id: idPersonal,
+            token: currentUser.loggedPersonal
+        }));
         dispatch(clearAlunos());
         dispatch(logoutUser());
         navigate("/");
@@ -55,7 +66,7 @@ function PerfilPersonal() {
     const validationSchema = Yup.object({
         nome: Yup.string().required("O nome é obrigatório."),
         email: Yup.string().email().required("O email é obrigatório."),
-        senha: Yup.string().required("Senha é obrigatória.").min(8, "Senha deve conter pelo menos 8 caracteres."),
+        senha: Yup.string(),
         birth: Yup.date().required("Data de Nascimento é obrigatória."),
         CPF: Yup.string().required("CPF é obrigatório."),
         descricao: Yup.string().required("Descrição é obrigatória."),
@@ -68,7 +79,7 @@ function PerfilPersonal() {
     const initialValues = {
         nome: currentUser.personal.nome,
         email: currentUser.personal.email,
-        senha: currentUser.personal.senha,
+        senha: "",
         birth: currentUser.personal.birth,
         CPF: currentUser.personal.CPF,
         descricao: currentUser.personal.descricao,

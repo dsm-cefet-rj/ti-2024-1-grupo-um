@@ -36,7 +36,10 @@ function Aluno() {
     console.log(alunos.filter((aluno) => aluno.userId === id))
 
     const handleDeleteTreino = (treinoId) => {
-        dispatch(deleteTreinoByID(treinoId))
+        dispatch(deleteTreinoByID({
+            idTreino: treinoId,
+            token: currentUser.loggedPersonal
+        }))
         dispatch(deleteTraining(treinoId))
     }
 
@@ -96,7 +99,7 @@ function Aluno() {
             <>
                 <div className="exercicio-card" id="treino-aluno">
                     <div className="exercicio-info">
-                        <Link className="card-title" id="exercicio-nome" onClick={() => {dispatch(getExercisesByTreinoID(treino._id))}} to={`/EditTreinoAluno/${treino._id}`}>{treino.title}</Link>
+                        <Link className="card-title" id="exercicio-nome" onClick={() => {dispatch(getExercisesByTreinoID({idTreino: treino._id, token: currentUser.loggedPersonal}))}} to={`/EditTreinoAluno/${treino._id}`}>{treino.title}</Link>
                     </div>
                     <div className="btn-div">
                         <button className="btn-lixeira" onClick={() => {handleDeleteTreino(treino._id)}}>
@@ -108,7 +111,7 @@ function Aluno() {
             )}
 
             <div className="d-flex justify-content-center mb-2">
-                <Link data-aos="fade-up" data-aos-delay="200" to={`/CreateTreinoAluno`} onClick={() => {dispatch(addForms({userId: id, id: idGen(), infos: {}}))}} className="btn btn-success w-50">Preescrever Treino</Link>
+                <Link data-aos="fade-up" data-aos-delay="200" to={`/CreateTreinoAluno`} onClick={() => {dispatch(addForms({userId: id, infos: {}}))}} className="btn btn-success w-50">Preescrever Treino</Link>
             </div>
             <FooterComp />
         </div>
