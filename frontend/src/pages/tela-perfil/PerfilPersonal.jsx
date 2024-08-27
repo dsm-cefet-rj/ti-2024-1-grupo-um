@@ -75,12 +75,24 @@ function PerfilPersonal() {
         biografia: Yup.string().required("Biografia é obrigatória."),
         preco: Yup.number().required("Preço é obrigatório.")
     });
+    function formatDate(dateString) {
+        // Cria um objeto Date a partir da string ISO
+        const date = new Date(dateString);
+    
+        // Extrai o dia, mês e ano
+        const day = String(date.getUTCDate()).padStart(2, '0');
+        const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // getUTCMonth retorna o mês de 0 a 11
+        const year = date.getUTCFullYear();
+    
+        return `${year}-${month}-${day}`;
+
+    }
 
     const initialValues = {
         nome: currentUser.personal.nome,
         email: currentUser.personal.email,
         senha: "",
-        birth: currentUser.personal.birth,
+        birth: formatDate(currentUser.personal.birth),
         CPF: currentUser.personal.CPF,
         descricao: currentUser.personal.descricao,
         formacao: currentUser.personal.formacao,
@@ -113,6 +125,7 @@ function PerfilPersonal() {
                                 <InputComponentYup classes="" id="formacao" name="formacao" text="Formação" type="text" placeholder="Sua Formação aqui" />
                                 <InputComponentYup classes="" id="biografia" name="biografia" text="Biografia" type="text" placeholder="Sua Biografia aqui" />
                                 <InputComponentYup classes="" id="preco" name="preco" text="Preço da sua consultoria" type="text" placeholder="Ex: R$ 39,90" />
+                                <InputComponentYup classes="" id="foto" name="foto" text="Foto" type="file" />    
                                 <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
                                 <div className="mt-3 d-flex justify-content-center">
                                     <button className="btn-submit" type="submit" disabled={!isValid}>Enviar</button>

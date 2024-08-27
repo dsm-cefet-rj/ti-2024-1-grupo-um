@@ -32,7 +32,8 @@ function CadastroPersonal(){
         formacao: Yup.string().required("Formação é obrigatória."),
         cidade: Yup.string().required("Cidade é obrigatória."),
         biografia: Yup.string().required("Biografia é obrigatória."),
-        preco: Yup.number().required("Preço é obrigatório.")
+        preco: Yup.number().required("Preço é obrigatório."),
+        foto: Yup.file()
     });
 
     const initialValues = {
@@ -45,7 +46,8 @@ function CadastroPersonal(){
         formacao:"",
         cidade:"",
         biografia:"",
-        preco:""
+        preco:"",
+        foto: ""
     };
 
 
@@ -85,6 +87,7 @@ function CadastroPersonal(){
                                 <InputComponentYup classes="" id="formacao" name="formacao" text="Formação" type="text" placeholder="Sua Formação aqui" />
                                 <InputComponentYup classes="" id="biografia" name="biografia" text="Biografia" type="text" placeholder="Sua Biografia aqui" />
                                 <InputComponentYup classes="" id="preco" name="preco" text="Preço da sua consultoria" type="text" placeholder="Ex: R$ 39,90" />
+                                <InputComponentYup classes="" id="foto" name="foto" text="Foto" type="file" />    
                                 <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
                                 <div className="cadastro-texto mt-3">
                                     Possui conta? <Link to="/login"> Faça o seu Login!</Link>
