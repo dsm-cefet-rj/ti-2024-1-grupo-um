@@ -551,6 +551,76 @@
                     }
                 }
             }
+        },
+        "/anamnese/{id}": {
+            "delete": {
+                "summary": "Deletar anamnese",
+                "description": "Rota responsável por deletar a anamnese pelo id",
+                "tags": ["Anamnese"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "description": "Id do usuário para o qual a anamnese vai ser recuperada",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Anamnese deletada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Anamnese"                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao deletar anamnese ou anamnese não encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "notFound": {
+                                        "value": {
+                                            "message": "Anamnese não encontrada"
+                                        }
+                                    },
+                                    "deleteError": {
+                                        "value": {
+                                            "message": "Erro ao deletar anamnese",
+                                            "error":"Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
