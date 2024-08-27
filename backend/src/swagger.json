@@ -483,6 +483,74 @@
                     }
                 }
             }
+        },
+        "/anamnese/{userId}": {
+            "get": {
+                "summary": "Obter anamnese por id do usuário",
+                "description": "Rota responsável por buscar uma anamnese específica através do id do usuário",
+                "tags": ["Anamnese"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "description": "Id do usuário para o qual a anamnese vai ser recuperada",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Anamnese recuperada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "anamnese": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Anamnese"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao buscar anamnese",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "fetchError": {
+                                        "value": {
+                                            "message": "Erro ao buscar anamnese",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
