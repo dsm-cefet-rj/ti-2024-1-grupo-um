@@ -244,6 +244,77 @@
                     }
                 }
             }
+        },
+        "/user/{id}/deleteUser": {
+            "delete": {
+                "summary": "Deleta usuário",
+                "description": "Essa rota é responsável por deletar um usuário através do id",
+                "tags": ["User"],
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id do usuário a ser deletado",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+                ],
+                "security": [{"bearerAuth": []}],
+                "responses": {
+                    "200": {
+                        "description": "Usuário deletado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Usuário não encontrado ou ocorreu um erro na remoção",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "userNotFound": {
+                                        "value": {
+                                            "message": "User não encontrado",
+                                            "error": "UserNotFoundError"
+                                        }
+                                    },
+                                    "deletionError": {
+                                        "value": {
+                                            "message": "Erro ao tentar deletar user",
+                                            "error": "ValidationError"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
