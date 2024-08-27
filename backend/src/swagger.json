@@ -414,6 +414,75 @@
                     }
                 }
             }
+        },
+        "/anamnese/createAnamnese": {
+            "post": {
+                "summary": "Criar anamnese",
+                "description": "Rota responsável pela criação de anamnese",
+                "tags": ["Anamnese"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Anamnese"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Anamnese criada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "anamnese": {
+                                            "$ref": "#/components/schemas/Anamnese"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Usuário já possui anamnese ou erro ao criar anamnese",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "existingAnamnese": {
+                                        "value": {
+                                            "message": "Usuário já possui uma anamnese"
+                                        }
+                                    },
+                                    "createError": {
+                                        "value": {
+                                            "message": "Erro ao criar anamnese",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
@@ -435,6 +504,33 @@
                         "type": "string"
                     },
                     "senha": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Anamnese": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string"
+                    },
+                    "weight": {
+                        "type": "string"
+                    },
+                    "motivation": {
+                        "type": "string"
+                    },
+                    "activityFreq": {
+                        "type": "string"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "diet": {
+                        "type": "string"
+                    },
+                    "observacoes": {
                         "type": "string"
                     }
                 }
