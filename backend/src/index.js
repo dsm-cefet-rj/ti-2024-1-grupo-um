@@ -35,8 +35,4 @@ app.listen(PORT,() => {
     console.log(`escutando na porta ${PORT}`);
 })
 
-// https
-// https.createServer({
-//     cert: fs.readFileSync("src/SSL/code.crt"),
-//     key: fs.readFileSync("src/SSL/code.key")
-// }, app).listen(80, ()=> console.log("rodando em https"));
+
