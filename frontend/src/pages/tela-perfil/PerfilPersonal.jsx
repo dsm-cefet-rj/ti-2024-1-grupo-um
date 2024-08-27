@@ -75,12 +75,24 @@ function PerfilPersonal() {
         biografia: Yup.string().required("Biografia é obrigatória."),
         preco: Yup.number().required("Preço é obrigatório.")
     });
+    function formatDate(dateString) {
+        // Cria um objeto Date a partir da string ISO
+        const date = new Date(dateString);
+    
+        // Extrai o dia, mês e ano
+        const day = String(date.getUTCDate()).padStart(2, '0');
+        const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // getUTCMonth retorna o mês de 0 a 11
+        const year = date.getUTCFullYear();
+    
+        return `${year}-${month}-${day}`;
+
+    }
 
     const initialValues = {
         nome: currentUser.personal.nome,
         email: currentUser.personal.email,
         senha: "",
-        birth: currentUser.personal.birth,
+        birth: formatDate(currentUser.personal.birth),
         CPF: currentUser.personal.CPF,
         descricao: currentUser.personal.descricao,
         formacao: currentUser.personal.formacao,
