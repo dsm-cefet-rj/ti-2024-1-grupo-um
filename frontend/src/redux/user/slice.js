@@ -38,14 +38,43 @@ const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
             nome: data.nome,
         }
         if(data.senha.length > 0) updateUser.senha = data.senha;
-        await api.patch(`/user/${data._id}`, updateUser, {
+        const response = await api.patch(`/user/${data._id}`, updateUser, {
             headers: {
                 Authorization:`${token}`
             }
         });
         notify("success", "Usuario atualizado com sucesso");
+        return response.data.data;
     }catch(error){
         notify("error", error.message);
+    }
+});
+
+const updatePersonal = createAsyncThunk("user/updatePersonalAsync", async (data) => {
+    try{
+        const req = {
+            CPF: data.CPF,
+            biografia: data.biografia,
+            birth: data.birth,
+            cidade: data.cidade,
+            descricao: data.descricao,
+            email: data.email,
+            formacao: data.formacao,
+            nome: data.nome,
+            preco: data.preco,
+            senha: data.senha
+        }
+        const response = await api.patch(`/personal/${data._id}`, req, {
+            headers: {
+                Authorization: `${data.token}`
+            }
+        })
+        notify("success", "Perfil atualizado com sucesso");
+        console.log(response.data);
+        return response.data.data;
+
+    }catch(error){
+        notify("error", error.message)
     }
 });
 
@@ -90,11 +119,20 @@ const userSlice = createSlice({
                 state.user.treinos.push(action.payload);
             }
         }
+    },
+    extraReducers: builder => {
+        builder
+        .addCase(updatePersonal.fulfilled, (state, action) => {
+            state.personal = action.payload;
+        })
+        .addCase(updateUser.fulfilled, (state, action) => {
+            state.user = action.payload;
+        })
     }
 })
 
 export const { loginUser, logoutUser, addTraining, addLoggedUser, addLoggedPersonal } = userSlice.actions;
 
-export { addUser, updateUser, deleteUser }
+export { addUser, updateUser, deleteUser, updatePersonal }
 
 export default userSlice.reducer;
