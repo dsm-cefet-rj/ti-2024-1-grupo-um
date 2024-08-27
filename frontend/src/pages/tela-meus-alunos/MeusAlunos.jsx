@@ -7,12 +7,23 @@ import AlunoCard from "../../components/AlunoCard/AlunoCard";
 import "./MeusAlunos.css";
 
 //redux
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 //react
 import { Navigate } from "react-router-dom";
+import { clearAnamnese } from "../../redux/anamnese/slice";
+import { clearExercises } from "../../redux/exercises/slice";
+import { clearForms } from "../../redux/form-treino/slice";
+import { clearTrainings } from "../../redux/trainings/slice";
 
 
 function MeusAlunos(){
+    const dispatch = useDispatch();
+    //clear functions
+    dispatch(clearAnamnese());
+    dispatch(clearExercises());
+    dispatch(clearForms());
+    dispatch(clearTrainings());
+
     const currentPersonal =  useSelector(rootReducer => rootReducer.user);
     const Alunos = useSelector(rootReducer => rootReducer.aluno);
 

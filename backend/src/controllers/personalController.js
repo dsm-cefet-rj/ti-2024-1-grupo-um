@@ -108,16 +108,32 @@ async function updatePersonal(req, res) {
 
         const update = req.body;
 
-        const newPassword = await crypt(update.senha);
+        const updateObject = {
+            CPF: update.CPF,
+            biografia: update.biografia,
+            birth: update.birth,
+            cidade: update.cidade,
+            descricao: update.descricao,
+            email: update.email,
+            formacao: update.formacao,
+            nome: update.nome,
+            preco: update.preco,
+        }
+        if(update.senha.length > 0){
+            const newPassword = await crypt(update.senha);    
+            updateObject.senha = newPassword;
+        }
 
-        update.senha = newPassword;
+        const updatedPersonal = await personalModel.findByIdAndUpdate(id, updateObject, {returnDocument: "after"});
 
-        await personalModel.findByIdAndUpdate(id, update);
+        console.log(updatedPersonal);
 
-        return res.status(200).send({
-            message:"Personal atualizado com sucesso.",
-            data: update
-        });
+        setTimeout(() => {
+            return res.status(200).send({
+                message:"Personal atualizado com sucesso.",
+                data: updatedPersonal
+            });
+        }, 2000);
 
     }catch(error){
         return res.status(400).send({

@@ -107,7 +107,7 @@ async function updateUser(req, res) {
             update.senha = newSenha;
         }
 
-        const updatedUser = await userModel.findByIdAndUpdate(id, update);
+        const updatedUser = await userModel.findByIdAndUpdate(id, update, {returnDocument: "after"});
 
         return res.status(200).send({
             message:"Usuário atualizado com sucesso.",

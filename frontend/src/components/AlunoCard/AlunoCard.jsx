@@ -17,11 +17,11 @@ function AlunoCard({nomeUser, idUser, token}){
     console.log(token)
 
     const handleOnClick = () => {
-        dispatch(getTreinosByUserID({
+        dispatch(getAnamnese({
             userId: idUser,
             token
         }));
-        dispatch(getAnamnese({
+        dispatch(getTreinosByUserID({
             userId: idUser,
             token
         }));

@@ -26,10 +26,18 @@ function Exercicio({ nome, carga, rep, obs, type, idExercicio}) {
   }
 
   const handleDeleteExercicio = () => {
-    dispatch(deleteExercicioByID({
-      idExercicio: idExercicio,
-      token: currentUser.logged
-    }));
+    if(currentUser.loggedPersonal){
+      dispatch(deleteExercicioByID({
+        idExercicio: idExercicio,
+        token: currentUser.loggedPersonal
+      }));
+    }
+    if(currentUser.logged){
+      dispatch(deleteExercicioByID({
+        idExercicio: idExercicio,
+        token: currentUser.logged
+      }));
+    }
     dispatch(deleteExercicio(idExercicio));
 
     //navigate("/treino");

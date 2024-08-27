@@ -51,12 +51,16 @@ const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async
   //auth
 })
 
-const deleteAlunoByPersonalId = createAsyncThunk("personais/deletePersonalAsync", async(id)=>{
-
-  const alunos = await api.get(`/aluno/${id}`);
+const deleteAlunoByPersonalId = createAsyncThunk("personais/deletePersonalAsync", async(infos)=>{
+  const alunos = await api.get(`/aluno?personalId=${infos._id}`);
 
   for (let aluno of alunos.data){
-    await api.delete(`/aluno/user/${aluno.id}`);
+    await api.delete(`/aluno/${aluno.id}`,{
+      headers:{
+        Authorization:`${infos.token}`
+      }
+    });
+    //auth
   }
   //auth
 });

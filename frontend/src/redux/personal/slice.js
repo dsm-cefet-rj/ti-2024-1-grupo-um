@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import CreateAxiosInstance from "../../utils/api";
+import { notify } from "../../index";
 
 const initialState = [];
 const api  = CreateAxiosInstance(); 
@@ -28,29 +29,19 @@ const createPersonal = createAsyncThunk('personais/addPersonalAsync', async (dat
     }
 });
 
-const updatePersonal = createAsyncThunk("personais/updatePersonalAsync", async (data) => {
-    const req = {
-        CPF: data.CPF,
-        biografia: data.biografia,
-        birth: data.birth,
-        cidade: data.cidade,
-        descricao: data.descricao,
-        email: data.email,
-        formacao: data.formacao,
-        nome: data.nome,
-        preco: data.preco,
-        senha: data.senha
-    }
-    //tratar notificacao update personal try catch notify
-    await api.put(`/personal/${data._id}`, req);
-    //auth 
-});
 
-const deletePersonal = createAsyncThunk("personais/deletePersonalAsync", async(id)=>{
-    const api  = CreateAxiosInstance(); 
-    //tratar try catch notificacao delete personal
-    await api.delete(`/personal/${id}`);
-    // auth
+
+const deletePersonal = createAsyncThunk("personais/deletePersonalAsync", async(infos)=>{
+    try{
+        await api.delete(`/personal/${infos._id}`,{
+            headers: {
+                Authorization:`${infos.token}`
+            }
+        });
+        notify("success", "Personal deletado com sucesso.");
+    }catch(error){
+        notify("error", error.message);
+    }
 });
 
 
@@ -68,7 +59,8 @@ const personalSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(getPersonais.fulfilled, (state, action) => {
+        builder
+        .addCase(getPersonais.fulfilled, (state, action) => {
             for (let personal of action.payload) {
                 state.push(personal);
             }
@@ -78,5 +70,5 @@ const personalSlice = createSlice({
 
 export const { addPersonal, clearPersonals } = personalSlice.actions;
 
-export { getPersonais, createPersonal, updatePersonal, deletePersonal }
+export { getPersonais, createPersonal, deletePersonal }
 export default personalSlice.reducer;

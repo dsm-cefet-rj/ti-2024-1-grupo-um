@@ -39,6 +39,39 @@ const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
     }
 });
 
+const addTreinoForStudent = createAsyncThunk('user/addTreinoStudentAsync', async (data) => {
+    try{
+        console.log(data);
+        const response = await api.post(`/training/${data.userId}`, data.infos,{
+            headers:{
+                Authorization:`${data.token}`
+            }
+        });
+        console.log(response.data.trainings);
+        console.log(response.data);
+        for(const exercise of data.exercicios){
+            const exerciseToBeCreated = {
+                trainingId: response.data.trainings._id,
+                name: exercise.name,
+                peso: exercise.peso,
+                series: exercise.series,
+                observacoes: exercise.observacoes
+            }
+            await api.post(`/exercise/`, exerciseToBeCreated, {
+                headers: {
+                    Authorization:`${data.token}`
+                }
+            })
+        }
+        
+        notify("success", "Treino adicionado com sucesso");
+        return response.data.trainings;
+
+    }catch(error){
+        notify("error", error.message);
+    }
+});
+
 const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", async(infos) => {
     try{
 
@@ -120,10 +153,13 @@ const trainingsSlice = createSlice({
             .addCase(addTreino.fulfilled, (state, action) => {
                 state.push(action.payload);
             })
+            .addCase(addTreinoForStudent.fulfilled, (state, action) => {
+                state.push(action.payload);
+            })
     }
 })
 
 export const { addTraining, deleteTraining, clearTrainings } = trainingsSlice.actions;
 
-export { getTreinosByUserID, deleteTreinoByID, deleteTreinosByUserId, addTreino };
+export { getTreinosByUserID, deleteTreinoByID, deleteTreinosByUserId, addTreino, addTreinoForStudent };
 export default trainingsSlice.reducer;
