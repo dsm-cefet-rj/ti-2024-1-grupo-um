@@ -315,6 +315,105 @@
                     }
                 }
             }
+        },
+        "/user/login": {
+            "post": {
+                "summary": "Login de usuário",
+                "description": "Essa rota é responsável por realizar o login do usuário",
+                "tags": ["User"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "Email do usuário"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "description": "Senha do usuário"
+                                    }
+                                },
+                                "required": ["email", "senha"]
+                            },
+                            "examples": {
+                                "loginExemplo": {
+                                    "value": {
+                                        "email": "luiz@teste.com",
+                                        "senha": "luizteste123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login realizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "boolean"
+                                        },
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Login ou senha errados, ou erro durante o login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "wrongCredentials": {
+                                        "value": {
+                                            "message": "Login ou senha errados",
+                                            "status": false,
+                                            "error": "Invaid credentials"
+                                        }
+                                    },
+                                    "loginError": {
+                                        "value": {
+                                            "message": "Erro durante o login",
+                                            "status": false,
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
