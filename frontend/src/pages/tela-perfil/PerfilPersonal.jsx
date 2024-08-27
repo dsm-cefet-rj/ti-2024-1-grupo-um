@@ -125,6 +125,7 @@ function PerfilPersonal() {
                                 <InputComponentYup classes="" id="formacao" name="formacao" text="Formação" type="text" placeholder="Sua Formação aqui" />
                                 <InputComponentYup classes="" id="biografia" name="biografia" text="Biografia" type="text" placeholder="Sua Biografia aqui" />
                                 <InputComponentYup classes="" id="preco" name="preco" text="Preço da sua consultoria" type="text" placeholder="Ex: R$ 39,90" />
+                                <InputComponentYup classes="" id="foto" name="foto" text="Foto" type="file" />    
                                 <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
                                 <div className="mt-3 d-flex justify-content-center">
                                     <button className="btn-submit" type="submit" disabled={!isValid}>Enviar</button>
