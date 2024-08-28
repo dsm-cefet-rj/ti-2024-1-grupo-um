@@ -1266,6 +1266,67 @@
                     }
                 }
             }
+        },"/personal": {
+            "get": {
+                "summary": "Listar todos os personal trainers",
+                "description": "Recupera a lista de todos os personal trainers cadastrados.",
+                "tags": ["Personal"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de personal trainers recuperada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Personal"
+                                    }
+                                },
+                                "examples": {
+                                    "personalList": {
+                                        "value": [
+                                            {
+                                                "_id": "60d21b4667d0d8992e610c85",
+                                                "nome": "João Silva",
+                                                "email": "joao.silva@gmail.com",
+                                                "birth": "1985-04-23T00:00:00.000Z",
+                                                "CPF": "12345678901",
+                                                "descricao": "Personal Trainer especializado em musculação.",
+                                                "formacao": "Educação Física",
+                                                "cidade": "São Paulo",
+                                                "biografia": "Apaixonado por ajudar pessoas a alcançarem seus objetivos.",
+                                                "preco": 100
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao recuperar lista de personal trainers.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "errorResponse": {
+                                        "value": {
+                                            "message": "Ocorreu um erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
@@ -1338,6 +1399,56 @@
                     },
                     "observacoes": {
                         "type": "string"
+                    }
+                }
+            },
+            "Personal": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "example": "60d21b4667d0d8992e610c85"
+                    },
+                    "nome": {
+                        "type": "string",
+                        "example": "João Silva"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "joao.silva@gmail.com"
+                    },
+                    "birth": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "1985-04-23T00:00:00.000Z"
+                    },
+                    "CPF": {
+                        "type": "string",
+                        "example": "12345678901"
+                    },
+                    "senha": {
+                        "type": "string",
+                        "example": "senha123"
+                    },
+                    "descricao": {
+                        "type": "string",
+                        "example": "Personal Trainer especializado em musculação."
+                    },
+                    "formacao": {
+                        "type": "string",
+                        "example": "Educação Física"
+                    },
+                    "cidade": {
+                        "type": "string",
+                        "example": "São Paulo"
+                    },
+                    "biografia": {
+                        "type": "string",
+                        "example": "Apaixonado por ajudar pessoas a alcançarem seus objetivos."
+                    },
+                    "preco": {
+                        "type": "number",
+                        "example": 100
                     }
                 }
             }
