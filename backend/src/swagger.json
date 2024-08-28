@@ -1198,6 +1198,74 @@
                     }
                 }
             }
+        },
+        "/trainings/user/deleteTrainingByUserId/{userId}": {
+            "delete": {
+                "summary": "Deletar todos os treinos por ID do usuário",
+                "description": "Rota para deletar todos os treinos de um usuário específico pelo ID do usuário.",
+                "tags": ["Treinos"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do usuário cujos treinos serão deletados",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Treinos deletados com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": {
+                                            "message": "Treinos deletados com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao deletar treinos do usuário",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "error": {
+                                        "summary": "Exemplo de erro",
+                                        "value": {
+                                            "message": "Ocorreu um erro ao deletar treinos.",
+                                            "erro": "User ID not found or deletion error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
