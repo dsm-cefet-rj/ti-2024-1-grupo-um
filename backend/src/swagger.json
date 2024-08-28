@@ -701,7 +701,7 @@
             "get": {
                 "summary": "Obter todos os treinos",
                 "description": "Rota para obter a lista de todos os treinos.",
-                "tags": ["Treinos"],
+                "tags": ["Trainings"],
                 "security": [{"bearerAuth": []}],
                 "responses": {
                     "200": {
@@ -752,7 +752,7 @@
                                         "summary": "Exemplo de erro",
                                         "value": {
                                             "message": "Ocorreu um erro na busca dos treinos",
-                                            "erro": "Database connection error"
+                                            "erro": "Unknown error"
                                         }
                                     }
                                 }
@@ -762,11 +762,11 @@
                 }
             }
         },
-        "/trainings/{userId}/readAll": {
+        "/trainings/readAll/{userId}": {
             "get": {
                 "summary": "Obter treinos por ID do usuário",
                 "description": "Rota para obter todos os treinos de um usuário específico.",
-                "tags": ["Treinos"],
+                "tags": ["Trainings"],
                 "security": [{"bearerAuth": []}],
                 "parameters": [
                 {
@@ -824,11 +824,16 @@
                                     }
                                 },
                                 "examples": {
-                                    "error": {
-                                        "summary": "Exemplo de erro",
+                                    "userNotFound": {
+                                        "value": {
+                                            "message": "O usuário não possui treinos registrados",
+                                            "erro": "NotFound"
+                                        }
+                                    },
+                                    "errorExample": {
                                         "value": {
                                             "message": "Ocorreu um erro ao solicitar os treinos do usuário",
-                                            "erro": "User ID not found"
+                                            "erro": "Unknown error"
                                         }
                                     }
                                 }
@@ -838,11 +843,11 @@
                 }
             }
         },
-        "/trainings/training/{id}/readOne": {
+        "/trainings/training/readOne/{id}": {
             "get": {
                 "summary": "Obter treino por ID",
                 "description": "Rota para obter detalhes de um treino específico pelo ID do treino.",
-                "tags": ["Treinos"],
+                "tags": ["Trainings"],
                 "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
@@ -895,11 +900,16 @@
                                     }
                                 },
                                 "examples": {
-                                    "error": {
-                                        "summary": "Exemplo de erro",
+                                    "trainingNotFound": {
                                         "value": {
                                             "message": "Erro ao consultar treino",
-                                            "erro": "Training ID not found"
+                                            "erro": "NotFound"
+                                        }
+                                    },
+                                    "errorExample": {
+                                        "value": {
+                                            "message": "Erro ao consultar treino",
+                                            "erro": "Unknown error"
                                         }
                                     }
                                 }
