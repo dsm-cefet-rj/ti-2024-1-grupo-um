@@ -1326,6 +1326,101 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "summary": "Criar um novo personal trainer",
+                "description": "Cria um novo personal trainer no sistema.",
+                "tags": ["Personal"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Personal"
+                            },
+                            "examples": {
+                                "newPersonal": {
+                                    "value": {
+                                        "nome": "Maria Oliveira",
+                                        "email": "maria.oliveira@gmail.com",
+                                        "birth": "1990-01-15",
+                                        "CPF": "98765432100",
+                                        "senha": "senha123",
+                                        "descricao": "Personal Trainer especializada em treinos funcionais.",
+                                        "formacao": "Educação Física",
+                                        "cidade": "Rio de Janeiro",
+                                        "biografia": "Adoro motivar meus clientes a alcançar seus melhores resultados.",
+                                        "preco": 120
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Personal criado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "personal": {
+                                            "$ref": "#/components/schemas/Personal"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "createdPersonal": {
+                                        "value": {
+                                            "message": "Personal criado com sucesso",
+                                            "personal": {
+                                                "nome": "Maria Oliveira",
+                                                "email": "maria.oliveira@gmail.com",
+                                                "birth": "1990-01-15",
+                                                "CPF": "98765432100",
+                                                "descricao": "Personal Trainer especializada em treinos funcionais.",
+                                                "formacao": "Educação Física",
+                                                "cidade": "Rio de Janeiro",
+                                                "biografia": "Adoro motivar meus clientes a alcançar seus melhores resultados.",
+                                                "preco": 120
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao criar o personal trainer.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "errorResponse": {
+                                        "value": {
+                                            "message": "Ocorreu um erro na criação de personal",
+                                            "error": "Email já cadastrado"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
