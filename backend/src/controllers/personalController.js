@@ -74,7 +74,7 @@ async function createPersonal(req, res){
         // const hashedPassword = await crypt(newPersonal.senha);
         // newPersonal.senha = hashedPassword;
         //pegar o arquivo
-        const file = req.file;
+        const fileName = req.file.filename;
         //desmembrar objeto
         const newPersonal = {
             nome: req.body.nome, // ok
@@ -87,7 +87,7 @@ async function createPersonal(req, res){
             cidade: req.body.cidade, //ok
             biografia: req.body.biografia, //ok
             preco: req.body.preco,// ok
-            filePath: file ? file.path : undefined
+            fileName: fileName 
         }
         
 
