@@ -10,7 +10,7 @@ const upload = multer(configMulter);
 
 personalRoutes.get('/personal/:_id', verifyJWT, authorizeTypes(["personal"]), readOne);
 personalRoutes.get('/personal', readAll);
-personalRoutes.post('/personal', upload.single('filePath'), createPersonal);
+personalRoutes.post('/personal', upload.single('image'), createPersonal);
 personalRoutes.patch('/personal/:_id', verifyJWT, authorizeTypes(["personal"]), updatePersonal);
 personalRoutes.delete('/personal/:_id',  verifyJWT, authorizeTypes(["personal"]),deletePersonal);
 personalRoutes.post('/loginPersonal', loginPersonal);
