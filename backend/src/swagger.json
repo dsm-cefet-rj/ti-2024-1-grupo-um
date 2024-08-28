@@ -696,6 +696,71 @@
                     }
                 }
             }
+        },
+        "/trainings": {
+            "get": {
+                "summary": "Obter todos os treinos",
+                "description": "Rota para obter a lista de todos os treinos.",
+                "tags": ["Treinos"],
+                "security": [{"bearerAuth": []}],
+                "responses": {
+                    "200": {
+                        "description": "Lista de treinos recuperada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Training"
+                                    }
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": [
+                                        {
+                                            "userId": "60d21b4667d0d8992e610c85",
+                                            "id": "60d21b4967d0d8992e610c86",
+                                            "descricao": "Treino de força",
+                                            "title": "Treino A",
+                                            "type": "Força",
+                                            "observacoes": "Treino focado em hipertrofia"
+                                        }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao buscar treinos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "error": {
+                                        "summary": "Exemplo de erro",
+                                        "value": {
+                                            "message": "Ocorreu um erro na busca dos treinos",
+                                            "erro": "Database connection error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
@@ -741,6 +806,29 @@
                         "format": "date"
                     },
                     "diet": {
+                        "type": "string"
+                    },
+                    "observacoes": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Training": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "type": {
                         "type": "string"
                     },
                     "observacoes": {
