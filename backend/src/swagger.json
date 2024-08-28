@@ -1016,7 +1016,7 @@
             "post": {
                 "summary": "Criar treino para aluno específico",
                 "description": "Rota para criar um treino para um aluno específico.",
-                "tags": ["Treinos"],
+                "tags": ["Trainings"],
                 "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
@@ -1119,6 +1119,77 @@
                                         "value": {
                                             "message": "Erro ao criar treino.",
                                             "erro": "Student ID not found"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/trainings/deleteTraining/{trainingId}": {
+            "delete": {
+                "summary": "Deletar treino por ID",
+                "description": "Rota para deletar um treino específico pelo ID do treino.",
+                "tags": ["Trainings"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "trainingId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do treino a ser deletado",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Treino deletado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": {
+                                            "message": "Treino deletado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao deletar treino",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "error": {
+                                        "summary": "Exemplo de erro",
+                                        "value": {
+                                            "message": "Ocorreu um erro ao deletar treino.",
+                                            "erro": "Training ID not found"
                                         }
                                     }
                                 }
