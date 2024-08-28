@@ -1011,6 +1011,122 @@
                     }
                 }
             }
+        },
+        "/trainings/createTrainingsForgymStudent/{studentId}": {
+            "post": {
+                "summary": "Criar treino para aluno específico",
+                "description": "Rota para criar um treino para um aluno específico.",
+                "tags": ["Treinos"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "studentId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do aluno para o qual o treino será criado",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "descricao": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "observacoes": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "newStudentTraining": {
+                                    "summary": "Exemplo de treino a ser criado para aluno",
+                                    "value": {
+                                        "descricao": "Treino de resistência cardiovascular",
+                                        "title": "Treino E",
+                                        "type": "Cardiovascular",
+                                        "observacoes": "Treino para melhorar resistência"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Treino criado com sucesso para o aluno",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "trainings": {
+                                            "$ref": "#/components/schemas/Training"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": {
+                                            "message": "Treino criado com sucesso.",
+                                            "trainings": {
+                                                "userId": "60d21b4667d0d8992e610c90",
+                                                "descricao": "Treino de resistência cardiovascular",
+                                                "title": "Treino E",
+                                                "type": "Cardiovascular",
+                                                "observacoes": "Treino para melhorar resistência"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao criar treino",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "error": {
+                                        "summary": "Exemplo de erro",
+                                        "value": {
+                                            "message": "Erro ao criar treino.",
+                                            "erro": "Student ID not found"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
