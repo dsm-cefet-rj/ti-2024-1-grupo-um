@@ -1203,7 +1203,7 @@
             "delete": {
                 "summary": "Deletar todos os treinos por ID do usuário",
                 "description": "Rota para deletar todos os treinos de um usuário específico pelo ID do usuário.",
-                "tags": ["Treinos"],
+                "tags": ["Trainings"],
                 "security": [{"bearerAuth": []}],
                 "parameters": [
                     {
