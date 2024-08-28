@@ -761,6 +761,82 @@
                     }
                 }
             }
+        },
+        "/trainings/{userId}": {
+            "get": {
+                "summary": "Obter treinos por ID do usuário",
+                "description": "Rota para obter todos os treinos de um usuário específico.",
+                "tags": ["Treinos"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                {
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID do usuário para recuperar os treinos",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Treinos recuperados com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Training"
+                                    }
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": [
+                                        {
+                                            "userId": "60d21b4667d0d8992e610c85",
+                                            "id": "60d21b4967d0d8992e610c87",
+                                            "descricao": "Treino de resistência",
+                                            "title": "Treino B",
+                                            "type": "Resistência",
+                                            "observacoes": "Treino focado em endurance"
+                                        }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao buscar treinos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "error": {
+                                        "summary": "Exemplo de erro",
+                                        "value": {
+                                            "message": "Ocorreu um erro ao solicitar os treinos do usuário",
+                                            "erro": "User ID not found"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
