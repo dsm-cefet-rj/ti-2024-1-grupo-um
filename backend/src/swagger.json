@@ -697,7 +697,7 @@
                 }
             }
         },
-        "/trainings": {
+        "/trainings/readAllTrainings": {
             "get": {
                 "summary": "Obter todos os treinos",
                 "description": "Rota para obter a lista de todos os treinos.",
@@ -762,7 +762,7 @@
                 }
             }
         },
-        "/trainings/{userId}": {
+        "/trainings/{userId}/readAll": {
             "get": {
                 "summary": "Obter treinos por ID do usuário",
                 "description": "Rota para obter todos os treinos de um usuário específico.",
@@ -829,6 +829,77 @@
                                         "value": {
                                             "message": "Ocorreu um erro ao solicitar os treinos do usuário",
                                             "erro": "User ID not found"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/trainings/training/{id}/readOne": {
+            "get": {
+                "summary": "Obter treino por ID",
+                "description": "Rota para obter detalhes de um treino específico pelo ID do treino.",
+                "tags": ["Treinos"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do treino para recuperar",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Treino recuperado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Training"
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": {
+                                            "userId": "60d21b4667d0d8992e610c85",
+                                            "id": "60d21b4967d0d8992e610c88",
+                                            "descricao": "Treino de alta intensidade",
+                                            "title": "Treino C",
+                                            "type": "HIIT",
+                                            "observacoes": "Treino intervalado de alta intensidade"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao buscar treino",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "error": {
+                                        "summary": "Exemplo de erro",
+                                        "value": {
+                                            "message": "Erro ao consultar treino",
+                                            "erro": "Training ID not found"
                                         }
                                     }
                                 }
