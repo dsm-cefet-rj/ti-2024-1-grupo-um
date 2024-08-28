@@ -1687,6 +1687,114 @@
                     }
                 }
             }
+        },
+        "/loginPersonal": {
+            "post": {
+                "summary": "Login de um personal trainer",
+                "description": "Autentica um personal trainer usando email e senha.",
+                "tags": ["Personal"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "joao.silva@gmail.com"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "example": "senha123"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "loginCredentials": {
+                                    "value": {
+                                        "email": "joao.silva@gmail.com",
+                                        "senha": "senha123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login bem-sucedido.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "boolean"
+                                        },
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "personal": {
+                                            "$ref": "#/components/schemas/Personal"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "loginSuccess": {
+                                        "value": {
+                                            "message": "Personal autenticado com sucesso",
+                                            "status": true,
+                                            "token": "token_jwt_exemplo",
+                                            "personal": {
+                                                "_id": "60d21b4667d0d8992e610c85",
+                                                "nome": "João Silva",
+                                                "email": "joao.silva@gmail.com",
+                                                "birth": "1985-04-23T00:00:00.000Z",
+                                                "CPF": "12345678901",
+                                                "descricao": "Personal Trainer especializado em musculação.",
+                                                "formacao": "Educação Física",
+                                                "cidade": "São Paulo",
+                                                "biografia": "Apaixonado por ajudar pessoas a alcançarem seus objetivos.",
+                                                "preco": 100
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao autenticar o personal trainer.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "loginError": {
+                                        "value": {
+                                            "message": "Login ou Senha errados",
+                                            "status": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
