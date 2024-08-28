@@ -1604,6 +1604,88 @@
                         }
                     }
                 }
+            },
+            "delete": {
+                "summary": "Deletar personal trainer por ID",
+                "description": "Remove um personal trainer específico pelo ID.",
+                "tags": ["Personal"],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do personal trainer",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Personal trainer deletado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Personal"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "deletedPersonal": {
+                                        "value": {
+                                            "message": "Personal removido com sucesso",
+                                            "data": {
+                                                "_id": "60d21b4667d0d8992e610c85",
+                                                "nome": "João Silva",
+                                                "email": "joao.silva@gmail.com",
+                                                "birth": "1985-04-23T00:00:00.000Z",
+                                                "CPF": "12345678901",
+                                                "descricao": "Personal Trainer especializado em musculação.",
+                                                "formacao": "Educação Física",
+                                                "cidade": "São Paulo",
+                                                "biografia": "Apaixonado por ajudar pessoas a alcançarem seus objetivos.",
+                                                "preco": 100
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao deletar o personal trainer.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "personalNotFound": {
+                                        "value": {
+                                            "message": "Personal não encontrado"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
