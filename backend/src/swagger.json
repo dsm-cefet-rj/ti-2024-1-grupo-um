@@ -1856,6 +1856,83 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "summary": "Criar um exercício",
+                "description": "Rota responsável pela criação de um novo exercício.",
+                "tags": ["Exercise"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Exercise"
+                            },
+                            "examples": {
+                                "exerciseExample": {
+                                    "value": {
+                                        "name": "Flexão de Braço",
+                                        "series": "3",
+                                        "peso": "20kg",
+                                        "observacoes": "Manter postura correta",
+                                        "trainingId": "64f0d2f9e2e4b3a9d1f13b2f"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Exercício criado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "createSuccess": {
+                                        "value": {
+                                            "message": "Exercicio criado com sucesso."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao criar exercício.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "createError": {
+                                        "value": {
+                                            "message": "Ocorreu um erro ao criar um exercicio.",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
