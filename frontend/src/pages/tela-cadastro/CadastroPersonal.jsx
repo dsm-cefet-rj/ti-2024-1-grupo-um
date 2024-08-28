@@ -54,8 +54,35 @@ function CadastroPersonal(){
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    //Fazer algo parecido com isso -> continua sem tratar a imagem
+    // const handlePersonalSingUp = async (values) => {
+    //     try {
+    //         
+    //         const formData = new FormData();
     
+    //        
+    //         for (const key in values) {
+    //             if (values[key] !== null && values[key] !== undefined) {
+    //                 formData.append(key, values[key]);
+    //             }
+    //         }
     
+    //         
+    //         const resultAction = await dispatch(createPersonal(formData));
+    
+    //         if (createPersonal.fulfilled.match(resultAction)) {
+    //             notify("success", "Cadastro realizado com sucesso");
+    //             setTimeout(() => {
+    //                 navigate("/LoginPersonal");
+    //             }, 2000);
+    //         } else {
+    //             notify("error", `Erro ao realizar o cadastro: ${resultAction.payload}`);
+    //         }
+    //     } catch (error) {
+    //         notify("error", `Erro ao realizar o cadastro: ${error.message}`);
+    //         console.error(error);
+    //     }
+    // };
     
     const handlePersonalSingUp=(values)=>{
         dispatch(createPersonal({...values, id: idGen()}));
