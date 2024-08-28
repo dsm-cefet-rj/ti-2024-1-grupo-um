@@ -1494,6 +1494,116 @@
                         }
                     }
                 }
+            },
+            "patch": {
+                "summary": "Atualizar personal trainer por ID",
+                "description": "Atualiza as informações de um personal trainer específico pelo ID.",
+                "tags": ["Personal"],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do personal trainer",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Personal"
+                            },
+                            "examples": {
+                                "updatePersonal": {
+                                    "value": {
+                                        "nome": "João Silva",
+                                        "email": "joao.novoemail@gmail.com",
+                                        "birth": "1985-04-23",
+                                        "CPF": "12345678901",
+                                        "descricao": "Personal Trainer com especialização em nutrição.",
+                                        "formacao": "Educação Física e Nutrição",
+                                        "cidade": "São Paulo",
+                                        "biografia": "Experiência em treinamento de atletas de alta performance.",
+                                        "preco": 150
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Personal trainer atualizado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Personal"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "updatedPersonal": {
+                                        "value": {
+                                            "message": "Personal atualizado com sucesso.",
+                                            "data": {
+                                                "nome": "João Silva",
+                                                "email": "joao.novoemail@gmail.com",
+                                                "birth": "1985-04-23",
+                                                "CPF": "12345678901",
+                                                "descricao": "Personal Trainer com especialização em nutrição.",
+                                                "formacao": "Educação Física e Nutrição",
+                                                "cidade": "São Paulo",
+                                                "biografia": "Experiência em treinamento de atletas de alta performance.",
+                                                "preco": 150
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao atualizar o personal trainer.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "errorResponse": {
+                                        "value": {
+                                            "message": "Ocorreu um erro na tentativa da atualização",
+                                            "erro": "Dados inválidos"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     },
