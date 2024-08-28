@@ -1934,6 +1934,80 @@
                     }
                 }
             }
+        },
+        "/exercise/{trainingId}": {
+            "get": {
+                "summary": "Obter todos os exercícios por ID do treino",
+                "description": "Rota responsável por recuperar todos os exercícios associados a um treino específico.",
+                "tags": ["Exercise"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "trainingId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do treino para recuperar os exercícios",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de exercícios recuperada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Exercise"
+                                    }
+                                },
+                                "examples": {
+                                    "exercisesListByTraining": {
+                                        "value": [
+                                            {
+                                                "id": "64f0d2f9e2e4b3a9d1f13b1e",
+                                                "name": "Flexão de Braço",
+                                                "series": "3",
+                                                "peso": "20kg",
+                                                "observacoes": "Manter postura correta",
+                                                "trainingId": "64f0d2f9e2e4b3a9d1f13b2f"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao recuperar exercícios por ID do treino.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "fetchErrorByTrainingId": {
+                                        "value": {
+                                            "message": "Erro ao carregar exercícios",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
