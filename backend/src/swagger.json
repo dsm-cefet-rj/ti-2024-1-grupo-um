@@ -918,6 +918,99 @@
                     }
                 }
             }
+        },
+        "/trainings/createTraining": {
+            "post": {
+                "summary": "Criar um novo treino",
+                "description": "Rota para criar um novo treino.",
+                "tags": ["Trainings"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Training"
+                            },
+                            "examples": {
+                                "newTraining": {
+                                    "summary": "Exemplo de treino a ser criado",
+                                    "value": {
+                                        "userId": "60d21b4667d0d8992e610c85",
+                                        "descricao": "Treino de flexibilidade",
+                                        "title": "Treino D",
+                                        "type": "Flexibilidade",
+                                        "observacoes": "Focado em alongamentos"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Treino criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "trainings": {
+                                            "$ref": "#/components/schemas/Training"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": {
+                                            "message": "Treino criado com sucesso.",
+                                            "trainings": {
+                                                "userId": "60d21b4667d0d8992e610c85",
+                                                "id": "60d21b4967d0d8992e610c89",
+                                                "descricao": "Treino de flexibilidade",
+                                                "title": "Treino D",
+                                                "type": "Flexibilidade",
+                                                "observacoes": "Focado em alongamentos"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao criar treino",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "error": {
+                                        "summary": "Exemplo de erro",
+                                        "value": {
+                                            "message": "Erro ao criar treino",
+                                            "erro": "Validation error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
