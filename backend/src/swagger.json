@@ -1795,6 +1795,68 @@
                     }
                 }
             }
+        },
+        "/exercise": {
+            "get": {
+                "summary": "Obter todos os exercícios",
+                "description": "Rota responsável por recuperar todos os exercícios.",
+                "tags": ["Exercise"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de exercícios recuperada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Exercise"
+                                    }
+                                },
+                                "examples": {
+                                    "exercisesList": {
+                                        "value": [
+                                            {
+                                                "id": "64f0d2f9e2e4b3a9d1f13b1e",
+                                                "name": "Flexão de Braço",
+                                                "series": "3",
+                                                "peso": "20kg",
+                                                "observacoes": "Manter postura correta",
+                                                "trainingId": "64f0d2f9e2e4b3a9d1f13b2f"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao recuperar exercícios.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "fetchError": {
+                                        "value": {
+                                            "message": "ocorreu um erro ao pegar todos os exercicios",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
@@ -1919,6 +1981,36 @@
                         "example": 100
                     }
                 }
+            },
+            "Exercise": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "64f0d2f9e2e4b3a9d1f13b1e"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Flexão de Braço"
+                    },
+                    "series": {
+                        "type": "string",
+                        "example": "3"
+                    },
+                    "peso": {
+                        "type": "string",
+                        "example": "20kg"
+                    },
+                    "observacoes": {
+                        "type": "string",
+                        "example": "Manter postura correta"
+                    },
+                    "trainingId": {
+                        "type": "string",
+                        "example": "64f0d2f9e2e4b3a9d1f13b2f"
+                    }
+                },
+                "required": ["name", "series", "trainingId"]
             }
         },
         "securitySchemes": {
