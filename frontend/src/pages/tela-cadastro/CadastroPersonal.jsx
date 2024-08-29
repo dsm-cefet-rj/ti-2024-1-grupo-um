@@ -51,47 +51,45 @@ function CadastroPersonal(){
     };
 
 
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
     //Fazer algo parecido com isso -> continua sem tratar a imagem
-    // const handlePersonalSingUp = async (values) => {
-    //     try {
-    //         
-    //         const formData = new FormData();
+    const handlePersonalSingUp = async (values) => {
+        try {
+            
+            const formData = new FormData();
     
-    //        
-    //         for (const key in values) {
-    //             if (values[key] !== null && values[key] !== undefined) {
-    //                 formData.append(key, values[key]);
-    //             }
-    //         }
+           
+            for (const key in values) {
+                if (values[key] !== null && values[key] !== undefined) {
+                    formData.append(key, values[key]);
+                }
+            }
+            
+            const resultAction = await dispatch(createPersonal(formData));
     
-    //         
-    //         const resultAction = await dispatch(createPersonal(formData));
+            if (createPersonal.fulfilled.match(resultAction)) {
+                notify("success", "Cadastro realizado com sucesso");
+                setTimeout(() => {
+                    navigate("/LoginPersonal");
+                }, 2000);
+            } else {
+                notify("error", `Erro ao realizar o cadastro: ${resultAction.payload}`);
+            }
+        } catch (error) {
+            notify("error", `Erro ao realizar o cadastro: ${error.message}`);
+            console.error(error);
+        }
+    };
     
-    //         if (createPersonal.fulfilled.match(resultAction)) {
-    //             notify("success", "Cadastro realizado com sucesso");
-    //             setTimeout(() => {
-    //                 navigate("/LoginPersonal");
-    //             }, 2000);
-    //         } else {
-    //             notify("error", `Erro ao realizar o cadastro: ${resultAction.payload}`);
-    //         }
-    //     } catch (error) {
-    //         notify("error", `Erro ao realizar o cadastro: ${error.message}`);
-    //         console.error(error);
-    //     }
-    // };
-    
-    const handlePersonalSingUp=(values)=>{
-        dispatch(createPersonal({...values, id: idGen()}));
-        notify("success", "Cadastro realizado com sucesso");
+    // const handlePersonalSingUp=(values)=>{
+    //     dispatch(createPersonal({...values, id: idGen()}));
+    //     notify("success", "Cadastro realizado com sucesso");
 
-        setTimeout(() => {
-            navigate("/LoginPersonal");
-        }, 2000)
-    }
+    //     setTimeout(() => {
+    //         navigate("/LoginPersonal");
+    //     }, 2000)
+    // }
     return(
         <div>
             <div className="bg-image cefit-background-img" id="cad-personal" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
