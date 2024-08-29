@@ -2240,6 +2240,62 @@
                     }
                 }
             }
+        },
+        "/aluno/{idPersonal}": {
+            "get": {
+                "summary": "Obter alunos por ID do personal",
+                "description": "Rota responsável por buscar todos os alunos associados a um personal específico.",
+                "tags": ["Aluno"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "idPersonal",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do personal para buscar alunos",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de alunos recuperada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Aluno"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao buscar alunos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ErroBuscaAlunos": {
+                                        "value": {
+                                            "message": "Ocorreu um erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
