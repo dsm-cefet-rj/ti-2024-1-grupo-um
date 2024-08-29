@@ -126,6 +126,10 @@ async function updatePersonal(req, res) {
             const newPassword = await crypt(update.senha);    
             updateObject.senha = newPassword;
         }
+        if (req.file){
+            updateObject.image = req.file.filename;
+        }
+
 
         const updatedPersonal = await personalModel.findByIdAndUpdate(id, updateObject, {returnDocument: "after"});
 
