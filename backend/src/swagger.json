@@ -2146,6 +2146,100 @@
                     }
                 }
             }
+        },
+        "/aluno": {
+            "post": {
+                "summary": "Criar um aluno",
+                "description": "Rota responsável pela criação de um aluno.",
+                "tags": ["Aluno"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "userId": {
+                                        "type": "string",
+                                        "description": "ID do usuário"
+                                    },
+                                    "userName": {
+                                        "type": "string",
+                                        "description": "Nome do usuário"
+                                    },
+                                    "idPersonal": {
+                                        "type": "string",
+                                        "description": "ID do personal"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "CriarAluno": {
+                                    "value": {
+                                        "userId": "64f0d2f9e2e4b3a9d1f13b1e",
+                                        "userName": "Maria Oliveira",
+                                        "idPersonal": "60d21b4667d0d8992e610c85"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Aluno criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Aluno criado com sucesso"
+                                        },
+                                        "aluno": {
+                                            "$ref": "#/components/schemas/Aluno"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro na criação do aluno",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ErroAlunoExistente": {
+                                        "value": {
+                                            "message": "Esse aluno já está registrado para o personal.",
+                                            "error": "Aluno duplicado"
+                                        }
+                                    },
+                                    "ErroCriacaoAluno": {
+                                        "value": {
+                                            "message": "Ocorreu um erro na criação do aluno",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
@@ -2300,6 +2394,20 @@
                     }
                 },
                 "required": ["name", "series", "trainingId"]
+            },
+            "Aluno": {
+                "type": "object",
+                "properties": {
+                    "idUser": {
+                        "type": "string"
+                    },
+                    "nomeUser": {
+                        "type": "string"
+                    },
+                    "idPersonal": {
+                        "type": "string"
+                    }
+                }
             }
         },
         "securitySchemes": {
