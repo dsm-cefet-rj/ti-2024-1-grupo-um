@@ -2296,6 +2296,71 @@
                     }
                 }
             }
+        },
+        "/aluno/personal/{idPersonal}": {
+            "delete": {
+                "summary": "Excluir aluno por ID do personal",
+                "description": "Rota responsável por excluir um aluno associado a um personal específico.",
+                "tags": ["Aluno"],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "idPersonal",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do personal para excluir o aluno",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Aluno excluído com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Aluno"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao excluir aluno",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ErroExclusaoAluno": {
+                                        "value": {
+                                            "message": "Ocorreu um erro para remover o aluno"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
