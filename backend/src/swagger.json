@@ -2077,6 +2077,75 @@
                     }
                 }
             }
+        },
+        "/exercise?trainingId": {
+            "delete": {
+                "summary": "Excluir todos os exercícios por ID do treino",
+                "description": "Rota responsável por excluir todos os exercícios associados a um treino específico.",
+                "tags": ["Exercise"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "trainingId",
+                        "in": "query",
+                        "required": true,
+                        "description": "ID do treino para excluir todos os exercícios associados",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exercícios excluídos com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "deleteAllSuccess": {
+                                        "value": {
+                                            "message": "X foram deletados do sistema."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao excluir todos os exercícios.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "deleteAllError": {
+                                        "value": {
+                                            "message": "Ocorreu um erro ao deletar os exercicios",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
