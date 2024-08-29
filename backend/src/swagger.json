@@ -2008,6 +2008,75 @@
                     }
                 }
             }
+        },
+        "/exercise/{exerciseId}": {
+            "delete": {
+                "summary": "Excluir um exercício",
+                "description": "Rota responsável por excluir um exercício específico.",
+                "tags": ["Exercise"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "exerciseId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do exercício a ser excluído",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exercício excluído com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "deleteSuccess": {
+                                        "value": {
+                                            "message": "Exercicio deletado com sucesso."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao excluir exercício.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "deleteError": {
+                                        "value": {
+                                            "message": "Ocorreu um erro ao deletar um exercicio",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components":{
