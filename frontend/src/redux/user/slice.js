@@ -49,34 +49,79 @@ const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
         notify("error", error.message);
     }
 });
-
 const updatePersonal = createAsyncThunk("user/updatePersonalAsync", async (data) => {
-    try{
-        const req = {
-            CPF: data.CPF,
-            biografia: data.biografia,
-            birth: data.birth,
-            cidade: data.cidade,
-            descricao: data.descricao,
-            email: data.email,
-            formacao: data.formacao,
-            nome: data.nome,
-            preco: data.preco,
-            senha: data.senha
-        }
-        const response = await api.patch(`/personal/${data._id}`, req, {
-            headers: {
-                Authorization: `${data.token}`
+    try {
+        let formData = new FormData();
+        
+        //verificacao imagem
+        if (data.image) {
+            for (const key in data) {
+                formData.append(key, data[key]);
             }
-        })
+        } else {
+            
+            formData = {
+                CPF: data.CPF,
+                biografia: data.biografia,
+                birth: data.birth,
+                cidade: data.cidade,
+                descricao: data.descricao,
+                email: data.email,
+                formacao: data.formacao,
+                nome: data.nome,
+                preco: data.preco,
+                senha: data.senha
+            };
+        }
+
+        const config = {
+            headers: {
+                Authorization: `${data.token}`,
+                //definido content-type para enviar a imagem corretamente para o backend no formato de form-data
+                ...(data.image && { 'Content-Type': 'multipart/form-data' })
+            }
+        };
+
+        //req
+        const response = await api.patch(`/personal/${data._id}`, formData, config);
+
         notify("success", "Perfil atualizado com sucesso");
         console.log(response.data);
         return response.data.data;
 
-    }catch(error){
-        notify("error", error.message)
+    } catch (error) {
+        notify("error", error.message);
+        
     }
 });
+
+// const updatePersonal = createAsyncThunk("user/updatePersonalAsync", async (data) => {
+//     try{
+//         const req = {
+//             CPF: data.CPF,
+//             biografia: data.biografia,
+//             birth: data.birth,
+//             cidade: data.cidade,
+//             descricao: data.descricao,
+//             email: data.email,
+//             formacao: data.formacao,
+//             nome: data.nome,
+//             preco: data.preco,
+//             senha: data.senha
+//         }
+//         const response = await api.patch(`/personal/${data._id}`, req, {
+//             headers: {
+//                 Authorization: `${data.token}`
+//             }
+//         })
+//         notify("success", "Perfil atualizado com sucesso");
+//         console.log(response.data);
+//         return response.data.data;
+
+//     }catch(error){
+//         notify("error", error.message)
+//     }
+// });
 
 const deleteUser = createAsyncThunk("users/deleteUserAsync", async(infos)=>{
     try{

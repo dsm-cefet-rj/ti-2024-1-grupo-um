@@ -30,12 +30,10 @@ function PerfilPersonal() {
         console.log(currentUser.personal);
         console.log(currentUser.personal._id);
         const formData = new FormData();
-        for (const key in infos){
-            formData.append(key,infos[key]);
-        }
-        // if(infos.image instanceof File){
-        //     formData.append('image', infos.image);
+        // for (const key in infos){
+        //     formData.append(key,infos[key]);
         // }
+        
         dispatch(updatePersonal({
             ...infos, 
             _id: currentUser.personal._id,
