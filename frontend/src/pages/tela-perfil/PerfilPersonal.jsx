@@ -29,6 +29,10 @@ function PerfilPersonal() {
     const handleSubmitForm = (infos) => {
         console.log(currentUser.personal);
         console.log(currentUser.personal._id);
+        const formData = new FormData();
+        // for (const key in infos){
+        //     formData.append(key,infos[key]);
+        // }
         
         dispatch(updatePersonal({
             ...infos, 
@@ -73,7 +77,8 @@ function PerfilPersonal() {
         formacao: Yup.string().required("Formação é obrigatória."),
         cidade: Yup.string().required("Cidade é obrigatória."),
         biografia: Yup.string().required("Biografia é obrigatória."),
-        preco: Yup.number().required("Preço é obrigatório.")
+        preco: Yup.number().required("Preço é obrigatório."),
+        image: Yup.mixed().nullable()
     });
     function formatDate(dateString) {
         // Cria um objeto Date a partir da string ISO
@@ -98,7 +103,8 @@ function PerfilPersonal() {
         formacao: currentUser.personal.formacao,
         cidade: currentUser.personal.cidade,
         biografia: currentUser.personal.biografia,
-        preco: currentUser.personal.preco
+        preco: currentUser.personal.preco,
+        image: null
     };
     
     return (
@@ -125,7 +131,7 @@ function PerfilPersonal() {
                                 <InputComponentYup classes="" id="formacao" name="formacao" text="Formação" type="text" placeholder="Sua Formação aqui" />
                                 <InputComponentYup classes="" id="biografia" name="biografia" text="Biografia" type="text" placeholder="Sua Biografia aqui" />
                                 <InputComponentYup classes="" id="preco" name="preco" text="Preço da sua consultoria" type="text" placeholder="Ex: R$ 39,90" />
-                                <InputComponentYup classes="" id="foto" name="foto" text="Foto" type="file" />    
+                                <InputComponentYup classes="" id="image" name="image" text="Foto" type="file" />    
                                 <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
                                 <div className="mt-3 d-flex justify-content-center">
                                     <button className="btn-submit" type="submit" disabled={!isValid}>Enviar</button>
