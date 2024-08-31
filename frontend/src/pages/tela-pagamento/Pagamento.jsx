@@ -68,7 +68,7 @@ function Pagamento() {
         {personalAtual.image ?
               (
                 <div className="infos d-flex flex-column justify-content-center">
-                  <img src={require(`../../images/PersonalImages/${personalAtual.image}.png`)} alt="avatar"
+                  <img src={require(`../../../../uploads/${personalAtual.image}`)} alt="avatar"
                     className="img-personal" style={{ width: "100px" }} />
                   <h5 className="my-3 d-flex justify-content-center align-items-center">{personalAtual.nome}</h5> 
                   <h1 className="preco">R${personalAtual.preco}</h1>
