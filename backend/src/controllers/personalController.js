@@ -1,6 +1,7 @@
 //here the personal controller
 import { personalModel } from "../models/PersonalModel.js";
 import jsonwebtoken from "jsonwebtoken";
+import { fileURLToPath } from 'url';
 import bcrypt from "bcrypt";
 //READ_ALL - feito
 //READ_ONE - feito
@@ -9,7 +10,10 @@ import bcrypt from "bcrypt";
 //DELETE_PERSONAL - feito
 //LOGIN_PERSONAL - feito
 //LOGOUT_PERSONAL - falta
-
+// const fs = require('fs');
+// const path = require('path');
+import fs from "fs";
+import path from "path";
 const salt_rounds = process.env.SALT_ROUNDS;
 
 async function crypt(senha){
@@ -149,19 +153,53 @@ async function updatePersonal(req, res) {
         });
     }
 }
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 async function deletePersonal(req, res){
     try{
         const id = req.params._id;
+
+        const personal= await personalModel.findById(id);
+        if(!personal){
+            return res.status(400).send({
+                message: "Personal não encontrado"
+            });
+        }
+        const imageName = personal.image;
+
         const personalDelete = await personalModel.findByIdAndDelete(id);
 
         if(personalDelete){
-            return res.status(200).send({
-                message: 'Personal removido com sucesso',
-                data: personalDelete
-            });
+            if(imageName){
+
+                const imagePath = path.resolve(__dirname, '..', '..','..', 'uploads', imageName);
+                console.log(imagePath);
+                fs.unlink(imagePath, (err)=>{
+                if(err){
+                    return res.status(400).send({
+                        message: 'Erro ao excluir imagem do servidor'
+                    });
+                }else{
+    
+                    return res.status(200).send({
+                        message: 'Personal removido com sucesso',
+                        data: personalDelete
+                    });
+                }
+    
+               })
+            }
+            else{
+                return res.status(200).send({
+                    message: 'Personal removido com sucesso',
+                    data: personalDelete
+                });
+            }
+           
+           
         }else{
             return res.status(400).send({
-                message: "Personal não encontrado"
+                message: "Erro ao remover personal"
             })
         }
         
