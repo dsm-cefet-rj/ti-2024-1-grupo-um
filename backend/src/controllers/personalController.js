@@ -241,14 +241,16 @@ async function loginPersonal(req, res){
                 }, 
                 process.env.SECRET_JWT, 
                 {
-                    expiresIn: '1h'
+                    expiresIn: '15m'
                 }
             );
+            const { exp } = jsonwebtoken.decode(token);
             return res.status(200).send({
                 message: "Personal autenticado com sucesso",
                 status: true,
                 token: token,
-                personal: existingPersonal
+                personal: existingPersonal,
+                expiration: exp
             });
         }
     }catch(error){
@@ -260,12 +262,23 @@ async function loginPersonal(req, res){
 }
 async function logoutPersonal(req, res){
     try{
+        const token = req.headers.authorization;
 
+        if(token){
+            await blackListModel.create({token});
+        }
+        console.log(token)
+
+        return res.status(200).send({
+            message: "Logout efetuado com sucesso"
+        });
     }catch(error){
-        
+        return res.status(400).send({
+            message: "Ocorreu um erro ao efetuar o logout"
+        })
     }
 }
 
 
 
-export { readAll, readOne, createPersonal, updatePersonal, deletePersonal, loginPersonal };
+export { readAll, readOne, createPersonal, updatePersonal, deletePersonal, loginPersonal, logoutPersonal };

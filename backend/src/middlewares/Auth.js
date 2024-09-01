@@ -1,12 +1,19 @@
 import jsonwebtoken  from "jsonwebtoken";
+import { blackListModel } from "../models/BlackListModel.js";
 
-function verifyJWT(req, res, next){
-    const token = req.headers['authorization'];
-
-    if(!token){
-        return res.json({ "message" : "Não há token inserido"});
-    }
+async function verifyJWT(req, res, next){
     try{
+        const token = req.headers['authorization'];
+
+        if(token){
+            const isTokenBlackListed = await checkBlackList(token);
+            console.log(isTokenBlackListed);
+            if(isTokenBlackListed){
+                throw new Error("Token blacklisted");
+            }
+        }else{
+            return res.json({ "message" : "Não há token inserido"});
+        }
         jsonwebtoken.verify(token, process.env.SECRET_JWT, (err, user) => {
             if (err) return res.sendStatus(403);
             console.log("verificacao bem sucedida");
@@ -14,7 +21,6 @@ function verifyJWT(req, res, next){
             next();
         });
     }catch(error){
-        console.log(error);
         return res.json({message: error.message});
     }
 }
@@ -27,5 +33,9 @@ function authorizeTypes(allowedTypes) {
         next();
     };
 }
+
+const checkBlackList = async (token) => {
+    return await blackListModel.findOne({ token }) !== null;
+};
 
 export { authorizeTypes, verifyJWT }

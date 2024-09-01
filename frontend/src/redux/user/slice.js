@@ -11,6 +11,7 @@ const initialState = {
     loggedPersonal: null,
     user: {},
     personal: {},
+    tokenExpiration: null
 };
 
 
@@ -123,7 +124,7 @@ const updatePersonal = createAsyncThunk("user/updatePersonalAsync", async (data)
 //     }
 // });
 
-const deleteUser = createAsyncThunk("users/deleteUserAsync", async(infos)=>{
+const deleteUser = createAsyncThunk("users/deleteUserAsync", async(infos)=> {
     try{
         await api.delete(`/user/${infos.id}`,{
             headers: {
@@ -137,28 +138,41 @@ const deleteUser = createAsyncThunk("users/deleteUserAsync", async(infos)=>{
     
 });
 
+const logoutUser = createAsyncThunk("user/logoutUserAsync", async(infos) => {
+    try{
+        if(infos.token){
+            await api.post("/logout", null, {
+                headers: {
+                    Authorization:`${infos.token}`
+                }
+            })
+        }
+    }catch(error){
+        notify("error", error.response.data.message)
+    }
+});
+
 const userSlice = createSlice({
     name:"user",
     initialState,
     reducers: {
         addLoggedUser: (state, action) => {
             console.log(action.payload);
-            if(action.payload.token){
-                state.logged = action.payload.token; //switch to token in the future
-            }
             state.user = action.payload.user;
+            state.logged = action.payload.token;
+            state.tokenExpiration = action.payload.expiration;
         },
         addLoggedPersonal: (state, action) => {
-            state.loggedPersonal = true; //switch to token in the future
             state.personal = action.payload.personal;
-            state.loggedPersonal = action.payload.token
+            state.loggedPersonal = action.payload.token;
+            state.tokenExpiration = action.payload.expiration ;
         },
-        logoutUser: (state) => {
-            state.logged = false;
-            state.loggedPersonal = false;
-            state.user = {};
-            state.personal={};
-        },
+        // logoutUser: (state) => {
+        //     state.logged = false;
+        //     state.loggedPersonal = false;
+        //     state.user = {};
+        //     state.personal={};
+        // },
         addTraining: (state, action) => {
             if(state.logged){
                 state.user.treinos.push(action.payload);
@@ -173,11 +187,18 @@ const userSlice = createSlice({
         .addCase(updateUser.fulfilled, (state, action) => {
             state.user = action.payload;
         })
+        .addCase(logoutUser.fulfilled, (state, action ) => {
+            state.logged = false;
+            state.loggedPersonal = false;
+            state.user = {};
+            state.personal= {};
+            state.tokenExpiration= null;
+        })
     }
 })
 
-export const { loginUser, logoutUser, addTraining, addLoggedUser, addLoggedPersonal } = userSlice.actions;
+export const { loginUser, addTraining, addLoggedUser, addLoggedPersonal } = userSlice.actions;
 
-export { addUser, updateUser, deleteUser, updatePersonal }
+export { addUser, updateUser, deleteUser, updatePersonal, logoutUser }
 
 export default userSlice.reducer;

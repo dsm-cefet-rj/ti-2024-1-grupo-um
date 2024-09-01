@@ -1,5 +1,5 @@
 import express from "express";
-import { readAll, createUser, readOne, updateUser, deleteUser, login } from "../controllers/userController.js";
+import { readAll, createUser, readOne, updateUser, deleteUser, login, logout } from "../controllers/userController.js";
 import { verifyJWT, authorizeTypes } from "../middlewares/Auth.js";
 
 const userRoutes = express.Router();
@@ -11,5 +11,6 @@ userRoutes.patch('/user/:id', verifyJWT, authorizeTypes(["user"]), updateUser);
 userRoutes.delete('/user/:id', verifyJWT, authorizeTypes(["user"]), deleteUser);
 
 userRoutes.post('/login', login);
+userRoutes.post('/logout', verifyJWT, logout);
 
 export default userRoutes;
