@@ -11,8 +11,8 @@ trainingRoutes.get("/training/one/:id", verifyJWT, authorizeTypes(["user", "pers
 trainingRoutes.post("/training", verifyJWT, authorizeTypes(["user"]),  createTraining);
 trainingRoutes.post("/training/:studentId", verifyJWT, authorizeTypes(["personal"]), createTrainingForgymStudent);
 // trainingRoutes.put("/trainings/:id", updateTraining);
+trainingRoutes.delete("/training/user/", verifyJWT, authorizeTypes(["user"]), deleteTrainingsByUserId);
 trainingRoutes.delete("/training/:trainingId", verifyJWT, authorizeTypes(["user","personal"]), deleteTraining);
-trainingRoutes.delete("/training/user", verifyJWT, authorizeTypes(["user"]), deleteTrainingsByUserId);
 
 
 export default trainingRoutes;

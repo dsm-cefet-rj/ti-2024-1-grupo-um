@@ -149,7 +149,7 @@ const deleteUser = createAsyncThunk("users/deleteUserAsync", async(infos)=> {
         await api.delete(`/user/${infos.id}`,{
             headers: {
                 Authorization:`${infos.token}`
-            }
+            }   
         });
         notify("success", "Usuario deletado com sucesso.");
     }catch(error){
@@ -197,6 +197,13 @@ const userSlice = createSlice({
             if(state.logged){
                 state.user.treinos.push(action.payload);
             }
+        },
+        logoutRedux: (state, action) => {
+            state.logged = false;
+            state.loggedPersonal = false;
+            state.user = {};
+            state.personal= {};
+            state.tokenExpiration= null;
         }
     },
     extraReducers: builder => {
@@ -217,7 +224,7 @@ const userSlice = createSlice({
     }
 })
 
-export const { loginUser, addTraining, addLoggedUser, addLoggedPersonal } = userSlice.actions;
+export const { loginUser, addTraining, addLoggedUser, addLoggedPersonal, logoutRedux } = userSlice.actions;
 
 export { addUser, updateUser, deleteUser, updatePersonal, logoutUser }
 

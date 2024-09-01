@@ -146,7 +146,7 @@ async function deleteUser(req, res){
         if(userDelete){
             if(imageName){
                 const imagePath = path.resolve(__dirname, '..', '..','..', 'uploads', imageName);
-                console.log(imagePath);
+                // console.log(imagePath);
                 fs.unlink(imagePath, (err)=>{
                     if(err){
                         return res.status(400).send({

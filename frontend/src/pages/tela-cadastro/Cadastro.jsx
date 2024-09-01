@@ -50,7 +50,7 @@ function Cadastro(){
 
     const dispatch = useDispatch();
 
-    const handleSingUp=(values)=>{
+    const handleSingUp = async (values)=>{
         try {
             
             const formData = new FormData();
@@ -60,17 +60,20 @@ function Cadastro(){
                 }
             }
             
-            const resultAction =  dispatch(addUser(formData));
+            const resultAction = await dispatch(addUser(formData));
+
+            console.log(resultAction);
     
             if (addUser.fulfilled.match(resultAction)) {
-                notify("success", "Cadastro realizado com sucesso");
                 setTimeout(() => {
                     navigate("/login");
                 }, 2000);
             } else {
+                console.log("entrou else erro");
                 notify("error", `Erro ao realizar o cadastro: ${resultAction.payload}`);
             }
         } catch (error) {
+            console.log("entrou catch error");
             notify("error", `Erro ao realizar o cadastro: ${error.message}`);
             console.error(error);
         }

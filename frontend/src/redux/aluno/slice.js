@@ -25,12 +25,14 @@ const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(info
 
   const alunos = await api.get(`/aluno?userId=${infos.id}`);
 
-  for (let aluno of alunos.data){
-    await api.delete(`/aluno/${aluno.id}`,{
-      headers:{
-        Authorization:`${infos.token}`
-      }
-    });
+  if(alunos.response){
+    for (let aluno of alunos.data){
+      await api.delete(`/aluno/${aluno.id}`,{
+        headers:{
+          Authorization:`${infos.token}`
+        }
+      });
+  }
     //auth
   }
 });

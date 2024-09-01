@@ -88,13 +88,13 @@ const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", as
 });
 const deleteTreinosByUserId = createAsyncThunk("treino/deleteTreinos", async (token) => {
     try{
-        await api.delete(`/training/`, {
+        await api.delete(`/training/user/`, {
             headers: {
                 Authorization:`${token}`
             }
         });
     }catch(error){
-        notify("error", error.message)
+        console.log(error.response.data.message);
     }
 });
 const deleteTreinoByID = createAsyncThunk("treino/deleteTreinoByID", async (infos) => {

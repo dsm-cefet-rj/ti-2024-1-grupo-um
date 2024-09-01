@@ -59,20 +59,24 @@ function Perfil() {
         //         token: currentUser.logged
         //     }));
         // }
-        dispatch(deleteTreinosByUserId(currentUser.logged));
+        if(treinos.length > 0){
+            dispatch(deleteTreinosByUserId(currentUser.logged));
+        }
         // TRATAR DELETE TREINOS
 
-        //clear trainings
-        dispatch(deleteAnamnese({
-            anamneseId: anamnese?._id,
-            token: currentUser.logged
-        }));
-        //clear anamnese
+
+        if(anamnese.preenchida){
+            dispatch(deleteAnamnese({
+                anamneseId: anamnese?._id,
+                token: currentUser.logged
+            }));
+        }
+
         dispatch(deleteAlunoByUserId({
             id: userId,
             token: currentUser.logged
         }));
-        //clear aluno
+
         dispatch(deleteUser({
             id: userId,
             token: currentUser.logged
@@ -80,7 +84,7 @@ function Perfil() {
         dispatch(clearAnamnese());
         dispatch(clearTrainings());
         dispatch(clearExercises());
-        dispatch(logoutUser());
+        dispatch(logoutUser({token: currentUser.logged}));
     }
     if (!currentUser.logged) {
         return <Navigate to="/login" />;

@@ -14,7 +14,7 @@ import "./../pages.css";
 
 //redux
 import { useDispatch } from "react-redux";
-import { addLoggedPersonal, addLoggedUser, logoutUser } from "../../redux/user/slice";
+import { addLoggedPersonal, addLoggedUser, logoutRedux } from "../../redux/user/slice";
 import { clearPersonals, getPersonais } from "../../redux/personal/slice";
 import { clearAnamnese, getAnamnese } from "../../redux/anamnese/slice";
 import { clearExercises } from "../../redux/exercises/slice";
@@ -30,7 +30,7 @@ function Login(){
     const dispatch = useDispatch();
 
     //dispatchs para deslogar totalmente em caso de redirecionamento
-    dispatch(logoutUser());
+    dispatch(logoutRedux());
     dispatch(clearAlunos());
     dispatch(clearExercises());
     dispatch(clearPersonals());

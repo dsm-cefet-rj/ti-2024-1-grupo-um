@@ -67,6 +67,8 @@ function CadastroPersonal(){
             }
             
             const resultAction = await dispatch(createPersonal(formData));
+
+            console.log(resultAction);
     
             if (createPersonal.fulfilled.match(resultAction)) {
                 notify("success", "Cadastro realizado com sucesso");

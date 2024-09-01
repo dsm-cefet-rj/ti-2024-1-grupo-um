@@ -58,7 +58,7 @@ function PerfilPersonal() {
             token: currentUser.loggedPersonal
         }));
         dispatch(clearAlunos());
-        dispatch(logoutUser());
+        dispatch(logoutUser({token: currentUser.loggedPersonal}));
         navigate("/");
         notify("sucess", "Personal deletado");
     }

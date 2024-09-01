@@ -113,6 +113,7 @@ async function createTrainingForgymStudent(req, res){
 async function deleteTraining(req, res){
     try{
         const id = req.params.trainingId;
+        console.log(id);
 
         await trainingModel.findByIdAndDelete(id);
 
@@ -132,15 +133,21 @@ async function deleteTrainingsByUserId(req, res){
 
         const treinos = await trainingModel.find({userId: id});
 
-        for(const treino of treinos){
-            await exerciseModel.deleteMany({trainingId: treino._id});
+        if(treinos){
+            for(const treino of treinos){
+                await exerciseModel.deleteMany({trainingId: treino._id});
+            }
+    
+            await trainingModel.deleteMany({userId : id});
+    
+            return res.status(200).send({
+                message: "Treinos deletados com sucesso"
+            });
+        } else{
+            return res.status(200).send({
+                message: "O usuário não tem treinos registrados"
+            });
         }
-
-        await trainingModel.deleteMany({userId : id});
-
-        return res.status(200).send({
-            message: "Treinos deletados com sucesso"
-        });
     }catch(error){
         return res.status(400).send({
             message: error.message
