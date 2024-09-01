@@ -3,6 +3,9 @@ import { userModel } from "../models/UserModel.js";
 import jsonwebtoken from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { blackListModel } from "../models/BlackListModel.js";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from 'url';
 
 const salt_rounds = process.env.SALT_ROUNDS;
 
@@ -49,9 +52,6 @@ async function readOne(req, res){
 }
 async function createUser(req, res){
     try{
-        //desmembrar objeto
-       
-
         //verificar email
         const existingEmailArray = await userModel.find({email: req.body.email});
         const existingEmail = existingEmailArray[0];
@@ -75,12 +75,15 @@ async function createUser(req, res){
 
         const newSenha = await crypt(req.body.senha);
 
+        const image = req.file ? req.file.filename : null;
+
         const newUser = {
             nome: req.body.nome,
             CPF: req.body.CPF,
             email: req.body.email,
             birth: req.body.birth,
-            senha: newSenha
+            senha: newSenha,
+            image: image
         }
 
         const result = await userModel.create(newUser);
@@ -92,7 +95,8 @@ async function createUser(req, res){
 
     }catch(error){
         return res.status(400).send({
-            message: error.message
+            error: error.message,
+            message: 'Ocorreu um erro na criação de usuário'
         });
     }
 }
@@ -107,7 +111,9 @@ async function updateUser(req, res) {
             const newSenha = await crypt(update.senha);
             update.senha = newSenha;
         }
-
+        if(req.file){
+            update.image = req.file.filename;
+        }
         const updatedUser = await userModel.findByIdAndUpdate(id, update, {returnDocument: "after"});
 
         return res.status(200).send({
@@ -122,22 +128,45 @@ async function updateUser(req, res) {
         });
     }
 }
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 async function deleteUser(req, res){
     try{
         const id = req.params.id;
+        const user = await userModel.findById(id);
+        if(!user){
+            return res.status(400).send({
+                message: "user não encontrado"
+            });
+        }
+        const imageName = user.image;
+        
         const userDelete = await userModel.findByIdAndDelete(id);
 
         if(userDelete){
-            return res.status(200).send({
-                message: 'User removido com sucesso',
-                data: userDelete
-            });
-        }else{
-            return res.status(400).send({
-                message: 'user nao encontrado'
-            })
-        }
+            if(imageName){
+                const imagePath = path.resolve(__dirname, '..', '..','..', 'uploads', imageName);
+                console.log(imagePath);
+                fs.unlink(imagePath, (err)=>{
+                    if(err){
+                        return res.status(400).send({
+                            message: "erro ao excluir a imagem do servidor"
+                        });
+                    }else{
+                        return res.status(200).send({
+                            message: 'Usuário removido com sucesso',
+                            data: userDelete
+                        });
+                    }
+                })
+            } else{
 
+                return res.status(200).send({
+                    message: 'User removido com sucesso',
+                    data: userDelete
+                });
+            }
+        }
     }catch(error){
         return res.status(400).send({
             message: 'Ocorreu um erro para remover o user'

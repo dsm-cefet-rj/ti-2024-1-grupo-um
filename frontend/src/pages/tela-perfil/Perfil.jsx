@@ -91,7 +91,8 @@ function Perfil() {
         email: Yup.string().email().required("O email é obrigatório."),
         senha: Yup.string(),
         birth: Yup.date().required("Data de Nascimento obrigatória."),
-        CPF: Yup.string().required("CPF obrigatório.")
+        CPF: Yup.string().required("CPF obrigatório."),
+        image: Yup.mixed().nullable()
     });
 
     function formatDate(dateString) {
@@ -112,7 +113,8 @@ function Perfil() {
         email: currentUser.user.email,
         senha: "",
         birth: formatDate(currentUser.user.birth),
-        CPF: currentUser.user.CPF
+        CPF: currentUser.user.CPF,
+        image: null
     };
     
     return (
@@ -134,6 +136,7 @@ function Perfil() {
                                 <InputComponentYup classes="" id="InputEmail" name="email" text="Email" type="email" placeholder="Insira seu email aqui" />
                                 <InputComponentYup classes="" id="CPFInput" name="CPF" text="CPF" type="text" placeholder="Seu CPF aqui" />
                                 <InputComponentYup classes="" id="age" name="birth" text="Data de Nascimento" type="date" placeholder="" />
+                                <InputComponentYup classes="" id="image" name="image" text="Foto" type="file" />    
                                 <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
                                 <div className="mt-3 d-flex justify-content-center">
                                     <button className="btn-submit" type="submit" disabled={!isValid}>Enviar</button>

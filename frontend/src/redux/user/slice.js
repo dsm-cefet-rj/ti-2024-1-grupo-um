@@ -29,21 +29,41 @@ const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
 
 const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
     try{
-        const token = data.token;
         
-        console.log(data);
-        const updateUser = {
-            CPF: data.CPF,
-            birth: data.birth,
-            email: data.email,
-            nome: data.nome,
-        }
-        if(data.senha.length > 0) updateUser.senha = data.senha;
-        const response = await api.patch(`/user/${data._id}`, updateUser, {
-            headers: {
-                Authorization:`${token}`
+        let formData = new FormData();
+        //verificacao imagem
+        if (data.image){
+            for(const key in data){
+                formData.append(key,data[key]);
             }
-        });
+        }else{
+            formData ={
+                CPF: data.CPF,
+                birth: data.birth,
+                email: data.email,
+                nome: data.nome
+            }
+        }
+        // console.log(data);
+        // const updateUser = {
+        //     CPF: data.CPF,
+        //     birth: data.birth,
+        //     email: data.email,
+        //     nome: data.nome,
+        // }
+        if(data.senha.length > 0) formData.senha = data.senha;
+        const config ={
+            headers:{
+                Authorization: `${data.token}`,
+                ...(data.image && { 'Content-Type': 'multipart/form-data' })
+            }
+        };
+        const response = await api.patch(`/user/${data._id}`, formData, config);
+        // const response = await api.patch(`/user/${data._id}`, updateUser, {
+        //     headers: {
+        //         Authorization:`${token}`
+        //     }
+        // });
         notify("success", "Usuario atualizado com sucesso");
         return response.data.data;
     }catch(error){
