@@ -2,6 +2,7 @@
 import { userModel } from "../models/UserModel.js";
 import jsonwebtoken from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { blackListModel } from "../models/BlackListModel.js";
 
 const salt_rounds = process.env.SALT_ROUNDS;
 
@@ -172,13 +173,15 @@ async function login(req, res){
                     type: "user"
                 }, 
                 process.env.SECRET_JWT, 
-                {expiresIn: '1h'}
+                {expiresIn: '15m'}
             );
+            const { exp } = jsonwebtoken.decode(token);
             return res.status(200).send({
                 message: "Login realizado com sucesso",
                 status: true,
                 token: token,
-                user: existingUser
+                user: existingUser,
+                expiration: exp
             });
         }
         
@@ -191,13 +194,23 @@ async function login(req, res){
 }
 async function logout(req, res){
     try{
-        
+        const token = req.headers.authorization;
 
+        if(token){
+            await blackListModel.create({token});
+        }
+        console.log(token)
+
+        return res.status(200).send({
+            message: "Logout efetuado com sucesso"
+        });
     }catch(error){
-        
+        return res.status(400).send({
+            message: "Ocorreu um erro ao efetuar o logout"
+        })
     }
 }
 
 
 
-export { readAll, readOne, createUser, updateUser, deleteUser, login };
+export { readAll, readOne, createUser, updateUser, deleteUser, login, logout };
