@@ -31,6 +31,7 @@ function Aluno() {
     const alunos = useSelector(rootReducer => rootReducer.aluno);
 
     const usuario = alunos.filter((aluno) => aluno.idUser === id)[0];
+
     console.log(alunos);
     console.log(usuario);
     console.log(alunos.filter((aluno) => aluno.userId === id))
@@ -43,7 +44,7 @@ function Aluno() {
         dispatch(deleteTraining(treinoId))
     }
 
-    if (!currentUser.loggedPersonal) {
+    if (currentUser.loggedPersonal === null) {
         return <Navigate to={"/login"} />
     }
 
@@ -58,7 +59,7 @@ function Aluno() {
                     <div>
                         <img src={user} alt="foto de perfil usuario"
                             className="rounded-circle img-fluid" style={{ width: "150px" }} />
-                        <h4 className="my-3" id="nome-aluno">{usuario.nomeUser}</h4>
+                        <h4 className="my-3" id="nome-aluno">{usuario?.nomeUser}</h4>
                         
                     </div>
                     <div className="card m-auto" id="card-anamnese">
@@ -68,27 +69,27 @@ function Aluno() {
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Peso</p>
-                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.weight} Kg</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese?.weight} Kg</p>
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Motivação</p>
-                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.motivation}</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese?.motivation}</p>
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Frequência de Atividade Física</p>
-                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.activityFreq}</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese?.activityFreq}</p>
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Data do último exame</p>
-                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.date}</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese?.date}</p>
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Faz Dieta?</p>
-                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.diet}</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese?.diet}</p>
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Observações</p>
-                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.observacoes}</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese?.observacoes}</p>
                         </div>
                     </div>
 

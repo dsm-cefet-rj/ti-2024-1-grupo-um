@@ -11,6 +11,6 @@ userRoutes.patch('/user/:id', verifyJWT, authorizeTypes(["user"]), updateUser);
 userRoutes.delete('/user/:id', verifyJWT, authorizeTypes(["user"]), deleteUser);
 
 userRoutes.post('/login', login);
-userRoutes.post('/logout', verifyJWT, logout);
+userRoutes.post('/logout', logout);
 
 export default userRoutes;

@@ -12,24 +12,24 @@ function App() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
 
-  const tokenPersonal = user.loggedPersonal;
-  const tokenAluno = user.logged;
-  const tokenExpiration = user.expiration;
+  // const tokenPersonal = user.loggedPersonal;
+  // const tokenAluno = user.logged;
+  // const tokenExpiration = user.expiration;
 
-  useEffect(() => {
-    if(tokenAluno){
-      const isTokenValid = checkTokenValidity(tokenAluno);
-      if(!isTokenValid){
-        dispatch(logoutUser({tokenAluno}));
-      }
-    }
-    if(tokenPersonal){
-      const isTokenValid = checkTokenValidity(tokenPersonal);
-      if(!isTokenValid){
-        dispatch(logoutUser({tokenPersonal}));
-      }
-    }
-  }, [tokenAluno, tokenPersonal, dispatch]);
+  // useEffect(() => {
+  //   if(tokenAluno){
+  //     const isTokenValid = checkTokenValidity(tokenAluno);
+  //     if(!isTokenValid){
+  //       dispatch(logoutUser({tokenAluno}));
+  //     }
+  //   }
+  //   if(tokenPersonal){
+  //     const isTokenValid = checkTokenValidity(tokenPersonal);
+  //     if(!isTokenValid){
+  //       dispatch(logoutUser({tokenPersonal}));
+  //     }
+  //   }
+  // }, []);
   
   
 

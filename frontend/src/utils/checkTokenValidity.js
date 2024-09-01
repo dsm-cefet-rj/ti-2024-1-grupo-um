@@ -11,6 +11,7 @@ export const checkTokenValidity = (token) => {
 
         // Verifica se o token expirou (o tempo de expiração está em segundos, então convertemos a data atual para segundos)
         const currentTime = Date.now() / 1000; // Tempo atual em segundos
+        console.log(currentTime);
 
         if (decodedToken.exp < currentTime) {
             // O token expirou
