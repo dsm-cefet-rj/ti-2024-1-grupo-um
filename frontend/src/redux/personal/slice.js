@@ -29,8 +29,6 @@ const createPersonal = createAsyncThunk('personais/addPersonalAsync', async (dat
     }
 });
 
-
-
 const deletePersonal = createAsyncThunk("personais/deletePersonalAsync", async(infos)=>{
     try{
         await api.delete(`/personal/${infos._id}`,{

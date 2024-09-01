@@ -19,7 +19,7 @@ function Navbar() {
     const currentPersonalNavbar = user.loggedPersonal ? user.personal : null;
 
     function Logout() {
-        dispatch(logoutUser());
+        dispatch(logoutUser({token: currentUserNavbar ? user.logged : user.loggedPersonal}));
         dispatch(clearExercises());
         dispatch(clearPersonals());
         dispatch(clearAnamnese());
