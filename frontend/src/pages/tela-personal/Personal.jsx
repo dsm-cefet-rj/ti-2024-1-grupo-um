@@ -14,17 +14,29 @@ import user from "../../images/user.png";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 import { getAnamnese } from "../../redux/anamnese/slice";
+import CreateAxiosInstance from "../../utils/api";
+import { useEffect, useState } from "react";
 
 function Personal() {
-
+  // const [personalAtual, setPersonalAtual] = useState(null);
   const {id} = useParams();
+
+  // useEffect(async () => {
+  //   const actual = await api.get(`/personal/${id}`);
+  //   setPersonalAtual(actual);
+  // }, [id]);
+
+  const api = CreateAxiosInstance();
+  
   const dispatch = useDispatch();
   const currentUser = useSelector(rootReducer => rootReducer.user);
   //pega os personais e faz um filtro pelo personal com id parametro
   const personais = useSelector(rootReducer => rootReducer.personais);
-  const personalAtual = personais.filter((personal) => personal.id === id)[0];
+  console.log(personais);
+  const personalAtual = personais.filter((personal) => personal._id === id)[0];
+  console.log(personalAtual);
   //pega a anamnese relacionada ao usuario logado
-  dispatch(getAnamnese(currentUser.user.id));
+  dispatch(getAnamnese(currentUser.user._id));
 
   const anamnese = useSelector(rootReducer => rootReducer.anamnese);
 
@@ -34,10 +46,10 @@ function Personal() {
 
 
 
-  const estrelas = [];
-  for (let i = 0; i < personalAtual.rating; i++) {
-      estrelas.push(<img key={i} className="imagem-estrela" src={star} alt="imagem estrela"/>);
-  }
+  // const estrelas = [];
+  // for (let i = 0; i < personalAtual.rating; i++) {
+  //     estrelas.push(<img key={i} className="imagem-estrela" src={star} alt="imagem estrela"/>);
+  // }
 
   return (
     <div className="card-personal">
@@ -49,27 +61,27 @@ function Personal() {
           {/* inicio fulaninho */}
           <div className="card-body text-center m-auto">
             {/* renderizacao condicional se personal tiver imagem */}
-            {personalAtual.image ?
+            {personalAtual?.image ?
               (
                 <div>
-                  <img src={require(`../../images/PersonalImages/${personalAtual.image}.png`)} alt="avatar"
+                  <img src={require(`../../../../uploads/${personalAtual?.image}`)} alt="avatar"
                     className="rounded-circle img-fluid" style={{ width: "150px" }} />
-                  <h5 className="my-3">{personalAtual.nome}</h5> 
+                  <h5 className="my-3">{personalAtual?.nome}</h5> 
                 </div>
               ):(
                 <div>
                   <img src={user} alt="caso2"
                   className="rounded-circle img-fluid" style={{ width: "150px" }} />
-                  <h5 className="my-3">{personalAtual.nome}</h5> 
+                  <h5 className="my-3">{personalAtual?.nome}</h5> 
                 </div>
-              )
-            }
-            <div className="margin-bottom-10px mb-4">
+               )
+            } 
+            {/* <div className="margin-bottom-10px mb-4">
               {estrelas}
-            </div>
+            </div> */}
             <div className="d-flex justify-content-center mb-2">
               {anamnese.preenchida?(
-                  <Link data-aos="fade-up" data-aos-delay="200" to={`/pagamento/${personalAtual.id}`} className="btn btn-primary">Solicitar consultoria</Link>
+                  <Link data-aos="fade-up" data-aos-delay="200" to={`/pagamento/${id}`} className="btn btn-primary">Solicitar consultoria</Link>
                 ):(
                   <Link data-aos="fade-up" data-aos-delay="200" to={`/anamnese`} className="btn btn-primary">Solicitar consultoria</Link>
                 )
@@ -87,7 +99,7 @@ function Personal() {
                 <p className="mb-0">Nome completo</p>
               </div>
               <div className="col-sm-9">
-                <p className="text-muted mb-0">{personalAtual.nome}</p>
+                <p className="text-muted mb-0">{personalAtual?.nome}</p>
               </div>
             </div>
             <hr />
@@ -96,7 +108,7 @@ function Personal() {
                 <p className="mb-0">Idade</p>
               </div>
               <div className="col-sm-9">
-                <p className="text-muted mb-0">{personalAtual.idade}</p>
+                <p className="text-muted mb-0">{personalAtual?.idade}</p>
               </div>
             </div>
             <hr />
@@ -105,7 +117,7 @@ function Personal() {
                 <p className="mb-0">Formação acadêmica</p>
               </div>
               <div className="col-sm-9">
-                <p className="text-muted mb-0">{personalAtual.formacao}</p>
+                <p className="text-muted mb-0">{personalAtual?.formacao}</p>
               </div>
             </div>
             <hr />
@@ -114,7 +126,7 @@ function Personal() {
                 <p className="mb-0">Cidade</p>
               </div>
               <div className="col-sm-9">
-                <p className="text-muted mb-0">{personalAtual.cidade}</p>
+                <p className="text-muted mb-0">{personalAtual?.cidade}</p>
               </div>
             </div>
           </div>
@@ -125,7 +137,7 @@ function Personal() {
         <div className="card m-auto mb-4" id="card-block-personal">
           <div className="card-body">
             <p className="mb-4" style={{ fontWeight: "bold" }}>Biografia</p>
-            <p className="mb-1" style={{ fontSize: "0.85rem" }}>{personalAtual.biografia}</p>
+            <p className="mb-1" style={{ fontSize: "0.85rem" }}>{personalAtual?.biografia}</p>
           </div>
         </div>
         <FooterComp/>

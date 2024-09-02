@@ -17,6 +17,9 @@ import { createPersonal } from "../../redux/personal/slice";
 // import { createHash } from "crypto";
 import { v4 as idGen } from "uuid";
 
+import { notify } from "../../index";
+import { ToastContainer } from 'react-toastify';
+
 function CadastroPersonal(){
 
     const validationSchema = Yup.object({
@@ -29,7 +32,8 @@ function CadastroPersonal(){
         formacao: Yup.string().required("Formação é obrigatória."),
         cidade: Yup.string().required("Cidade é obrigatória."),
         biografia: Yup.string().required("Biografia é obrigatória."),
-        preco: Yup.number().required("Preço é obrigatório.")
+        preco: Yup.number().required("Preço é obrigatório."),
+        image: Yup.mixed().nullable() //tratar tipo de arquivo para aceitar jpg e png somente
     });
 
     const initialValues = {
@@ -42,25 +46,58 @@ function CadastroPersonal(){
         formacao:"",
         cidade:"",
         biografia:"",
-        preco:""
+        preco:"",
+        image: null
     };
-
 
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const handlePersonalSingUp=(values)=>{
-        dispatch(createPersonal({...values, image: null, id: idGen()}));
-        alert("personal cadastrado com uscesso");
-        navigate("/login");
-    }
+    //Fazer algo parecido com isso -> continua sem tratar a imagem
+    const handlePersonalSingUp = async (values) => {
+        try {
+            
+            const formData = new FormData();
+    
+           
+            for (const key in values) {
+                if (values[key] !== null && values[key] !== undefined) {
+                    formData.append(key, values[key]);
+                }
+            }
+            
+            const resultAction = await dispatch(createPersonal(formData));
 
+            console.log(resultAction);
+    
+            if (createPersonal.fulfilled.match(resultAction)) {
+                notify("success", "Cadastro realizado com sucesso");
+                setTimeout(() => {
+                    navigate("/LoginPersonal");
+                }, 2000);
+            } else {
+                notify("error", `Erro ao realizar o cadastro: ${resultAction.payload}`);
+            }
+        } catch (error) {
+            notify("error", `Erro ao realizar o cadastro: ${error.message}`);
+            console.error(error);
+        }
+    };
+    
+    // const handlePersonalSingUp=(values)=>{
+    //     dispatch(createPersonal({...values, id: idGen()}));
+    //     notify("success", "Cadastro realizado com sucesso");
+
+    //     setTimeout(() => {
+    //         navigate("/LoginPersonal");
+    //     }, 2000)
+    // }
     return(
         <div>
             <div className="bg-image cefit-background-img" id="cad-personal" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
                     <div className="login-container rounded-5 p-3">
                         <div className="cefit-logo verde text-center rounded-5 m-auto">
-                            <img src={logo} alt="foto cefit" className="p-1" width="100%" height="100%"/>
+                            <img src={logo} alt="image cefit" className="p-1" width="100%" height="100%"/>
                         </div>
                         <Formik
                             initialValues={initialValues}
@@ -79,6 +116,7 @@ function CadastroPersonal(){
                                 <InputComponentYup classes="" id="formacao" name="formacao" text="Formação" type="text" placeholder="Sua Formação aqui" />
                                 <InputComponentYup classes="" id="biografia" name="biografia" text="Biografia" type="text" placeholder="Sua Biografia aqui" />
                                 <InputComponentYup classes="" id="preco" name="preco" text="Preço da sua consultoria" type="text" placeholder="Ex: R$ 39,90" />
+                                <InputComponentYup classes="" id="image" name="image" text="image" type="file" />    
                                 <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
                                 <div className="cadastro-texto mt-3">
                                     Possui conta? <Link to="/login"> Faça o seu Login!</Link>

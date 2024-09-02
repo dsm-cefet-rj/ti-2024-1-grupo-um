@@ -1,25 +1,25 @@
 //import components
 import CefetImage from "../../components/CefetImage/CefetImage";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
-
+import { ToastContainer, toast } from 'react-toastify';
 //import react stuff
 import { Link, useNavigate } from "react-router-dom";
 import { getTreinosByUserID } from "../../redux/trainings/slice";
-
 //import axios
 import axios from "axios";
 
 //css 
+import 'react-toastify/dist/ReactToastify.min.css';
 import "./../pages.css";
 
 //redux
 import { useDispatch } from "react-redux";
-import { addLoggedPersonal, addLoggedUser, logoutUser } from "../../redux/user/slice";
+import { addLoggedPersonal, addLoggedUser, logoutRedux } from "../../redux/user/slice";
 import { clearPersonals, getPersonais } from "../../redux/personal/slice";
 import { clearAnamnese, getAnamnese } from "../../redux/anamnese/slice";
 import { clearExercises } from "../../redux/exercises/slice";
 import { clearAlunos, getAlunosByPersonalId } from "../../redux/aluno/slice";
-
+import { notify } from "../../index";
 //yup
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
@@ -30,15 +30,13 @@ function Login(){
     const dispatch = useDispatch();
 
     //dispatchs para deslogar totalmente em caso de redirecionamento
-    dispatch(logoutUser());
+    dispatch(logoutRedux());
     dispatch(clearAlunos());
     dispatch(clearExercises());
     dispatch(clearPersonals());
     dispatch(clearAnamnese());
 
     async function Autentica (info){
-
-        
         //caso login de usuario
 
         // const response = await axios.get("http://localhost:3004/users");
@@ -59,46 +57,44 @@ function Login(){
             email: info.email,
             senha: info.senha
         }
-        const autenticado = await axios.post("http://localhost:5000/login", loginObj);   
-        console.log(autenticado.data.user)
-        if(autenticado.data.status == true){
-            dispatch(addLoggedUser(autenticado.data.user));
-            dispatch(getTreinosByUserID(autenticado.data.user._id));
-            dispatch(getPersonais());
-            dispatch(getAnamnese(autenticado.data.user._id));
-            alert("autenticado");
-            navigate("/personais");
-            return;
-        }
 
-        //adicionar user com comando dispatch(addLoggedUser(user));
-        //pegar os treinos do usuario atraves do dispatch(getTreinosByUserID(user.id));
-        //pegar todos os personais atraves do dispatch(getPersonais());
-        //pegar a anamnese do usuario atraves do dispatch(getAnamnese(user.id));
-        //alertar o usuario com alert("autenticado");
-        //navegar para /personais com navigate("/personais");
+        try{
+            const autenticado = await axios.post("http://localhost:5000/login", loginObj);
+            
 
+            console.log(autenticado.data);
 
+            if(autenticado.data.status == true){
+                dispatch(addLoggedUser(autenticado.data));
+                dispatch(getTreinosByUserID({
+                    userId: autenticado.data.user._id, 
+                    token: autenticado.data.token
+                }));
+                dispatch(getPersonais(autenticado.data.token));
+                dispatch(getAnamnese({
+                    userId: autenticado.data.user._id,
+                    token: autenticado.data.token
+                }));
+                // alert("autenticado");
+                notify("success", autenticado.data.message);
+                // setTimeout(10000);
 
-
-        //caso login de personal 
-        const responsePersonal = await axios.get("http://localhost:3004/personais");
-        const personais = responsePersonal.data;
-
-        for (let personal of personais){
-            if(personal.email === info.email && personal.senha === info.senha){
-                dispatch(addLoggedPersonal(personal));
-                dispatch(getAlunosByPersonalId(personal.id));
-                
-                alert("autenticado");
-                navigate("/");
-                //navigate("/meusAlunos");
+                setTimeout(() => {
+                    navigate("/personais");
+                }, 3000);
+                // toast("Usuário autenticado com sucesso!");
                 return;
+            }else{
+                notify("error", "Login ou senha inválidos.");
+                // alert("usuario invalido");
             }
+        }catch(err){
+            console.log(err);
+            notify("error", err.response.data.message);
+            // alert(err);
         }
-
-        alert("usuario invalido");
     }
+
 
     const initialValues = {
         email: "",
@@ -106,8 +102,8 @@ function Login(){
     }
 
     const validationSchema = Yup.object({
-        email: Yup.string().email().required("Insira um email do personal"),
-        senha: Yup.string().required("Insira a senha do personal")
+        email: Yup.string().email("O email deve ser valido.").required("O email é obrigatório"),
+        senha: Yup.string().required("A senha é obrigatória")
     })
 
     return(
@@ -125,7 +121,7 @@ function Login(){
                         {({ isValid }) => (
                         <Form className="formulario-login">
                                 <InputComponentYup classes="mb-3 mt-3" id="InputEmail" name="email" text={<b>Email:</b>} type="text" placeholder="Insira seu email aqui" />
-                                <InputComponentYup classes="mb-3" id="Password" name="senha" text={<b>Senha:</b>} type="password" placeholder="Digite a descrição do treino" />
+                                <InputComponentYup classes="mb-3" id="Password" name="senha" text={<b>Senha:</b>} type="password" placeholder="Insira sua senha aqui" />
 
                                 <div className="d-flex w-100 mt-3">
                                     <button className="btn-submit btn-primary w-100" type="submit" disabled={!isValid}>Enviar</button>
@@ -140,7 +136,7 @@ function Login(){
                                         </div>
                                     </div>
                                     <div className="d-flex align-items-center w-20 mt-3">
-                                        <a href="/your-link" className="btn btn-primary rounded-5 w-20">
+                                        <a href="/LoginPersonal" className="btn btn-primary rounded-5 w-20">
                                             Personal
                                         </a>
                                     </div>

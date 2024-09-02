@@ -11,7 +11,7 @@ const personalSchema = new mongoose.Schema({
     cidade: { type: mongoose.Schema.Types.String, required:[true, "A cidade é obrigatória"]},
     biografia: { type: mongoose.Schema.Types.String, required:[true, "A biografia é obrigatória"]},
     preco: { type: mongoose.Schema.Types.Number, required:[true, "O preço é obrigatório"]},
-    id: { type: mongoose.Schema.Types.ObjectId }
+    image: { type: mongoose.Schema.Types.String, required: false }
 });
 
 const personalModel = mongoose.model("personais", personalSchema);

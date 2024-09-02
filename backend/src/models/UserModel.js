@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
     birth: { type: mongoose.Schema.Types.Date, required:[true, "O aniversário é obrigatório"]},
     CPF: { type: mongoose.Schema.Types.String, required:[true, "O CPF é obrigatório"]},
     senha: { type: mongoose.Schema.Types.String, required:[true, "A senha é obrigatória"]},
-    id: { type: mongoose.Schema.Types.ObjectId }
+    image: { type: mongoose.Schema.Types.String, required: false }
 });
 
 const userModel = mongoose.model("users", userSchema);

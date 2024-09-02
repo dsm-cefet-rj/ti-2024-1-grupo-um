@@ -15,13 +15,15 @@ import React, { useState } from 'react';
 
 //imports redux
 import { useDispatch, useSelector } from "react-redux";
-import { addInfo, addTreino } from "../../redux/form-treino/slice";
-import { addExercicio, clearExercises } from "../../redux/exercises/slice";
-import { addTraining } from "../../redux/trainings/slice";
+import { addInfo} from "../../redux/form-treino/slice";
+import { addExercicio, addExercise, clearExercises } from "../../redux/exercises/slice";
+import { addTraining, addTreino } from "../../redux/trainings/slice";
 
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 import FormList from "../../components/FormList/formList";
+import { notify } from "../../index.js";
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -38,6 +40,7 @@ function AddTreinos() {
     const [showModal, setShowModal] = useState(false);
 
     const handleSubmitForm = (info) => {
+        console.log(info)
         dispatch(addInfo(info));
         const treinoInfo = {
             userId: form.userId,
@@ -46,11 +49,26 @@ function AddTreinos() {
             type: info.type,
             observacoes: info.observacoes
         }
-        dispatch(addTreino(treinoInfo));
-        dispatch(addTraining(treinoInfo));
-        // exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
+        dispatch(addTreino({
+            infos: treinoInfo,
+            token: loggedUser.logged,
+            exercicios
+        }));
+        // dispatch(addTraining(treinoInfo));
+        // exercicios.map((exercicio) => dispatch(addExercicio({
+        //     ...exercicio,
+        //     token: loggedUser.logged
+        // })));
         dispatch(clearExercises());
-        navigate("/areaFIT");
+
+        setTimeout(() => {
+            navigate("/areaFIT");
+        }, 2000)
+        
+    }
+    const handleSubmitAddExercise = (info) => {
+        dispatch(addExercise(info));
+        setShowModal(false);
     }
 
     const openModal = () => {
@@ -108,10 +126,10 @@ function AddTreinos() {
                 {showModal && (
                     <Modal
                         setModal={() => {
-                            setShowModal();
-
+                            setShowModal(!showModal);
                         }}
                         idForm={form.id}
+                        handleSubmitForm={handleSubmitAddExercise}
                     />
                 )}
             </div>

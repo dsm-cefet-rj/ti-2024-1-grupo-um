@@ -4,10 +4,15 @@ import musculacao from "./haltere-icon.png";
 import padr from "./default-icon.png";
 import lixeira from "./lixeira.png";
 import { deleteExercicioByID, deleteExercicio } from "../../redux/exercises/slice.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { notify } from "../../index.js";
+import { ToastContainer } from 'react-toastify';
+
+
 
 function Exercicio({ nome, carga, rep, obs, type, idExercicio}) {
   const dispatch = useDispatch();
+  const currentUser = useSelector(rootReducer => rootReducer.user)
 
   const Img =() => {
     switch(type){
@@ -21,13 +26,27 @@ function Exercicio({ nome, carga, rep, obs, type, idExercicio}) {
   }
 
   const handleDeleteExercicio = () => {
-    dispatch(deleteExercicioByID(idExercicio));
+    if(currentUser.loggedPersonal){
+      dispatch(deleteExercicioByID({
+        idExercicio: idExercicio,
+        token: currentUser.loggedPersonal
+      }));
+    }
+    if(currentUser.logged){
+      dispatch(deleteExercicioByID({
+        idExercicio: idExercicio,
+        token: currentUser.logged
+      }));
+    }
     dispatch(deleteExercicio(idExercicio));
+
     //navigate("/treino");
   }
 
     return (
+      <>
       <div className="exercicio-card">
+       
         <div id="img-exercicio">
             
           <Img />
@@ -44,6 +63,7 @@ function Exercicio({ nome, carga, rep, obs, type, idExercicio}) {
             </button>
         </div>
       </div>
+      </>
     );
   }
   

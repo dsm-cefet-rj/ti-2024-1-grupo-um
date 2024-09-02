@@ -20,6 +20,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 //import gerador de id
 import { v4 as idGen } from "uuid";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
+import { notify } from "../../index";
 
 function Cadastro(){
 
@@ -30,7 +31,8 @@ function Cadastro(){
         .required('Senha requerida.') 
         .min(8, 'Senha deve conter ao menos 8 digitos.'),
         birth: Yup.date().required("Data de Nascimento obrigatória."),
-        CPF: Yup.string().required("CPF obrigatório.")
+        CPF: Yup.string().required("CPF obrigatório."),
+        image: Yup.mixed().nullable()
     });
 
     const initialValues = {
@@ -38,7 +40,8 @@ function Cadastro(){
         email: "",
         senha:"",
         birth: "",
-        CPF: ""
+        CPF: "",
+        image: null
     };
     
     
@@ -47,9 +50,42 @@ function Cadastro(){
 
     const dispatch = useDispatch();
 
-    const handleSingUp=(values)=>{
-        dispatch(addUser({...values, id:idGen()}));
-        navigate("/login");
+    const handleSingUp = async (values)=>{
+        try {
+            
+            const formData = new FormData();
+            for (const key in values) {
+                if (values[key] !== null && values[key] !== undefined) {
+                    formData.append(key, values[key]);
+                }
+            }
+            
+            const resultAction = await dispatch(addUser(formData));
+
+            console.log(resultAction);
+    
+            if (addUser.fulfilled.match(resultAction)) {
+                setTimeout(() => {
+                    navigate("/login");
+                }, 2000);
+            } else {
+                console.log("entrou else erro");
+                notify("error", `Erro ao realizar o cadastro: ${resultAction.payload}`);
+            }
+        } catch (error) {
+            console.log("entrou catch error");
+            notify("error", `Erro ao realizar o cadastro: ${error.message}`);
+            console.error(error);
+        }
+
+
+            // const status = dispatch(addUser(values));
+            // // notify("success", "Cadastro realizado com sucesso");
+            // if(status){
+            //     setTimeout(() => {
+            //         navigate("/login");
+            //     }, 2000)
+            // }
     }
 
     return(
@@ -68,6 +104,7 @@ function Cadastro(){
                                 <InputComponentYup classes="" id="InputEmail" name="email" text={<b>Email</b>} type="email" placeholder="Insira seu email aqui" />
                                 <InputComponentYup classes="" id="CPFInput" name="CPF" text={<b>CPF</b>} type="text" placeholder="Seu CPF aqui" />
                                 <InputComponentYup classes="" id="age" name="birth" text={<b>Data de Nascimento</b>} type="date" placeholder="" />
+                                <InputComponentYup classes="" id="image" name="image" text={<b>Foto de perfil</b>} type="file" />    
                                 <InputComponentYup classes="" id="Password" name="senha" text={<b>Senha</b>} type="password" placeholder="Insira sua senha aqui"/>
                                 <div className="mt-3 d-flex justify-content-center">
                                     <button className="btn-submit" type="submit" disabled={!isValid}>Cadastrar</button>

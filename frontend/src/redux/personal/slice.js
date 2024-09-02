@@ -1,28 +1,45 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createAxiosInstance } from "../../utils/api";
-
-const api = createAxiosInstance();
-
+import CreateAxiosInstance from "../../utils/api";
+import { notify } from "../../index";
 
 const initialState = [];
+const api  = CreateAxiosInstance(); 
 
-const getPersonais = createAsyncThunk("personais/getPersonaisAsync", async() => {
-    const response = await api.get("/personal");
-    return response.data; 
+const getPersonais = createAsyncThunk("personais/getPersonaisAsync", async(token) => {
+    try{
+        const response = await api.get("/personal", {
+            headers: {
+                Authorization:`${token}`
+            }
+        });
+        return response.data; 
+    }catch(error){
+        //logic
+    }
 });
 
 const createPersonal = createAsyncThunk('personais/addPersonalAsync', async (data) => {
-    const response = await api.post("/personal", data)
-    return response.data;
+    try{
+        console.log(data);
+        const response = await api.post("/personal", data)
+        return response.data;
+    }catch(error){
+        return error.message;
+    }
 });
 
-const updatePersonal = createAsyncThunk("personais/updatePersonalAsync", async (data) => {
-    await api.put(`/personal/${data.id}`, data);
-});
-
-const deletePersonal = createAsyncThunk("personais/deletePersonalAsync", async(id)=>{
-    await api.delete(`/personal/${id}`);
+const deletePersonal = createAsyncThunk("personais/deletePersonalAsync", async(infos)=>{
+    try{
+        await api.delete(`/personal/${infos._id}`,{
+            headers: {
+                Authorization:`${infos.token}`
+            }
+        });
+        notify("success", "Personal deletado com sucesso.");
+    }catch(error){
+        notify("error", error.message);
+    }
 });
 
 
@@ -40,7 +57,8 @@ const personalSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(getPersonais.fulfilled, (state, action) => {
+        builder
+        .addCase(getPersonais.fulfilled, (state, action) => {
             for (let personal of action.payload) {
                 state.push(personal);
             }
@@ -50,5 +68,5 @@ const personalSlice = createSlice({
 
 export const { addPersonal, clearPersonals } = personalSlice.actions;
 
-export { getPersonais, createPersonal, updatePersonal, deletePersonal }
+export { getPersonais, createPersonal, deletePersonal }
 export default personalSlice.reducer;

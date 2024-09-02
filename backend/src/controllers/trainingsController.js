@@ -1,3 +1,4 @@
+import { exerciseModel } from "../models/ExerciseModel.js";
 import { trainingModel } from "../models/TrainingModel.js";
 //readAll
 //readOne
@@ -94,8 +95,12 @@ async function createTrainingForgymStudent(req, res){
             observacoes: req.body.observacoes
         }
 
-        return res.status(201).send({
-            message: "Treino criado com sucesso"
+        const newTraining = await trainingModel.create(training);
+        console.log(newTraining);
+        
+        return res.status(200).send({
+            message: "Treino criado com sucesso.",
+            trainings: newTraining
         })
 
     }catch(error){
@@ -108,6 +113,7 @@ async function createTrainingForgymStudent(req, res){
 async function deleteTraining(req, res){
     try{
         const id = req.params.trainingId;
+        console.log(id);
 
         await trainingModel.findByIdAndDelete(id);
 
@@ -121,5 +127,32 @@ async function deleteTraining(req, res){
         })
     }
 }
+async function deleteTrainingsByUserId(req, res){
+    try{
+        const id = req.user.id;
 
-export { readAllTrainings, readAll, readOne, createTraining, createTrainingForgymStudent, deleteTraining }
+        const treinos = await trainingModel.find({userId: id});
+
+        if(treinos){
+            for(const treino of treinos){
+                await exerciseModel.deleteMany({trainingId: treino._id});
+            }
+    
+            await trainingModel.deleteMany({userId : id});
+    
+            return res.status(200).send({
+                message: "Treinos deletados com sucesso"
+            });
+        } else{
+            return res.status(200).send({
+                message: "O usuário não tem treinos registrados"
+            });
+        }
+    }catch(error){
+        return res.status(400).send({
+            message: error.message
+        })
+    }
+}
+
+export { readAllTrainings, readAll, readOne, createTraining, createTrainingForgymStudent, deleteTraining, deleteTrainingsByUserId }

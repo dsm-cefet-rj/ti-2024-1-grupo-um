@@ -1,37 +1,90 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { createAxiosInstance } from "../../utils/api";
+import CreateAxiosInstance from "../../utils/api";
+import { notify } from '../..';
+import store from '../store';
 
-const api = createAxiosInstance();
+const api  = CreateAxiosInstance();
 
-
+const initialState = [];
 
 const createAluno = createAsyncThunk('aluno/addAlunoAsync', async(data) =>{
-  const response = await api.post("/aluno", data);
+
+  const aluno = {
+    userId: data.userId,
+    userName: data.userName,
+    idPersonal: data.idPersonal,
+    userImage: data.userImage
+  }
+  const response = await api.post("/aluno", aluno, {
+    headers: {
+      Authorization:`${data.token}`
+    }
+  });
   return response.data;
+  //auth
 })
 
-const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(id)=>{
+const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(infos)=>{
 
-  const alunos = await api.get(`/aluno?userId=${id}`);
+  const alunos = await api.get(`/aluno?userId=${infos.id}`);
 
-  for (let aluno of alunos.data){
-    await api.delete(`/aluno/${aluno.id}`);
+  if(alunos.response){
+    for (let aluno of alunos.data){
+      await api.delete(`/aluno/${aluno.id}`,{
+        headers:{
+          Authorization:`${infos.token}`
+        }
+      });
+  }
+    //auth
   }
 });
 
-const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async(personalId) => {
-  const response = await api.get(`/aluno?idPersonal=${personalId}`);
-  return response.data;
+const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async(data, {getState}) => {
+  try{
+    console.log(data);
+    const response = await api.get(`/aluno/${data.idPersonal}`,{
+      headers: {
+        Authorization:`${data.token}`
+      }
+    });
+    const currentUser = getState().user;
+    const alunos = response.data;
+    console.log(alunos);
+    console.log(currentUser);
+    let alunosArray = [];
+    for(const aluno of alunos){
+      const user = await api.get(`/user/${aluno.idUser}`, {
+        headers: {
+          Authorization:`${currentUser.loggedPersonal}`
+        }
+      });
+      console.log(user);
+      alunosArray.push({...aluno, userImage: user.data?.image});
+    }
+    console.log(alunosArray);
+    return alunosArray;
+  }catch(error){
+    notify("error", error.message);
+    return [];
+  }
+  
+  //auth
 })
 
-const deleteAlunoByPersonalId = createAsyncThunk("personais/deletePersonalAsync", async(id)=>{
-
-  const alunos = await api.get(`/aluno?idPersonal=${id}`);
+const deleteAlunoByPersonalId = createAsyncThunk("personais/deletePersonalAsync", async(infos)=>{
+  const alunos = await api.get(`/aluno?personalId=${infos._id}`);
 
   for (let aluno of alunos.data){
-    await api.delete(`/aluno/${aluno.id}`);
+    await api.delete(`/aluno/${aluno.id}`,{
+      headers:{
+        Authorization:`${infos.token}`
+      }
+    });
+    //auth
   }
+  //auth
 });
 
 const alunoSlice = createSlice({
@@ -48,14 +101,9 @@ const alunoSlice = createSlice({
     }
   },
   extraReducers: builder => {
-    builder.addCase(getAlunosByPersonalId.fulfilled, (state, action) => {
-      while(state.length > 0){
-        state.pop();
-      }
-      for (let aluno of action.payload) {
-        state.push(aluno);
-      }
-    })
+      builder.addCase(getAlunosByPersonalId.fulfilled, (state, action) => {
+        return action.payload;
+      })
   }
 });
 

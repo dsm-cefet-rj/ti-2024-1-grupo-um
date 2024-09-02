@@ -1,0 +1,2607 @@
+{
+    "openapi": "3.0.0",
+    "info":{
+        "title": "API Cefit",
+        "description": "Descrição da API",
+        "contact": {
+            "email": "exemplo@exemplo" 
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:5000/v1",
+            "description": "API de teste"
+        }
+    ],
+    "paths": {
+        "/user/{id}/readOne": {
+            "get": {
+                "summary": "Ver um usuário pelo id",
+                "description": "Essa rota será responsável para visualizar um usuário",
+                "tags": ["User"],
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id para busca",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+                ],
+                "security": [{"bearerAuth": []}],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Usuário não cadastrado/Ocorreu um erro",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/readAll":{
+            "get": {
+                "summary": "Ver todos os usuários",
+                "description": "Essa rota é responsável por ver todos os usuários",
+                "tags": ["User"],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro ao recuperar a lista de usuários",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/createUser":{
+            "post":{
+                "summary": "Criar novo usuário",
+                "description": "Rota responsável por criar um novo usuário",
+                "tags": ["User"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "examples": {
+                                "users": {
+                                    "value": {
+                                        "nome": "Luiz",
+                                        "email": "luiz@teste.com",
+                                        "birth": "31/05/2003",
+                                        "CPF": "12345678910",
+                                        "senha": "luizteste123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuário cadastrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro ao tentar criar um usuário",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "errorEmail": {
+                                        "value": {
+                                            "message": "Email já cadastrado",
+                                            "error": "ValidationError"
+                                        }
+                                    },
+                                    "errorCPF": {
+                                        "value": {
+                                            "message": "CPF já cadastrado",
+                                            "error": "ValidationError"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}/updateUser": {
+            "patch": {
+                "summary": "Atualiza usuário",
+                "description": "Essa rota é responsável por atualizar um usuário pelo id",
+                "tags": ["User"],
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id do usuário a ser atualizado",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+                ],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Usuário atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Ocorreu um erro na tentativa da atualização",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}/deleteUser": {
+            "delete": {
+                "summary": "Deleta usuário",
+                "description": "Essa rota é responsável por deletar um usuário através do id",
+                "tags": ["User"],
+                "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Id do usuário a ser deletado",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+                ],
+                "security": [{"bearerAuth": []}],
+                "responses": {
+                    "200": {
+                        "description": "Usuário deletado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Usuário não encontrado ou ocorreu um erro na remoção",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "userNotFound": {
+                                        "value": {
+                                            "message": "User não encontrado",
+                                            "error": "UserNotFoundError"
+                                        }
+                                    },
+                                    "deletionError": {
+                                        "value": {
+                                            "message": "Erro ao tentar deletar user",
+                                            "error": "ValidationError"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "summary": "Login de usuário",
+                "description": "Essa rota é responsável por realizar o login do usuário",
+                "tags": ["User"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "Email do usuário"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "description": "Senha do usuário"
+                                    }
+                                },
+                                "required": ["email", "senha"]
+                            },
+                            "examples": {
+                                "loginExemplo": {
+                                    "value": {
+                                        "email": "luiz@teste.com",
+                                        "senha": "luizteste123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login realizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "boolean"
+                                        },
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Login ou senha errados, ou erro durante o login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "wrongCredentials": {
+                                        "value": {
+                                            "message": "Login ou senha errados",
+                                            "status": false,
+                                            "error": "Invaid credentials"
+                                        }
+                                    },
+                                    "loginError": {
+                                        "value": {
+                                            "message": "Erro durante o login",
+                                            "status": false,
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/anamnese/createAnamnese": {
+            "post": {
+                "summary": "Criar anamnese",
+                "description": "Rota responsável pela criação de anamnese",
+                "tags": ["Anamnese"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Anamnese"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Anamnese criada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "anamnese": {
+                                            "$ref": "#/components/schemas/Anamnese"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Usuário já possui anamnese ou erro ao criar anamnese",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "existingAnamnese": {
+                                        "value": {
+                                            "message": "Usuário já possui uma anamnese"
+                                        }
+                                    },
+                                    "createError": {
+                                        "value": {
+                                            "message": "Erro ao criar anamnese",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/anamnese/{userId}": {
+            "get": {
+                "summary": "Obter anamnese por id do usuário",
+                "description": "Rota responsável por buscar uma anamnese específica através do id do usuário",
+                "tags": ["Anamnese"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "description": "Id do usuário para o qual a anamnese vai ser recuperada",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Anamnese recuperada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "anamnese": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Anamnese"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao buscar anamnese",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "fetchError": {
+                                        "value": {
+                                            "message": "Erro ao buscar anamnese",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/anamnese/{id}": {
+            "delete": {
+                "summary": "Deletar anamnese",
+                "description": "Rota responsável por deletar a anamnese pelo id",
+                "tags": ["Anamnese"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "description": "Id do usuário para o qual a anamnese vai ser recuperada",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Anamnese deletada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Anamnese"                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao deletar anamnese ou anamnese não encontrada",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "notFound": {
+                                        "value": {
+                                            "message": "Anamnese não encontrada"
+                                        }
+                                    },
+                                    "deleteError": {
+                                        "value": {
+                                            "message": "Erro ao deletar anamnese",
+                                            "error":"Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/anamnese/updateAnamnese": {
+            "put": {
+                "summary": "Atualizar anamnese",
+                "description": "Rota responsável por atualizar a anamnese existente através do id",
+                "tags": ["Anamnese"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "description": "Id do usuário para o qual a anamnese vai ser recuperada",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Anamnese"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Anamnese atualizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "anamnese": {
+                                            "$ref": "#/components/schemas/Anamnese"                                            
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao atualizar anamnese",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "updateError": {
+                                        "value": {
+                                            "message": "Erro ao atualizar anamnese",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/trainings/readAllTrainings": {
+            "get": {
+                "summary": "Obter todos os treinos",
+                "description": "Rota para obter a lista de todos os treinos.",
+                "tags": ["Trainings"],
+                "security": [{"bearerAuth": []}],
+                "responses": {
+                    "200": {
+                        "description": "Lista de treinos recuperada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Training"
+                                    }
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": [
+                                        {
+                                            "userId": "60d21b4667d0d8992e610c85",
+                                            "id": "60d21b4967d0d8992e610c86",
+                                            "descricao": "Treino de força",
+                                            "title": "Treino A",
+                                            "type": "Força",
+                                            "observacoes": "Treino focado em hipertrofia"
+                                        }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao buscar treinos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "error": {
+                                        "summary": "Exemplo de erro",
+                                        "value": {
+                                            "message": "Ocorreu um erro na busca dos treinos",
+                                            "erro": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/trainings/readAll/{userId}": {
+            "get": {
+                "summary": "Obter treinos por ID do usuário",
+                "description": "Rota para obter todos os treinos de um usuário específico.",
+                "tags": ["Trainings"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                {
+                    "name": "userId",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID do usuário para recuperar os treinos",
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Treinos recuperados com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Training"
+                                    }
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": [
+                                        {
+                                            "userId": "60d21b4667d0d8992e610c85",
+                                            "id": "60d21b4967d0d8992e610c87",
+                                            "descricao": "Treino de resistência",
+                                            "title": "Treino B",
+                                            "type": "Resistência",
+                                            "observacoes": "Treino focado em endurance"
+                                        }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao buscar treinos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "userNotFound": {
+                                        "value": {
+                                            "message": "O usuário não possui treinos registrados",
+                                            "erro": "NotFound"
+                                        }
+                                    },
+                                    "errorExample": {
+                                        "value": {
+                                            "message": "Ocorreu um erro ao solicitar os treinos do usuário",
+                                            "erro": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/trainings/training/readOne/{id}": {
+            "get": {
+                "summary": "Obter treino por ID",
+                "description": "Rota para obter detalhes de um treino específico pelo ID do treino.",
+                "tags": ["Trainings"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do treino para recuperar",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Treino recuperado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Training"
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": {
+                                            "userId": "60d21b4667d0d8992e610c85",
+                                            "id": "60d21b4967d0d8992e610c88",
+                                            "descricao": "Treino de alta intensidade",
+                                            "title": "Treino C",
+                                            "type": "HIIT",
+                                            "observacoes": "Treino intervalado de alta intensidade"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao buscar treino",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "trainingNotFound": {
+                                        "value": {
+                                            "message": "Erro ao consultar treino",
+                                            "erro": "NotFound"
+                                        }
+                                    },
+                                    "errorExample": {
+                                        "value": {
+                                            "message": "Erro ao consultar treino",
+                                            "erro": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/trainings/createTraining": {
+            "post": {
+                "summary": "Criar um novo treino",
+                "description": "Rota para criar um novo treino.",
+                "tags": ["Trainings"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Training"
+                            },
+                            "examples": {
+                                "newTraining": {
+                                    "summary": "Exemplo de treino a ser criado",
+                                    "value": {
+                                        "userId": "60d21b4667d0d8992e610c85",
+                                        "descricao": "Treino de flexibilidade",
+                                        "title": "Treino D",
+                                        "type": "Flexibilidade",
+                                        "observacoes": "Focado em alongamentos"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Treino criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "trainings": {
+                                            "$ref": "#/components/schemas/Training"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": {
+                                            "message": "Treino criado com sucesso.",
+                                            "trainings": {
+                                                "userId": "60d21b4667d0d8992e610c85",
+                                                "id": "60d21b4967d0d8992e610c89",
+                                                "descricao": "Treino de flexibilidade",
+                                                "title": "Treino D",
+                                                "type": "Flexibilidade",
+                                                "observacoes": "Focado em alongamentos"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao criar treino",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "error": {
+                                        "summary": "Exemplo de erro",
+                                        "value": {
+                                            "message": "Erro ao criar treino",
+                                            "erro": "Validation error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/trainings/createTrainingsForgymStudent/{studentId}": {
+            "post": {
+                "summary": "Criar treino para aluno específico",
+                "description": "Rota para criar um treino para um aluno específico.",
+                "tags": ["Trainings"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "studentId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do aluno para o qual o treino será criado",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "descricao": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "observacoes": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "newStudentTraining": {
+                                    "summary": "Exemplo de treino a ser criado para aluno",
+                                    "value": {
+                                        "descricao": "Treino de resistência cardiovascular",
+                                        "title": "Treino E",
+                                        "type": "Cardiovascular",
+                                        "observacoes": "Treino para melhorar resistência"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Treino criado com sucesso para o aluno",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "trainings": {
+                                            "$ref": "#/components/schemas/Training"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": {
+                                            "message": "Treino criado com sucesso.",
+                                            "trainings": {
+                                                "userId": "60d21b4667d0d8992e610c90",
+                                                "descricao": "Treino de resistência cardiovascular",
+                                                "title": "Treino E",
+                                                "type": "Cardiovascular",
+                                                "observacoes": "Treino para melhorar resistência"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao criar treino",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "error": {
+                                        "summary": "Exemplo de erro",
+                                        "value": {
+                                            "message": "Erro ao criar treino.",
+                                            "erro": "Student ID not found"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/trainings/deleteTraining/{trainingId}": {
+            "delete": {
+                "summary": "Deletar treino por ID",
+                "description": "Rota para deletar um treino específico pelo ID do treino.",
+                "tags": ["Trainings"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "trainingId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do treino a ser deletado",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Treino deletado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": {
+                                            "message": "Treino deletado com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao deletar treino",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "error": {
+                                        "summary": "Exemplo de erro",
+                                        "value": {
+                                            "message": "Ocorreu um erro ao deletar treino.",
+                                            "erro": "Training ID not found"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/trainings/user/deleteTrainingByUserId/{userId}": {
+            "delete": {
+                "summary": "Deletar todos os treinos por ID do usuário",
+                "description": "Rota para deletar todos os treinos de um usuário específico pelo ID do usuário.",
+                "tags": ["Trainings"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do usuário cujos treinos serão deletados",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Treinos deletados com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "success": {
+                                        "summary": "Exemplo de resposta bem-sucedida",
+                                        "value": {
+                                            "message": "Treinos deletados com sucesso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao deletar treinos do usuário",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "error": {
+                                        "summary": "Exemplo de erro",
+                                        "value": {
+                                            "message": "Ocorreu um erro ao deletar treinos.",
+                                            "erro": "User ID not found or deletion error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },"/personal": {
+            "get": {
+                "summary": "Listar todos os personal trainers",
+                "description": "Recupera a lista de todos os personal trainers cadastrados.",
+                "tags": ["Personal"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de personal trainers recuperada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Personal"
+                                    }
+                                },
+                                "examples": {
+                                    "personalList": {
+                                        "value": [
+                                            {
+                                                "_id": "60d21b4667d0d8992e610c85",
+                                                "nome": "João Silva",
+                                                "email": "joao.silva@gmail.com",
+                                                "birth": "1985-04-23T00:00:00.000Z",
+                                                "CPF": "12345678901",
+                                                "descricao": "Personal Trainer especializado em musculação.",
+                                                "formacao": "Educação Física",
+                                                "cidade": "São Paulo",
+                                                "biografia": "Apaixonado por ajudar pessoas a alcançarem seus objetivos.",
+                                                "preco": 100
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao recuperar lista de personal trainers.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "errorResponse": {
+                                        "value": {
+                                            "message": "Ocorreu um erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Criar um novo personal trainer",
+                "description": "Cria um novo personal trainer no sistema.",
+                "tags": ["Personal"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Personal"
+                            },
+                            "examples": {
+                                "newPersonal": {
+                                    "value": {
+                                        "nome": "Maria Oliveira",
+                                        "email": "maria.oliveira@gmail.com",
+                                        "birth": "1990-01-15",
+                                        "CPF": "98765432100",
+                                        "senha": "senha123",
+                                        "descricao": "Personal Trainer especializada em treinos funcionais.",
+                                        "formacao": "Educação Física",
+                                        "cidade": "Rio de Janeiro",
+                                        "biografia": "Adoro motivar meus clientes a alcançar seus melhores resultados.",
+                                        "preco": 120
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Personal criado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "personal": {
+                                            "$ref": "#/components/schemas/Personal"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "createdPersonal": {
+                                        "value": {
+                                            "message": "Personal criado com sucesso",
+                                            "personal": {
+                                                "nome": "Maria Oliveira",
+                                                "email": "maria.oliveira@gmail.com",
+                                                "birth": "1990-01-15",
+                                                "CPF": "98765432100",
+                                                "descricao": "Personal Trainer especializada em treinos funcionais.",
+                                                "formacao": "Educação Física",
+                                                "cidade": "Rio de Janeiro",
+                                                "biografia": "Adoro motivar meus clientes a alcançar seus melhores resultados.",
+                                                "preco": 120
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao criar o personal trainer.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "errorResponse": {
+                                        "value": {
+                                            "message": "Ocorreu um erro na criação de personal",
+                                            "error": "Email já cadastrado"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/personal/{_id}": {
+            "get": {
+                "summary": "Obter personal trainer por ID",
+                "description": "Recupera informações de um personal trainer específico pelo ID.",
+                "tags": ["Personal"],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do personal trainer",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Personal trainer recuperado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Personal"
+                                },
+                                "examples": {
+                                    "personalDetails": {
+                                        "value": {
+                                            "_id": "60d21b4667d0d8992e610c85",
+                                            "nome": "João Silva",
+                                            "email": "joao.silva@gmail.com",
+                                            "birth": "1985-04-23T00:00:00.000Z",
+                                            "CPF": "12345678901",
+                                            "descricao": "Personal Trainer especializado em musculação.",
+                                            "formacao": "Educação Física",
+                                            "cidade": "São Paulo",
+                                            "biografia": "Apaixonado por ajudar pessoas a alcançarem seus objetivos.",
+                                            "preco": 100
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao recuperar o personal trainer.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "personalNotFound": {
+                                        "value": {
+                                            "message": "Personal não cadastrado"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Atualizar personal trainer por ID",
+                "description": "Atualiza as informações de um personal trainer específico pelo ID.",
+                "tags": ["Personal"],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do personal trainer",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Personal"
+                            },
+                            "examples": {
+                                "updatePersonal": {
+                                    "value": {
+                                        "nome": "João Silva",
+                                        "email": "joao.novoemail@gmail.com",
+                                        "birth": "1985-04-23",
+                                        "CPF": "12345678901",
+                                        "descricao": "Personal Trainer com especialização em nutrição.",
+                                        "formacao": "Educação Física e Nutrição",
+                                        "cidade": "São Paulo",
+                                        "biografia": "Experiência em treinamento de atletas de alta performance.",
+                                        "preco": 150
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Personal trainer atualizado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Personal"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "updatedPersonal": {
+                                        "value": {
+                                            "message": "Personal atualizado com sucesso.",
+                                            "data": {
+                                                "nome": "João Silva",
+                                                "email": "joao.novoemail@gmail.com",
+                                                "birth": "1985-04-23",
+                                                "CPF": "12345678901",
+                                                "descricao": "Personal Trainer com especialização em nutrição.",
+                                                "formacao": "Educação Física e Nutrição",
+                                                "cidade": "São Paulo",
+                                                "biografia": "Experiência em treinamento de atletas de alta performance.",
+                                                "preco": 150
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao atualizar o personal trainer.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "erro": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "errorResponse": {
+                                        "value": {
+                                            "message": "Ocorreu um erro na tentativa da atualização",
+                                            "erro": "Dados inválidos"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletar personal trainer por ID",
+                "description": "Remove um personal trainer específico pelo ID.",
+                "tags": ["Personal"],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "_id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do personal trainer",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Personal trainer deletado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Personal"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "deletedPersonal": {
+                                        "value": {
+                                            "message": "Personal removido com sucesso",
+                                            "data": {
+                                                "_id": "60d21b4667d0d8992e610c85",
+                                                "nome": "João Silva",
+                                                "email": "joao.silva@gmail.com",
+                                                "birth": "1985-04-23T00:00:00.000Z",
+                                                "CPF": "12345678901",
+                                                "descricao": "Personal Trainer especializado em musculação.",
+                                                "formacao": "Educação Física",
+                                                "cidade": "São Paulo",
+                                                "biografia": "Apaixonado por ajudar pessoas a alcançarem seus objetivos.",
+                                                "preco": 100
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao deletar o personal trainer.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "personalNotFound": {
+                                        "value": {
+                                            "message": "Personal não encontrado"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/loginPersonal": {
+            "post": {
+                "summary": "Login de um personal trainer",
+                "description": "Autentica um personal trainer usando email e senha.",
+                "tags": ["Personal"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "joao.silva@gmail.com"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "example": "senha123"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "loginCredentials": {
+                                    "value": {
+                                        "email": "joao.silva@gmail.com",
+                                        "senha": "senha123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login bem-sucedido.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "boolean"
+                                        },
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "personal": {
+                                            "$ref": "#/components/schemas/Personal"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "loginSuccess": {
+                                        "value": {
+                                            "message": "Personal autenticado com sucesso",
+                                            "status": true,
+                                            "token": "token_jwt_exemplo",
+                                            "personal": {
+                                                "_id": "60d21b4667d0d8992e610c85",
+                                                "nome": "João Silva",
+                                                "email": "joao.silva@gmail.com",
+                                                "birth": "1985-04-23T00:00:00.000Z",
+                                                "CPF": "12345678901",
+                                                "descricao": "Personal Trainer especializado em musculação.",
+                                                "formacao": "Educação Física",
+                                                "cidade": "São Paulo",
+                                                "biografia": "Apaixonado por ajudar pessoas a alcançarem seus objetivos.",
+                                                "preco": 100
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao autenticar o personal trainer.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "status": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "loginError": {
+                                        "value": {
+                                            "message": "Login ou Senha errados",
+                                            "status": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/exercise": {
+            "get": {
+                "summary": "Obter todos os exercícios",
+                "description": "Rota responsável por recuperar todos os exercícios.",
+                "tags": ["Exercise"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de exercícios recuperada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Exercise"
+                                    }
+                                },
+                                "examples": {
+                                    "exercisesList": {
+                                        "value": [
+                                            {
+                                                "id": "64f0d2f9e2e4b3a9d1f13b1e",
+                                                "name": "Flexão de Braço",
+                                                "series": "3",
+                                                "peso": "20kg",
+                                                "observacoes": "Manter postura correta",
+                                                "trainingId": "64f0d2f9e2e4b3a9d1f13b2f"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao recuperar exercícios.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "fetchError": {
+                                        "value": {
+                                            "message": "ocorreu um erro ao pegar todos os exercicios",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Criar um exercício",
+                "description": "Rota responsável pela criação de um novo exercício.",
+                "tags": ["Exercise"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Exercise"
+                            },
+                            "examples": {
+                                "exerciseExample": {
+                                    "value": {
+                                        "name": "Flexão de Braço",
+                                        "series": "3",
+                                        "peso": "20kg",
+                                        "observacoes": "Manter postura correta",
+                                        "trainingId": "64f0d2f9e2e4b3a9d1f13b2f"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Exercício criado com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "createSuccess": {
+                                        "value": {
+                                            "message": "Exercicio criado com sucesso."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao criar exercício.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "createError": {
+                                        "value": {
+                                            "message": "Ocorreu um erro ao criar um exercicio.",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/exercise/{trainingId}": {
+            "get": {
+                "summary": "Obter todos os exercícios por ID do treino",
+                "description": "Rota responsável por recuperar todos os exercícios associados a um treino específico.",
+                "tags": ["Exercise"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "trainingId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do treino para recuperar os exercícios",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de exercícios recuperada com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Exercise"
+                                    }
+                                },
+                                "examples": {
+                                    "exercisesListByTraining": {
+                                        "value": [
+                                            {
+                                                "id": "64f0d2f9e2e4b3a9d1f13b1e",
+                                                "name": "Flexão de Braço",
+                                                "series": "3",
+                                                "peso": "20kg",
+                                                "observacoes": "Manter postura correta",
+                                                "trainingId": "64f0d2f9e2e4b3a9d1f13b2f"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao recuperar exercícios por ID do treino.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "fetchErrorByTrainingId": {
+                                        "value": {
+                                            "message": "Erro ao carregar exercícios",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/exercise/{exerciseId}": {
+            "delete": {
+                "summary": "Excluir um exercício",
+                "description": "Rota responsável por excluir um exercício específico.",
+                "tags": ["Exercise"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "exerciseId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do exercício a ser excluído",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exercício excluído com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "deleteSuccess": {
+                                        "value": {
+                                            "message": "Exercicio deletado com sucesso."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao excluir exercício.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "deleteError": {
+                                        "value": {
+                                            "message": "Ocorreu um erro ao deletar um exercicio",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/exercise?trainingId": {
+            "delete": {
+                "summary": "Excluir todos os exercícios por ID do treino",
+                "description": "Rota responsável por excluir todos os exercícios associados a um treino específico.",
+                "tags": ["Exercise"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "trainingId",
+                        "in": "query",
+                        "required": true,
+                        "description": "ID do treino para excluir todos os exercícios associados",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exercícios excluídos com sucesso.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "deleteAllSuccess": {
+                                        "value": {
+                                            "message": "X foram deletados do sistema."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao excluir todos os exercícios.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "deleteAllError": {
+                                        "value": {
+                                            "message": "Ocorreu um erro ao deletar os exercicios",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/aluno": {
+            "post": {
+                "summary": "Criar um aluno",
+                "description": "Rota responsável pela criação de um aluno.",
+                "tags": ["Aluno"],
+                "security": [{"bearerAuth": []}],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "userId": {
+                                        "type": "string",
+                                        "description": "ID do usuário"
+                                    },
+                                    "userName": {
+                                        "type": "string",
+                                        "description": "Nome do usuário"
+                                    },
+                                    "idPersonal": {
+                                        "type": "string",
+                                        "description": "ID do personal"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "CriarAluno": {
+                                    "value": {
+                                        "userId": "64f0d2f9e2e4b3a9d1f13b1e",
+                                        "userName": "Maria Oliveira",
+                                        "idPersonal": "60d21b4667d0d8992e610c85"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Aluno criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Aluno criado com sucesso"
+                                        },
+                                        "aluno": {
+                                            "$ref": "#/components/schemas/Aluno"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro na criação do aluno",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ErroAlunoExistente": {
+                                        "value": {
+                                            "message": "Esse aluno já está registrado para o personal.",
+                                            "error": "Aluno duplicado"
+                                        }
+                                    },
+                                    "ErroCriacaoAluno": {
+                                        "value": {
+                                            "message": "Ocorreu um erro na criação do aluno",
+                                            "error": "Unknown error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/aluno/{idPersonal}": {
+            "get": {
+                "summary": "Obter alunos por ID do personal",
+                "description": "Rota responsável por buscar todos os alunos associados a um personal específico.",
+                "tags": ["Aluno"],
+                "security": [{"bearerAuth": []}],
+                "parameters": [
+                    {
+                        "name": "idPersonal",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do personal para buscar alunos",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de alunos recuperada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Aluno"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao buscar alunos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ErroBuscaAlunos": {
+                                        "value": {
+                                            "message": "Ocorreu um erro"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/aluno/personal/{idPersonal}": {
+            "delete": {
+                "summary": "Excluir aluno por ID do personal",
+                "description": "Rota responsável por excluir um aluno associado a um personal específico.",
+                "tags": ["Aluno"],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "idPersonal",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do personal para excluir o aluno",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Aluno excluído com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Aluno"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao excluir aluno",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ErroExclusaoAluno": {
+                                        "value": {
+                                            "message": "Ocorreu um erro para remover o aluno"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/aluno/user/{userId}": {
+            "delete": {
+                "summary": "Excluir aluno por ID do usuário",
+                "description": "Rota responsável por excluir um aluno associado a um usuário específico.",
+                "tags": ["Aluno"],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do usuário para excluir o aluno",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Aluno excluído com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Aluno"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro ao excluir aluno",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "ErroExclusaoAluno": {
+                                        "value": {
+                                            "message": "Ocorreu um erro para remover o aluno"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components":{
+        "schemas":{
+            "User": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "birth": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "CPF": {
+                        "type": "string"
+                    },
+                    "senha": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Anamnese": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string"
+                    },
+                    "weight": {
+                        "type": "string"
+                    },
+                    "motivation": {
+                        "type": "string"
+                    },
+                    "activityFreq": {
+                        "type": "string"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "diet": {
+                        "type": "string"
+                    },
+                    "observacoes": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Training": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "observacoes": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Personal": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "string",
+                        "example": "60d21b4667d0d8992e610c85"
+                    },
+                    "nome": {
+                        "type": "string",
+                        "example": "João Silva"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "joao.silva@gmail.com"
+                    },
+                    "birth": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "1985-04-23T00:00:00.000Z"
+                    },
+                    "CPF": {
+                        "type": "string",
+                        "example": "12345678901"
+                    },
+                    "senha": {
+                        "type": "string",
+                        "example": "senha123"
+                    },
+                    "descricao": {
+                        "type": "string",
+                        "example": "Personal Trainer especializado em musculação."
+                    },
+                    "formacao": {
+                        "type": "string",
+                        "example": "Educação Física"
+                    },
+                    "cidade": {
+                        "type": "string",
+                        "example": "São Paulo"
+                    },
+                    "biografia": {
+                        "type": "string",
+                        "example": "Apaixonado por ajudar pessoas a alcançarem seus objetivos."
+                    },
+                    "preco": {
+                        "type": "number",
+                        "example": 100
+                    }
+                }
+            },
+            "Exercise": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "64f0d2f9e2e4b3a9d1f13b1e"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Flexão de Braço"
+                    },
+                    "series": {
+                        "type": "string",
+                        "example": "3"
+                    },
+                    "peso": {
+                        "type": "string",
+                        "example": "20kg"
+                    },
+                    "observacoes": {
+                        "type": "string",
+                        "example": "Manter postura correta"
+                    },
+                    "trainingId": {
+                        "type": "string",
+                        "example": "64f0d2f9e2e4b3a9d1f13b2f"
+                    }
+                },
+                "required": ["name", "series", "trainingId"]
+            },
+            "Aluno": {
+                "type": "object",
+                "properties": {
+                    "idUser": {
+                        "type": "string"
+                    },
+                    "nomeUser": {
+                        "type": "string"
+                    },
+                    "idPersonal": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}

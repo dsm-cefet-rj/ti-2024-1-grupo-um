@@ -30,14 +30,21 @@ function Aluno() {
 
     const alunos = useSelector(rootReducer => rootReducer.aluno);
 
-    const usuario = alunos.filter((aluno) => aluno.userId === id)[0];
+    const usuario = alunos.filter((aluno) => aluno.idUser === id)[0];
+
+    console.log(alunos);
+    console.log(usuario);
+    console.log(alunos.filter((aluno) => aluno.userId === id))
 
     const handleDeleteTreino = (treinoId) => {
-        dispatch(deleteTreinoByID(treinoId))
+        dispatch(deleteTreinoByID({
+            idTreino: treinoId,
+            token: currentUser.loggedPersonal
+        }))
         dispatch(deleteTraining(treinoId))
     }
 
-    if (!currentUser.loggedPersonal) {
+    if (currentUser.loggedPersonal === null) {
         return <Navigate to={"/login"} />
     }
 
@@ -50,9 +57,11 @@ function Aluno() {
                 </a>
                 <div className="card-body text-center m-auto">
                     <div>
-                        <img src={user} alt="foto de perfil usuario"
-                            className="rounded-circle img-fluid" style={{ width: "150px" }} />
-                        <h4 className="my-3" id="nome-aluno">{usuario.nomeUser}</h4>
+                    {usuario.userImage ? (<img className="rounded-circle img-fluid" style={{ width: "150px" }} src={require(`../../../../uploads/${usuario.userImage}`)} alt="Imagem de capa do card" />)
+                : (<img className="rounded-circle img-fluid" src={user} alt="Imagem de capa do card" />)}
+                        {/* <img src={user} alt="foto de perfil usuario"
+                            className="rounded-circle img-fluid" style={{ width: "150px" }} /> */}
+                        <h4 className="my-3" id="nome-aluno">{usuario?.nomeUser}</h4>
                         
                     </div>
                     <div className="card m-auto" id="card-anamnese">
@@ -62,27 +71,27 @@ function Aluno() {
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Peso</p>
-                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.weigth} Kg</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese?.weight} Kg</p>
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Motivação</p>
-                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.motivation}</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese?.motivation}</p>
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Frequência de Atividade Física</p>
-                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.activityFreq}</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese?.activityFreq}</p>
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Data do último exame</p>
-                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.date}</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese?.date}</p>
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Faz Dieta?</p>
-                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.diet}</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese?.diet}</p>
                         </div>
                         <div className="card-body">
                             <p className="mb-1" id="titulo-info-aluno" style={{ fontWeight: "bold" }}>Observações</p>
-                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese.observacoes}</p>
+                            <p className="mb-1" id="info-aluno" style={{ fontSize: "0.85rem" }}>{anamnese?.observacoes}</p>
                         </div>
                     </div>
 
@@ -93,10 +102,10 @@ function Aluno() {
             <>
                 <div className="exercicio-card" id="treino-aluno">
                     <div className="exercicio-info">
-                        <Link className="card-title" id="exercicio-nome" onClick={() => {dispatch(getExercisesByTreinoID(treino.id))}} to={`/EditTreinoAluno/${treino.id}`}>{treino.title}</Link>
+                        <Link className="card-title" id="exercicio-nome" onClick={() => {dispatch(getExercisesByTreinoID({idTreino: treino._id, token: currentUser.loggedPersonal}))}} to={`/EditTreinoAluno/${treino._id}`}>{treino.title}</Link>
                     </div>
                     <div className="btn-div">
-                        <button className="btn-lixeira" onClick={() => {handleDeleteTreino(treino.id)}}>
+                        <button className="btn-lixeira" onClick={() => {handleDeleteTreino(treino._id)}}>
                             <img className="lixeira-image" src={lixeira} alt="lixeira" />
                         </button>
                     </div>
@@ -105,7 +114,7 @@ function Aluno() {
             )}
 
             <div className="d-flex justify-content-center mb-2">
-                <Link data-aos="fade-up" data-aos-delay="200" to={`/CreateTreinoAluno`} onClick={() => {dispatch(addForms({userId: id, id: idGen(), infos: {}}))}} className="btn btn-success w-50">Preescrever Treino</Link>
+                <Link data-aos="fade-up" data-aos-delay="200" to={`/CreateTreinoAluno`} onClick={() => {dispatch(addForms({userId: id, infos: {}}))}} className="btn btn-success w-50">Preescrever Treino</Link>
             </div>
             <FooterComp />
         </div>

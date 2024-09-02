@@ -1,6 +1,6 @@
 import "./styles_nav.css";
 import logo from "../../images/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import rootReducer from "../../redux/root-reducer";
 import { logoutUser } from "../../redux/user/slice";
@@ -15,16 +15,18 @@ import { clearAlunos } from "../../redux/aluno/slice";
 function Navbar() {
     const user = useSelector(rootReducer => rootReducer.user);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const currentUserNavbar = user.logged ? user.user : null;
     const currentPersonalNavbar = user.loggedPersonal ? user.personal : null;
 
     function Logout() {
-        dispatch(logoutUser());
+        dispatch(logoutUser({token: currentUserNavbar ? user.logged : user.loggedPersonal}));
         dispatch(clearExercises());
         dispatch(clearPersonals());
         dispatch(clearAnamnese());
         dispatch(clearTrainings());
         dispatch(clearAlunos());
+        navigate("/");
     }
     return (
         <>

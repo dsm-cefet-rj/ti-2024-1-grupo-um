@@ -5,48 +5,86 @@ import InputComponentYup from "../../components/InputComponent/InputComponenteYu
 import './style.css';
 //react
 import React from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { addLoggedUser, deleteUser, logoutUser, updateUser } from "../../redux/user/slice";
-import { clearTrainings, deleteTreinoByID } from "../../redux/trainings/slice";
+import { clearTrainings, deleteTreinoByID, deleteTreinosByUserId } from "../../redux/trainings/slice";
 import { clearAnamnese, deleteAnamnese, deleteAnamneseByUserId } from "../../redux/anamnese/slice";
 import { deleteAlunoByUserId } from "../../redux/aluno/slice";
 import { clearExercises } from "../../redux/exercises/slice";
 //Yup
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import { notify } from "../../index";
+import { ToastContainer } from 'react-toastify';
+
 
 function Perfil() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     const currentUser = useSelector(rootReducer => rootReducer.user);
     const treinos = useSelector(rootReducer => rootReducer.trainings);
     const anamnese = useSelector(rootReducer => rootReducer.anamnese);
 
     const handleSubmitForm = (infos) => {
+        infos._id = currentUser.user._id;
         console.log(infos);
-        infos["id"] = currentUser.user._id;
-        dispatch(updateUser(infos));
-        dispatch(addLoggedUser(infos));
-        alert("usuario editado com sucesso!");
+        dispatch(updateUser({
+            ...infos, 
+            token: currentUser.logged, 
+            _id: currentUser.user._id
+        }));
+        dispatch(addLoggedUser({
+            user: {
+                ...infos,
+            },
+            token: currentUser.logged
+        }));
+
+        setTimeout(() => {
+            navigate("/personais");
+        }, 2000);
     }
+
     const handleUserDelete = () => {
         const userId = currentUser.user._id;
-        for(let treino of treinos){
-            dispatch(deleteTreinoByID(treino.id));
+
+        //TAREFA: -> -> -> tratar delete treinos <- <- <-
+        // for(let treino of treinos){
+        //     dispatch(deleteTreinoByID({
+        //         idTreino: treino.userId,
+        //         token: currentUser.logged
+        //     }));
+        // }
+        if(treinos.length > 0){
+            dispatch(deleteTreinosByUserId(currentUser.logged));
         }
-        //clear trainings
-        dispatch(deleteAnamnese(anamnese?.id));
-        //clear anamnese
-        // dispatch(deleteAlunoByUserId(userId));
-        //clear aluno
-        dispatch(deleteUser(userId));
+        // TRATAR DELETE TREINOS
+
+
+        if(anamnese.preenchida){
+            dispatch(deleteAnamnese({
+                anamneseId: anamnese?._id,
+                token: currentUser.logged
+            }));
+        }
+
+        dispatch(deleteAlunoByUserId({
+            id: userId,
+            token: currentUser.logged
+        }));
+
+        dispatch(deleteUser({
+            id: userId,
+            token: currentUser.logged
+        }));
         dispatch(clearAnamnese());
         dispatch(clearTrainings());
         dispatch(clearExercises());
-        dispatch(logoutUser());
+        dispatch(logoutUser({token: currentUser.logged}));
     }
     if (!currentUser.logged) {
         return <Navigate to="/login" />;
@@ -55,11 +93,10 @@ function Perfil() {
     const validationSchema = Yup.object({
         nome: Yup.string().required("O nome é Obrigatório"),
         email: Yup.string().email().required("O email é obrigatório."),
-        senha: Yup.string()
-        .required('Senha requerida.') 
-        .min(8, 'Senha deve conter ao menos 8 digitos.'),
+        senha: Yup.string(),
         birth: Yup.date().required("Data de Nascimento obrigatória."),
-        CPF: Yup.string().required("CPF obrigatório.")
+        CPF: Yup.string().required("CPF obrigatório."),
+        image: Yup.mixed().nullable()
     });
 
     function formatDate(dateString) {
@@ -78,9 +115,10 @@ function Perfil() {
     const initialValues = {
         nome: currentUser.user.nome,
         email: currentUser.user.email,
-        senha: currentUser.user.senha,
+        senha: "",
         birth: formatDate(currentUser.user.birth),
-        CPF: currentUser.user.CPF
+        CPF: currentUser.user.CPF,
+        image: null
     };
     
     return (
@@ -102,6 +140,7 @@ function Perfil() {
                                 <InputComponentYup classes="" id="InputEmail" name="email" text="Email" type="email" placeholder="Insira seu email aqui" />
                                 <InputComponentYup classes="" id="CPFInput" name="CPF" text="CPF" type="text" placeholder="Seu CPF aqui" />
                                 <InputComponentYup classes="" id="age" name="birth" text="Data de Nascimento" type="date" placeholder="" />
+                                <InputComponentYup classes="" id="image" name="image" text="Foto" type="file" />    
                                 <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
                                 <div className="mt-3 d-flex justify-content-center">
                                     <button className="btn-submit" type="submit" disabled={!isValid}>Enviar</button>

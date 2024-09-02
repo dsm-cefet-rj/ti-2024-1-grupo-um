@@ -8,12 +8,15 @@ import React from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { addLoggedPersonal, logoutUser, } from "../../redux/user/slice";
+import { addLoggedPersonal, logoutUser, updatePersonal, } from "../../redux/user/slice";
 import { clearAlunos, deleteAlunoByPersonalId } from "../../redux/aluno/slice";
-import { deletePersonal, updatePersonal } from "../../redux/personal/slice";
+import { deletePersonal} from "../../redux/personal/slice";
+
 //Yup
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import { notify } from "../../index";
+import { ToastContainer } from 'react-toastify';
 
 
 function PerfilPersonal() {
@@ -24,19 +27,40 @@ function PerfilPersonal() {
     const currentUser = useSelector(rootReducer => rootReducer.user);
 
     const handleSubmitForm = (infos) => {
-        infos["id"] = currentUser.personal.id;
-        dispatch(updatePersonal(infos));
-        dispatch(addLoggedPersonal(infos));
-        alert("Personal editado com sucesso!");
-        navigate("/");
+        console.log(currentUser.personal);
+        console.log(currentUser.personal._id);
+        const formData = new FormData();
+        // for (const key in infos){
+        //     formData.append(key,infos[key]);
+        // }
+        
+        dispatch(updatePersonal({
+            ...infos, 
+            _id: currentUser.personal._id,
+            token: currentUser.loggedPersonal
+        })); //auth
+        // dispatch(addLoggedPersonal(infos));
+        
+
+        setTimeout(() => {
+            navigate("/");
+        }, 2000);
+        
     }
     const handlePersonalDelete = () => {
-        const idPersonal = currentUser.personal.id;
-        dispatch(deleteAlunoByPersonalId(idPersonal));
-        dispatch(deletePersonal(idPersonal));
+        const idPersonal = currentUser.personal._id;
+        dispatch(deleteAlunoByPersonalId({
+            _id: idPersonal,
+            token: currentUser.loggedPersonal
+        }));
+        dispatch(deletePersonal({
+            _id: idPersonal,
+            token: currentUser.loggedPersonal
+        }));
         dispatch(clearAlunos());
-        dispatch(logoutUser());
+        dispatch(logoutUser({token: currentUser.loggedPersonal}));
         navigate("/");
+        notify("sucess", "Personal deletado");
     }
 
     if (!currentUser.loggedPersonal) {
@@ -46,27 +70,41 @@ function PerfilPersonal() {
     const validationSchema = Yup.object({
         nome: Yup.string().required("O nome é obrigatório."),
         email: Yup.string().email().required("O email é obrigatório."),
-        senha: Yup.string().required("Senha é obrigatória.").min(8, "Senha deve conter pelo menos 8 caracteres."),
+        senha: Yup.string(),
         birth: Yup.date().required("Data de Nascimento é obrigatória."),
         CPF: Yup.string().required("CPF é obrigatório."),
         descricao: Yup.string().required("Descrição é obrigatória."),
         formacao: Yup.string().required("Formação é obrigatória."),
         cidade: Yup.string().required("Cidade é obrigatória."),
         biografia: Yup.string().required("Biografia é obrigatória."),
-        preco: Yup.number().required("Preço é obrigatório.")
+        preco: Yup.number().required("Preço é obrigatório."),
+        image: Yup.mixed().nullable()
     });
+    function formatDate(dateString) {
+        // Cria um objeto Date a partir da string ISO
+        const date = new Date(dateString);
+    
+        // Extrai o dia, mês e ano
+        const day = String(date.getUTCDate()).padStart(2, '0');
+        const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // getUTCMonth retorna o mês de 0 a 11
+        const year = date.getUTCFullYear();
+    
+        return `${year}-${month}-${day}`;
+
+    }
 
     const initialValues = {
         nome: currentUser.personal.nome,
         email: currentUser.personal.email,
-        senha: currentUser.personal.senha,
-        birth: currentUser.personal.birth,
+        senha: "",
+        birth: formatDate(currentUser.personal.birth),
         CPF: currentUser.personal.CPF,
         descricao: currentUser.personal.descricao,
         formacao: currentUser.personal.formacao,
         cidade: currentUser.personal.cidade,
         biografia: currentUser.personal.biografia,
-        preco: currentUser.personal.preco
+        preco: currentUser.personal.preco,
+        image: null
     };
     
     return (
@@ -93,6 +131,7 @@ function PerfilPersonal() {
                                 <InputComponentYup classes="" id="formacao" name="formacao" text="Formação" type="text" placeholder="Sua Formação aqui" />
                                 <InputComponentYup classes="" id="biografia" name="biografia" text="Biografia" type="text" placeholder="Sua Biografia aqui" />
                                 <InputComponentYup classes="" id="preco" name="preco" text="Preço da sua consultoria" type="text" placeholder="Ex: R$ 39,90" />
+                                <InputComponentYup classes="" id="image" name="image" text="Foto" type="file" />    
                                 <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
                                 <div className="mt-3 d-flex justify-content-center">
                                     <button className="btn-submit" type="submit" disabled={!isValid}>Enviar</button>

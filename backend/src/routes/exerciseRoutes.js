@@ -1,10 +1,16 @@
 import express from "express";
+import { getAllExercisesByTrainingId, createExercise, getAll, deleteExercise, deleteAllExercisesByTrainingId } from "../controllers/exercisesController.js";
+import { verifyJWT, authorizeTypes } from "../middlewares/Auth.js";
 
 const exerciseRoutes = express.Router();
 
-exerciseRoutes.get("/exercise", (req, res) =>  res.status(200).send({message: "rota get exercises"}));
-exerciseRoutes.get("/exercise/:trainingId", (req, res) => res.status(200).send({message:"rota get all by training id"}));
-exerciseRoutes.post("/exercise", (req, res) => console.log(req.body));
+// exerciseRoutes.use(verifyJWT);
+exerciseRoutes.get("/exercise", getAll);
+exerciseRoutes.get("/exercise/:trainingId", verifyJWT, authorizeTypes(["user","personal"]), getAllExercisesByTrainingId);
+exerciseRoutes.post("/exercise", verifyJWT, authorizeTypes(["user","personal"]), createExercise);
+exerciseRoutes.delete("/exercise", verifyJWT, authorizeTypes(["user","personal"]), deleteAllExercisesByTrainingId);
+exerciseRoutes.delete("/exercise/:exerciseId", verifyJWT, authorizeTypes(["user","personal"]), deleteExercise);
+
 //   "/exercise"
 //req.params.id
 //exerciseRoutes.put("/exercise/:luiz", funcao);

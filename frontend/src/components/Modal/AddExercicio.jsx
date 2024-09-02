@@ -4,23 +4,20 @@ import FormCreator from "../../components/FormCreator/formCreator";
 import { useDispatch } from "react-redux";
 import { addExercise } from "../../redux/exercises/slice";
 
+
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
+import { ToastContainer } from 'react-toastify';
+
 
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import { notify } from "../..";
 
 function  Modal(props) {
     const dispatch = useDispatch();
 
-    const { setModal, idForm, optionalFunction } = props;
+    const { setModal, handleSubmitForm , idForm} = props;
 
-    const handleSubmitForm = (info) => {
-        dispatch(
-            addExercise({ ...info, idForm })
-        )
-        setModal(false);
-        optionalFunction({...info, idForm})
-    }
     const initialValues = {
         name: "",
         series: "",

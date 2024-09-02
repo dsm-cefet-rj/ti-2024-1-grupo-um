@@ -1,32 +1,118 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { createAxiosInstance } from "../../utils/api";
+import CreateAxiosInstance  from "../../utils/api";
+import { notify } from "../..";
 
-const api = createAxiosInstance();
 const initialState = [];
+const api  = CreateAxiosInstance();
 
-
-const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", async(userId) => {
+const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
     try{
-        const response = await api.get(`/training/${userId}`);
+        console.log(data);
+        const response = await api.post("/training", data.infos,{
+            headers:{
+                Authorization:`${data.token}`
+            }
+        });
+        console.log(response.data.trainings);
+        console.log(response.data);
+        for(const exercise of data.exercicios){
+            const exerciseToBeCreated = {
+                trainingId: response.data.trainings._id,
+                name: exercise.name,
+                peso: exercise.peso,
+                series: exercise.series,
+                observacoes: exercise.observacoes
+            }
+            await api.post(`/exercise/`, exerciseToBeCreated, {
+                headers: {
+                    Authorization:`${data.token}`
+                }
+            })
+        }
+        
+        notify("success", "Treino adicionado com sucesso");
+        return response.data.trainings;
+
+    }catch(error){
+        notify("error", error.message);
+    }
+});
+
+const addTreinoForStudent = createAsyncThunk('user/addTreinoStudentAsync', async (data) => {
+    try{
+        console.log(data);
+        const response = await api.post(`/training/${data.userId}`, data.infos,{
+            headers:{
+                Authorization:`${data.token}`
+            }
+        });
+        console.log(response.data.trainings);
+        console.log(response.data);
+        for(const exercise of data.exercicios){
+            const exerciseToBeCreated = {
+                trainingId: response.data.trainings._id,
+                name: exercise.name,
+                peso: exercise.peso,
+                series: exercise.series,
+                observacoes: exercise.observacoes
+            }
+            await api.post(`/exercise/`, exerciseToBeCreated, {
+                headers: {
+                    Authorization:`${data.token}`
+                }
+            })
+        }
+        
+        notify("success", "Treino adicionado com sucesso");
+        return response.data.trainings;
+
+    }catch(error){
+        notify("error", error.message);
+    }
+});
+
+const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", async(infos) => {
+    try{
+
+        const response = await api.get(`/training/${infos.userId}`, {
+            headers: {
+                Authorization:`${infos.token}`
+            }
+        });
         console.log(response.data);
         return response.data; 
     } catch(err){
         console.log(err);
     }
 });
-
-const deleteTreinoByID = createAsyncThunk("treino/deleteTreinoByID", async (idTreino) => {
+const deleteTreinosByUserId = createAsyncThunk("treino/deleteTreinos", async (token) => {
+    try{
+        await api.delete(`/training/user/`, {
+            headers: {
+                Authorization:`${token}`
+            }
+        });
+    }catch(error){
+        console.log(error.response.data.message);
+    }
+});
+const deleteTreinoByID = createAsyncThunk("treino/deleteTreinoByID", async (infos) => {
     try {
-        await api.delete(`/training/${idTreino}`); // Modificado para backend
+        await api.delete(`/training/${infos.idTreino}`, {
+            headers: {
+                Authorization:`${infos.token}`
+            }
+        }); 
+        await api.delete(`/exercise?trainingId=${infos.idTreino}`, {
+            headers: {
+                Authorization:`${infos.token}`
+            }
+        })
 
-        // const exercises = await axios.get(`http://localhost:3004/exercicios?idForm=${idTreino}`);
-
-        // for(let exercise of exercises.data){
-        //     await axios.delete(`http://localhost:3004/exercicios/${exercise.id}`)
-        // }
+        notify("success", "Treino excluido com sucesso");
     } catch(err) {
-        console.log("Não foi possível excluir o treino...");
+        notify("error", "Não foi possível excluir o treino...");
     }
 })
 
@@ -52,21 +138,28 @@ const trainingsSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(getTreinosByUserID.fulfilled, (state, action) => {
-            while (state.length > 0) {
-                state.pop()
-            }
-            if(!action.payload.message){
-                for (let training of action.payload) {
-                    state.push(training)
+        builder
+            .addCase(getTreinosByUserID.fulfilled, (state, action) => {
+                while (state.length > 0) {
+                    state.pop()
                 }
-            }
-        })
-
+                console.log(action.payload);
+                if(!action.payload?.message){
+                    for (let training of action.payload) {
+                        state.push(training)
+                    }
+                }
+            })
+            .addCase(addTreino.fulfilled, (state, action) => {
+                state.push(action.payload);
+            })
+            .addCase(addTreinoForStudent.fulfilled, (state, action) => {
+                state.push(action.payload);
+            })
     }
 })
 
 export const { addTraining, deleteTraining, clearTrainings } = trainingsSlice.actions;
 
-export { getTreinosByUserID, deleteTreinoByID };
+export { getTreinosByUserID, deleteTreinoByID, deleteTreinosByUserId, addTreino, addTreinoForStudent };
 export default trainingsSlice.reducer;

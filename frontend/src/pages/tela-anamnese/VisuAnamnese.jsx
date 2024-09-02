@@ -8,8 +8,12 @@ import { useNavigate, Navigate } from "react-router-dom";
 import InputComponentYup from "../../components/InputComponent/InputComponenteYup";
 import SelectComponentYup from "../../components/InputComponent/SelectComponentYup";
 
+
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import { notify } from "../../index";
+import { ToastContainer } from 'react-toastify';
+
 
 function VisuAnamnese() {
 
@@ -19,21 +23,40 @@ function VisuAnamnese() {
     const anamnese = useSelector(rootReducer => rootReducer.anamnese);
 
     const handleSubmitForm = (infos) => {
-        infos["userId"] = currentUser.user.id;
-        infos["id"] = anamnese.id;
-        dispatch(updateAnamnese(infos))
+
+        infos["userId"] = currentUser.user._id;
+        infos["id"] = anamnese._id;
+        console.log(infos);
+
+        dispatch(updateAnamnese({
+            infos: {...infos},
+            token: currentUser.logged
+        }))
         dispatch(addAnmnese(infos))
-        navigate("/personais")
+
+        setTimeout(() => {
+            navigate("/personais");
+        }, 2000);
+    }
+
+    function formatDate(dateString) {
+        // Cria um objeto Date a partir da string ISO
+        const date = new Date(dateString);
+        // Extrai o dia, mês e ano
+        const day = String(date.getUTCDate()).padStart(2, '0');
+        const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // getUTCMonth retorna o mês de 0 a 11
+        const year = date.getUTCFullYear();
+        return `${year}-${month}-${day}`;
     }
 
     if (!currentUser.logged) {
         return <Navigate to="/login" />
     }
     const initialValues = {
-        weigth: anamnese.weigth,
+        weight: anamnese.weight,
         motivation: anamnese.motivation,
         activityFreq: anamnese.activityFreq,
-        date: anamnese.date,
+        date: formatDate(anamnese.date),
         diet: anamnese.diet,
         observacoes: anamnese.observacoes,
     }
@@ -42,7 +65,7 @@ function VisuAnamnese() {
     const yesOrNot = ["Sim", "Não"];
     
     const validationSchema = Yup.object({
-        weigth: Yup.number().required("Peso é obrigatório").max(500, "Peso não deve ser maior que 500"),
+        weight: Yup.number().required("Peso é obrigatório").max(500, "Peso não deve ser maior que 500"),
         motivation: Yup.string().required("Motivação é obrigatório"),
         activityFreq: Yup.string().required("Selecione uma opção").oneOf(freqOptions),
         date: Yup.date(),
@@ -58,7 +81,7 @@ function VisuAnamnese() {
                     initialValues={initialValues}
                     validationSchema={validationSchema}
                     onSubmit={(values) => {
-                        handleSubmitForm(values)
+                        handleSubmitForm(values);
                     }}
                 >
                     {({ isValid }) => (
@@ -66,7 +89,7 @@ function VisuAnamnese() {
                             <div className="container cefit-form">
                                 <h2 id="titulo-form">Anamnese</h2>
                                 <h4 id="subtitulo-form">Edite sua anamnese</h4>
-                                <InputComponentYup classes="mt-3" id="weigthInput" name="weigth" text={<b>Seu peso:</b>} type="number" placeholder="Digite o seu peso (em kg)" />
+                                <InputComponentYup classes="mt-3" id="weightInput" name="weight" text={<b>Seu peso:</b>} type="number" placeholder="Digite o seu peso (em kg)" />
                                 <InputComponentYup classes="mt-3" id="motivationInput" name="motivation" text={<b>Motivação/Objetivo:</b>} type="text" placeholder="Ganhar peso, perder peso, ganhar músculos ..." />
                                 <SelectComponentYup classes="mt-3" id="activityFreqSelect" name="activityFreq" text={<b>Com que frequência faz atividade física?</b>} options={freqOptions} />
                                 <InputComponentYup classes="mt-3" id="dateInput" name="date" text={<b>Data do ultimo exame médico ou físico:</b>} type="date" placeholder="" />

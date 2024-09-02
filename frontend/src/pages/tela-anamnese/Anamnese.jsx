@@ -13,6 +13,9 @@ import SelectComponentYup from "../../components/InputComponent/SelectComponentY
 
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
+import { notify } from "../../index";
+import { ToastContainer } from 'react-toastify';
+
 
 function Anamnese() {
 
@@ -23,10 +26,19 @@ function Anamnese() {
     const anamneseUser = useSelector(rootReducer => rootReducer.anamnese);
 
     const handleSubmitForm = (infos) => {
-        infos["userId"] = currentUser.user.id;
-        dispatch(addAnmneseAsync(infos))
-        dispatch(addAnmnese(infos))
-        navigate("/personais")
+        
+        infos.userId = currentUser.user._id;
+        dispatch(addAnmneseAsync({
+            infos: infos, 
+            token: currentUser.logged
+        }));
+        dispatch(addAnmnese(infos));
+
+        
+
+        setTimeout(() => {
+            navigate("/personais");
+        }, 2000);
     }
     if (!currentUser.logged) {
         return <Navigate to="/login" />;
@@ -38,7 +50,7 @@ function Anamnese() {
     }
 
     const initialValues = {
-        weigth: "",
+        weight: "",
         motivation: "",
         activityFreq: "",
         date: "",
@@ -50,7 +62,7 @@ function Anamnese() {
     const yesOrNot = ["Sim", "Não"];
 
     const validationSchema = Yup.object({
-        weigth: Yup.number().required("Peso é obrigatório").max(500, "Peso não deve ser maior que 500"),
+        weight: Yup.number().required("Peso é obrigatório").max(500, "Peso não deve ser maior que 500"),
         motivation: Yup.string().required("Motivação é obrigatório"),
         activityFreq: Yup.string().required("Selecione uma opção").oneOf(freqOptions),
         date: Yup.date(),
@@ -61,7 +73,7 @@ function Anamnese() {
     return (
         <>
             <Navbar />
-            <div className="form-card p-5">
+            <div className="bg-image cefit-background-img" style={{backgroundImage: `url('https://usercontent.one/wp/ignitetraininghub.se/wp-content/uploads/2022/09/25102022-_MS_6087-HDR-scaled.jpg')`}}>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
@@ -74,12 +86,12 @@ function Anamnese() {
                             <div className="container cefit-form">
                                 <h2 id="titulo-form">Faça sua Anamnese</h2>
 
-                                <InputComponentYup classes="mt-3" id="weigthInput" name="weigth" text={<b>Seu peso:</b>} type="number" placeholder="Digite o seu peso (em kg)" />
+                                <InputComponentYup classes="mt-3" id="weightInput" name="weight" text={<b>Seu peso:</b>} type="number" placeholder="Digite o seu peso (em kg)" />
                                 <InputComponentYup classes="mt-3" id="motivationInput" name="motivation" text={<b>Motivação/Objetivo:</b>} type="text" placeholder="Ganhar peso, perder peso, ganhar músculos ..." />
                                 <SelectComponentYup classes="mt-3" id="activityFreqSelect" name="activityFreq" text={<b>Com que frequência faz atividade física?</b>} options={freqOptions} />
                                 <InputComponentYup classes="mt-3" id="dateInput" name="date" text={<b>Data do ultimo exame médico ou físico:</b>} type="date" placeholder="" />
                                 <SelectComponentYup classes="mt-3" id="dietSelect" name="diet" text={<b>Faz dieta?</b>} options={yesOrNot} />
-                                <InputComponentYup classes="mt-3" id="observacoesInput" name="observacoes" text={<b>Observações:</b>} type="text" placeholder="(opcional) Digite observações" />
+                                <InputComponentYup classes="mt-3" id="observacoesInput" name="observacoes" text={<b>Observações:</b>} type="text" placeholder="(Opcional) Digite observações" />
 
                                 <div className="mt-3 d-flex justify-content-center">
                                     <button className="btn-submit" type="submit" disabled={!isValid}>Enviar</button>

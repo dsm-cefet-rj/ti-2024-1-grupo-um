@@ -7,7 +7,7 @@ import logo from "../../images/logo.png";
 //import react stuff
 import { Link, useNavigate } from "react-router-dom";
 import { getTreinosByUserID } from "../../redux/trainings/slice";
-
+import { notify } from "../../index";
 //import axios
 import axios from "axios";
 
@@ -40,76 +40,52 @@ function LoginPersonal(){
 
     async function Autentica (info){
 
-        
-        //caso login de usuario
-
-        // const response = await axios.get("http://localhost:3004/users");
-        // const users = response.data;
-
-        // for (let user of users){
-        //     if(user.email === info.email && user.senha === info.senha){
-        //         dispatch(addLoggedUser(user));
-        //         dispatch(getTreinosByUserID(user.id));
-        //         dispatch(getPersonais());
-        //         dispatch(getAnamnese(user.id));
-        //         alert("autenticado");
-        //         navigate("/personais");
-        //         return;
-        //     }
-        // }
         const loginObj = {
             email: info.email,
             senha: info.senha
         }
-        const autenticado = await axios.post("http://localhost:3000/login", loginObj);   
-        console.log(autenticado.data.user)
-        if(autenticado.data.status == true){
-            dispatch(addLoggedUser(autenticado.data.user));
-            dispatch(getTreinosByUserID(autenticado.data.user._id));
-            dispatch(getPersonais());
-            dispatch(getAnamnese(autenticado.data.user._id));
-            alert("autenticado");
-            navigate("/personais");
-            return;
-        }
-
-        //adicionar user com comando dispatch(addLoggedUser(user));
-        //pegar os treinos do usuario atraves do dispatch(getTreinosByUserID(user.id));
-        //pegar todos os personais atraves do dispatch(getPersonais());
-        //pegar a anamnese do usuario atraves do dispatch(getAnamnese(user.id));
-        //alertar o usuario com alert("autenticado");
-        //navegar para /personais com navigate("/personais");
-
-
-
-
         //caso login de personal 
-        const responsePersonal = await axios.get("http://localhost:3004/personais");
-        const personais = responsePersonal.data;
+        try{
+            const autenticado = await axios.post("http://localhost:5000/loginPersonal", loginObj);
+            const response = autenticado.data;
+            if(response.status === true){
+                const personal = response.personal;
+                dispatch(addLoggedPersonal({
+                    personal,
+                    token: autenticado.data.token
+                }));
 
-        for (let personal of personais){
-            if(personal.email === info.email && personal.senha === info.senha){
-                dispatch(addLoggedPersonal(personal));
-                dispatch(getAlunosByPersonalId(personal.id));
-                
-                alert("autenticado");
-                navigate("/");
-                //navigate("/meusAlunos");
+                dispatch(getAlunosByPersonalId({
+                    idPersonal: personal._id,
+                    token: autenticado.data.token
+                }));
+
+                notify("success", response.message);
+                // setTimeout(10000);
+
+                setTimeout(() => {
+                    navigate("/personais");
+                }, 2000);
+                // toast("Usuário autenticado com sucesso!");
                 return;
+            }else{
+                notify("error", "Login ou senha inválidos.");
+                // alert("usuario invalido");
             }
+        }catch(err){
+            notify("error", err.response.data.message);
+            // alert(err);
         }
-
-        alert("usuario invalido");
     }
-
     const initialValues = {
         email: "",
         senha: "",
     }
 
     const validationSchema = Yup.object({
-        email: Yup.string().email().required("Insira um email"),
-        senha: Yup.string().required("Insira a senha")
+        email: Yup.string().email().required("O email é obrigatório"),
+        senha: Yup.string().required("A senha é obrigatória")
+        // senha: Yup.string()
     })
 
     return(
@@ -131,7 +107,7 @@ function LoginPersonal(){
                         {({ isValid }) => (
                         <Form className="formulario-login">
                                 <InputComponentYup classes="mb-3 mt-3" id="InputEmail" name="email" text={<b>Email:</b>} type="text" placeholder="Insira seu email aqui" />
-                                <InputComponentYup classes="mb-3" id="Password" name="senha" text={<b>Senha:</b>} type="password" placeholder="Digite a descrição do treino" />
+                                <InputComponentYup classes="mb-3" id="Password" name="senha" text={<b>Senha:</b>} type="password" placeholder="Insira sua senha aqui" />
 
                                 <div className="d-flex w-100 mt-3">
                                     <button className="btn-submit btn-primary w-100" type="submit" disabled={!isValid}>Enviar</button>
@@ -146,7 +122,7 @@ function LoginPersonal(){
                                         </div>
                                     </div>
                                     <div className="d-flex align-items-center w-20 mt-3">
-                                        <a href="/your-link" className="btn verde rounded-5 w-20">
+                                        <a href="/login" className="btn verde rounded-5 w-20">
                                             Aluno
                                         </a>
                                     </div>

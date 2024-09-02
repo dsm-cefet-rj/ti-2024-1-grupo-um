@@ -1,43 +1,73 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { createAxiosInstance } from "../../utils/api";
+import CreateAxiosInstance from "../../utils/api";
+import { notify } from "../../index";
 
-const api = createAxiosInstance();
-
+const api  = CreateAxiosInstance(); 
 
 const initialState = {
     preenchida: false,
     activityFreq: "",
     weight: "",
     motivation: "",
-    exam: "",
+    date: "",
     diet: "",
     observacoes: "",
     userId: "",
-    id: ""
 }
 
 const addAnmneseAsync = createAsyncThunk('anamnese/addAnamneseAsync', async (data) => {
-    const response = await api.post("/anamnese", data);
-    return response.data;
+    try{
+        const response = await api.post("/anamnese/", data.infos, {
+            headers: {
+                Authorization:`${data.token}`
+            }
+        });
+        notify("success", "Anamnese adicionada com sucesso.");
+        return response.data;
+    }catch(error){
+        notify("error", error.message)
+    }
 });
 
 
-const getAnamnese = createAsyncThunk('anamnese/getAnamneseAsync', async (userId) => {
-    console.log(userId);
-    const response = await api.get(`/anamnese/${userId}`);
+const getAnamnese = createAsyncThunk('anamnese/getAnamneseAsync', async (data) => {
+
+    console.log(data);
+    
+    const response = await api.get(`/anamnese/${data.userId}`,{
+        headers: {
+            Authorization:`${data.token}`
+        }
+    });
     return response.data;
+
 });
 
-const updateAnamnese = createAsyncThunk('anamnese/updateAnamneseAsync', async (payload) => {
-    await api.put(`/anamnese/${payload.id}`, payload);
+const updateAnamnese = createAsyncThunk('anamnese/updateAnamneseAsync', async (data) => {
+    try{
+        const response = await api.put(`/anamnese/`, data.infos, {
+            headers: {
+                Authorization:`${data.token}`
+            }
+        });
+        notify("success", response.data.message);
+    }catch(error){
+        notify("error", error.message);
+    }
 })
 
 const deleteAnamneseByUserId = createAsyncThunk('anamnese/deleteAnamneseAsync', async (userId) => {
-    await api.delete(`/anamnese?userId=${userId}`);
+    await api.delete(`/anamnese/${userId}`);
+    //auth
 })
 
-const deleteAnamnese = createAsyncThunk('anamnese/deleteAnamneseAsync', async (anamneseId) => {
-    await api.delete(`/anamnese/${anamneseId}`);
+const deleteAnamnese = createAsyncThunk('anamnese/deleteAnamneseAsync', async (infos) => {
+    await api.delete(`/anamnese/${infos.anamneseId}`,{
+        headers: {
+            Authorization:`${infos.token}`
+        }
+    });
+    //auth
 })
 
 
@@ -46,45 +76,44 @@ const anamneseSlice = createSlice({
     initialState,
     reducers: {
         addAnmnese: (state, action) => {
+            //maybe remove this reducer.
             state.preenchida = true;
             state.activityFreq = action.payload.activityFreq;
-            state.weigth = action.payload.weigth;
+            state.weight = action.payload.weight;
             state.motivation = action.payload.motivation;
-            state.exam = action.payload.exam;
+            state.date = action.payload.date;
             state.diet = action.payload.diet;
             state.observacoes = action.payload.observacoes;
             state.userId = action.payload.userId;
-            state.id = action.payload.id;
+            state._id = action.payload._id;
         },
         clearAnamnese: (state,action)=>{
             state.preenchida = false;
             state.activityFreq = "";
-            state.weigth = "";
+            state.weight = "";
             state.motivation = "";
-            state.exam = "";
+            state.date = "";
             state.diet = "";
             state.observacoes = "";
             state.userId = "";
-            state.id = "";
+            state._id = "";
         }
     },
     extraReducers: builder =>{
         builder.addCase(getAnamnese.fulfilled, (state, action) => {
-            if (action.payload.length > 0){
+            console.log(action.payload[0]);
+            if (action.payload[0]){
                 const anamnese = action.payload[0];
                 state.preenchida = true;
                 state.activityFreq = anamnese.activityFreq;
-                state.weigth = anamnese.weigth;
+                state.weight = anamnese.weight;
                 state.motivation = anamnese.motivation;
-                state.exam = anamnese.exam;
+                state.date = anamnese.date;
                 state.diet = anamnese.diet;
                 state.observacoes = anamnese.observacoes;
                 state.userId = anamnese.userId;
-                state.id = anamnese.id;
+                state._id = anamnese._id;
             }
-        })
-        builder.addCase(addAnmneseAsync.fulfilled, (state,action) => {
-            state.id = action.payload.id;
         })
     }
 })

@@ -10,17 +10,28 @@ import { getAnamnese } from "../../redux/anamnese/slice";
 // react router dom
 import { Link } from "react-router-dom";
 
-function AlunoCard({ nomeUser, userId}){
+function AlunoCard({nomeUser, idUser, token, userImage}){
     const dispatch = useDispatch();
+    console.log(nomeUser);
+    console.log(idUser);
+    console.log(token)
 
     const handleOnClick = () => {
-        dispatch(getTreinosByUserID(userId));
-        dispatch(getAnamnese(userId));
+        dispatch(getAnamnese({
+            userId: idUser,
+            token
+        }));
+        dispatch(getTreinosByUserID({
+            userId: idUser,
+            token
+        }));
     }
 
     return (
-        <Link className="card" id="card-personal" onClick={handleOnClick} to={`/aluno/${userId}`} >
-            <img className="card-img-top m-auto mt-2" src={user} alt="Imagem de capa do card"/>
+        <Link className="card" id="card-personal" onClick={handleOnClick} to={`/aluno/${idUser}`} >
+            {userImage ? (<img className="card-img-top m-auto mt-2" src={require(`../../../../uploads/${userImage}`)} alt="Imagem de capa do card" />)
+                : (<img className="card-img-top m-auto mt-2" src={user} alt="Imagem de capa do card" />)}
+            {/* <img className="card-img-top m-auto mt-2" src={user} alt="Imagem de capa do card"/> */}
             {/* <div className="card-body text-center">
                 <p className="card-text">{descricao}</p>
             </div> */}

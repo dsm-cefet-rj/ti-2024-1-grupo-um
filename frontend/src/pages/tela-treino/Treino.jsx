@@ -10,7 +10,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 import { deleteTreinoByID, deleteTraining } from "../../redux/trainings/slice.js";
-import { addExercicio } from "../../redux/exercises/slice.js";
+import { addExercicio, addExercise, deleteExerciciosByTreinoId } from "../../redux/exercises/slice.js";
+import { ToastContainer } from 'react-toastify';
+import { notify } from "../../index.js";
+
 
 function Treino() {
     //id treino
@@ -27,18 +30,42 @@ function Treino() {
     }
   
     const handleDeleteTreino = () => {
-        dispatch(deleteTreinoByID(id));
+        dispatch(deleteTreinoByID({
+            idTreino: id, 
+            token: currentUser.logged
+        }));
         dispatch(deleteTraining(id));
-        navigate("/areaFIT");
+        dispatch(deleteExerciciosByTreinoId(id));
+
+        setTimeout(() => {
+            navigate("/areaFIT");
+        }, 2000)
+        
     }
     
     const openModal = () => {
         setShowModal(true);
     };
 
+    const handleSubmitForm = (info) => {
+
+        dispatch(addExercise({ ...info, idForm: id }))
+        dispatch(addExercicio({
+            ...info,
+            idForm: id,
+            token: currentUser.logged
+        }));
+
+        // notify("success", "Exercício adicionado com sucesso!");
+        
+        setShowModal(false);
+        
+    }
+
     return (
         <>
         <Navbar />
+
         <div className="treino">
             <div className="traino-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
                 <h1 className="display-4">Exercícios</h1>
@@ -58,7 +85,7 @@ function Treino() {
                         rep={exercicio.series}
                         obs={exercicio.observacoes}
                         type={exercicio.type}
-                        idExercicio={exercicio.id}
+                        idExercicio={exercicio._id}
                     />
                 ))
             ):(
@@ -79,16 +106,18 @@ function Treino() {
             {showModal && (
                     <Modal
                         setModal={() => {
-                            setShowModal();
-
+                            setShowModal(!showModal);
                         }}
-                        idForm={id}
-                        optionalFunction={(info) => {dispatch(addExercicio(info))}}
+                        handleSubmitForm={(info) => handleSubmitForm(info)}
+                        
+                        optionalFunction={(info) => {
+                            dispatch(addExercicio({...info, token: currentUser.logged}))
+                        }}
                     />
                 )}
             </div>
         <div className="btn-div">
-            <button className="btn-delete" onClick={() =>{handleDeleteTreino(id)}}>Excluir treino</button>
+            <button className="btn-delete" onClick={() =>handleDeleteTreino(id)}>Excluir treino</button>
         </div>
         <FooterComp />
         </>

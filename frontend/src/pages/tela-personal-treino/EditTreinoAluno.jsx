@@ -12,6 +12,10 @@ import { useDispatch } from "react-redux";
 import { deleteTreinoByID, deleteTraining } from "../../redux/trainings/slice.js";
 import { addExercicio } from "../../redux/exercises/slice.js";
 
+import { ToastContainer } from 'react-toastify';
+import { notify } from "../../index.js";
+
+
 function EditTreinoAluno() {
     //init
     const dispatch = useDispatch();
@@ -27,9 +31,17 @@ function EditTreinoAluno() {
     const currentUser = useSelector(rootReducer => rootReducer.user);
 
     const handleDeleteTreino = () => {
-        dispatch(deleteTreinoByID(id));
+
+        dispatch(deleteTreinoByID({
+            idTreino: id,
+            token: currentUser.loggedPersonal
+        }));
+
         dispatch(deleteTraining(id));
-        navigate("/areaFIT");
+
+        setTimeout(() => {
+            navigate("/areaFIT");
+        }, 2000);
     }
     
     const openModal = () => {
@@ -37,7 +49,10 @@ function EditTreinoAluno() {
     };
 
     const handlePostExercise = (info) => {
-        dispatch(addExercicio(info))
+        dispatch(addExercicio({
+            ...info,
+            token: currentUser.loggedPersonal
+        }));
     }
 
     if(!currentUser.loggedPersonal){
@@ -68,7 +83,7 @@ function EditTreinoAluno() {
                         rep={exercicio.series}
                         obs={exercicio.observacoes}
                         type={exercicio.type}
-                        idExercicio={exercicio.id}
+                        idExercicio={exercicio._id}
                     />
                 ))
             )}

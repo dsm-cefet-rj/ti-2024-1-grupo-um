@@ -12,13 +12,15 @@ import { createAluno } from '../../redux/aluno/slice';
 import User from '../../images/user.png';
 //css
 import './Pagamento.css';
+import { notify } from '../../index';
+import { ToastContainer } from 'react-toastify';
 
 function Pagamento() {
   const currentUser = useSelector(rootReducer => rootReducer.user);
   const { id } = useParams();
   const navigate = useNavigate();
   const personais = useSelector(rootReducer => rootReducer.personais);
-  const personalAtual = personais.filter((personal) => personal.id == id)[0];
+  const personalAtual = personais.filter((personal) => personal._id === id)[0];
   
   const [numero, setNumero] = useState('');
   const [cvc, setCvc] = useState('');
@@ -36,13 +38,23 @@ function Pagamento() {
   
   const handlePayment = (e) => {
     e.preventDefault();
-    dispatch(createAluno({
-      userId: currentUser.user.id,
-      userName: currentUser.user.nome,
-      idPersonal: id
-    }));
-    alert("pagamento feito com sucesso!");
-    navigate("/");
+    try{
+      dispatch(createAluno({
+        userId: currentUser.user._id,
+        userName: currentUser.user.nome,
+        idPersonal: id,
+        token: currentUser.logged
+      }));
+    }catch(error){
+      // toast.error("Você já é matriculado com esse personal.");
+    }
+    
+    notify("success", "Pagamento realizado com sucesso");
+
+    setTimeout(() => {
+        navigate("/");
+    }, 2000);
+
   };
   
   if(!currentUser.logged){
@@ -56,7 +68,7 @@ function Pagamento() {
         {personalAtual.image ?
               (
                 <div className="infos d-flex flex-column justify-content-center">
-                  <img src={require(`../../images/PersonalImages/${personalAtual.image}.png`)} alt="avatar"
+                  <img src={require(`../../../../uploads/${personalAtual.image}`)} alt="avatar"
                     className="img-personal" style={{ width: "100px" }} />
                   <h5 className="my-3 d-flex justify-content-center align-items-center">{personalAtual.nome}</h5> 
                   <h1 className="preco">R${personalAtual.preco}</h1>
