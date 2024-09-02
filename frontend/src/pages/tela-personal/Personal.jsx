@@ -1,41 +1,39 @@
-//components
 import { Navigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Pagamento from "../tela-pagamento/Pagamento";
 import FooterComp from "../../components/Footer/Footer";
 import Login from "../tela-login/Login";
-
-//css
 import "././../tela-personal/Personal.css";
 import star from "../../images/star.png";
 import user from "../../images/user.png";
-
-//redux
 import { useSelector, useDispatch } from "react-redux";
 import { getAnamnese } from "../../redux/anamnese/slice";
 import CreateAxiosInstance from "../../utils/api";
 import { useEffect, useState } from "react";
 
 function Personal() {
-  // const [personalAtual, setPersonalAtual] = useState(null);
   const {id} = useParams();
-
-  // useEffect(async () => {
-  //   const actual = await api.get(`/personal/${id}`);
-  //   setPersonalAtual(actual);
-  // }, [id]);
-
   const api = CreateAxiosInstance();
   
   const dispatch = useDispatch();
   const currentUser = useSelector(rootReducer => rootReducer.user);
-  //pega os personais e faz um filtro pelo personal com id parametro
   const personais = useSelector(rootReducer => rootReducer.personais);
-  console.log(personais);
   const personalAtual = personais.filter((personal) => personal._id === id)[0];
-  console.log(personalAtual);
-  //pega a anamnese relacionada ao usuario logado
+  
+  //calcular idade
+  const calculateAge = (birthDate) => {
+    const today = new Date();
+    const birthDateObj = new Date(birthDate);
+    let age = today.getFullYear() - birthDateObj.getFullYear();
+    const monthDifference = today.getMonth() - birthDateObj.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDateObj.getDate())) {
+      age--;
+    }
+
+    return age;
+  };
+
   dispatch(getAnamnese(currentUser.user._id));
 
   const anamnese = useSelector(rootReducer => rootReducer.anamnese);
@@ -44,13 +42,6 @@ function Personal() {
     return <Navigate to={"/login"}/>
   }
 
-
-
-  // const estrelas = [];
-  // for (let i = 0; i < personalAtual.rating; i++) {
-  //     estrelas.push(<img key={i} className="imagem-estrela" src={star} alt="imagem estrela"/>);
-  // }
-
   return (
     <div className="card-personal">
       <Navbar/>
@@ -58,9 +49,7 @@ function Personal() {
           <a href="page2.html" className="back-button">
             <span className="seta"><i className="fas fa-arrow-left"></i></span>
           </a>
-          {/* inicio fulaninho */}
           <div className="card-body text-center m-auto">
-            {/* renderizacao condicional se personal tiver imagem */}
             {personalAtual?.image ?
               (
                 <div>
@@ -76,9 +65,6 @@ function Personal() {
                 </div>
                )
             } 
-            {/* <div className="margin-bottom-10px mb-4">
-              {estrelas}
-            </div> */}
             <div className="d-flex justify-content-center mb-2">
               {anamnese.preenchida?(
                   <Link data-aos="fade-up" data-aos-delay="200" to={`/pagamento/${id}`} className="btn btn-primary">Solicitar consultoria</Link>
@@ -89,9 +75,7 @@ function Personal() {
             </div>
           </div>
         </div>
-          {/* fim fulaninho */}
 
-          {/* inicio desc fulaninho */}
         <div className="card m-auto mb-4" id="card-block-personal">
           <div className="card-body">
             <div className="row">
@@ -108,7 +92,8 @@ function Personal() {
                 <p className="mb-0">Idade</p>
               </div>
               <div className="col-sm-9">
-                <p className="text-muted mb-0">{personalAtual?.idade}</p>
+                {/* Exibe a idade calculada */}
+                <p className="text-muted mb-0">{calculateAge(personalAtual?.birth)}</p>
               </div>
             </div>
             <hr />
@@ -131,9 +116,7 @@ function Personal() {
             </div>
           </div>
         </div>
-      
-        {/* fim desc fulaninho */}
-        {/* inicio biografia */}
+
         <div className="card m-auto mb-4" id="card-block-personal">
           <div className="card-body">
             <p className="mb-4" style={{ fontWeight: "bold" }}>Biografia</p>
