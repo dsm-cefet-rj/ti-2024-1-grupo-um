@@ -26,19 +26,16 @@ const createAluno = createAsyncThunk('aluno/addAlunoAsync', async(data) =>{
 })
 
 const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(infos)=>{
-
-  const alunos = await api.get(`/aluno?userId=${infos.id}`);
-
-  if(alunos.response){
-    for (let aluno of alunos.data){
-      await api.delete(`/aluno/${aluno.id}`,{
-        headers:{
-          Authorization:`${infos.token}`
-        }
-      });
+  try{
+    await api.delete(`/aluno/user/${infos.id}`,{
+      headers:{
+        Authorization:`${infos.token}`
+      }
+    });;
+  }catch(error){
+    console.log(error);
   }
-    //auth
-  }
+  
 });
 
 const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async(data, {getState}) => {
@@ -74,15 +71,14 @@ const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async
 })
 
 const deleteAlunoByPersonalId = createAsyncThunk("personais/deletePersonalAsync", async(infos)=>{
-  const alunos = await api.get(`/aluno?personalId=${infos._id}`);
-
-  for (let aluno of alunos.data){
-    await api.delete(`/aluno/${aluno.id}`,{
+  try{
+    await api.delete(`/aluno/personal/${infos._id}`,{
       headers:{
         Authorization:`${infos.token}`
       }
-    });
-    //auth
+    });;
+  }catch(error){
+    console.log(error);
   }
   //auth
 });
