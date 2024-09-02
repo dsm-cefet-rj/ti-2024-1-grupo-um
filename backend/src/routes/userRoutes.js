@@ -7,7 +7,8 @@ import multer from 'multer';
 const userRoutes = express.Router();
 const upload = multer(configMulter);
 
-userRoutes.get('/user/:id',verifyJWT, authorizeTypes(["user"]), readOne);
+// userRoutes.get('/user/:id', verifyJWT, authorizeTypes(["user","personal"]), readOne);
+userRoutes.get('/user/:id',  readOne);
 userRoutes.get('/user', readAll);
 userRoutes.post('/user', upload.single('image'), createUser);
 userRoutes.patch('/user/:id',upload.single('image'), verifyJWT, authorizeTypes(["user"]), updateUser);

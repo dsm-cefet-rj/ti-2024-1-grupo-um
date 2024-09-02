@@ -57,8 +57,10 @@ function Aluno() {
                 </a>
                 <div className="card-body text-center m-auto">
                     <div>
-                        <img src={user} alt="foto de perfil usuario"
-                            className="rounded-circle img-fluid" style={{ width: "150px" }} />
+                    {usuario.userImage ? (<img className="rounded-circle img-fluid" style={{ width: "150px" }} src={require(`../../../../uploads/${usuario.userImage}`)} alt="Imagem de capa do card" />)
+                : (<img className="rounded-circle img-fluid" src={user} alt="Imagem de capa do card" />)}
+                        {/* <img src={user} alt="foto de perfil usuario"
+                            className="rounded-circle img-fluid" style={{ width: "150px" }} /> */}
                         <h4 className="my-3" id="nome-aluno">{usuario?.nomeUser}</h4>
                         
                     </div>

@@ -10,7 +10,7 @@ import { getAnamnese } from "../../redux/anamnese/slice";
 // react router dom
 import { Link } from "react-router-dom";
 
-function AlunoCard({nomeUser, idUser, token}){
+function AlunoCard({nomeUser, idUser, token, userImage}){
     const dispatch = useDispatch();
     console.log(nomeUser);
     console.log(idUser);
@@ -29,7 +29,9 @@ function AlunoCard({nomeUser, idUser, token}){
 
     return (
         <Link className="card" id="card-personal" onClick={handleOnClick} to={`/aluno/${idUser}`} >
-            <img className="card-img-top m-auto mt-2" src={user} alt="Imagem de capa do card"/>
+            {userImage ? (<img className="card-img-top m-auto mt-2" src={require(`../../../../uploads/${userImage}`)} alt="Imagem de capa do card" />)
+                : (<img className="card-img-top m-auto mt-2" src={user} alt="Imagem de capa do card" />)}
+            {/* <img className="card-img-top m-auto mt-2" src={user} alt="Imagem de capa do card"/> */}
             {/* <div className="card-body text-center">
                 <p className="card-text">{descricao}</p>
             </div> */}

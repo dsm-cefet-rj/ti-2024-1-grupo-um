@@ -7,10 +7,13 @@ async function createAluno(req, res) {
         // userId: currentUser.user._id,
         // userName: currentUser.user.nome,
         // idPersonal: id
+        const userImage = req.file ? req.file.filename : null;
         const newAluno = {
             idUser: req.body.userId,
             nomeUser: req.body.userName,
-            idPersonal: req.body.idPersonal
+            idPersonal: req.body.idPersonal,
+            userImage: userImage
+            
         };
 
         //verificar se o aluno já existe para o personal

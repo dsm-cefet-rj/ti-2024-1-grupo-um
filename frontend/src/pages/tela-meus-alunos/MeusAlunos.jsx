@@ -47,6 +47,7 @@ function MeusAlunos(){
                             nomeUser={aluno.nomeUser}
                             idUser={aluno.idUser}
                             token={currentPersonal.loggedPersonal}
+                            userImage = {aluno.userImage}
                         />
                     )}
                 </div>

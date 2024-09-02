@@ -2,8 +2,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import CreateAxiosInstance from "../../utils/api";
 import { notify } from '../..';
+import store from '../store';
 
 const api  = CreateAxiosInstance();
+
+const initialState = [];
 
 const createAluno = createAsyncThunk('aluno/addAlunoAsync', async(data) =>{
 
@@ -11,6 +14,7 @@ const createAluno = createAsyncThunk('aluno/addAlunoAsync', async(data) =>{
     userId: data.userId,
     userName: data.userName,
     idPersonal: data.idPersonal,
+    userImage: data.userImage
   }
   const response = await api.post("/aluno", aluno, {
     headers: {
@@ -37,14 +41,30 @@ const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(info
   }
 });
 
-const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async(data) => {
+const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async(data, {getState}) => {
   try{
+    console.log(data);
     const response = await api.get(`/aluno/${data.idPersonal}`,{
       headers: {
         Authorization:`${data.token}`
       }
     });
-    return response.data;
+    const currentUser = getState().user;
+    const alunos = response.data;
+    console.log(alunos);
+    console.log(currentUser);
+    let alunosArray = [];
+    for(const aluno of alunos){
+      const user = await api.get(`/user/${aluno.idUser}`, {
+        headers: {
+          Authorization:`${currentUser.loggedPersonal}`
+        }
+      });
+      console.log(user);
+      alunosArray.push({...aluno, userImage: user.data?.image});
+    }
+    console.log(alunosArray);
+    return alunosArray;
   }catch(error){
     notify("error", error.message);
     return [];
@@ -81,14 +101,9 @@ const alunoSlice = createSlice({
     }
   },
   extraReducers: builder => {
-    builder.addCase(getAlunosByPersonalId.fulfilled, (state, action) => {
-      while(state.length > 0){
-        state.pop();
-      }
-      for (let aluno of action.payload) {
-        state.push(aluno);
-      }
-    })
+      builder.addCase(getAlunosByPersonalId.fulfilled, (state, action) => {
+        return action.payload;
+      })
   }
 });
 

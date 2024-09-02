@@ -19,7 +19,7 @@ const store = configureStore({
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false, // Ignora erros relacionados à serialização
     })
-    .concat( logger, thunk),
+    .concat(  thunk),
 });
 
 export const persistor = persistStore(store);
