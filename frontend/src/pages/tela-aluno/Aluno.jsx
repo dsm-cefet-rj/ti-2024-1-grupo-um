@@ -102,16 +102,18 @@ function Aluno() {
 
             {treinosUser.map((treino) => 
             <>
-                <div className="exercicio-card" id="treino-aluno">
-                    <div className="exercicio-info">
-                        <Link className="card-title" id="exercicio-nome" onClick={() => {dispatch(getExercisesByTreinoID({idTreino: treino._id, token: currentUser.loggedPersonal}))}} to={`/EditTreinoAluno/${treino._id}`}>{treino.title}</Link>
+                <Link onClick={() => {dispatch(getExercisesByTreinoID({idTreino: treino._id, token: currentUser.loggedPersonal}))}} to={`/EditTreinoAluno/${treino._id}`}>
+                    <div className="exercicio-card" id="treino-aluno">
+                        <div className="exercicio-info">
+                            <span className="card-title" id="exercicio-nome">{treino.title}</span>
+                        </div>
+                        <div className="btn-div">
+                            <button className="btn-lixeira" onClick={() => {handleDeleteTreino(treino._id)}}>
+                                <img className="lixeira-image" src={lixeira} alt="lixeira" />
+                            </button>
+                        </div>
                     </div>
-                    <div className="btn-div">
-                        <button className="btn-lixeira" onClick={() => {handleDeleteTreino(treino._id)}}>
-                            <img className="lixeira-image" src={lixeira} alt="lixeira" />
-                        </button>
-                    </div>
-                </div>
+                </Link>
             </>
             )}
 
