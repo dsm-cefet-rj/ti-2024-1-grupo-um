@@ -21,7 +21,7 @@ const addUser = createAsyncThunk('user/addUserAsync', async (data) => {
         notify("success", "Usuário criado com sucesso.");
         return response.data;
     }catch(error){
-        console.log(error);
+        
         notify("error", error.response.data.message);
         return false;
     }
@@ -45,13 +45,8 @@ const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
             }
             if(data.senha.length > 0) formData.senha = data.senha;
         }
-        // console.log(data);
-        // const updateUser = {
-        //     CPF: data.CPF,
-        //     birth: data.birth,
-        //     email: data.email,
-        //     nome: data.nome,
-        // }
+       
+    
         
         const config ={
             headers:{
@@ -60,11 +55,7 @@ const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
             }
         };
         const response = await api.patch(`/user/${data._id}`, formData, config);
-        // const response = await api.patch(`/user/${data._id}`, updateUser, {
-        //     headers: {
-        //         Authorization:`${token}`
-        //     }
-        // });
+        
         notify("success", "Usuario atualizado com sucesso");
         return response.data.data;
     }catch(error){
@@ -105,11 +96,10 @@ const updatePersonal = createAsyncThunk("user/updatePersonalAsync", async (data)
             }
         };
 
-        //req
+    
         const response = await api.patch(`/personal/${data._id}`, formData, config);
 
         notify("success", "Perfil atualizado com sucesso");
-        console.log(response.data);
         return response.data.data;
 
     } catch (error) {
@@ -118,33 +108,6 @@ const updatePersonal = createAsyncThunk("user/updatePersonalAsync", async (data)
     }
 });
 
-// const updatePersonal = createAsyncThunk("user/updatePersonalAsync", async (data) => {
-//     try{
-//         const req = {
-//             CPF: data.CPF,
-//             biografia: data.biografia,
-//             birth: data.birth,
-//             cidade: data.cidade,
-//             descricao: data.descricao,
-//             email: data.email,
-//             formacao: data.formacao,
-//             nome: data.nome,
-//             preco: data.preco,
-//             senha: data.senha
-//         }
-//         const response = await api.patch(`/personal/${data._id}`, req, {
-//             headers: {
-//                 Authorization: `${data.token}`
-//             }
-//         })
-//         notify("success", "Perfil atualizado com sucesso");
-//         console.log(response.data);
-//         return response.data.data;
-
-//     }catch(error){
-//         notify("error", error.message)
-//     }
-// });
 
 const deleteUser = createAsyncThunk("users/deleteUserAsync", async(infos)=> {
     try{
@@ -189,12 +152,7 @@ const userSlice = createSlice({
             state.loggedPersonal = action.payload.token;
             state.tokenExpiration = action.payload.expiration ;
         },
-        // logoutUser: (state) => {
-        //     state.logged = false;
-        //     state.loggedPersonal = false;
-        //     state.user = {};
-        //     state.personal={};
-        // },
+        
         addTraining: (state, action) => {
             if(state.logged){
                 state.user.treinos.push(action.payload);

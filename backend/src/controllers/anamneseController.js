@@ -1,9 +1,6 @@
 //here the anamnese controller
 import { anamneseModel } from "../models/AnamneseModel.js";
 
-//READ_ALL
-//READ_ONE
-//CREATE_ANAMNESE
 export const createAnamnese = async (req, res) => {
     try {
 
@@ -36,7 +33,7 @@ export const createAnamnese = async (req, res) => {
         return res.status(400).send({ message: 'Erro ao criar Anamnese', error: error.message })
     }
 };
-//READ -> obter anamnese por userId
+
 export const getAnamneseByUserId = async (req, res) => {
 
     try {

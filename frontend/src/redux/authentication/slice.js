@@ -12,9 +12,9 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         addLoggedUser: (state, action) => {
-            state.token = action.payload.token; //switch to token in the future
+            state.token = action.payload.token; 
         },
-        addLoggedPersonal: (state, action) => { //switch to token in the future
+        addLoggedPersonal: (state, action) => { 
             state.token = action.payload;
         },
         logoutUser: (state) => {

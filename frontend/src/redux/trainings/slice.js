@@ -14,8 +14,7 @@ const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
                 Authorization:`${data.token}`
             }
         });
-        console.log(response.data.trainings);
-        console.log(response.data);
+        
         for(const exercise of data.exercicios){
             const exerciseToBeCreated = {
                 trainingId: response.data.trainings._id,
@@ -41,14 +40,13 @@ const addTreino = createAsyncThunk('user/addTreinoAsync', async (data) => {
 
 const addTreinoForStudent = createAsyncThunk('user/addTreinoStudentAsync', async (data) => {
     try{
-        console.log(data);
+        
         const response = await api.post(`/training/${data.userId}`, data.infos,{
             headers:{
                 Authorization:`${data.token}`
             }
         });
-        console.log(response.data.trainings);
-        console.log(response.data);
+        
         for(const exercise of data.exercicios){
             const exerciseToBeCreated = {
                 trainingId: response.data.trainings._id,
@@ -80,7 +78,7 @@ const getTreinosByUserID = createAsyncThunk("treino/getTreinosAsyncByUserID", as
                 Authorization:`${infos.token}`
             }
         });
-        console.log(response.data);
+        
         return response.data; 
     } catch(err){
         console.log(err);

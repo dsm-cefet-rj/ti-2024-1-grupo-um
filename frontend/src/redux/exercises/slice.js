@@ -8,7 +8,7 @@ const initialState = [];
 
 const addExercicio = createAsyncThunk('user/addExerciseAsync', async (data) => {
     try{
-        console.log(data);
+        
         const exerciseToBeCreated = {
             trainingId: data.idForm,
             name: data.name,

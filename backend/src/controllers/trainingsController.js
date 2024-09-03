@@ -1,12 +1,5 @@
 import { exerciseModel } from "../models/ExerciseModel.js";
 import { trainingModel } from "../models/TrainingModel.js";
-//readAll
-//readOne
-//createTraining
-//createTrainingForGymStudent
-//updateTraining
-//updateTrainingForGymStudent
-//deleteTraining
 
 async function readAllTrainings(req, res) {
     try{
@@ -59,16 +52,11 @@ async function readOne(req, res){
         });
     }
 }
-// userId: "",
-// id: "",
-// descricao: "",
-// title: "",
-// type: "",
-// observacoes: "",
+
 async function createTraining(req, res){
     try{
         const training = req.body;
-        console.log(training);
+       
 
         const createdTraining = await trainingModel.create(training);
 
@@ -96,7 +84,7 @@ async function createTrainingForgymStudent(req, res){
         }
 
         const newTraining = await trainingModel.create(training);
-        console.log(newTraining);
+        
         
         return res.status(200).send({
             message: "Treino criado com sucesso.",
@@ -113,8 +101,7 @@ async function createTrainingForgymStudent(req, res){
 async function deleteTraining(req, res){
     try{
         const id = req.params.trainingId;
-        console.log(id);
-
+        
         await trainingModel.findByIdAndDelete(id);
 
         return res.status(200).send({

@@ -30,15 +30,10 @@ async function getAllExercisesByTrainingId(req, res) {
 async function createExercise(req, res){
     try{
         const exercise = req.body;
-        console.log(exercise);
+       
 
         const createdExercise = await exerciseModel.create(exercise);
-        //name -> req.body.name
-        //peso -> req.body.peso
-        //series -> req.body.series
-        //observacoes -> req.body.observacoes
-        //trainingId -> req.body.
-        //id -> proprio dele
+        
         return res.status(201).send({
             message: "Exercicio criado com sucesso."
         });
@@ -49,8 +44,7 @@ async function createExercise(req, res){
         });
     }
 }
-//updateExercise
-//deleteExercise
+
 async function deleteExercise( req, res ) {
     try{
         const exerciseId = req.params.exerciseId;

@@ -26,11 +26,11 @@ import { notify } from "../..";
 
 
 function CreateTreinoAluno() {
-    //inicializadores
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // pegando o usuario
+    
     const personal = useSelector(rootReducer => rootReducer.user);
     const exercicios = useSelector(rootReducer => rootReducer.exercises);
     const form = useSelector(rootReducer => rootReducer.forms);
@@ -41,8 +41,6 @@ function CreateTreinoAluno() {
         
         dispatch(addInfo(info));
 
-        console.log(info);
-        console.log(form);
 
         const treinoInfo = {
             userId: form.userId,
@@ -59,16 +57,10 @@ function CreateTreinoAluno() {
             token: personal.loggedPersonal,
             exercicios
         }));
-        // dispatch(addTreino(treinoInfo));
-        // dispatch(addTraining(treinoInfo));
-        // exercicios.map((exercicio) => dispatch(addExercicio(exercicio)));
-        // dispatch(clearExercises());
-        // dispatch(clearForms());
-
-        // notify("success", "Treino criado com sucesso");
+        
         navigate("/meusAlunos");
     }
-    // dispatch(clearExercises());
+    
 
     const handleSubmitAddExercise = (info) => {
         dispatch(addExercise(info));
