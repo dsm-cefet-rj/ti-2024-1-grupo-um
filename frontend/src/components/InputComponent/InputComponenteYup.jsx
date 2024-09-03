@@ -27,6 +27,10 @@ function InputComponentYup(props) {
                     id={props.id}
                     className="form-control bg-light input-cefit w-100"
                     placeholder={props.placeholder}
+                    maxLength={props.type === "text" && props.name === "CPF" ? "11" : undefined} // Limita o CPF a 11 caracteres
+                    inputMode={props.name === "CPF" ? "numeric" : undefined} // Teclado numérico para CPF
+                    pattern={props.name === "CPF" ? "\\d*" : undefined} // Aceita apenas números para CPF
+                    onInput={props.name === "CPF" ? (e) => e.target.value = e.target.value.replace(/\D/g, '') : undefined} // Apenas números
                 />
             )}
             <ErrorMessage name={props.name} render={renderError} />

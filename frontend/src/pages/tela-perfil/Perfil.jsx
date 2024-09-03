@@ -94,7 +94,7 @@ function Perfil() {
         nome: Yup.string().required("O nome é Obrigatório"),
         email: Yup.string().email().required("O email é obrigatório."),
         senha: Yup.string(),
-        birth: Yup.date().required("Data de Nascimento obrigatória."),
+        birth: Yup.date().max(new Date(), "A data de nascimento não pode ser no futuro!").required("Data de Nascimento é obrigatória."),
         CPF: Yup.string().required("CPF obrigatório."),
         image: Yup.mixed().nullable()
     });
