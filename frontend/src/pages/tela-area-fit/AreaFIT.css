@@ -56,3 +56,12 @@
     color: #fff;
     
 }
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ocupa pelo menos 100% da altura da viewport */
+}
+
+.content-wrap {
+    flex: 1; /* Faz com que este conteúdo se expanda para preencher o espaço disponível */
+}

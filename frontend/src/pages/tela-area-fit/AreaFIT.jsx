@@ -30,22 +30,18 @@ function AreaFIT() {
 		}));
 	}, [])
 
-	// Filtrar os treinos pelo idUser
 	if (!currentUser.logged) {
 		return <NotLoggedInAreaFIT />;
 	}
 
 	return (
-		<>
-    <div>
-
-			<div>
+		<div className="page-container"> {/* Classe adicionada */}
+			<div className="content-wrap"> {/* Classe adicionada */}
 				<Navbar />
 				<div className="fit-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
 					<h1 className="display-4">Área FIT</h1>
 					<p className="lead">
-						Monte seus treinos ideais ou visualize seus treinos
-						montados pelo personal
+						Monte seus treinos ideais ou visualize seus treinos montados pelo personal
 					</p>
 				</div>
 				<div className="container mt-2" id="container-card">
@@ -57,13 +53,12 @@ function AreaFIT() {
 										title={treino.title}
 										description={treino.descricao}
 										type={treino.type}
-										id={treino._id} //talvez mudar para _id
+										id={treino._id}
 									/>
 								</div>
 							))}
 					</div>
 				</div>
-
 				<Link to={"/add-treinos"} className="link-monte-treino">
 					<button
 						className="monte-button"
@@ -82,9 +77,9 @@ function AreaFIT() {
 				<div className="espacamento"></div>
 			</div>
 			<FooterComp />
-    </div>
-		</>
+		</div>
 	);
 }
+
 
 export default AreaFIT;

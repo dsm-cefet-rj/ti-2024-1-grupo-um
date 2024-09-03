@@ -12,13 +12,6 @@ const salt_rounds = process.env.SALT_ROUNDS;
 async function crypt(senha){
     return await bcrypt.hash(senha, Number(salt_rounds));
 }
-//READ_ALL
-//READ_ONE
-//CREATE_USER
-//UPDATE_USER
-//DELETE_USER
-//LOGIN
-//LOGOUT
 
 async function readAll(req, res) {
     try{
@@ -33,7 +26,6 @@ async function readAll(req, res) {
 }
 async function readOne(req, res){
     try{
-        //id
         const user = await userModel.findById(req.params.id);
         if(user){
 
@@ -55,18 +47,14 @@ async function createUser(req, res){
         //verificar email
         const existingEmailArray = await userModel.find({email: req.body.email});
         const existingEmail = existingEmailArray[0];
-        console.log(existingEmailArray);
-        console.log(existingEmail);
+        
 
         if(existingEmail != undefined || existingEmail != null){
-            // return res.status(400).send({
-            //     message: 'Email ja cadastrado'
-            // });
+           
             
             throw new Error("Email já cadastrado");
         }
 
-        //verificar cpf
         const existingCPFArray = await userModel.find({CPF: req.body.CPF});
         const existingCPF = existingCPFArray[0];
         if(existingCPF){
@@ -146,7 +134,7 @@ async function deleteUser(req, res){
         if(userDelete){
             if(imageName){
                 const imagePath = path.resolve(__dirname, '..', '..','..', 'uploads', imageName);
-                // console.log(imagePath);
+               
                 fs.unlink(imagePath, (err)=>{
                     if(err){
                         return res.status(400).send({
@@ -188,14 +176,14 @@ async function login(req, res){
                 status: false
             });
         }
-        console.log(existingUser);
+        
         //hash de senha
         const passwordMatch = await bcrypt.compare(senha, existingUser.senha);
-        // const passwordMatch = true;
+        
         if(!passwordMatch){
             throw new Error("Login ou senha errados");
         }else{
-            console.log(req.body);
+            
             const token = jsonwebtoken.sign(
                 {
                     id: existingUser._id,
@@ -228,7 +216,7 @@ async function logout(req, res){
         if(token){
             await blackListModel.create({token});
         }
-        console.log(token)
+        
 
         return res.status(200).send({
             message: "Logout efetuado com sucesso"

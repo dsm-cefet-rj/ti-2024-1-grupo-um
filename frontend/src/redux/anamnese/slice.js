@@ -32,7 +32,7 @@ const addAnmneseAsync = createAsyncThunk('anamnese/addAnamneseAsync', async (dat
 
 const getAnamnese = createAsyncThunk('anamnese/getAnamneseAsync', async (data) => {
 
-    console.log(data);
+    
     
     const response = await api.get(`/anamnese/${data.userId}`,{
         headers: {
@@ -58,7 +58,7 @@ const updateAnamnese = createAsyncThunk('anamnese/updateAnamneseAsync', async (d
 
 const deleteAnamneseByUserId = createAsyncThunk('anamnese/deleteAnamneseAsync', async (userId) => {
     await api.delete(`/anamnese/${userId}`);
-    //auth
+   
 })
 
 const deleteAnamnese = createAsyncThunk('anamnese/deleteAnamneseAsync', async (infos) => {
@@ -67,7 +67,7 @@ const deleteAnamnese = createAsyncThunk('anamnese/deleteAnamneseAsync', async (i
             Authorization:`${infos.token}`
         }
     });
-    //auth
+    
 })
 
 
@@ -76,7 +76,7 @@ const anamneseSlice = createSlice({
     initialState,
     reducers: {
         addAnmnese: (state, action) => {
-            //maybe remove this reducer.
+            
             state.preenchida = true;
             state.activityFreq = action.payload.activityFreq;
             state.weight = action.payload.weight;
@@ -101,7 +101,7 @@ const anamneseSlice = createSlice({
     },
     extraReducers: builder =>{
         builder.addCase(getAnamnese.fulfilled, (state, action) => {
-            console.log(action.payload[0]);
+            
             if (action.payload[0]){
                 const anamnese = action.payload[0];
                 state.preenchida = true;

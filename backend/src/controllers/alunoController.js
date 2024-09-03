@@ -4,9 +4,7 @@ import { alunoModel } from "../models/AlunoModel.js";
 //CREATE_ALUNO
 async function createAluno(req, res) {
     try {
-        // userId: currentUser.user._id,
-        // userName: currentUser.user.nome,
-        // idPersonal: id
+        
         const userImage = req.file ? req.file.filename : null;
         const newAluno = {
             idUser: req.body.userId,

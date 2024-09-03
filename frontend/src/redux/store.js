@@ -17,7 +17,7 @@ const store = configureStore({
     reducer: persistedReducer,
     devTools: true,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-        serializableCheck: false, // Ignora erros relacionados à serialização
+        serializableCheck: false, 
     })
     .concat(  thunk),
 });
