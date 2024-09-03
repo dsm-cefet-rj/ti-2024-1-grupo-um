@@ -1,5 +1,5 @@
 //components
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import FooterComp from "../../components/Footer/Footer";
@@ -14,14 +14,16 @@ import { clearExercises, getExercisesByTreinoID } from "../../redux/exercises/sl
 import { addForms } from "../../redux/form-treino/slice";
 import { v4 as idGen } from "uuid";
 import { deleteTraining, deleteTreinoByID } from "../../redux/trainings/slice";
+import { logoutUser } from "../../redux/user/slice";
 function Aluno() {
 
     const { id } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     dispatch(clearExercises());
     //pega o personal
     const currentUser = useSelector(rootReducer => rootReducer.user);
-
+    
     //pega os treinos relacionados ao aluno
     const treinosUser = useSelector(rootReducer => rootReducer.trainings);
 
@@ -29,9 +31,11 @@ function Aluno() {
     const anamnese = useSelector(rootReducer => rootReducer.anamnese);
 
     const alunos = useSelector(rootReducer => rootReducer.aluno);
-
+    if (!currentUser.loggedPersonal) {
+        return <Navigate to="/login" />;
+    }
     const usuario = alunos.filter((aluno) => aluno.idUser === id)[0];
-
+   
     console.log(alunos);
     console.log(usuario);
     console.log(alunos.filter((aluno) => aluno.userId === id))
@@ -44,9 +48,7 @@ function Aluno() {
         dispatch(deleteTraining(treinoId))
     }
 
-    if (currentUser.loggedPersonal === null) {
-        return <Navigate to={"/login"} />
-    }
+    
 
     return (
         <div className="card-personal">
