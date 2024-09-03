@@ -81,7 +81,7 @@ function Navbar() {
                         {
                             (currentUserNavbar || currentPersonalNavbar) ? (
                                 <div>
-                                    <span>Olá, {currentUserNavbar?.nome || currentPersonalNavbar?.nome}! </span>
+                                    <span>Olá, {currentUserNavbar?.nome.split(" ")[0] || currentPersonalNavbar?.nome.split(" ")[0]}! </span>
                                     <button to="/login" className="signup-button" type="button" onClick={Logout}>Logout</button>
                                 </div>
                             ) : (

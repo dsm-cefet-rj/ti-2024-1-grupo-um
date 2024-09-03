@@ -31,7 +31,6 @@ function Perfil() {
 
     const handleSubmitForm = (infos) => {
         infos._id = currentUser.user._id;
-        console.log(infos);
         dispatch(updateUser({
             ...infos, 
             token: currentUser.logged, 
@@ -52,18 +51,9 @@ function Perfil() {
     const handleUserDelete = () => {
         const userId = currentUser.user._id;
 
-        //TAREFA: -> -> -> tratar delete treinos <- <- <-
-        // for(let treino of treinos){
-        //     dispatch(deleteTreinoByID({
-        //         idTreino: treino.userId,
-        //         token: currentUser.logged
-        //     }));
-        // }
         if(treinos.length > 0){
             dispatch(deleteTreinosByUserId(currentUser.logged));
         }
-        // TRATAR DELETE TREINOS
-
 
         if(anamnese.preenchida){
             dispatch(deleteAnamnese({
@@ -92,10 +82,12 @@ function Perfil() {
 
     const validationSchema = Yup.object({
         nome: Yup.string().required("O nome é Obrigatório"),
-        email: Yup.string().email().required("O email é obrigatório."),
+        email: Yup.string().email("Insira um email válido.").required("O email é obrigatório."),
         senha: Yup.string(),
         birth: Yup.date().max(new Date(), "A data de nascimento não pode ser no futuro!").required("Data de Nascimento é obrigatória."),
-        CPF: Yup.string().required("CPF obrigatório."),
+        CPF: Yup.string()
+        .matches(/^\d{11}$/, "CPF deve conter exatamente 11 dígitos numéricos")
+        .required("CPF é obrigatório."),
         image: Yup.mixed().nullable()
     });
 

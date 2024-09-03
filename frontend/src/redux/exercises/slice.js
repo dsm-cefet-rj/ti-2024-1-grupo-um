@@ -62,7 +62,7 @@ const exercisesSlice = createSlice({
     reducers: {
         addExercise: (state, action) => {
             state.push(action.payload);
-            notify("success", "Exercício adicionado com sucesso")
+            
         },
         clearExercises: (state) => {
             while(state.length > 0){
@@ -86,7 +86,8 @@ const exercisesSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(getExercisesByTreinoID.fulfilled, (state, action) => {
+        builder
+        .addCase(getExercisesByTreinoID.fulfilled, (state, action) => {
             while (state.length > 0) {
                 state.pop()
             }
@@ -94,6 +95,10 @@ const exercisesSlice = createSlice({
                 state.push(exercise);
             }
         })
+        .addCase(addExercicio.fulfilled, (state, action) => {
+            state.push(action.payload.createdExercise);
+        })
+
     }
 })
 

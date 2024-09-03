@@ -46,7 +46,6 @@ function Pagamento() {
         token: currentUser.logged
       }));
     }catch(error){
-      // toast.error("Você já é matriculado com esse personal.");
     }
     
     notify("success", "Pagamento realizado com sucesso");

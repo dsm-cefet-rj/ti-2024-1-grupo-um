@@ -27,20 +27,13 @@ function PerfilPersonal() {
     const currentUser = useSelector(rootReducer => rootReducer.user);
 
     const handleSubmitForm = (infos) => {
-        console.log(currentUser.personal);
-        console.log(currentUser.personal._id);
         const formData = new FormData();
-        // for (const key in infos){
-        //     formData.append(key,infos[key]);
-        // }
         
         dispatch(updatePersonal({
             ...infos, 
             _id: currentUser.personal._id,
             token: currentUser.loggedPersonal
-        })); //auth
-        // dispatch(addLoggedPersonal(infos));
-        
+        }));
 
         setTimeout(() => {
             navigate("/");
@@ -69,10 +62,12 @@ function PerfilPersonal() {
 
     const validationSchema = Yup.object({
         nome: Yup.string().required("O nome é obrigatório."),
-        email: Yup.string().email().required("O email é obrigatório."),
+        email: Yup.string().email("Insira um email válido.").required("O email é obrigatório."),
         senha: Yup.string(),
         birth: Yup.date().max(new Date(), "A data de nascimento não pode ser no futuro!").required("Data de Nascimento é obrigatória."),
-        CPF: Yup.string().required("CPF é obrigatório."),
+        CPF: Yup.string()
+        .matches(/^\d{11}$/, "CPF deve conter exatamente 11 dígitos numéricos")
+        .required("CPF é obrigatório."),
         descricao: Yup.string().required("Descrição é obrigatória."),
         formacao: Yup.string().required("Formação é obrigatória."),
         cidade: Yup.string().required("Cidade é obrigatória."),

@@ -24,7 +24,7 @@ function CadastroPersonal(){
 
     const validationSchema = Yup.object({
         nome: Yup.string().required("O nome é obrigatório."),
-        email: Yup.string().email().required("O email é obrigatório."),
+        email: Yup.string().email("Insira um email válido.").required("O email é obrigatório."),
         senha: Yup.string().required("Senha é obrigatória.").min(8, "Senha deve conter pelo menos 8 caracteres."),
         birth: Yup.date().max(new Date(), "A data de nascimento não pode ser no futuro!").required("Data de Nascimento é obrigatória."),
         CPF: Yup.string()
@@ -70,7 +70,6 @@ function CadastroPersonal(){
             
             const resultAction = await dispatch(createPersonal(formData));
 
-            console.log(resultAction);
     
             if (createPersonal.fulfilled.match(resultAction)) {
                 notify("success", "Cadastro realizado com sucesso");
@@ -118,10 +117,10 @@ function CadastroPersonal(){
                                 <InputComponentYup classes="" id="formacao" name="formacao" text="Formação" type="text" placeholder="Sua Formação aqui" />
                                 <InputComponentYup classes="" id="biografia" name="biografia" text="Biografia" type="text" placeholder="Sua Biografia aqui" />
                                 <InputComponentYup classes="" id="preco" name="preco" text="Preço da sua consultoria" type="text" placeholder="Ex: R$ 39,90" />
-                                <InputComponentYup classes="" id="image" name="image" text="image" type="file" />    
+                                <InputComponentYup classes="" id="image" name="image" text="Foto de perfil" type="file" />    
                                 <InputComponentYup classes="" id="Password" name="senha" text="Senha" type="password" placeholder="Insira sua senha aqui"/>
                                 <div className="cadastro-texto mt-3">
-                                    Possui conta? <Link to="/login"> Faça o seu Login!</Link>
+                                    Possui conta? <Link to="/loginPersonal"> Faça o seu Login!</Link>
                                 </div>
                                 <div className="d-flex w-100 mt-3">
                                     <button type="submit" className="btn verde w-100" disabled={!isValid}>Cadastrar</button>
