@@ -26,7 +26,7 @@ function Cadastro(){
 
     const validationSchema = Yup.object({
         nome: Yup.string().required("O nome é Obrigatório"),
-        email: Yup.string().email().required("O email é obrigatório."),
+        email: Yup.string().email("Insira um email válido.").required("O email é obrigatório."),
         senha: Yup.string()
         .required('Senha requerida.') 
         .min(8, 'Senha deve conter ao menos 8 digitos.'),
@@ -113,6 +113,10 @@ function Cadastro(){
                                 </div>
                                 <div className="cadastro-texto mt-3">
                                     Possui conta?<Link to="/login">Faça o seu Login!</Link>
+                                    
+                                </div>
+                                <div className="cadastro-texto mt-3">
+                                    Personal? <Link to="/cadastroPersonal">Faça o seu cadastro!</Link>
                                 </div>
                             </Form>
                         )}

@@ -102,7 +102,7 @@ function Login(){
     }
 
     const validationSchema = Yup.object({
-        email: Yup.string().email("O email deve ser valido.").required("O email é obrigatório"),
+        email: Yup.string().email("Insira um email válido.").required("O email é obrigatório"),
         senha: Yup.string().required("A senha é obrigatória")
     })
 
@@ -131,12 +131,10 @@ function Login(){
                                         <div className="mt-3">
                                             Não possui conta? <Link to="/cadastro">Cadastre-se agora!</Link> 
                                         </div>
-                                        <div className="mt-3">
-                                            Personal? <Link to="/cadastroPersonal">Cadastre-se agora!</Link> 
-                                        </div>
+                                        
                                     </div>
                                     <div className="d-flex align-items-center w-20 mt-3">
-                                        <a href="/LoginPersonal" className="btn btn-primary rounded-5 w-20">
+                                        <a href="/LoginPersonal" className="btn verde rounded-5 w-20">
                                             Personal
                                         </a>
                                     </div>
