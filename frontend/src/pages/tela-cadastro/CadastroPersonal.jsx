@@ -26,8 +26,10 @@ function CadastroPersonal(){
         nome: Yup.string().required("O nome é obrigatório."),
         email: Yup.string().email().required("O email é obrigatório."),
         senha: Yup.string().required("Senha é obrigatória.").min(8, "Senha deve conter pelo menos 8 caracteres."),
-        birth: Yup.date().required("Data de Nascimento é obrigatória."),
-        CPF: Yup.string().required("CPF é obrigatório."),
+        birth: Yup.date().max(new Date(), "A data de nascimento não pode ser no futuro!").required("Data de Nascimento é obrigatória."),
+        CPF: Yup.string()
+        .matches(/^\d{11}$/, "CPF deve conter exatamente 11 dígitos numéricos")
+        .required("CPF é obrigatório."),
         descricao: Yup.string().required("Descrição é obrigatória."),
         formacao: Yup.string().required("Formação é obrigatória."),
         cidade: Yup.string().required("Cidade é obrigatória."),

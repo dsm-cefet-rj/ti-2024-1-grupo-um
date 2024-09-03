@@ -43,6 +43,7 @@ const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
                 email: data.email,
                 nome: data.nome
             }
+            if(data.senha.length > 0) formData.senha = data.senha;
         }
         // console.log(data);
         // const updateUser = {
@@ -51,7 +52,7 @@ const updateUser = createAsyncThunk("user/updateUserAsync", async (data) => {
         //     email: data.email,
         //     nome: data.nome,
         // }
-        if(data.senha.length > 0) formData.senha = data.senha;
+        
         const config ={
             headers:{
                 Authorization: `${data.token}`,
@@ -90,11 +91,12 @@ const updatePersonal = createAsyncThunk("user/updatePersonalAsync", async (data)
                 email: data.email,
                 formacao: data.formacao,
                 nome: data.nome,
-                preco: data.preco,
-                senha: data.senha
+                preco: data.preco
             };
+            if(data.senha.length === 0) {
+                formData.senha = data.senha
+            }
         }
-
         const config = {
             headers: {
                 Authorization: `${data.token}`,

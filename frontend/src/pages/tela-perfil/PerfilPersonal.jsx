@@ -71,7 +71,7 @@ function PerfilPersonal() {
         nome: Yup.string().required("O nome é obrigatório."),
         email: Yup.string().email().required("O email é obrigatório."),
         senha: Yup.string(),
-        birth: Yup.date().required("Data de Nascimento é obrigatória."),
+        birth: Yup.date().max(new Date(), "A data de nascimento não pode ser no futuro!").required("Data de Nascimento é obrigatória."),
         CPF: Yup.string().required("CPF é obrigatório."),
         descricao: Yup.string().required("Descrição é obrigatória."),
         formacao: Yup.string().required("Formação é obrigatória."),

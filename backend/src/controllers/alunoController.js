@@ -63,9 +63,9 @@ async function getAlunosByPersonalId(req, res) {
 //DELETE_ALUNO_BY_USER_ID
 async function deleteAlunoByUserId(req, res){
     try{
-        const idUser = req.params.idUser;
-        const alunoDelete = await alunoModel.findByIdAndDelete(idUser);
-
+        const idUser = req.params.userId;
+        const alunoDelete = await alunoModel.deleteMany({idUser: idUser})
+        
         if(alunoDelete){
             return res.status(200).send({
                 message: 'Aluno removido com sucesso',
