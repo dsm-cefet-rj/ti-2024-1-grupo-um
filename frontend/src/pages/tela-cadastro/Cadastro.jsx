@@ -64,18 +64,15 @@ function Cadastro(){
             
             const resultAction = await dispatch(addUser(formData));
 
-            console.log(resultAction);
     
             if (addUser.fulfilled.match(resultAction)) {
                 setTimeout(() => {
                     navigate("/login");
                 }, 2000);
             } else {
-                console.log("entrou else erro");
                 notify("error", `Erro ao realizar o cadastro: ${resultAction.payload}`);
             }
         } catch (error) {
-            console.log("entrou catch error");
             notify("error", `Erro ao realizar o cadastro: ${error.message}`);
             console.error(error);
         }

@@ -50,14 +50,16 @@ function CreateTreinoAluno() {
             observacoes: info.observacoes
         }
 
-        //add Auth to all of them
         dispatch(addTreinoForStudent({
             infos: treinoInfo,
             userId: form.userId,
             token: personal.loggedPersonal,
             exercicios
         }));
+<<<<<<< HEAD
         
+=======
+>>>>>>> ca03db98af5e5a08a1c22a0a5638d5b27a5341b2
         navigate("/meusAlunos");
     }
     

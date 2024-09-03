@@ -50,9 +50,11 @@ function EditTreinoAluno() {
 
     const handlePostExercise = (info) => {
         dispatch(addExercicio({
+            idForm: id,
             ...info,
             token: currentUser.loggedPersonal
         }));
+        setShowModal(false);
     }
 
     if(!currentUser.loggedPersonal){
@@ -96,7 +98,7 @@ function EditTreinoAluno() {
 
                         }}
                         idForm={id}
-                        optionalFunction={handlePostExercise}
+                        handleSubmitForm={handlePostExercise}
                     />
                 )}
             </div>

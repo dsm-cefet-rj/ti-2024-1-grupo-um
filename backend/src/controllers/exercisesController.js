@@ -35,7 +35,8 @@ async function createExercise(req, res){
         const createdExercise = await exerciseModel.create(exercise);
         
         return res.status(201).send({
-            message: "Exercicio criado com sucesso."
+            message: "Exercicio criado com sucesso.",
+            createdExercise
         });
     }catch(error){
         return res.status(400).send({

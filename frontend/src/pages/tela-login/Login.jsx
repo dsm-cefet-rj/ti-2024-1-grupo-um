@@ -20,7 +20,7 @@ import { clearAnamnese, getAnamnese } from "../../redux/anamnese/slice";
 import { clearExercises } from "../../redux/exercises/slice";
 import { clearAlunos, getAlunosByPersonalId } from "../../redux/aluno/slice";
 import { notify } from "../../index";
-//yup
+
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 
@@ -29,7 +29,6 @@ function Login(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    //dispatchs para deslogar totalmente em caso de redirecionamento
     dispatch(logoutRedux());
     dispatch(clearAlunos());
     dispatch(clearExercises());
@@ -37,22 +36,6 @@ function Login(){
     dispatch(clearAnamnese());
 
     async function Autentica (info){
-        //caso login de usuario
-
-        // const response = await axios.get("http://localhost:3004/users");
-        // const users = response.data;
-
-        // for (let user of users){
-        //     if(user.email === info.email && user.senha === info.senha){
-        //         dispatch(addLoggedUser(user));
-        //         dispatch(getTreinosByUserID(user.id));
-        //         dispatch(getPersonais());
-        //         dispatch(getAnamnese(user.id));
-        //         alert("autenticado");
-        //         navigate("/personais");
-        //         return;
-        //     }
-        // }
         const loginObj = {
             email: info.email,
             senha: info.senha
@@ -62,7 +45,6 @@ function Login(){
             const autenticado = await axios.post("http://localhost:5000/login", loginObj);
             
 
-            console.log(autenticado.data);
 
             if(autenticado.data.status == true){
                 dispatch(addLoggedUser(autenticado.data));
@@ -75,23 +57,17 @@ function Login(){
                     userId: autenticado.data.user._id,
                     token: autenticado.data.token
                 }));
-                // alert("autenticado");
                 notify("success", autenticado.data.message);
-                // setTimeout(10000);
 
                 setTimeout(() => {
                     navigate("/personais");
                 }, 3000);
-                // toast("Usuário autenticado com sucesso!");
                 return;
             }else{
                 notify("error", "Login ou senha inválidos.");
-                // alert("usuario invalido");
             }
         }catch(err){
-            console.log(err);
             notify("error", err.response.data.message);
-            // alert(err);
         }
     }
 

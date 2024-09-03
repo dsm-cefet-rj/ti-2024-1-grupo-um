@@ -12,9 +12,6 @@ import { Link } from "react-router-dom";
 
 function AlunoCard({nomeUser, idUser, token, userImage}){
     const dispatch = useDispatch();
-    console.log(nomeUser);
-    console.log(idUser);
-    console.log(token)
 
     const handleOnClick = () => {
         dispatch(getAnamnese({
