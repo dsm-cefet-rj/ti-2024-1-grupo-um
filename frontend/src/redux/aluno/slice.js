@@ -22,7 +22,7 @@ const createAluno = createAsyncThunk('aluno/addAlunoAsync', async(data) =>{
     }
   });
   return response.data;
-  //auth
+ 
 })
 
 const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(infos)=>{
@@ -40,7 +40,7 @@ const deleteAlunoByUserId = createAsyncThunk("users/deleteUserAsync", async(info
 
 const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async(data, {getState}) => {
   try{
-    console.log(data);
+    
     const response = await api.get(`/aluno/${data.idPersonal}`,{
       headers: {
         Authorization:`${data.token}`
@@ -48,8 +48,7 @@ const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async
     });
     const currentUser = getState().user;
     const alunos = response.data;
-    console.log(alunos);
-    console.log(currentUser);
+    
     let alunosArray = [];
     for(const aluno of alunos){
       const user = await api.get(`/user/${aluno.idUser}`, {
@@ -57,17 +56,16 @@ const getAlunosByPersonalId = createAsyncThunk("personais/getAlunosAsync", async
           Authorization:`${currentUser.loggedPersonal}`
         }
       });
-      console.log(user);
+      
       alunosArray.push({...aluno, userImage: user.data?.image});
     }
-    console.log(alunosArray);
+    
     return alunosArray;
   }catch(error){
     notify("error", error.message);
     return [];
   }
   
-  //auth
 })
 
 const deleteAlunoByPersonalId = createAsyncThunk("personais/deletePersonalAsync", async(infos)=>{

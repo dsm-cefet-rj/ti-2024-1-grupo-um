@@ -8,7 +8,7 @@ const tokenMiddleware = store => next => action => {
 
     const token = user.logged ? user.logged : user.loggedPersonal;
 
-    // console.log(token)
+   
     const ignoreActions = ['LOGOUT'];
 
     if (!ignoreActions.includes(action.type)) {

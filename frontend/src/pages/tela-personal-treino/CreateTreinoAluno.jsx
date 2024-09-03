@@ -26,11 +26,11 @@ import { notify } from "../..";
 
 
 function CreateTreinoAluno() {
-    //inicializadores
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // pegando o usuario
+    
     const personal = useSelector(rootReducer => rootReducer.user);
     const exercicios = useSelector(rootReducer => rootReducer.exercises);
     const form = useSelector(rootReducer => rootReducer.forms);
@@ -58,7 +58,7 @@ function CreateTreinoAluno() {
         }));
         navigate("/meusAlunos");
     }
-    // dispatch(clearExercises());
+    
 
     const handleSubmitAddExercise = (info) => {
         dispatch(addExercise(info));
