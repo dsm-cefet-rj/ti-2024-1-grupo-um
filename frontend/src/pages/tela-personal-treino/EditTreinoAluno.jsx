@@ -49,7 +49,6 @@ function EditTreinoAluno() {
     };
 
     const handlePostExercise = (info) => {
-        console.log(info);
         dispatch(addExercicio({
             idForm: id,
             ...info,

@@ -26,7 +26,6 @@ function VisuAnamnese() {
 
         infos["userId"] = currentUser.user._id;
         infos["id"] = anamnese._id;
-        console.log(infos);
 
         dispatch(updateAnamnese({
             infos: {...infos},

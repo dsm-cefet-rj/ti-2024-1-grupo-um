@@ -27,20 +27,13 @@ function PerfilPersonal() {
     const currentUser = useSelector(rootReducer => rootReducer.user);
 
     const handleSubmitForm = (infos) => {
-        console.log(currentUser.personal);
-        console.log(currentUser.personal._id);
         const formData = new FormData();
-        // for (const key in infos){
-        //     formData.append(key,infos[key]);
-        // }
         
         dispatch(updatePersonal({
             ...infos, 
             _id: currentUser.personal._id,
             token: currentUser.loggedPersonal
-        })); //auth
-        // dispatch(addLoggedPersonal(infos));
-        
+        }));
 
         setTimeout(() => {
             navigate("/");

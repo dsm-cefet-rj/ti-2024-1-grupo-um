@@ -40,7 +40,6 @@ function AddTreinos() {
     const [showModal, setShowModal] = useState(false);
 
     const handleSubmitForm = (info) => {
-        console.log(info)
         dispatch(addInfo(info));
         const treinoInfo = {
             userId: form.userId,

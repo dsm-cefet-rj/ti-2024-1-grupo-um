@@ -61,20 +61,16 @@ function LoginPersonal(){
                 }));
 
                 notify("success", response.message);
-                // setTimeout(10000);
 
                 setTimeout(() => {
                     navigate("/personais");
                 }, 2000);
-                // toast("Usuário autenticado com sucesso!");
                 return;
             }else{
                 notify("error", "Login ou senha inválidos.");
-                // alert("usuario invalido");
             }
         }catch(err){
             notify("error", err.response.data.message);
-            // alert(err);
         }
     }
     const initialValues = {

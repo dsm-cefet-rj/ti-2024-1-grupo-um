@@ -35,10 +35,6 @@ function Aluno() {
         return <Navigate to="/login" />;
     }
     const usuario = alunos.filter((aluno) => aluno.idUser === id)[0];
-   
-    console.log(alunos);
-    console.log(usuario);
-    console.log(alunos.filter((aluno) => aluno.userId === id))
 
     const handleDeleteTreino = (treinoId) => {
         dispatch(deleteTreinoByID({

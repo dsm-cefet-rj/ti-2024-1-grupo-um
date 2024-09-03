@@ -31,7 +31,6 @@ function Perfil() {
 
     const handleSubmitForm = (infos) => {
         infos._id = currentUser.user._id;
-        console.log(infos);
         dispatch(updateUser({
             ...infos, 
             token: currentUser.logged, 
@@ -52,18 +51,9 @@ function Perfil() {
     const handleUserDelete = () => {
         const userId = currentUser.user._id;
 
-        //TAREFA: -> -> -> tratar delete treinos <- <- <-
-        // for(let treino of treinos){
-        //     dispatch(deleteTreinoByID({
-        //         idTreino: treino.userId,
-        //         token: currentUser.logged
-        //     }));
-        // }
         if(treinos.length > 0){
             dispatch(deleteTreinosByUserId(currentUser.logged));
         }
-        // TRATAR DELETE TREINOS
-
 
         if(anamnese.preenchida){
             dispatch(deleteAnamnese({
