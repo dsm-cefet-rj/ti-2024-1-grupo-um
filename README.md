@@ -11,4 +11,8 @@
   - cd ./backend
   - npm run dev
 
+#### Para abrir a documentação com o backend rodando:
+http://localhost:5000/API-docs
+
 Link do video de apresentação do frontend: https://youtu.be/gWEfMC4-WcA
+
