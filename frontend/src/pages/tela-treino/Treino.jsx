@@ -55,8 +55,6 @@ function Treino() {
             idForm: id,
             token: currentUser.logged
         }));
-
-        // notify("success", "Exercício adicionado com sucesso!");
         
         setShowModal(false);
         
